@@ -18,12 +18,19 @@ class BcvjobController {
 		}
 	
 	def form =  {
+		
 	}
 	
 	
 	def submit() {
 		
 		def job = new Bcvjob(params)
+		
+		//def sessionId1 = bcvjobService.createSessionId()
+		def sessionId = "5"
+		
+		job.setSessionId(sessionId)
+		
 		
 		// Get files and directions
 		
@@ -40,31 +47,51 @@ class BcvjobController {
 			return
 		}
 		
-		
-		def sessionId1 = bcvjobService.createSessionId()
-		def sessionId = "5"
+		job.save()
 		
 		
 		def uploadPath = bcvjobService.prepareDirectory(job, sessionId, fileList, directionList)
 		Closure pipeline = bcvjobService.getPipeline(job)
 		
+		def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+		
+		
+		render bcvjobService.getAbsPath()
+
 		if (job.email != null){
-			
+
 			def GParsPool = new GParsPool()
 			def pool = new ForkJoinPool(1)
 			GParsPool.withExistingPool (pool, {
-			myTestRun.callAsync(sessionId, job.email) //why async?
-				})
-			
+
+				if(queueSize > 2){
+					while (queueSize > 2){  // 1 running task + our task
+						sleep(5000)
+						queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+					}
+				}
+				pipeline.callAsync(sessionId, job.email)
+			})
+
+
 			render "Success! We will send your results at ${job.email} in about 30 minutes"
-			
+
 		}
 		else {
+			if(queueSize > 2){
+				render "Your task has been added to the queue"
+				while (queueSize > 2){  // 1 running task + our task
+					def randomString = bcvjobService.talkToUser(true)
+					render "<p>${randomString}</p>"
+					sleep(5000)
+					queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+				}
+			}
 			//render "Wait here. Your sessionId is ${sessionId}"
 			def GParsPool = new GParsPool()
 			def pool = new ForkJoinPool(1)
 			GParsPool.withExistingPool (pool, {
-				myTestRun.callAsync(sessionId, null) 
+				pipeline.callAsync(sessionId, null) 
 				pool.shutdown()
 				})
 			def start = new Date(System.currentTimeMillis())
@@ -77,8 +104,9 @@ class BcvjobController {
 
 			def url = createLink(controller: 'bcvjob', action: 'renderResults', params: [sessionId: sessionId])
 			render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
-
+		//	job.delete(flush:true)
 		}
+
 		
 	}
 	

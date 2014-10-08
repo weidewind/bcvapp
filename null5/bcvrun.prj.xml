@@ -1,0 +1,76 @@
+<BCVRunConfiguration>
+  <InFileExt>
+    .ab1
+  </InFileExt>
+  <InPath>
+    ./Input
+  </InPath>
+  <BCV_Input>
+    ./Input
+  </BCV_Input>
+  <BCV_Output>
+    ./Output
+  </BCV_Output>
+  <BCV_CFG>
+    ${BCV_HOME}/outprofile_dcmp.cfg
+  </BCV_CFG>
+  <Vocabulary>
+    ../../vocabularies/human_microbiome.seq.fas
+  </Vocabulary>
+  <UseCase>
+    deconvolution
+  </UseCase>
+  <FLAGS>
+    <Flag name="ParseSampleNames">
+      no
+    </Flag>
+    <Flag name="RunBCV">
+      true
+    </Flag>
+  </FLAGS>
+  <PRIMERS PrimerDelim="_"/>
+  <READS>
+    <Read/>
+    <Read name="01-02-11-2_D05_95_Un16Sq_07.ab1">
+      <Direction>
+        reverse
+      </Direction>
+    </Read>
+  </READS>
+  <Database>
+    named
+  </Database>
+  <BLASTPath>
+    /home/popova/Programs/blast-2.2.26/bin/
+  </BLASTPath>
+  <PhyMLPath>
+    /home/popova/bin/
+  </PhyMLPath>
+  <ClustalWPath>
+    /home/popova/bin/
+  </ClustalWPath>
+  <CDHitPath>
+    /home/popova/Programs/cd-hit-v4.6.1/
+  </CDHitPath>
+  <DBPath>
+    /home/popova/Programs/STAP/
+  </DBPath>
+  <tmpPath>
+    /home/popova/Programs/STAP/tmp/
+  </tmpPath>
+  <ConfidenceThreshold>
+    80
+  </ConfidenceThreshold>
+  <DistanceThreshold>
+    0.03
+  </DistanceThreshold>
+  <ExpectThreshold>
+    0.05
+  </ExpectThreshold>
+  <XSLPath>
+    /home/popova/Documents/BCV_examples/examples/simple_jq.xsl
+  </XSLPath>
+  <GeneraFilePath>
+    /home/popova/Documents/BCV_examples/examples/genera.txt
+  </GeneraFilePath>
+</BCVRunConfiguration>

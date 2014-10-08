@@ -1,14 +1,17 @@
 package bcvapp
 
+import java.util.Date;
 import java.util.List;
 
 class Stapjob {
 
+String sessionId
 String sequences
 List files
-String database
+String taxdb
 float distance
 String email
+Date dateCreated
 
 
     static constraints = {
@@ -18,4 +21,13 @@ String email
 		sequences (blank: true, nullable: true)
 
     }
+	
+	static mapping = {
+
+		sessionId column: 'sessionId'
+	}
+	
+	def setSessionId(String sessionId){
+		this.sessionId = sessionId
+	}
 }

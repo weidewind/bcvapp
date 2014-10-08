@@ -25,6 +25,10 @@ class StapjobController {
 	def submit() {
 		
 		def job = new Stapjob(params)
+		//def sessionId1 = stapjobService.createSessionId()
+		def sessionId = "5"
+		
+		job.setSessionId(sessionId)
 		
 		// Get files and directions
 		
@@ -38,20 +42,34 @@ class StapjobController {
 			return
 		}
 		
-		
-		def sessionId2 = stapjobService.createSessionId()
-		def sessionId = "5"
+		job.save()
 		
 		
 		def uploadPath = stapjobService.prepareDirectory(job, sessionId, fileList)
 		Closure pipeline = stapjobService.getPipeline(job)
+		
+		def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+
+		
+		if(queueSize > 2){
+			render "Your task has been added to the queue"
+			while (queueSize > 2){ // 1 running task + our task
+
+				def randomString = stapjobService.talkToUser(true)
+				render "<p>${randomString}</p>"
+				sleep(5000)
+				queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+
+			}
+		}
 		
 		if (job.email != null){
 			
 			def GParsPool = new GParsPool()
 			def pool = new ForkJoinPool(1)
 			GParsPool.withExistingPool (pool, {
-			myTestRun.callAsync(sessionId, job.email) //why async?
+			pipeline.callAsync(sessionId, job.email) //why async?
+		//	job.delete()
 				})
 			
 			render "Success! We will send your results at ${job.email} in about 30 minutes"
@@ -62,7 +80,7 @@ class StapjobController {
 			def GParsPool = new GParsPool()
 			def pool = new ForkJoinPool(1)
 			GParsPool.withExistingPool (pool, {
-				myTestRun.callAsync(sessionId, null) 
+				pipeline.callAsync(sessionId, null) 
 				pool.shutdown()
 				})
 			def start = new Date(System.currentTimeMillis())
@@ -77,6 +95,8 @@ class StapjobController {
 			render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
 
 		}
+		
+		
 		
 	}
 	

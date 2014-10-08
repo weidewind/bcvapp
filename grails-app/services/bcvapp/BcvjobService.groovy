@@ -1,11 +1,13 @@
 package bcvapp
 
 import grails.transaction.Transactional
-
 import groovy.lang.Closure;
 
 import java.awt.event.ItemEvent;
 import java.util.regex.Pattern;
+
+import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
+
 
 
 
@@ -16,10 +18,9 @@ class BcvjobService {
 
 	def mailService
 
-
-
-	def String absPath = "C:/Users/weidewind/workspace/grails/"
-	def String configPath = "C:/Users/weidewind/Documents/CMD/website/bcvrun.prj.xml"
+	def servletContext = SCH.servletContext
+	def String absPath = getAbsPath()
+	def String configPath = servletContext.getRealPath("/pipeline/bcvrun.prj.xml")
 
 	def prepareDirectory(Bcvjob job, String sessionId, List fileList, List directionList){
 
@@ -78,12 +79,12 @@ class BcvjobService {
 		}
 
 
-		def database = defaultConfig.Database
-		if (job.database == "full"){
-			database[0].value = "all"
+		def taxdb = defaultConfig.Database
+		if (job.taxdb == "full"){
+			taxdb[0].value = "all"
 		}
-		else if (job.database == "named isolates"){
-			database[0].value = "named"
+		else if (job.taxdb == "named isolates"){
+			taxdb[0].value = "named"
 		}
 
 
@@ -104,22 +105,26 @@ class BcvjobService {
 
 	def getPipeline(Bcvjob job){
 
-		def Closure myRunnable = { sessionId, email ->
+		def Closure myRunnable = {sessionId, email ->
 
-			sleep (7000)
+			sleep (10000)
 			runPipeline(sessionId)
 
 			if (email != null) {
-				sendResults(email, "5")
+				sendResults(email, sessionId)
 			}
 
+			job.delete(flush:true)
 		}
+		
+		return myRunnable
 	}
 
 	def runPipeline(String sessionId){
-		def command = "cmd /c C:/Users/weidewind/workspace/test/email.pl"// Create the String
-		def proc = command.execute()                 // Call *execute* on the string
-		proc.waitFor()                               // Wait for the command to finish
+		sleep (15000)
+//		def command = "cmd /c C:/Users/weidewind/workspace/test/email.pl"// Create the String
+//		def proc = command.execute()                 // Call *execute* on the string
+//		proc.waitFor()                               // Wait for the command to finish
 	}
 
 
@@ -203,6 +208,15 @@ class BcvjobService {
 
 		return errorMessage
 
+	}
+	
+	def getAbsPath(){
+		def absPath = ""
+		def pathArray = servletContext.getRealPath("/pipeline").split("\\\\")
+		for (int i = 0; i < pathArray.size() - 3; i++){
+			absPath += pathArray[i] + "\\"
+		}
+		return absPath
 	}
 
 }

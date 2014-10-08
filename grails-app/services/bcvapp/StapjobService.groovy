@@ -1,11 +1,13 @@
 package bcvapp
 
 import grails.transaction.Transactional
-
 import groovy.lang.Closure;
 
 import java.awt.event.ItemEvent;
+import java.util.List;
 import java.util.regex.Pattern;
+
+import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
 
 
 
@@ -16,17 +18,18 @@ class StapjobService {
 	
 	def mailService
 	
+	def servletContext = SCH.servletContext
+	def String absPath = getAbsPath()
+	def String configPath = servletContext.getRealPath("/pipeline/bcvrun.prj.xml")
 
-	
-	def String absPath = "C:/Users/weidewind/workspace/grails/"
-	def String configPath = "C:/Users/weidewind/Documents/CMD/website/bcvrun.prj.xml"
-	def String defaultName = "noname"
-	
-	def prepareDirectory(Stapjob job, String sessionId, List fileList){
-		
+	def prepareDirectory(Stapjob job, String sessionId, List fileList, List directionList){
+
+		def outputPath = ""
+
 		def configFile = new File (configPath)
-		
+
 		def defaultConfig = new XmlParser().parse(configFile)
+
 		
 
 		
@@ -40,7 +43,7 @@ class StapjobService {
 		
 		def folderPath = "${absPath}${sessionId}"
 		def inputPath = folderPath + "/" + input
-		def	outputPath = folderPath + "/" + output
+			outputPath = folderPath + "/" + output
 		
 		new File (inputPath).mkdirs()
 		new File (outputPath).mkdir()
@@ -64,12 +67,12 @@ class StapjobService {
 		// Write custom configuration file
 
 
-		def database = defaultConfig.Database
-		if (job.database == "full"){
-			database[0].value = "all"
+		def taxdb = defaultConfig.Database
+		if (job.taxdb == "full"){
+			taxdb[0].value = "all"
 		}
-		else if (job.database == "named isolates"){
-			database[0].value = "named"
+		else if (job.taxdb == "named isolates"){
+			taxdb[0].value = "named"
 		}
 		
 		
@@ -98,15 +101,19 @@ class StapjobService {
 				if (email != null) {
 					sendResults(email, "5")
 				}
+				
+				job.delete(flush:true)
 		
 			}
 	}
 	
 	
 	def runSTAP(String sessionId){
-		def command = "cmd /c C:/Users/weidewind/workspace/test/email.pl"// Create the String
-		def proc = command.execute()                 // Call *execute* on the string
-		proc.waitFor()                               // Wait for the command to finish
+		
+		sleep (15000)
+//		def command = "cmd /c C:/Users/weidewind/workspace/test/email.pl"// Create the String
+//		def proc = command.execute()                 // Call *execute* on the string
+//		proc.waitFor()                               // Wait for the command to finish
 	}
 	
 	
@@ -160,6 +167,10 @@ class StapjobService {
 		if (!job.validate()) {
 
 		errorMessage = "Some errors occured: "
+
+		job.errors.each {
+			errorMessage += "<p>" +  it + "</p>"
+		}
 		if (job.distance.toFloat() < 0 || job.distance.toFloat() > 0.1){
 			errorMessage += "<p> Maximum distance must not be less than 0 or more than 0.1 </p>"
 		}
@@ -187,6 +198,15 @@ class StapjobService {
 
 		return errorMessage
 		
+	}
+	
+	def getAbsPath(){
+		def absPath
+		def pathArray = servletContext.getRealPath("").split(/\\\//)
+		for (int i = 0; i < pathArray.size() - 2; i++){
+			absPath += pathArray[i]
+		}
+		return absPath
 	}
 	
 	def isFasta(String text){
