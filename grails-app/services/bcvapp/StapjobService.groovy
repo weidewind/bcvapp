@@ -201,10 +201,10 @@ class StapjobService {
 	}
 	
 	def getAbsPath(){
-		def absPath
-		def pathArray = servletContext.getRealPath("").split(/\\\//)
-		for (int i = 0; i < pathArray.size() - 2; i++){
-			absPath += pathArray[i]
+		def absPath = ""
+		def pathArray = servletContext.getRealPath("/pipeline").split("\\\\")
+		for (int i = 0; i < pathArray.size() - 3; i++){
+			absPath += pathArray[i] + "\\"
 		}
 		return absPath
 	}

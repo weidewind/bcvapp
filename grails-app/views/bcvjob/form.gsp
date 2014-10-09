@@ -13,7 +13,7 @@
 	</head>
 	<body>
 		<h1>BCV pipeline</h1>
-		<g:form controller="bcvjob" action="submit" enctype="multipart/form-data" onsubmit="return validateForm()">
+		<g:form controller="job" action="submitbcv" enctype="multipart/form-data" onsubmit="return validateForm()">
 		
 			<div class='header'> Enter your sample </div>
 			

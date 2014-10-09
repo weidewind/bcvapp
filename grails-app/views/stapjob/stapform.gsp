@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<h1>STAP</h1>
-		<g:form controller="stapjob" action="submit" enctype="multipart/form-data" onsubmit="return validateForm()">
+		<g:form controller="job" action="submitstap" enctype="multipart/form-data" onsubmit="return validateForm()">
 		
 			<div class='header'> Enter your sample </div>
 			
