@@ -1,0 +1,7 @@
+
+class StapjobController {
+	
+		def stapform =  {
+
+		}
+}

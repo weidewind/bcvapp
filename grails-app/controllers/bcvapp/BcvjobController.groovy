@@ -1,0 +1,7 @@
+
+class BcvjobController {
+	
+		def form =  {
+
+		}
+}

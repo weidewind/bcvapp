@@ -17,12 +17,12 @@ class JobController {
 			//redirect(action: form)
 	}
 
-	def form =  {
-
-	}
-
-	def stapform =  {
-	}
+//	def form =  {
+//
+//	}
+//
+//	def stapform =  {
+//	}
 
 	def submitbcv() {
 		def job = new Bcvjob(params)
