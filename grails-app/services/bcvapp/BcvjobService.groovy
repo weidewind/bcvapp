@@ -5,6 +5,7 @@ import groovy.lang.Closure;
 
 import java.awt.event.ItemEvent;
 import java.util.regex.Pattern;
+import grails.util.Mixin
 
 import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
 
@@ -187,7 +188,7 @@ class BcvjobService {
 			job.errors.each {
 				errorMessage += "<p>" +  it + "</p>"
 			}
-			if (job.distance.toFloat() < 0 || job.distance.toFloat() > 0.1){
+			if (!job.distance.isFloat() || job.distance.toFloat() < 0 || job.distance.toFloat() > 0.1){
 				errorMessage += "<p> Maximum distance must not be less than 0 or more than 0.1 </p>"
 			}
 			if (job.errors.hasFieldErrors("email")){
@@ -203,6 +204,13 @@ class BcvjobService {
 			if (name.substring(dot+1) != "ab1"){
 				errorMessage += "<p>Unsupported extension: ${name} </p>"
 			}
+
+			def bytes = f.getBytes()
+			if (bytes[0] != 'A' || bytes[1] != 'B' || bytes[2] != 'I' || bytes[3] != 'F' || !(bytes[4]+bytes[5] >= 101)){
+				errorMessage += "<p>Not ABI: ${name} </p>"
+			}
+
+			
 		}
 
 
@@ -217,6 +225,10 @@ class BcvjobService {
 			absPath += pathArray[i] + "\\"
 		}
 		return absPath
+	}
+	
+	def talkWork(){
+		ServiceCategory.talkWork()
 	}
 
 }

@@ -11,6 +11,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	</head>
 	<body>
+	
 		<h1>STAP</h1>
 		<g:form controller="job" action="submitstap" enctype="multipart/form-data" onsubmit="return validateForm()">
 		
@@ -242,6 +243,7 @@
 		
 			
 		</script>
+
 	</body>
 </html>
 

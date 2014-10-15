@@ -10,8 +10,22 @@
 		<input type="hidden" name="tasktype" value="bcvstap">
 		
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		
+		<!-- Google Analytics -->
+		<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		ga('create', 'UA-XXXX-Y', 'auto');
+		ga('send', 'pageview');
+
+		</script>
+		<!-- End Google Analytics -->
 	</head>
 	<body>
+
 		<h1>BCV pipeline</h1>
 		<g:form controller="job" action="submitbcv" enctype="multipart/form-data" onsubmit="return validateForm()">
 		

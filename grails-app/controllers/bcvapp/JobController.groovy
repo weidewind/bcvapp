@@ -14,28 +14,28 @@ class JobController {
 
 
 	def index = {
-			//redirect(action: form)
+		//redirect(action: form)
 	}
 
-//	def form =  {
-//
-//	}
-//
-//	def stapform =  {
-//	}
+	//	def form =  {
+	//
+	//	}
+	//
+	//	def stapform =  {
+	//	}
 
 	def submitbcv() {
 		def job = new Bcvjob(params)
 		def jobService = bcvjobService
 		submit(job, jobService)
 	}
-	
+
 	def submitstap() {
 		def job = new Stapjob(params)
 		def jobService = stapjobService
 		submit(job, jobService)
 	}
-	
+
 	def submit(Object job, Object jobService) {
 
 
@@ -62,11 +62,20 @@ class JobController {
 
 		job.save()
 
+		def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
 
-		def uploadPath = jobService.prepareDirectory(job, sessionId, fileList, directionList)
+		if (queueSize > 0){
+			render redirect (action: "askforemail", id: job.id, params:[task:job.class])
+			return
+		}
+
+
+
+
+		jobService.prepareDirectory(job, sessionId, fileList, directionList)
 		Closure pipeline = jobService.getPipeline(job)
 
-		def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+		queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
 
 
 		//	render jobService.getAbsPath()
@@ -87,14 +96,14 @@ class JobController {
 			})
 
 
-			render "Success! We will send your results at ${job.email} in about 30 minutes"
+			render "Success! Your results will be sent at ${job.email} "
 
 		}
 		else {
 			if(queueSize > 2){
 				render "Your task has been added to the queue"
 				while (queueSize > 2){  // 1 running task + our task
-					def randomString = jobService.talkToUser(true)
+					def randomString = jobService.talkQueue()
 					render "<p>${randomString}</p>"
 					sleep(5000)
 					queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
@@ -110,11 +119,11 @@ class JobController {
 			def start = new Date(System.currentTimeMillis())
 			render "<p>Please, don't close this page. Your task was submitted at ${start}.</p>"
 			while (!pool.isTerminated()){
-				def randomString = jobService.talkToUser()
+				def randomString = jobService.talkWork()
 				render "<p>${randomString}</p>"
 				sleep(5000)
 			}
-			
+
 			def resultsPath = jobService.getResults(sessionId)
 			def url = createLink(controller: 'job', action: 'renderResults', params: [resultsPath: resultsPath])
 			render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
@@ -131,10 +140,40 @@ class JobController {
 	//	}
 	//
 	def renderResults (String resultsPath){
-		
+
 		def htmlContent = new File(resultsPath).text
 		render (text: htmlContent, contentType:"text/html", encoding:"UTF-8")
 	}
+
+	def askforemail = {
+
+	}
+
+	def updateAndRun(){
+		def job
+		def jobService
+		render "${params.id}<p>"
+		render "${params.task}<p>"
+		if (params.task == "class bcvapp.Bcvjob"){
+			job = Bcvjob.get(params.id)
+			jobService = bcvjobService
+		}
+		else if (params.task == "class bcvapp.Stapjob"){
+			job = Stapjob.get(params.id)
+			jobService = stapjobService
+		}
+		if (params.email != null){
+		job.email = params.email
+		job.save(flush:true)
+		}
+		run (job, jobService)
+	}
+
+	def run (Object job, Object jobService){
+		render "<p>Running</p>"
+	}
+
+
 	//
 	//
 	//
