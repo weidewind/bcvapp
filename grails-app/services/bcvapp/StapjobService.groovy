@@ -206,6 +206,44 @@ class StapjobService {
 		
 	}
 	
+	
+	def Closure getWaitingPipeline = {Stapjob job ->
+		
+					def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+					
+					if(queueSize > 2){
+						while (queueSize > 2){  // 1 running task + our task
+							sleep(5000)
+							queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+						}
+					}
+					
+					sleep (10000)
+					runSTAP(job.sessionId)
+		
+					if (job.email) {
+						sendResults(job.email, job.sessionId)
+					}
+		
+					job.delete(flush:true)
+				}
+			
+	
+	def Closure getPipeline = {Stapjob job ->
+	
+				
+				sleep (10000)
+				runSTAP(job.sessionId)
+	
+				if (job.email) {
+					sendResults(job.email, job.sessionId)
+				}
+	
+				job.delete(flush:true)
+			}
+	
+
+	
 	def getAbsPath(){
 		def absPath = ""
 		def pathArray = servletContext.getRealPath("/pipeline").split("\\\\")

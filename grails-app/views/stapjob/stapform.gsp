@@ -53,10 +53,10 @@
 			<div class='header'>Submit your job </div>
 			
 			<div class='panel'>
-			<label class ='collapsing-toggler'><input type='checkbox' name='scheckbox_email' id='scheckbox_email' value='ON' checked='checked' />Send results by E-mail</label>
+			<label class ='collapsing-toggler'><input type='checkbox' name='stapcheckbox_email' id='stapcheckbox_email' value='ON' checked='checked' />Send results by E-mail</label>
 			<p><div class='collapsing-panel'><input type='text' name='email' id='email' size='50' maxlength='80' /></div>
 			<div class = 'error'><label id = 'email_error'></label></div><p>
-			<p><input type='submit' name='submit' value='Submit' /></div>
+			<p><input type='submit' name='stapsubmit' value='Submit' /></div>
 		</g:form> 
 		
 		<script>
@@ -64,7 +64,7 @@
 		
 			$(".collapsing-toggler").change(function()
 			{
-					if($("#scheckbox_email").prop("checked")){
+					if($("#stapcheckbox_email").prop("checked")){
 					$(this).nextAll(".collapsing-panel:first").slideDown(400);
 					}
 					else {
