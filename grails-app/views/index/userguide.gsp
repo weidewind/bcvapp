@@ -8,8 +8,6 @@
   <title>Base Caller with Vocabulary (BCV)</title>
 </head>
 <body>
-<h1>Base Caller with Vocabulary (BCV)</h1>
-
 <h2>Documentation and samples</h2>
 <ul>
 <li>
@@ -22,7 +20,7 @@
 <pre>
      export BCV_HOME=<em>/path/to/examples/bcvhome</em>
 </pre>
-in addition to the settings described above.</p>
+in addition to the settings described in installation section.</p>
 </li>
 </ul>
 </body>

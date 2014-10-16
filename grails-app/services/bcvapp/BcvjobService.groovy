@@ -103,29 +103,69 @@ class BcvjobService {
 
 	}
 
+//  it workes somehow
+	
+//	def getPipeline(Bcvjob job){
+//
+//		def Closure myRunnable = {sessionId, email ->
+//
+//			sleep (10000)
+//			runPipeline(sessionId)
+//
+//			if (email != null) {
+//				sendResults(email, sessionId)
+//			}
+//
+//			job.delete(flush:true)
+//		}
+//		
+//		return myRunnable
+//	}
 
-	def getPipeline(Bcvjob job){
-
-		def Closure myRunnable = {sessionId, email ->
-
-			sleep (10000)
-			runPipeline(sessionId)
-
-			if (email != null) {
-				sendResults(email, sessionId)
-			}
-
-			job.delete(flush:true)
-		}
+	
+	def Closure getWaitingPipeline = {Bcvjob job ->
 		
-		return myRunnable
-	}
+					def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+					
+					if(queueSize > 2){
+						while (queueSize > 2){  // 1 running task + our task
+							sleep(5000)
+							queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+						}
+					}
+					
+					sleep (10000)
+					runPipeline(job.sessionId)
+		
+					if (job.email) {
+						sendResults(job.email, job.sessionId)
+					}
+		
+					job.delete(flush:true)
+				}
+			
+	
+	def Closure getPipeline = {Bcvjob job ->
+	
+				
+				sleep (10000)
+				runPipeline(job.sessionId)
+	
+				if (job.email) {
+					sendResults(job.email, job.sessionId)
+				}
+	
+				job.delete(flush:true)
+			}
+	
 
+
+	
 	def runPipeline(String sessionId){
-		sleep (15000)
-//		def command = "cmd /c C:/Users/weidewind/workspace/test/email.pl"// Create the String
-//		def proc = command.execute()                 // Call *execute* on the string
-//		proc.waitFor()                               // Wait for the command to finish
+	//	sleep (15000)
+		def command = "cmd /c C:/Users/weidewind/workspace/test/email.pl"// Create the String
+		def proc = command.execute()                 // Call *execute* on the string
+		proc.waitFor()                               // Wait for the command to finish
 	}
 
 
@@ -229,6 +269,10 @@ class BcvjobService {
 	
 	def talkWork(){
 		ServiceCategory.talkWork()
+	}
+	
+	def talkQueue(){
+		ServiceCategory.talkQueue()
 	}
 
 }

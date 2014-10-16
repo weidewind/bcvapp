@@ -8,7 +8,6 @@
   <title>Base Caller with Vocabulary (BCV)</title>
 </head>
 <body>
-<h1>Base Caller with Vocabulary (BCV)</h1>
 <h2>Downloads and installation</h2>
 <ul>
 <li>

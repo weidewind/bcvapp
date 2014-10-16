@@ -25,8 +25,9 @@
 		<!-- End Google Analytics -->
 	</head>
 	<body>
-
+	
 		<h1>BCV pipeline</h1>
+
 		<g:form controller="job" action="submitbcv" enctype="multipart/form-data" onsubmit="return validateForm()">
 		
 			<div class='header'> Enter your sample </div>
@@ -257,10 +258,9 @@
 			return passed;
 		} 
 		
-
-		
 			
 		</script>
+	
 	</body>
 </html>
 

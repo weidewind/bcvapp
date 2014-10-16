@@ -5,8 +5,8 @@
 	<head>
 		<title>bcv-pipeline</title>
 
-		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='css' file='snazzy.css' /> " />
-		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.min.js' />"></script>
+	<!--	<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='css' file='snazzy.css' /> " /> -->
+	<!--		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.min.js' />"></script> -->
 		
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	
@@ -14,7 +14,7 @@
 	<body>
 		<div class = "central-panel">
 			<h1>Base Caller with Vocabulary</h1>
-			<div class = "column">
+			
 				<p>The Base Calling with Vocabulary (BCV) software package is intended for analysis of direct (population) sequencing chromatograms using known vocabulary sequences similar to the target DNA. The current version of BCV can only process chromatogram files obtained on Applied Biosystems capillary sequencing machines (ABI file format). In principle, the method can be applied to other sequencing platforms except high-throughput sequencing; however, the current software version has not been tested for such applications.</p>
 				<p>The BCV package has the following functionalities:
 				<ul>
@@ -24,13 +24,17 @@
 				</ul>
 				</p>
 				<p>The BCV software is distributed under the GNU GPL v. 3 license, and was successfully compiled on Linux and Windows Cygwin platforms.</p>
-			</div>
-  			<g:form controller = "index">
-  			<g:actionSubmit class = "myButton" value="BCV online" action = "bcvRedirect"/>
-  			<g:actionSubmit class = "myButton" value="Download & install" action = "installRedirect"/>
-  			<g:actionSubmit class = "myButton" value="User guide" action = "guideRedirect" />
+			   	<div class="citation">
+			    	<p> Article Source: <a href="http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0054835">Base-Calling Algorithm with Vocabulary (BCV) Method for Analyzing Population Sequencing Chromatograms</a> </p>
+					<p>Fantin YS, Neverov AD, Favorov AV, Alvarez-Figueroa MV, Braslavskaya SI, et al. (2013) Base-Calling Algorithm with Vocabulary (BCV) Method for Analyzing Population Sequencing Chromatograms. PLoS ONE 8(1): e54835. doi: 10.1371/journal.pone.0054835 </p>
+				</div>
+			
+  	<!--		<g:form controller = "index"> -->
+  	 	<!--		<g:actionSubmit class = "myButton" value="BCV online" action = "bcvRedirect"/> -->
+  	 	<!--		<g:actionSubmit class = "myButton" value="Download & install" action = "installRedirect"/> -->
+  	 	<!--		<g:actionSubmit class = "myButton" value="User guide" action = "guideRedirect" /> -->
 
-			</g:form> 
+		 	<!--	</g:form> -->
 		</div>
 		
 	</body>

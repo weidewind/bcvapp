@@ -3,6 +3,7 @@ package bcvapp
 import groovyx.gpars.GParsPool
 import jsr166y.ForkJoinPool
 import java.util.concurrent.Future
+import groovy.lang.Closure;
 
 
 //import groovyx.gpars.*
@@ -62,72 +63,57 @@ class JobController {
 
 		job.save()
 
-		def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
-
-		if (queueSize > 0){
-			render redirect (action: "askforemail", id: job.id, params:[task:job.class])
-			return
-		}
-
-
-
-
 		jobService.prepareDirectory(job, sessionId, fileList, directionList)
-		Closure pipeline = jobService.getPipeline(job)
+	//	Closure pipeline = jobService.getPipeline(job)
 
-		queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
-
+		def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+		
 
 		//	render jobService.getAbsPath()
 
-		if (job.email != null){
+		if (job.email){
 
-			def GParsPool = new GParsPool()
-			def pool = new ForkJoinPool(1)
-			GParsPool.withExistingPool (pool, {
-
-				if(queueSize > 2){
-					while (queueSize > 2){  // 1 running task + our task
-						sleep(5000)
-						queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
-					}
-				}
-				pipeline.callAsync(sessionId, job.email)
-			})
-
-
-			render "Success! Your results will be sent at ${job.email} "
+			runAsync(job, jobService)
 
 		}
 		else {
 			if(queueSize > 2){
-				render "Your task has been added to the queue"
-				while (queueSize > 2){  // 1 running task + our task
-					def randomString = jobService.talkQueue()
-					render "<p>${randomString}</p>"
-					sleep(5000)
-					queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
-				}
+				
+					render redirect (action: "askforemail", id: job.id, params:[task:job.class])
+					return
+				
+//				render "Your task has been added to the queue"
+//				while (queueSize > 2){  // 1 running task + our task
+//					def randomString = jobService.talkQueue()
+//					render "<p>${randomString}</p>"
+//					sleep(5000)
+//					queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+//				}
 			}
 			//render "Wait here. Your sessionId is ${sessionId}"
-			def GParsPool = new GParsPool()
-			def pool = new ForkJoinPool(1)
-			GParsPool.withExistingPool (pool, {
-				pipeline.callAsync(sessionId, null)
-				pool.shutdown()
-			})
-			def start = new Date(System.currentTimeMillis())
-			render "<p>Please, don't close this page. Your task was submitted at ${start}.</p>"
-			while (!pool.isTerminated()){
-				def randomString = jobService.talkWork()
-				render "<p>${randomString}</p>"
-				sleep(5000)
-			}
-
-			def resultsPath = jobService.getResults(sessionId)
-			def url = createLink(controller: 'job', action: 'renderResults', params: [resultsPath: resultsPath])
-			render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
-			//	job.delete(flush:true)
+			
+			// now in run
+			
+//			def GParsPool = new GParsPool()
+//			def pool = new ForkJoinPool(1)
+//			GParsPool.withExistingPool (pool, {
+//				pipeline.callAsync(sessionId, null)
+//				pool.shutdown()
+//			})
+//			def start = new Date(System.currentTimeMillis())
+//			render "<p>Please, don't close this page. Your task was submitted at ${start}.</p>"
+//			while (!pool.isTerminated()){
+//				def randomString = jobService.talkWork()
+//				render "<p>${randomString}</p>"
+//				sleep(5000)
+//			}
+//
+//			def resultsPath = jobService.getResults(sessionId)
+//			def url = createLink(controller: 'job', action: 'renderResults', params: [resultsPath: resultsPath])
+//			render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
+//			//	job.delete(flush:true)
+			
+		else run (job, jobService)	
 		}
 
 
@@ -152,8 +138,7 @@ class JobController {
 	def updateAndRun(){
 		def job
 		def jobService
-		render "${params.id}<p>"
-		render "${params.task}<p>"
+		
 		if (params.task == "class bcvapp.Bcvjob"){
 			job = Bcvjob.get(params.id)
 			jobService = bcvjobService
@@ -162,17 +147,74 @@ class JobController {
 			job = Stapjob.get(params.id)
 			jobService = stapjobService
 		}
-		if (params.email != null){
-		job.email = params.email
-		job.save(flush:true)
+		if (params.email){
+			job.email = params.email
+			job.save(flush:true)
+			runAsync (job, jobService)
 		}
-		run (job, jobService)
+		else {
+			render "Your task has been added to the queue"
+			def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+			
+			while (queueSize > 2){  // 1 running task + our task
+				def randomString = jobService.talkQueue()
+				render "<p>${randomString}</p>"
+				sleep(5000)
+				queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+			}
+			
+			run (job, jobService)
+		}
+		
 	}
 
-	def run (Object job, Object jobService){
-		render "<p>Running</p>"
+	
+	def runAsync (Object job, Object jobService){
+		//	Closure pipeline = jobService.getPipeline(job)
+			def GParsPool = new GParsPool()
+			def pool = new ForkJoinPool(1)
+			GParsPool.withExistingPool (pool, {
+				
+	
+//			def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+//				
+//				if(queueSize > 2){
+//					while (queueSize > 2){  // 1 running task + our task
+//						sleep(5000)
+//						queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+//					}
+//				}
+			//	pipeline.callAsync(job.sessionId, job.email)
+				jobService.getWaitingPipeline.callAsync(job)
+			})
+
+
+			render "Success! Your results will be sent at ${job.email} "
 	}
 
+	
+	def run (Object job, Object jobService) {
+		//Closure pipeline = jobService.getPipeline(job)
+		def GParsPool = new GParsPool()
+		def pool = new ForkJoinPool(1)
+		GParsPool.withExistingPool (pool, {
+			//pipeline.callAsync(job.sessionId, null)
+			jobService.getPipeline.callAsync(job)
+			pool.shutdown()
+		})
+		def start = new Date(System.currentTimeMillis())
+		render "<p>Please, don't close this page. Your task was submitted at ${start}.</p>"
+		while (!pool.isTerminated()){
+			def randomString = jobService.talkWork()
+			render "<p>${randomString}</p>"
+			sleep(5000)
+		}
+
+		def resultsPath = jobService.getResults(job.sessionId)
+		def url = createLink(controller: 'job', action: 'renderResults', params: [resultsPath: resultsPath])
+		render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
+		//	job.delete(flush:true)
+	}
 
 	//
 	//
@@ -206,6 +248,17 @@ class JobController {
 	//
 	//	}
 
+	
+//	def Closure waitInQueue = { job ->
+//		def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+//		
+//		if(queueSize > 2){
+//			while (queueSize > 2){  // 1 running task + our task
+//				sleep(5000)
+//				queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+//			}
+//		}
+//	}
 
 }
 

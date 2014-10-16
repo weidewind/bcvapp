@@ -6,9 +6,14 @@ class IndexController {
 	//	redirect(controller: "bcvjob", action: "form") 
 		}
 	
-	def bcvRedirect (){
-			 render redirect(controller: "bcvjob", action: "form")
-		}
+//	def bcvRedirect (){
+//			 render redirect(controller: "bcvjob", action: "form")
+//		}
+	
+		def bcvRedirect (){
+				 render redirect(action: "tabs")
+			}
+	
 	def guideRedirect (){
 		render redirect (action: "userguide")
 			//redirect(controller: "stapjob", action: "stapform")
@@ -27,4 +32,8 @@ class IndexController {
 	
 	}
 
+	
+	def tabs = {
+		
+	}
 }
