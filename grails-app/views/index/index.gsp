@@ -5,13 +5,21 @@
 	<head>
 		<title>bcv-pipeline</title>
 
-	<!--	<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='css' file='snazzy.css' /> " /> -->
+		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='css' file='snazzy.css' /> " /> 
 	<!--		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.min.js' />"></script> -->
 		
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	
 	</head>
 	<body>
+	
+	<ul class ="menu">
+  <li><a href="${createLink(controller: 'index', action: 'index')}">Home</a></li>
+  <li><a href="installguide.gsp">Download&Install</a></li>
+  <li><a href="userguide.gsp">User guide</a></li>
+  <li><a href="../bcvjob/form.gsp">BCV online</a></li>
+    <li><a href="../stapjob/stapform.gsp">STAP identification</a></li>
+</ul>
 		<div class = "central-panel">
 			<h1>Base Caller with Vocabulary</h1>
 			

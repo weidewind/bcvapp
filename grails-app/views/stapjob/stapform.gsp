@@ -11,8 +11,14 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	</head>
 	<body>
-	
-		<h1>STAP</h1>
+		<ul class ="menu">
+  <li><a href="../index/index.gsp">Home</a></li>
+  <li><a href="../index/installguide.gsp">Download&Install</a></li>
+  <li><a href="../index/userguide.gsp">User guide</a></li>
+  <li><a href="../bcvjob/form.gsp">BCV online</a></li>
+    <li><a href="stapform.gsp">STAP identification</a></li>
+</ul>
+		<h2>STAP</h2>
 		<g:form controller="job" action="submitstap" enctype="multipart/form-data" onsubmit="return validateForm()">
 		
 			<div class='header'> Enter your sample </div>
@@ -53,10 +59,10 @@
 			<div class='header'>Submit your job </div>
 			
 			<div class='panel'>
-			<label class ='collapsing-toggler'><input type='checkbox' name='stapcheckbox_email' id='stapcheckbox_email' value='ON' checked='checked' />Send results by E-mail</label>
+			<label class ='collapsing-toggler'><input type='checkbox' name='checkbox_email' id='checkbox_email' value='ON' checked='checked' />Send results by E-mail</label>
 			<p><div class='collapsing-panel'><input type='text' name='email' id='email' size='50' maxlength='80' /></div>
 			<div class = 'error'><label id = 'email_error'></label></div><p>
-			<p><input type='submit' name='stapsubmit' value='Submit' /></div>
+			<p><input type='submit' name='submit' value='Submit' /></div>
 		</g:form> 
 		
 		<script>
@@ -64,7 +70,7 @@
 		
 			$(".collapsing-toggler").change(function()
 			{
-					if($("#stapcheckbox_email").prop("checked")){
+					if($("#checkbox_email").prop("checked")){
 					$(this).nextAll(".collapsing-panel:first").slideDown(400);
 					}
 					else {

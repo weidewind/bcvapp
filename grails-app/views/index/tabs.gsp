@@ -9,6 +9,7 @@
 		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.min.js' />"></script> 
 		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-ui.js' />"></script> 
 		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='css' file='jquery-ui.css' /> "> 
+
 		<input type="hidden" name="tasktype" value="bcvstap">
 		
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -28,41 +29,16 @@
 	</head>
 	<body>
 
-		<div id="tabs">
- 			<ul>
- 				<li><a href="${createLink(controller: 'index', action: 'index')}">Home</a></li>
- 				<li><a href="installguide.gsp">Download&Install</a></li>
- 				<li><a href="userguide.gsp">User guide</a></li>
- 			<!--		<li><a href="${createLink(controller: 'index', action: 'installguide')}">Download&Install</a></li> -->
-   			<!--		<li><a href="${createLink(controller: 'index', action: 'userguide')}">User Guide</a></li> -->
-    		<!--	<li><a href="${createLink(controller: 'bcvjob', action: 'form')}">BCV online</a></li> -->
-   			<!--	<li><a href="${createLink(controller: 'stapjob', action: 'stapform')}">STAP identification</a></li> -->
-   		
-   			<li><a href="../bcvjob/form.gsp">BCV online</a></li> 
-   			<li><a href="../stapjob/stapform.gsp">STAP identification</a></li> 
-   			
-   			<!-- <li> <g:remoteLink controller='bcvjob', action='form'> BCV </g:remoteLink></li> -->
-   			</ul>	
-   		</div>	
-   		
 
-<ui:tabs prefix="my.tab.title">
-    <ui:tab title="a" controller="bcvjob"  action="form"/>
-    <ui:tab title="b" controller="stapjob" action="stapform"/>
-    <ui:tab title="c">
+<ul class ="menu">
+  <li><a href="${createLink(controller: 'index', action: 'index')}">Home</a></li>
+  <li><a href="installguide.gsp">Download&Install</a></li>
+  <li><a href="userguide.gsp">User guide</a></li>
+  <li><a href="../bcvjob/form.gsp">BCV online</a></li>
+    <li><a href="../stapjob/stapform.gsp">STAP identification</a></li>
+</ul>
 
-    </ui:tab>
-</ui:tabs>
-	
-		
-		<script>
-		
 
-		 $(function() {
-    $( "#tabs" ).tabs();
-  });
-			
-		</script>
 	</body>
 </html>
 
