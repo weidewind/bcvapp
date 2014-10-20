@@ -5,6 +5,7 @@ import groovy.lang.Closure;
 
 import java.awt.event.ItemEvent;
 import java.util.regex.Pattern;
+import grails.util.Mixin
 
 import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
 
@@ -102,29 +103,69 @@ class BcvjobService {
 
 	}
 
+//  it workes somehow
+	
+//	def getPipeline(Bcvjob job){
+//
+//		def Closure myRunnable = {sessionId, email ->
+//
+//			sleep (10000)
+//			runPipeline(sessionId)
+//
+//			if (email != null) {
+//				sendResults(email, sessionId)
+//			}
+//
+//			job.delete(flush:true)
+//		}
+//		
+//		return myRunnable
+//	}
 
-	def getPipeline(Bcvjob job){
-
-		def Closure myRunnable = {sessionId, email ->
-
-			sleep (10000)
-			runPipeline(sessionId)
-
-			if (email != null) {
-				sendResults(email, sessionId)
-			}
-
-			job.delete(flush:true)
-		}
+	
+	def Closure getWaitingPipeline = {Bcvjob job ->
 		
-		return myRunnable
-	}
+					def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+					
+					if(queueSize > 2){
+						while (queueSize > 2){  // 1 running task + our task
+							sleep(5000)
+							queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+						}
+					}
+					
+					sleep (10000)
+					runPipeline(job.sessionId)
+		
+					if (job.email) {
+						sendResults(job.email, job.sessionId)
+					}
+		
+					job.delete(flush:true)
+				}
+			
+	
+	def Closure getPipeline = {Bcvjob job ->
+	
+				
+				sleep (10000)
+				runPipeline(job.sessionId)
+	
+				if (job.email) {
+					sendResults(job.email, job.sessionId)
+				}
+	
+				job.delete(flush:true)
+			}
+	
 
+
+	
 	def runPipeline(String sessionId){
-		sleep (15000)
-//		def command = "cmd /c C:/Users/weidewind/workspace/test/email.pl"// Create the String
-//		def proc = command.execute()                 // Call *execute* on the string
-//		proc.waitFor()                               // Wait for the command to finish
+	//	sleep (15000)
+		def command = "cmd /c C:/Users/weidewind/workspace/test/email.pl"// Create the String
+		def proc = command.execute()                 // Call *execute* on the string
+		proc.waitFor()                               // Wait for the command to finish
 	}
 
 
@@ -187,7 +228,7 @@ class BcvjobService {
 			job.errors.each {
 				errorMessage += "<p>" +  it + "</p>"
 			}
-			if (job.distance.toFloat() < 0 || job.distance.toFloat() > 0.1){
+			if (!job.distance.isFloat() || job.distance.toFloat() < 0 || job.distance.toFloat() > 0.1){
 				errorMessage += "<p> Maximum distance must not be less than 0 or more than 0.1 </p>"
 			}
 			if (job.errors.hasFieldErrors("email")){
@@ -203,6 +244,13 @@ class BcvjobService {
 			if (name.substring(dot+1) != "ab1"){
 				errorMessage += "<p>Unsupported extension: ${name} </p>"
 			}
+
+			def bytes = f.getBytes()
+			if (bytes[0] != 'A' || bytes[1] != 'B' || bytes[2] != 'I' || bytes[3] != 'F' || !(bytes[4]+bytes[5] >= 101)){
+				errorMessage += "<p>Not ABI: ${name} </p>"
+			}
+
+			
 		}
 
 
@@ -217,6 +265,14 @@ class BcvjobService {
 			absPath += pathArray[i] + "\\"
 		}
 		return absPath
+	}
+	
+	def talkWork(){
+		ServiceCategory.talkWork()
+	}
+	
+	def talkQueue(){
+		ServiceCategory.talkQueue()
 	}
 
 }

@@ -6,6 +6,7 @@ import groovy.lang.Closure;
 import java.awt.event.ItemEvent;
 import java.util.List;
 import java.util.regex.Pattern;
+import grails.util.Mixin
 
 import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
 
@@ -171,7 +172,7 @@ class StapjobService {
 		job.errors.each {
 			errorMessage += "<p>" +  it + "</p>"
 		}
-		if (job.distance.toFloat() < 0 || job.distance.toFloat() > 0.1){
+		if (!job.distance.isFloat() || job.distance.toFloat() < 0 || job.distance.toFloat() > 0.1){
 			errorMessage += "<p> Maximum distance must not be less than 0 or more than 0.1 </p>"
 		}
 		if (job.errors.hasFieldErrors("email")){
@@ -188,6 +189,11 @@ class StapjobService {
 				if (name.substring(dot+1) != "fasta"){
 					errorMessage += "<p>Unsupported extension: ${name}}</p>"
 				}
+				
+				def fileContents = f.text
+				if (!fileContents.isFasta()){
+					errorMessage += "<p>Not fasta: ${name} </p>"
+				}
 			}
 		}
 
@@ -199,6 +205,44 @@ class StapjobService {
 		return errorMessage
 		
 	}
+	
+	
+	def Closure getWaitingPipeline = {Stapjob job ->
+		
+					def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+					
+					if(queueSize > 2){
+						while (queueSize > 2){  // 1 running task + our task
+							sleep(5000)
+							queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+						}
+					}
+					
+					sleep (10000)
+					runSTAP(job.sessionId)
+		
+					if (job.email) {
+						sendResults(job.email, job.sessionId)
+					}
+		
+					job.delete(flush:true)
+				}
+			
+	
+	def Closure getPipeline = {Stapjob job ->
+	
+				
+				sleep (10000)
+				runSTAP(job.sessionId)
+	
+				if (job.email) {
+					sendResults(job.email, job.sessionId)
+				}
+	
+				job.delete(flush:true)
+			}
+	
+
 	
 	def getAbsPath(){
 		def absPath = ""
@@ -258,6 +302,14 @@ class StapjobService {
 
 		}
 		return isFasta
+	}
+	
+	def talkWork(){
+		ServiceCategory.talkWork()
+	}
+	
+	def talkQueue(){
+		ServiceCategory.talkWork()
 	}
 
 }

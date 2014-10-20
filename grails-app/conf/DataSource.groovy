@@ -43,7 +43,7 @@ environments {
         dataSource {
           //  dbCreate = "update"
            // url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
-			dbCreate = "create-drop"
+			dbCreate = "update"
 			url = "jdbc:mysql://localhost:3306/bcvapp?useUnicode=yes&characterEncoding=UTF-8"
 			username = "weidewind"
 			password = "lotus82"

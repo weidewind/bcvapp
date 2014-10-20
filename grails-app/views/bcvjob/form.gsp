@@ -5,14 +5,29 @@
 	<head>
 		<title>bcv-pipeline</title>
 
-		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='css' file='snazzy.css' /> " />
+		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='stylesheets' file='snazzy.css' /> " />
 		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.min.js' />"></script>
 		<input type="hidden" name="tasktype" value="bcvstap">
 		
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		
+		<!-- Google Analytics -->
+		<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		ga('create', 'UA-XXXX-Y', 'auto');
+		ga('send', 'pageview');
+
+		</script>
+		<!-- End Google Analytics -->
 	</head>
 	<body>
-		<h1>BCV pipeline</h1>
+<g:render template="/index/menu" />
+		<h2>BCV pipeline</h2>
+<p> BCV pipeline makes use of BCV and STAP (taxonomy identification tool) to perform complete chromatogram analysis - from base calling to taxonomic assignment of predicted sequences. Please refer to the <a href="${createLinkTo(dir: '/index', file: 'userguide.gsp')}">user guide</a> for output format explanation. </p>
 		<g:form controller="job" action="submitbcv" enctype="multipart/form-data" onsubmit="return validateForm()">
 		
 			<div class='header'> Enter your sample </div>
@@ -243,10 +258,9 @@
 			return passed;
 		} 
 		
-
-		
 			
 		</script>
+	
 	</body>
 </html>
 
