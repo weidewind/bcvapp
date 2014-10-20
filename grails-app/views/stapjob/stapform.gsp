@@ -13,6 +13,8 @@
 	<body>
 <g:render template="/index/menu" />
 		<h2>STAP</h2>
+		<p>STAP is an automated phylogenetic tree-based Small subunit
+		rRNA Taxonomy and Alignment Pipeline. Use STAP to accurately assign 16S rRNA sequences to taxonomic units in the GreenGenes taxonomy.</p>
 		<g:form controller="job" action="submitstap" enctype="multipart/form-data" onsubmit="return validateForm()">
 		
 			<div class='header'> Enter your sample </div>
@@ -58,6 +60,10 @@
 			<div class = 'error'><label id = 'email_error'></label></div><p>
 			<p><input type='submit' name='submit' value='Submit' /></div>
 		</g:form> 
+		<p></p>
+		<div class="citation"> Wu D, Hartman A, Ward N, Eisen JA (2008) An Automated Phylogenetic Tree-Based Small Subunit rRNA Taxonomy and Alignment Pipeline (STAP). PLoS
+			ONE 3(7): e2566. doi:10.1371/journal.pone.0002566 </div>
+		
 		
 		<script>
 		$(document).ready(function(){

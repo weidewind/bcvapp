@@ -28,8 +28,12 @@
 				</ul>
 				</p>
 				<p>The BCV software is distributed under the GNU GPL v. 3 license, and was successfully compiled on Linux and Windows Cygwin platforms.</p>
+			   	
+			   	<p>To enjoy the full functionality of BCV, <a href="${createLinkTo(dir: '/index', file: 'installguide.gsp')}">download and install </a> it locally. </p>
+			   	<p>For base calling, mixture deconvolution and taxonomic assignment of 16S rRNA mixed chromatograms, use <a href="${createLinkTo(dir: '/bcvjob', file: 'form.gsp')}">BCV online</a>. </p>  
+			   	
 			   	<div class="citation">
-			    	<p> Article Source: <a href="http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0054835">Base-Calling Algorithm with Vocabulary (BCV) Method for Analyzing Population Sequencing Chromatograms</a> </p>
+			    	<p> Citation: <a href="http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0054835">Base-Calling Algorithm with Vocabulary (BCV) Method for Analyzing Population Sequencing Chromatograms</a> </p>
 					<p>Fantin YS, Neverov AD, Favorov AV, Alvarez-Figueroa MV, Braslavskaya SI, et al. (2013) Base-Calling Algorithm with Vocabulary (BCV) Method for Analyzing Population Sequencing Chromatograms. PLoS ONE 8(1): e54835. doi: 10.1371/journal.pone.0054835 </p>
 				</div>
 			

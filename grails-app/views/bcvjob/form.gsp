@@ -27,7 +27,7 @@
 	<body>
 <g:render template="/index/menu" />
 		<h2>BCV pipeline</h2>
-
+<p> BCV pipeline makes use of BCV and STAP (taxonomy identification tool) to perform complete chromatogram analysis - from base calling to taxonomic assignment of predicted sequences. Please refer to the <a href="${createLinkTo(dir: '/index', file: 'userguide.gsp')}">user guide</a> for output format explanation. </p>
 		<g:form controller="job" action="submitbcv" enctype="multipart/form-data" onsubmit="return validateForm()">
 		
 			<div class='header'> Enter your sample </div>
