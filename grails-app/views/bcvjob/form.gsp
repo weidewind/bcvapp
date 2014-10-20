@@ -5,7 +5,7 @@
 	<head>
 		<title>bcv-pipeline</title>
 
-		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='css' file='snazzy.css' /> " />
+		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='stylesheets' file='snazzy.css' /> " />
 		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.min.js' />"></script>
 		<input type="hidden" name="tasktype" value="bcvstap">
 		

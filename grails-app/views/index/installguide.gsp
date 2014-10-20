@@ -5,7 +5,7 @@
   <meta name="description" content="BCV project homepage" />
   <meta name="keywords" content="DNA, sequencing, basecaller, chromatogram, mixture, deconvolution, Sanger, HMM" />
   <meta name="owner" content="favorov@sensi.org" />
-  		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='css' file='snazzy.css' /> " />
+  		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='stylesheets' file='snazzy.css' /> " />
   <title>Base Caller with Vocabulary (BCV)</title>
 </head>
 <body>
