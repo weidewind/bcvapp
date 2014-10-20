@@ -33,27 +33,29 @@ createTagBody(1, {->
 printHtmlPart(8)
 invokeTag('render','g',28,['template':("/index/menu")],-1)
 printHtmlPart(9)
-createTagBody(2, {->
+expressionOut.print(createLinkTo(dir: '/index', file: 'userguide.gsp'))
 printHtmlPart(10)
-invokeTag('createLinkTo','g',46,['dir':("images"),'file':("tooltip_icon.gif")],-1)
+createTagBody(2, {->
 printHtmlPart(11)
-invokeTag('createLinkTo','g',54,['dir':("images"),'file':("tooltip_icon.gif")],-1)
+invokeTag('createLinkTo','g',46,['dir':("images"),'file':("tooltip_icon.gif")],-1)
 printHtmlPart(12)
-invokeTag('createLinkTo','g',63,['dir':("images"),'file':("tooltip_icon.gif")],-1)
+invokeTag('createLinkTo','g',54,['dir':("images"),'file':("tooltip_icon.gif")],-1)
 printHtmlPart(13)
-})
-invokeTag('form','g',79,['controller':("job"),'action':("submitbcv"),'enctype':("multipart/form-data"),'onsubmit':("return validateForm()")],2)
+invokeTag('createLinkTo','g',63,['dir':("images"),'file':("tooltip_icon.gif")],-1)
 printHtmlPart(14)
 })
-invokeTag('captureBody','sitemesh',264,[:],1)
+invokeTag('form','g',79,['controller':("job"),'action':("submitbcv"),'enctype':("multipart/form-data"),'onsubmit':("return validateForm()")],2)
 printHtmlPart(15)
+})
+invokeTag('captureBody','sitemesh',264,[:],1)
+printHtmlPart(16)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1413710837950L
+public static final long LAST_MODIFIED = 1413799825738L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

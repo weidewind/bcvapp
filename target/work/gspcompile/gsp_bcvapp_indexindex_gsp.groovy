@@ -33,27 +33,31 @@ createTagBody(1, {->
 printHtmlPart(8)
 invokeTag('menu','tmpl',17,[:],-1)
 printHtmlPart(9)
-createTagBody(2, {->
+expressionOut.print(createLinkTo(dir: '/index', file: 'installguide.gsp'))
 printHtmlPart(10)
-invokeTag('actionSubmit','g',37,['class':("myButton"),'value':("BCV online"),'action':("bcvRedirect")],-1)
-printHtmlPart(10)
-invokeTag('actionSubmit','g',38,['class':("myButton"),'value':("Download & install"),'action':("installRedirect")],-1)
-printHtmlPart(10)
-invokeTag('actionSubmit','g',39,['class':("myButton"),'value':("User guide"),'action':("guideRedirect")],-1)
+expressionOut.print(createLinkTo(dir: '/bcvjob', file: 'form.gsp'))
 printHtmlPart(11)
-})
-invokeTag('form','g',41,['controller':("index")],2)
+createTagBody(2, {->
 printHtmlPart(12)
-})
-invokeTag('captureBody','sitemesh',44,[:],1)
+invokeTag('actionSubmit','g',41,['class':("myButton"),'value':("BCV online"),'action':("bcvRedirect")],-1)
+printHtmlPart(12)
+invokeTag('actionSubmit','g',42,['class':("myButton"),'value':("Download & install"),'action':("installRedirect")],-1)
+printHtmlPart(12)
+invokeTag('actionSubmit','g',43,['class':("myButton"),'value':("User guide"),'action':("guideRedirect")],-1)
 printHtmlPart(13)
+})
+invokeTag('form','g',45,['controller':("index")],2)
+printHtmlPart(14)
+})
+invokeTag('captureBody','sitemesh',48,[:],1)
+printHtmlPart(15)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1413711986370L
+public static final long LAST_MODIFIED = 1413799124629L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
