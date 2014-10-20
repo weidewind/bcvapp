@@ -9,13 +9,7 @@
   <title>Base Caller with Vocabulary (BCV)</title>
 </head>
 <body>
-	<ul class ="menu">
-  <li><a href="${createLink(controller: 'index', action: 'index')}">Home</a></li>
-  <li><a href="installguide.gsp">Download&Install</a></li>
-  <li><a href="userguide.gsp">User guide</a></li>
-  <li><a href="../bcvjob/form.gsp">BCV online</a></li>
-    <li><a href="../stapjob/stapform.gsp">STAP identification</a></li>
-</ul>
+<tmpl:menu />
 
 <h2>Documentation and samples</h2>
 <ul>

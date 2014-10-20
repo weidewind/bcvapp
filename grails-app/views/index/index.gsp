@@ -13,13 +13,9 @@
 	</head>
 	<body>
 	
-	<ul class ="menu">
-  <li><a href="${createLink(controller: 'index', action: 'index')}">Home</a></li>
-  <li><a href="installguide.gsp">Download&Install</a></li>
-  <li><a href="userguide.gsp">User guide</a></li>
-  <li><a href="../bcvjob/form.gsp">BCV online</a></li>
-    <li><a href="../stapjob/stapform.gsp">STAP identification</a></li>
-</ul>
+
+<tmpl:menu />
+
 		<div class = "central-panel">
 			<h1>Base Caller with Vocabulary</h1>
 			

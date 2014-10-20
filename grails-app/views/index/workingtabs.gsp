@@ -45,7 +45,13 @@
    			</ul>	
    		</div>	
 
-	
+		<ul class ="menu">
+  <li><a href="index.gsp">Home</a></li>
+  <li><a href="installguide.gsp">Download&Install</a></li>
+  <li><a href="userguide.gsp">User guide</a></li>
+  <li><a href="../bcvjob/form.gsp">BCV online</a></li>
+    <li><a href="../stapjob/stapform.gsp">STAP identification</a></li>
+</ul>
 	
 	
 			<nav class="navbar navbar-default navbar-fixed-top">

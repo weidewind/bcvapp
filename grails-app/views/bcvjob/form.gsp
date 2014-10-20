@@ -25,13 +25,7 @@
 		<!-- End Google Analytics -->
 	</head>
 	<body>
-	<ul class ="menu">
-  <li><a href="../index/index.gsp">Home</a></li>
-  <li><a href="../index/installguide.gsp">Download&Install</a></li>
-  <li><a href="../index/userguide.gsp">User guide</a></li>
-  <li><a href="form.gsp">BCV online</a></li>
-    <li><a href="../stapjob/stapform.gsp">STAP identification</a></li>
-</ul>
+<g:render template="/index/menu" />
 		<h2>BCV pipeline</h2>
 
 		<g:form controller="job" action="submitbcv" enctype="multipart/form-data" onsubmit="return validateForm()">

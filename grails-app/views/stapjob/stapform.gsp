@@ -11,13 +11,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	</head>
 	<body>
-		<ul class ="menu">
-  <li><a href="../index/index.gsp">Home</a></li>
-  <li><a href="../index/installguide.gsp">Download&Install</a></li>
-  <li><a href="../index/userguide.gsp">User guide</a></li>
-  <li><a href="../bcvjob/form.gsp">BCV online</a></li>
-    <li><a href="stapform.gsp">STAP identification</a></li>
-</ul>
+<g:render template="/index/menu" />
 		<h2>STAP</h2>
 		<g:form controller="job" action="submitstap" enctype="multipart/form-data" onsubmit="return validateForm()">
 		
