@@ -13,7 +13,7 @@
 	</head>
 	<body>
 		<h1>BCV pipeline</h1>
-		<g:form controller="job" action="submit" enctype="multipart/form-data" onsubmit="return validateForm()">
+		<g:form controller="job" action="submitbcv" enctype="multipart/form-data" onsubmit="return validateForm()">
 		
 			<div class='header'> Enter your sample </div>
 			
@@ -28,7 +28,7 @@
 			<div class='panel'>
 			<table class='options'>
 					<tr>
-						<td>Vocabulary <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='Multiple alignment of sequences similar to the expected DNA variants in the sample.' id='mytooltip'></td>
+						<td>Vocabulary <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='Vocabulary is a multiple alignment of sequences, which contains sequences similar to the expected DNA variants in the sample. For analysis of human clinical samples, use "human microbiome" vocabulary.' id='mytooltip'></td>
 						<td><select name='vocabulary'>
 							<option selected='selected' value='human microbiome'>human microbiome</option>
 							<option value='16S ridom'>16S ridom</option>
@@ -38,7 +38,7 @@
 					<tr>
 						<td>Taxonomic database <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='Full database gives more reliable, but less informative results)
 						Some text will be here.' id='mytooltip'></td>
-						<td><select name='database'>
+						<td><select name='taxdb'>
 							<option selected='named isolates' value='named isolates'>named isolates</option>
 							<option value='full'>full</option>
 							</select>
