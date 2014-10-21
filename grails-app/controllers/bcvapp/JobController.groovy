@@ -126,7 +126,6 @@ class JobController {
 	//	}
 	//
 	def renderResults (String resultsPath){
-		render resultsPath
 		def htmlContent = new File(resultsPath).text
 		
 		render (text: htmlContent, contentType:"text/html", encoding:"UTF-8")

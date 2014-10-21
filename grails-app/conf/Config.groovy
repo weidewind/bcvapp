@@ -102,9 +102,11 @@ grails.hibernate.osiv.readonly = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+		absPath = "C:/Users/weidewind/workspace/grails/"
     }
     production {
         grails.logging.jul.usebridge = false
+		absPath = "/store/home/bcvapp/"
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }

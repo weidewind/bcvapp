@@ -6,6 +6,7 @@ import groovy.lang.Closure;
 import java.awt.event.ItemEvent;
 import java.util.regex.Pattern;
 import grails.util.Mixin
+import grails.util.Holders
 
 import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
 
@@ -18,7 +19,6 @@ import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
 class BcvjobService {
 
 	def mailService
-
 	def servletContext = SCH.servletContext
 	def String absPath = getAbsPath()
 	def String configPath = servletContext.getRealPath("/pipeline/bcvrun.prj.xml")
@@ -269,7 +269,8 @@ class BcvjobService {
 //		for (int i = 0; i < pathArray.size()-2; i++){
 //			absPath += pathArray[i] + "\\"
 //		}
-		return servletContext.getRealPath("")
+	//	return servletContext.getRealPath("")
+		return Holders.config.absPath
 	}
 	
 	def talkWork(){
