@@ -265,10 +265,10 @@ class BcvjobService {
 		//	absPath += pathArray[i] + "\\"
 		//}
 		
-		def pathArray = servletContext.getRealPath("").split("\\\\")
-		for (int i = 0; i < pathArray.size()-2; i++){
-			absPath += pathArray[i] + "\\"
-		}
+//		def pathArray = servletContext.getRealPath("").split("\\\\")
+//		for (int i = 0; i < pathArray.size()-2; i++){
+//			absPath += pathArray[i] + "\\"
+//		}
 		return servletContext.getRealPath("")
 	}
 	
