@@ -134,7 +134,7 @@ class BcvjobService {
 						}
 					}
 					
-					sleep (10000)
+					sleep (1000)
 					runPipeline(job.sessionId)
 		
 					if (job.email) {
@@ -148,7 +148,7 @@ class BcvjobService {
 	def Closure getPipeline = {Bcvjob job ->
 	
 				
-				sleep (10000)
+				sleep (1000)
 				runPipeline(job.sessionId)
 	
 				if (job.email) {
@@ -201,7 +201,7 @@ class BcvjobService {
 
 
 	def sendResults(String email, String sessionId) {
-
+		
 		def resultsFilePath = "${absPath}${sessionId}" + "/simple_results.html"
 		mailService.sendMail {
 			multipart true
@@ -260,11 +260,16 @@ class BcvjobService {
 	
 	def getAbsPath(){
 		def absPath = ""
-		def pathArray = servletContext.getRealPath("/pipeline").split("\\\\")
-		for (int i = 0; i < pathArray.size() - 3; i++){
+		//def pathArray = servletContext.getRealPath("/pipeline").split("\\\\")
+		//for (int i = 0; i < pathArray.size() - 3; i++){
+		//	absPath += pathArray[i] + "\\"
+		//}
+		
+		def pathArray = servletContext.getRealPath("").split("\\\\")
+		for (int i = 0; i < pathArray.size()-2; i++){
 			absPath += pathArray[i] + "\\"
 		}
-		return absPath
+		return servletContext.getRealPath("")
 	}
 	
 	def talkWork(){
