@@ -264,7 +264,7 @@ class BcvjobService {
 		for (int i = 0; i < pathArray.size() - 3; i++){
 			absPath += pathArray[i] + "\\"
 		}
-		return absPath
+		return servletContext.getRealPath("")
 	}
 	
 	def talkWork(){
