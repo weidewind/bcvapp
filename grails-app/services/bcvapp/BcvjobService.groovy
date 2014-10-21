@@ -162,9 +162,10 @@ class BcvjobService {
 
 	
 	def runPipeline(String sessionId){
-		def command = "cmd /c perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} 16S.bcvrun.prj.xml >${absPath}${sessionId}/pipelinelog 2>${absPath}${sessionId}/pipelinerr>"// Create the String
+		def command = "cmd /c perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} 16S.bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
 		def proc = command.execute()                 // Call *execute* on the string
 		proc.waitFor()                               // Wait for the command to finish
+		
 		
 	}
 
