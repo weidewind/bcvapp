@@ -175,6 +175,7 @@ class BcvjobService {
 		new File(absPath + "logfile").write("return code: ${ proc.exitValue()}\n stderr: ${proc.err.text}")
 		println "return code: ${ proc.exitValue()}"
 		println "stderr: ${proc.err.text}"
+		println "stdout: ${proc.in.text}"
 		
 	}
 
