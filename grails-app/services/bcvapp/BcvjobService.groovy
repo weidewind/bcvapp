@@ -165,7 +165,8 @@ class BcvjobService {
 		def command = "cmd /c perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} 16S.bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
 		def proc = command.execute()                 // Call *execute* on the string
 		proc.waitFor()                               // Wait for the command to finish
-		
+		println "return code: ${ proc.exitValue()}"
+		println "stderr: ${proc.err.text}"
 		
 	}
 
