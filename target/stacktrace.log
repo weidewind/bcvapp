@@ -4212,3 +4212,243 @@ java.io.FileNotFoundException: C:\Users\weidewind\workspace\grails\39835_1413973
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,492 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_closure1$$DOtPs4ls"
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at org.springsource.loaded.ChildClassLoader.defineClass(ChildClassLoader.java:37)
+	at org.springsource.loaded.TypeRegistry.defineClass(TypeRegistry.java:1116)
+	at org.springsource.loaded.CurrentLiveVersion.define(CurrentLiveVersion.java:111)
+	at org.springsource.loaded.CurrentLiveVersion.<init>(CurrentLiveVersion.java:99)
+	at org.springsource.loaded.ReloadableType.loadNewVersion(ReloadableType.java:390)
+	at org.springsource.loaded.TypeRegistry.loadNewVersion(TypeRegistry.java:845)
+	at org.springsource.loaded.agent.ReloadableFileChangeListener.fileChanged(ReloadableFileChangeListener.java:51)
+	at org.springsource.loaded.agent.Watcher.determineChangesSince(FileSystemWatcher.java:235)
+	at org.springsource.loaded.agent.Watcher.run(FileSystemWatcher.java:219)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,493 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_closure1$$DOtPs4ls"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,493 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_closure1$$DOtPs4ls"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,493 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_closure1$$DOtPs4ls"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,507 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_closure2$$DOtPs4lu"
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at org.springsource.loaded.ChildClassLoader.defineClass(ChildClassLoader.java:37)
+	at org.springsource.loaded.TypeRegistry.defineClass(TypeRegistry.java:1116)
+	at org.springsource.loaded.CurrentLiveVersion.define(CurrentLiveVersion.java:111)
+	at org.springsource.loaded.CurrentLiveVersion.<init>(CurrentLiveVersion.java:99)
+	at org.springsource.loaded.ReloadableType.loadNewVersion(ReloadableType.java:390)
+	at org.springsource.loaded.TypeRegistry.loadNewVersion(TypeRegistry.java:845)
+	at org.springsource.loaded.agent.ReloadableFileChangeListener.fileChanged(ReloadableFileChangeListener.java:51)
+	at org.springsource.loaded.agent.Watcher.determineChangesSince(FileSystemWatcher.java:235)
+	at org.springsource.loaded.agent.Watcher.run(FileSystemWatcher.java:219)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,507 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_closure2$$DOtPs4lu"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,507 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_closure2$$DOtPs4lu"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,507 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_closure2$$DOtPs4lu"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,509 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_getResults_closure8$$DOtPs4lz"
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at org.springsource.loaded.ChildClassLoader.defineClass(ChildClassLoader.java:37)
+	at org.springsource.loaded.TypeRegistry.defineClass(TypeRegistry.java:1116)
+	at org.springsource.loaded.CurrentLiveVersion.define(CurrentLiveVersion.java:111)
+	at org.springsource.loaded.CurrentLiveVersion.<init>(CurrentLiveVersion.java:99)
+	at org.springsource.loaded.ReloadableType.loadNewVersion(ReloadableType.java:390)
+	at org.springsource.loaded.TypeRegistry.loadNewVersion(TypeRegistry.java:845)
+	at org.springsource.loaded.agent.ReloadableFileChangeListener.fileChanged(ReloadableFileChangeListener.java:51)
+	at org.springsource.loaded.agent.Watcher.determineChangesSince(FileSystemWatcher.java:235)
+	at org.springsource.loaded.agent.Watcher.run(FileSystemWatcher.java:219)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,510 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_getResults_closure8$$DOtPs4lz"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,510 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_getResults_closure8$$DOtPs4lz"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,510 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_getResults_closure8$$DOtPs4lz"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,512 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_prepareDirectory_closure3$$DOtPs4lv"
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at org.springsource.loaded.ChildClassLoader.defineClass(ChildClassLoader.java:37)
+	at org.springsource.loaded.TypeRegistry.defineClass(TypeRegistry.java:1116)
+	at org.springsource.loaded.CurrentLiveVersion.define(CurrentLiveVersion.java:111)
+	at org.springsource.loaded.CurrentLiveVersion.<init>(CurrentLiveVersion.java:99)
+	at org.springsource.loaded.ReloadableType.loadNewVersion(ReloadableType.java:390)
+	at org.springsource.loaded.TypeRegistry.loadNewVersion(TypeRegistry.java:845)
+	at org.springsource.loaded.agent.ReloadableFileChangeListener.fileChanged(ReloadableFileChangeListener.java:51)
+	at org.springsource.loaded.agent.Watcher.determineChangesSince(FileSystemWatcher.java:235)
+	at org.springsource.loaded.agent.Watcher.run(FileSystemWatcher.java:219)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,513 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_prepareDirectory_closure3$$DOtPs4lv"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,513 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_prepareDirectory_closure3$$DOtPs4lv"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,513 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_prepareDirectory_closure3$$DOtPs4lv"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,515 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_runPipeline_closure4$$DOtPs4lw"
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at org.springsource.loaded.ChildClassLoader.defineClass(ChildClassLoader.java:37)
+	at org.springsource.loaded.TypeRegistry.defineClass(TypeRegistry.java:1116)
+	at org.springsource.loaded.CurrentLiveVersion.define(CurrentLiveVersion.java:111)
+	at org.springsource.loaded.CurrentLiveVersion.<init>(CurrentLiveVersion.java:99)
+	at org.springsource.loaded.ReloadableType.loadNewVersion(ReloadableType.java:390)
+	at org.springsource.loaded.TypeRegistry.loadNewVersion(TypeRegistry.java:845)
+	at org.springsource.loaded.agent.ReloadableFileChangeListener.fileChanged(ReloadableFileChangeListener.java:51)
+	at org.springsource.loaded.agent.Watcher.determineChangesSince(FileSystemWatcher.java:235)
+	at org.springsource.loaded.agent.Watcher.run(FileSystemWatcher.java:219)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,515 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_runPipeline_closure4$$DOtPs4lw"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,515 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_runPipeline_closure4$$DOtPs4lw"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,515 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_runPipeline_closure4$$DOtPs4lw"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,517 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_talkWork_closure10$$DOtPs4m2"
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at org.springsource.loaded.ChildClassLoader.defineClass(ChildClassLoader.java:37)
+	at org.springsource.loaded.TypeRegistry.defineClass(TypeRegistry.java:1116)
+	at org.springsource.loaded.CurrentLiveVersion.define(CurrentLiveVersion.java:111)
+	at org.springsource.loaded.CurrentLiveVersion.<init>(CurrentLiveVersion.java:99)
+	at org.springsource.loaded.ReloadableType.loadNewVersion(ReloadableType.java:390)
+	at org.springsource.loaded.TypeRegistry.loadNewVersion(TypeRegistry.java:845)
+	at org.springsource.loaded.agent.ReloadableFileChangeListener.fileChanged(ReloadableFileChangeListener.java:51)
+	at org.springsource.loaded.agent.Watcher.determineChangesSince(FileSystemWatcher.java:235)
+	at org.springsource.loaded.agent.Watcher.run(FileSystemWatcher.java:219)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,517 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_talkWork_closure10$$DOtPs4m2"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,517 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_talkWork_closure10$$DOtPs4m2"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,517 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_talkWork_closure10$$DOtPs4m2"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,520 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_uploadFiles_closure5$$DOtPs4lx"
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at org.springsource.loaded.ChildClassLoader.defineClass(ChildClassLoader.java:37)
+	at org.springsource.loaded.TypeRegistry.defineClass(TypeRegistry.java:1116)
+	at org.springsource.loaded.CurrentLiveVersion.define(CurrentLiveVersion.java:111)
+	at org.springsource.loaded.CurrentLiveVersion.<init>(CurrentLiveVersion.java:99)
+	at org.springsource.loaded.ReloadableType.loadNewVersion(ReloadableType.java:390)
+	at org.springsource.loaded.TypeRegistry.loadNewVersion(TypeRegistry.java:845)
+	at org.springsource.loaded.agent.ReloadableFileChangeListener.fileChanged(ReloadableFileChangeListener.java:51)
+	at org.springsource.loaded.agent.Watcher.determineChangesSince(FileSystemWatcher.java:235)
+	at org.springsource.loaded.agent.Watcher.run(FileSystemWatcher.java:219)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,520 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_uploadFiles_closure5$$DOtPs4lx"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,520 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_uploadFiles_closure5$$DOtPs4lx"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,520 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$_uploadFiles_closure5$$DOtPs4lx"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,525 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$$DOtPs4lr"
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at org.springsource.loaded.ChildClassLoader.defineClass(ChildClassLoader.java:37)
+	at org.springsource.loaded.TypeRegistry.defineClass(TypeRegistry.java:1116)
+	at org.springsource.loaded.CurrentLiveVersion.define(CurrentLiveVersion.java:111)
+	at org.springsource.loaded.CurrentLiveVersion.<init>(CurrentLiveVersion.java:99)
+	at org.springsource.loaded.ReloadableType.loadNewVersion(ReloadableType.java:390)
+	at org.springsource.loaded.TypeRegistry.loadNewVersion(TypeRegistry.java:845)
+	at org.springsource.loaded.agent.ReloadableFileChangeListener.fileChanged(ReloadableFileChangeListener.java:51)
+	at org.springsource.loaded.agent.Watcher.determineChangesSince(FileSystemWatcher.java:235)
+	at org.springsource.loaded.agent.Watcher.run(FileSystemWatcher.java:219)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,525 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$$DOtPs4lr"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,526 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$$DOtPs4lr"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)
+2014-10-22 14:54:17,526 [FileSystemWatcher: files=#189 cl=groovy.lang.GroovyClassLoader@1c481ff2] ERROR StackTrace  - Full Stack Trace:
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "bcvapp/BcvjobService$$DOtPs4lr"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at java.lang.Thread.run(Thread.java:745)

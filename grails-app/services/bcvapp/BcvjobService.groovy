@@ -44,6 +44,12 @@ class BcvjobService {
 		def folderPath = "${absPath}${sessionId}"
 		def inputPath = folderPath + "/" + input
 		outputPath = folderPath + "/" + output
+		
+		inputLine[0].value = inputPath
+		outputLine[0].value = outputPath
+
+		def inpath  = defaultConfig.InPath // why there are two identical lines in bcv config?
+		inpath[0].value = inputPath
 
 		new File (inputPath).mkdirs()
 		new File (outputPath).mkdir()
@@ -162,9 +168,11 @@ class BcvjobService {
 
 	
 	def runPipeline(String sessionId){
-		def command = "cmd /c perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} 16S.bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
+		def command = "perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
 		def proc = command.execute()                 // Call *execute* on the string
 		proc.waitFor()                               // Wait for the command to finish
+
+		new File(absPath + "logfile").write("return code: ${ proc.exitValue()}\n stderr: ${proc.err.text}")
 		println "return code: ${ proc.exitValue()}"
 		println "stderr: ${proc.err.text}"
 		
