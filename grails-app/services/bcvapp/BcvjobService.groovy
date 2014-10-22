@@ -100,7 +100,10 @@ class BcvjobService {
 
 		def writer = new StringWriter()
 		def printer = new XmlNodePrinter(new PrintWriter(writer))
-		printer.preserveWhitespace = false
+		printer.with {
+				preserveWhitespace = true
+				expandEmptyElements = true
+		}
 		printer.print(defaultConfig)
 		def result = writer.toString()
 		new File(folderPath + "/bcvrun.prj.xml").write(result)
