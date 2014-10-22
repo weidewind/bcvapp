@@ -102,7 +102,8 @@ grails.hibernate.osiv.readonly = false
 environments {
     development {
         grails.logging.jul.usebridge = true
-		absPath = "C:/Users/weidewind/workspace/grails/"
+		absPath = "/store/home/bcvapp/"
+		//absPath = "C:/Users/weidewind/workspace/grails/"
     }
     production {
         grails.logging.jul.usebridge = false
