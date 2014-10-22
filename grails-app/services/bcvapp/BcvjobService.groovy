@@ -22,6 +22,7 @@ class BcvjobService {
 	def servletContext = SCH.servletContext
 	def String absPath = getAbsPath()
 	def String configPath = servletContext.getRealPath("/pipeline/bcvrun.prj.xml")
+	def String resultsPath
 
 	def prepareDirectory(Bcvjob job, String sessionId, List fileList, List directionList){
 
@@ -44,6 +45,8 @@ class BcvjobService {
 		def folderPath = "${absPath}${sessionId}"
 		def inputPath = folderPath + "/" + input
 		outputPath = folderPath + "/" + output
+		
+		initResultsPath(outputPath)
 		
 		inputLine[0].value = inputPath
 		outputLine[0].value = outputPath
@@ -169,6 +172,9 @@ class BcvjobService {
 	
 
 
+	private def initResultsPath(String pathToFile){
+		resultsPath = path + "/simple_results.html"
+	}
 	
 	def runPipeline(String sessionId){
 		def command = "perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
