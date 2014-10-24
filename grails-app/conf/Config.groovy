@@ -107,7 +107,7 @@ environments {
     }
     production {
         grails.logging.jul.usebridge = false
-		absPath = "/store/home/bcvapp/"
+		absPath = "/store/home/bcvapp/bcvapp/web-app/results/"
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }

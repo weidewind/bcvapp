@@ -40,8 +40,7 @@ class JobController {
 	def submit(Object job, Object jobService) {
 
 
-		//def sessionId = bcvjobService.createSessionId()
-		def sessionId = "5"
+		def sessionId = bcvjobService.createSessionId()
 
 		job.setSessionId(sessionId)
 
