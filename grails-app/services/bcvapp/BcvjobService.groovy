@@ -100,6 +100,9 @@ class BcvjobService {
 
 		def distance = defaultConfig.DistanceThreshold
 		distance[0].value = job.distance.toFloat()
+		
+		def email = defaultConfig.Email
+		email[0].value = job.email
 
 		def writer = new StringWriter()
 		def printer = new XmlNodePrinter(new PrintWriter(writer))
@@ -182,7 +185,7 @@ class BcvjobService {
 		def proc = command.execute()                 // Call *execute* on the string
 		proc.waitFor()                               // Wait for the command to finish
 
-		new File(absPath + "logfile").write("return code: ${ proc.exitValue()}\n stderr: ${proc.err.text}")
+		new File(absPath + "${sessionId}logfile").write("return code: ${ proc.exitValue()}\n stderr: ${proc.err.text}")
 		println "return code: ${ proc.exitValue()}"
 		println "stderr: ${proc.err.text}"
 		println "stdout: ${proc.in.text}"

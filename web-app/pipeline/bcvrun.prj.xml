@@ -37,5 +37,6 @@
 	<ExpectThreshold>0.05</ExpectThreshold>	
 	<XSLPath>/home/popova/Documents/BCV_examples/examples/simple_server.xsl</XSLPath> 
 	<SimpleXSLPath>/home/popova/Documents/BCV_examples/examples/simple_server.xsl</SimpleXSLPath>
-	<GeneraFilePath>/home/popova/Documents/BCV_examples/examples/genera.txt</GeneraFilePath> 
+	<GeneraFilePath>/home/popova/Documents/BCV_examples/examples/genera.txt</GeneraFilePath>
+	<Email></Email> 
 </BCVRunConfiguration>
