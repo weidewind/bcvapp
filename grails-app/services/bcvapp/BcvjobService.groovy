@@ -173,7 +173,7 @@ class BcvjobService {
 
 
 	private def initResultsPath(String pathToFile){
-		resultsPath = pathToFile + "/simple_results.html"
+		resultsPath = pathToFile + "/simple_results.html.gsp"
 	}
 	
 	def runPipeline(String sessionId){
