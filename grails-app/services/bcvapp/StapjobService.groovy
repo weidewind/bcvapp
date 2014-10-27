@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import grails.util.Mixin
-
+import grails.util.Holders
 import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
 
 
