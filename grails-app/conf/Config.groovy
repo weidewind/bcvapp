@@ -62,7 +62,7 @@ grails {
 grails {
 	mail {
 	  host = "smtp.gmail.com"
-	  port = 465
+	  port = 25
 	  username = "bcv.pipeline@gmail.com"
 	  password = "ETRApagadi"
 	  props = ["mail.smtp.auth":"true",
