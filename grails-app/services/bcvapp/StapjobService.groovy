@@ -50,6 +50,12 @@ class StapjobService {
 			outputPath = folderPath + "/" + output
 		
 		initResultsPath(outputPath)
+		
+		inputLine[0].value = inputPath
+		outputLine[0].value = outputPath
+
+		def inpath  = defaultConfig.InPath // why there are two identical lines in bcv config?
+		inpath[0].value = inputPath
 			
 		new File (inputPath).mkdirs()
 		new File (outputPath).mkdir()
