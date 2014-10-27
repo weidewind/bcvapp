@@ -185,10 +185,7 @@ class BcvjobService {
 		def proc = command.execute()                 // Call *execute* on the string
 		proc.waitFor()                               // Wait for the command to finish
 
-		new File(absPath + "${sessionId}logfile").write("return code: ${ proc.exitValue()}\n stderr: ${proc.err.text}")
-		println "return code: ${ proc.exitValue()}"
-		println "stderr: ${proc.err.text}"
-		println "stdout: ${proc.in.text}"
+		new File(absPath + "${sessionId}logfile").write("return code: ${ proc.exitValue()}\n stderr: ${proc.err.text}\n stdout: ${proc.in.text}")
 		
 	}
 
