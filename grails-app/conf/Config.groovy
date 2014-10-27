@@ -61,8 +61,8 @@ grails {
 
 grails {
 	mail {
-	  host = "smtp.gmail.com"
-	  port = 25
+	  host = "aspmx.l.google.com" //"smtp.gmail.com" - SSL
+	  port = 25 //465 - SSL
 	  username = "bcv.pipeline@gmail.com"
 	  password = "ETRApagadi"
 	  props = ["mail.smtp.auth":"true",
