@@ -6,6 +6,7 @@ import groovy.lang.Closure;
 import java.awt.event.ItemEvent;
 import java.util.List;
 import java.util.regex.Pattern;
+
 import grails.util.Mixin
 
 import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
@@ -22,7 +23,9 @@ class StapjobService {
 	def servletContext = SCH.servletContext
 	def String absPath = getAbsPath()
 	def String configPath = servletContext.getRealPath("/pipeline/bcvrun.prj.xml")
-
+	def String resultsPath
+	def String defaultName = "input"
+	
 	def prepareDirectory(Stapjob job, String sessionId, List fileList, List directionList){
 
 		def outputPath = ""
@@ -46,6 +49,8 @@ class StapjobService {
 		def inputPath = folderPath + "/" + input
 			outputPath = folderPath + "/" + output
 		
+		initResultsPath(outputPath)
+			
 		new File (inputPath).mkdirs()
 		new File (outputPath).mkdir()
 		
@@ -80,9 +85,18 @@ class StapjobService {
 		def distance = defaultConfig.DistanceThreshold
 		distance[0].value = job.distance.toFloat()
 		
+		def email = defaultConfig.Email
+		email[0].value = job.email
+		
+		def mode = defaultConfig.Mode
+		mode[0].value = "STAP"
+		
 		def writer = new StringWriter()
 		def printer = new XmlNodePrinter(new PrintWriter(writer))
-		printer.preserveWhitespace = false
+		printer.with {
+			preserveWhitespace = true
+			expandEmptyElements = true
+	}
 		printer.print(defaultConfig)
 		def result = writer.toString()
 		new File(folderPath + "/bcvrun.prj.xml").write(result)
@@ -92,29 +106,36 @@ class StapjobService {
 	}
 	
 
-	def getPipeline(Stapjob job){
-		
-		def Closure myRunnable = { sessionId, email ->
-		
-				sleep (7000)
-				runSTAP(sessionId)
-
-				if (email != null) {
-					sendResults(email, "5")
-				}
-				
-				job.delete(flush:true)
-		
-			}
-	}
+//	def getPipeline(Stapjob job){
+//		
+//		def Closure myRunnable = { sessionId, email ->
+//		
+//				sleep (7000)
+//				runSTAP(sessionId)
+//
+//				if (email != null) {
+//					sendResults(email, "5")
+//				}
+//				
+//				job.delete(flush:true)
+//		
+//			}
+//	}
 	
+	
+	private def initResultsPath(String pathToFile){
+		resultsPath = pathToFile + "/simple_results.html"
+	}
 	
 	def runSTAP(String sessionId){
 		
-		sleep (15000)
-//		def command = "cmd /c C:/Users/weidewind/workspace/test/email.pl"// Create the String
-//		def proc = command.execute()                 // Call *execute* on the string
-//		proc.waitFor()                               // Wait for the command to finish
+		def command = "perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
+		def proc = command.execute()                 // Call *execute* on the string
+		proc.waitFor()                               // Wait for the command to finish
+
+		new File(absPath + "${sessionId}logfile").write("return code: ${ proc.exitValue()}\n stderr: ${proc.err.text}\n stdout: ${proc.in.text}")
+		
+                       // Wait for the command to finish
 	}
 	
 	
@@ -142,20 +163,19 @@ class StapjobService {
 	
 	def sendResults(String email, String sessionId) {
 		
-		def resultsFilePath = "${absPath}${sessionId}" + "/simple_results.html"
+		def resultsFilePath = getResults(sessionId)
 		mailService.sendMail {
 		multipart true
 		to email
 		subject "BCV results"
 		body "Have a nice day!"
-		attachBytes resultsFilePath,'text/xml', new File(resultsFilePath).readBytes()
+		attachBytes 'stap_results.html','text/xml', new File(resultsFilePath).readBytes()
 		
 		}
 		
 	}
 	
 	def getResults (String sessionId){
-		def resultsPath = "${absPath}${sessionId}" + "/simple_results.html"
 		return resultsPath
 		
 	}

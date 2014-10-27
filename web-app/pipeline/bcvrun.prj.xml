@@ -6,7 +6,8 @@
 	<BCV_Output>./Output</BCV_Output>
 	<BCV_CFG>${BCV_HOME}/outprofile_dcmp.cfg</BCV_CFG> 
 	<Vocabulary>/store/home/popova/Documents/BCV_examples/examples/vocabularies/human_microbiome.seq.fas</Vocabulary> 
-	<UseCase>deconvolution</UseCase> 
+	<UseCase>deconvolution</UseCase>
+	<Mode>PIPELINE</Mode> 
 	<FLAGS>
 		<Flag name='ParseSampleNames'>no</Flag>
 		<Flag name='RunBCV'>true</Flag> 

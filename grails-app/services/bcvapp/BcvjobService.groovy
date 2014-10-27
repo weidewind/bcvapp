@@ -103,6 +103,9 @@ class BcvjobService {
 		
 		def email = defaultConfig.Email
 		email[0].value = job.email
+		
+		def mode = defaultConfig.Mode
+		mode[0].value = "PIPELINE"
 
 		def writer = new StringWriter()
 		def printer = new XmlNodePrinter(new PrintWriter(writer))
@@ -229,7 +232,7 @@ class BcvjobService {
 			to email
 			subject "BCV results"
 			body "Have a nice day!"
-			attachBytes resultsFilePath,'text/xml', new File(resultsFilePath).readBytes()
+			attachBytes 'bcv_results.html','text/xml', new File(resultsFilePath).readBytes()
 
 		}
 
