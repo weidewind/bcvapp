@@ -26,8 +26,6 @@ class BcvjobService {
 
 	def prepareDirectory(Bcvjob job, String sessionId, List fileList, List directionList){
 
-		def outputPath = ""
-
 		def configFile = new File (configPath)
 
 		def defaultConfig = new XmlParser().parse(configFile)
@@ -44,7 +42,7 @@ class BcvjobService {
 
 		def folderPath = "${absPath}${sessionId}"
 		def inputPath = folderPath + "/" + input
-		outputPath = folderPath + "/" + output
+		def outputPath = folderPath + "/" + output
 		
 		initResultsPath(outputPath)
 		

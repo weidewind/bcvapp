@@ -28,13 +28,9 @@ class StapjobService {
 	
 	def prepareDirectory(Stapjob job, String sessionId, List fileList, List directionList){
 
-		def outputPath = ""
 
 		def configFile = new File (configPath)
-
 		def defaultConfig = new XmlParser().parse(configFile)
-
-		
 
 		
 		//	Create directory structure
@@ -47,7 +43,7 @@ class StapjobService {
 		
 		def folderPath = "${absPath}${sessionId}"
 		def inputPath = folderPath + "/" + input
-			outputPath = folderPath + "/" + output
+		def	outputPath = folderPath + "/" + output
 		
 		initResultsPath(outputPath)
 		
@@ -270,13 +266,8 @@ class StapjobService {
 	
 
 	
-	def getAbsPath(){
-		def absPath = ""
-		def pathArray = servletContext.getRealPath("/pipeline").split("\\\\")
-		for (int i = 0; i < pathArray.size() - 3; i++){
-			absPath += pathArray[i] + "\\"
-		}
-		return absPath
+def getAbsPath(){
+		return Holders.config.absPath
 	}
 	
 	def isFasta(String text){
