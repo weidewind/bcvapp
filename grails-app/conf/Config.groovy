@@ -61,12 +61,12 @@ grails {
 
 grails {
 	mail {
-	  host = "aspmx.l.google.com" //"smtp.gmail.com" - SSL
-	  port = 25 //465 - SSL
+	  host = "smtp.gmail.com" //"smtp.gmail.com" - SSL "aspmx.l.google.com" - no SSL
+	  port = 465 //465 - SSL 25 - no SSL
 	  username = "bcv.pipeline@gmail.com"
 	  password = "ETRApagadi"
 	  props = ["mail.smtp.auth":"true",
-			   "mail.smtp.socketFactory.port":"25",
+			   "mail.smtp.socketFactory.port":"465",
 			   "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
 			   "mail.smtp.socketFactory.fallback":"false",
 			    "mail.debug": "true"]

@@ -223,7 +223,7 @@ class BcvjobService {
 
 	def sendResults(String email, String sessionId) {
 		
-		def resultsFilePath = "${absPath}${sessionId}" + "/simple_results.html"
+		def resultsFilePath = getResults(sessionId)
 		mailService.sendMail {
 			multipart true
 			to email
