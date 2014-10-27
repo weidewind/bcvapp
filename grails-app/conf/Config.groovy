@@ -65,10 +65,11 @@ grails {
 	  port = 465
 	  username = "bcv.pipeline@gmail.com"
 	  password = "ETRApagadi"
-	  props = ["mail.smtp.auth":"",
+	  props = ["mail.smtp.auth":"true",
 			   "mail.smtp.socketFactory.port":"465",
 			   "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
-			   "mail.smtp.socketFactory.fallback":"false"]
+			   "mail.smtp.socketFactory.fallback":"false",
+			    "mail.debug": "true"]
 	}
 
 }
