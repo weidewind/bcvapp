@@ -39,7 +39,7 @@ class JobController {
 
 	def submit(Object job, Object jobService) {
 
-		def sessionId = bcvjobService.createSessionId()
+		def sessionId = jobService.createSessionId()
 		job.setSessionId(sessionId)
 
 		// Get files and directions
