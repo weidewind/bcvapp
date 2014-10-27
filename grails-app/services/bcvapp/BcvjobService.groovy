@@ -163,8 +163,6 @@ class BcvjobService {
 	
 	def Closure getPipeline = {Bcvjob job ->
 	
-				
-				sleep (1000)
 				runPipeline(job.sessionId)
 	
 				if (job.email) {

@@ -2,10 +2,12 @@ package bcvapp
 
 import grails.transaction.Transactional
 import groovy.lang.Closure;
+import groovy.io.FileType
 
 import java.awt.event.ItemEvent;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.zip.ZipOutputStream
 
 import grails.util.Mixin
 import grails.util.Holders
@@ -169,12 +171,59 @@ class StapjobService {
 		mailService.sendMail {
 		multipart true
 		to email
-		subject "BCV results"
-		body "Have a nice day!"
-		attachBytes 'stap_results.html','text/xml', new File(resultsFilePath).readBytes()
+		subject "STAP results"
+		body "Thanks for using BCV!/n Here are your results: ${resultsFilePath}. /n Have a nice day!"
+		//attachBytes 'stap_results.html','text/xml', new File(resultsFilePath).readBytes()
 		
 		}
 		
+	}
+	
+	
+	def zipResults(String outputPath){
+		
+		def p = ~/.*\.(svg|with_names)/
+		
+		ByteArrayOutputStream baos = new ByteArrayOutputStream()
+		ZipOutputStream zipFile = new ZipOutputStream(baos)
+		
+		def outputDir = new File(outputPath)
+		outputDir.eachDir { chrom ->
+			def chromDir = new File(chrom)
+			chromDir.eachFileMatch(FileType.FILES, p){ tree ->
+				println tree
+			}
+			
+		}
+		
+//		def dirlist = []
+//		def filelist = []
+//		
+//		def outputDir = new File(outputPath)
+//		outputDir.eachFileRecurse (FileType.DIRECTORIES) { dir ->
+//		  dirlist << dir
+//		}
+//		 
+//		  dirlist.each {dir ->
+//			  
+//			  def chromDir = new File(dir)
+//			  chromDir.eachFileRecurse (FileType.DIRECTORIES) { dir ->
+//				dirlist << dir
+//			  }
+//			  
+//			  
+//			if (dir.mp3DownloadPath != "") {
+//			  File file = new File(grailsApplication.config.tracks.root.directory+track.mp3DownloadPath)
+//			  zipFile.putNextEntry(new ZipEntry(track.title+".mp3"))
+//			  file.withInputStream { i ->
+//				
+//				zipFile << i
+//		 
+//			  }
+//			  zipFile.closeEntry()
+//			 }
+//			}
+//			zipFile.finish()
 	}
 	
 	def getResults (String sessionId){
@@ -240,7 +289,6 @@ class StapjobService {
 						}
 					}
 					
-					sleep (10000)
 					runSTAP(job.sessionId)
 		
 					if (job.email) {
@@ -251,10 +299,8 @@ class StapjobService {
 				}
 			
 	
-	def Closure getPipeline = {Stapjob job ->
-	
+	def Closure getPipeline = {Stapjob job ->		
 				
-				sleep (10000)
 				runSTAP(job.sessionId)
 	
 				if (job.email) {
