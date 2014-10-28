@@ -219,9 +219,11 @@ class StapjobService {
 		def HOME = outputPath
 		
 				def outputDir = new File(outputPath)
+				println("1")
 				outputDir.eachDir { chrom ->
-					def chromDir = new File(chrom)
-					println (chrom)
+					def chromDir = new File(chrom.absolutePath)
+					println (chrom.absolutePath)
+					println("2")
 					chromDir.eachFileMatch(FileType.FILES, p){ tree ->
 						def splittedPath  = tree.absolutePath.split('/') 
 						println ("${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]}")
