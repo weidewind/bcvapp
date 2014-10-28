@@ -3,6 +3,7 @@ package bcvapp
 import grails.transaction.Transactional
 import groovy.lang.Closure;
 import groovy.io.FileType
+import groovy.util.AntBuilder
 
 import java.awt.event.ItemEvent;
 import java.util.List;
@@ -168,6 +169,13 @@ class StapjobService {
 	def sendResults(String email, String sessionId) {
 		
 		def resultsFilePath = getResults(sessionId)
+		
+		//todo
+		resultsFilePath = resultsFilePath.substring(0,resultsFilePath.length()-20)
+		resultsFilePath += results.zip
+		//
+		
+		
 		mailService.sendMail {
 		multipart true
 		to email
@@ -182,19 +190,39 @@ class StapjobService {
 	
 	def zipResults(String outputPath){
 		
+//		def p = ~/.*\.(svg|with_names)/
+//		
+//		ByteArrayOutputStream baos = new ByteArrayOutputStream()
+//		ZipOutputStream zipFile = new ZipOutputStream(baos)
+//		
+//		def outputDir = new File(outputPath)
+//		outputDir.eachDir { chrom ->
+//			def chromDir = new File(chrom)
+//			chromDir.eachFileMatch(FileType.FILES, p){ tree ->
+//				println tree
+//			}
+//			
+//		}
+		
 		def p = ~/.*\.(svg|with_names)/
+		def filelist = []
+		def HOME = outputPath
 		
-		ByteArrayOutputStream baos = new ByteArrayOutputStream()
-		ZipOutputStream zipFile = new ZipOutputStream(baos)
+				def outputDir = new File(outputPath)
+				outputDir.eachDir { chrom ->
+					def chromDir = new File(chrom)
+					chromDir.eachFileMatch(FileType.FILES, p){ tree ->
+						def splittedPath  = tree.absolutePath.split('/') 
+						filelist.add("${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]}")
+					}
 		
-		def outputDir = new File(outputPath)
-		outputDir.eachDir { chrom ->
-			def chromDir = new File(chrom)
-			chromDir.eachFileMatch(FileType.FILES, p){ tree ->
-				println tree
-			}
-			
-		}
+				}
+				filelist.add("simple_results.html")
+
+		def zipFile = new File("results.zip")
+		new AntBuilder().zip( basedir: HOME,
+							  destFile: zipFile.outputPath,
+							  includes: deploymentFiles.join( ' ' ) )
 		
 //		def dirlist = []
 //		def filelist = []

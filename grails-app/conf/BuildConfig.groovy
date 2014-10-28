@@ -64,6 +64,8 @@ grails.project.dependency.resolution = {
 		compile ":fields:1.4"
 		compile ":mail:1.0.7"
 		compile ":gpars:0.3"
+		compile 'org.apache.ant:ant:1.7.1'    //you can also use runtime
+		compile 'org.apache.ant:ant-launcher:1.7.1'
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.5.5" // or ":hibernate:3.6.10.17"
