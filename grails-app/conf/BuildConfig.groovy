@@ -51,6 +51,9 @@ grails.project.dependency.resolution = {
         runtime 'mysql:mysql-connector-java:5.1.33'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
         test "org.grails:grails-datastore-test-support:1.0-grails-2.4"
+		
+		compile 'org.apache.ant:ant:1.8.4'    //you can also use runtime
+		compile 'org.apache.ant:ant-launcher:1.8.4'
     }
 
     plugins {
@@ -64,8 +67,7 @@ grails.project.dependency.resolution = {
 		compile ":fields:1.4"
 		compile ":mail:1.0.7"
 		compile ":gpars:0.3"
-		compile 'org.apache.ant:ant:1.8.4'    //you can also use runtime
-		compile 'org.apache.ant:ant-launcher:1.8.4'
+
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.5.5" // or ":hibernate:3.6.10.17"
