@@ -171,8 +171,8 @@ class StapjobService {
 		def resultsFilePath = getResults(sessionId)
 		
 		//todo
-		resultsFilePath = resultsFilePath.substring(0,resultsFilePath.length()-20)
-		assert resultsFilePath.charAt(resultsFilePath.length()) == '/'
+		resultsFilePath = resultsFilePath.substring(0,resultsFilePath.length()-19)
+		assert resultsFilePath.charAt(resultsFilePath.length()-1) == '/'
 		resultsFilePath += "results.zip"
 		//
 		
@@ -208,9 +208,7 @@ class StapjobService {
 		def resultsFilePath = getResults(sessionId)
 		
 		//todo
-		def outputPath = resultsFilePath.substring(0,resultsFilePath.length()-21)
-
-		assert resultsFilePath.substring(resultsFilePath.length()-21, 1) == '/'
+		def outputPath = resultsFilePath.substring(0,resultsFilePath.length()-20)
 		
 		//
 		
