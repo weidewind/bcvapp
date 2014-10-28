@@ -231,7 +231,7 @@ class StapjobService {
 		def zipFile = new File("results.zip")
 		new AntBuilder().zip( basedir: HOME,
 							  destFile: zipFile.absolutePath,
-							  includes: deploymentFiles.join( ' ' ) )
+							  includes: filelist.join( ' ' ) )
 		
 //		def dirlist = []
 //		def filelist = []
