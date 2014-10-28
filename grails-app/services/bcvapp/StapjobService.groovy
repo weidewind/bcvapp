@@ -211,7 +211,7 @@ class StapjobService {
 		def outputPath = resultsFilePath.substring(0,resultsFilePath.length()-20)
 		
 		//
-		
+		println (outputPath)
 		
 		
 		def p = ~/.*\.(svg|with_names)/
@@ -228,7 +228,8 @@ class StapjobService {
 		
 				}
 				filelist.add("simple_results.html")
-assert filelist.size() == 3;
+				println (filelist.size())
+				println("${absPath}${sessionId}/results.zip")
 		def zipFile = new File("${absPath}${sessionId}/results.zip")
 		new AntBuilder().zip( basedir: HOME,
 							  destFile: zipFile.absolutePath,
