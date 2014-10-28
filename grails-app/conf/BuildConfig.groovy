@@ -21,7 +21,7 @@ grails.project.fork = [
     console: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256]
 ]
 
-grails.project.dependency.resolver = "ivy" // or ivy or maven
+grails.project.dependency.resolver = "maven" // or ivy or maven
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
@@ -64,8 +64,8 @@ grails.project.dependency.resolution = {
 		compile ":fields:1.4"
 		compile ":mail:1.0.7"
 		compile ":gpars:0.3"
-		compile 'org.apache.ant:ant:1.7.1'    //you can also use runtime
-		compile 'org.apache.ant:ant-launcher:1.7.1'
+		compile 'org.apache.ant:ant:1.8.4'    //you can also use runtime
+		compile 'org.apache.ant:ant-launcher:1.8.4'
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.5.5" // or ":hibernate:3.6.10.17"
