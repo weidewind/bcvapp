@@ -1,4 +1,8 @@
 
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Context aliases="/results=/store/home/bcvapp" >< /Context >
+<!-- 
+<Context aliases="/results=/store/home/bcvapp/bcvapp/web-app/results" ></Context>
+ -->
+
+ <Context aliases="/results=/store/home/bcvapp/bcvapp/web-app/results" antiJARLocking="true"/>

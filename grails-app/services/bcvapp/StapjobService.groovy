@@ -172,7 +172,7 @@ class StapjobService {
 		multipart true
 		to email
 		subject "STAP results"
-		body "Thanks for using BCV!/n Here are your results: ${resultsFilePath}. /n Have a nice day!"
+		body "Thanks for using BCV!\n Here are your results: ${resultsFilePath}. \n Have a nice day!"
 		//attachBytes 'stap_results.html','text/xml', new File(resultsFilePath).readBytes()
 		
 		}
