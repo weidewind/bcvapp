@@ -172,6 +172,7 @@ class StapjobService {
 		
 		//todo
 		resultsFilePath = resultsFilePath.substring(0,resultsFilePath.length()-20)
+		assert resultsFilePath.charAt(resultsFilePath.length()) == '/'
 		resultsFilePath += "results.zip"
 		//
 		
@@ -208,6 +209,8 @@ class StapjobService {
 		
 		//todo
 		def outputPath = resultsFilePath.substring(0,resultsFilePath.length()-21)
+
+		assert resultsFilePath.substring(resultsFilePath.length()-21, 1) == '/'
 		
 		//
 		
@@ -227,7 +230,7 @@ class StapjobService {
 		
 				}
 				filelist.add("simple_results.html")
-
+assert filelist.size() == 3;
 		def zipFile = new File("results.zip")
 		new AntBuilder().zip( basedir: HOME,
 							  destFile: zipFile.absolutePath,
