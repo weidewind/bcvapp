@@ -5,4 +5,4 @@
 <Context aliases="/myresults=/store/home/bcvapp/bcvapp/web-app/results" ></Context>
  -->
 
- <Context aliases="/myresults=/store/home/bcvapp/bcvapp/web-app/results" antiJARLocking="true"/>
+ <Context aliases="/myresults=/store/home/bcvapp/bcvapp/web-app/results"  ></Context>
