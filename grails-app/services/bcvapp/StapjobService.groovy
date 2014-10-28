@@ -172,7 +172,7 @@ class StapjobService {
 		
 		//todo
 		resultsFilePath = resultsFilePath.substring(0,resultsFilePath.length()-20)
-		resultsFilePath += results.zip
+		resultsFilePath += "results.zip"
 		//
 		
 		
@@ -181,14 +181,14 @@ class StapjobService {
 		to email
 		subject "STAP results"
 		body "Thanks for using BCV!\n Here are your results: ${resultsFilePath}. \n Have a nice day!"
-		//attachBytes 'stap_results.html','text/xml', new File(resultsFilePath).readBytes()
+		attachBytes 'stap_results.html','text/xml', new File(resultsFilePath).readBytes()
 		
 		}
 		
 	}
 	
 	
-	def zipResults(String outputPath){
+	def zipResults(String sessionId){
 		
 //		def p = ~/.*\.(svg|with_names)/
 //		
@@ -203,6 +203,15 @@ class StapjobService {
 //			}
 //			
 //		}
+		
+		def resultsFilePath = getResults(sessionId)
+		
+		//todo
+		def outputPath = resultsFilePath.substring(0,resultsFilePath.length()-21)
+		
+		//
+		
+		
 		
 		def p = ~/.*\.(svg|with_names)/
 		def filelist = []
@@ -320,6 +329,7 @@ class StapjobService {
 					runSTAP(job.sessionId)
 		
 					if (job.email) {
+						zipResults(job.sessionId)
 						sendResults(job.email, job.sessionId)
 					}
 		
@@ -332,6 +342,7 @@ class StapjobService {
 				runSTAP(job.sessionId)
 	
 				if (job.email) {
+					zipResults(job.sessionId)
 					sendResults(job.email, job.sessionId)
 				}
 	
