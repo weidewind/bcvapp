@@ -229,7 +229,7 @@ class StapjobService {
 				}
 				filelist.add("simple_results.html")
 assert filelist.size() == 3;
-		def zipFile = new File("results.zip")
+		def zipFile = new File("${absPath}${sessionId}/results.zip")
 		new AntBuilder().zip( basedir: HOME,
 							  destFile: zipFile.absolutePath,
 							  includes: filelist.join( ' ' ) )
