@@ -192,7 +192,7 @@ class StapjobService {
 		
 		println (outputPath)
 		
-		def p = ~/.*\.(svg|with_names)/
+		def p = ~/.*\.(svg|with_names|fasta)/
 		def filelist = []
 		def HOME = outputPath
 		
