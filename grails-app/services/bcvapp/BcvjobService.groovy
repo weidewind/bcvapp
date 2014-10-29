@@ -286,6 +286,10 @@ class BcvjobService {
 	def getResults (String sessionId){
 		return resultsPath
 	}
+	
+	def getZipResults(String sessionId){
+		return zipResultsPath
+	}
 
 	def checkInput(Bcvjob job, List fileList){
 		String errorMessage = ""

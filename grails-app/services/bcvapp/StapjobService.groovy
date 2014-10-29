@@ -12,6 +12,7 @@ import java.util.zip.ZipOutputStream
 
 import grails.util.Mixin
 import grails.util.Holders
+
 import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
 
 
@@ -217,6 +218,9 @@ class StapjobService {
 		
 	}
 	
+	def getZipResults(String sessionId){
+		return zipResultsPath
+	}
 
 	
 	def checkInput(Stapjob job, List fileList){
