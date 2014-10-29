@@ -215,6 +215,7 @@ class JobController {
 		}
 
 		def resultsPath = jobService.getResults(job.sessionId)
+		def zipResultsPath = jobService.getZipResults(job.sessionId)
 		def url = createLink(controller: 'job', action: 'renderResults', params: [resultsPath: resultsPath, zipResultsPath:zipResultsPath])
 		render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
 		//	job.delete(flush:true)
