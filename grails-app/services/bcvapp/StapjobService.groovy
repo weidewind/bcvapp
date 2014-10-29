@@ -281,8 +281,9 @@ class StapjobService {
 					
 					runSTAP(job.sessionId)
 		
+					zipResults(job.sessionId)
+					
 					if (job.email) {
-						zipResults(job.sessionId)
 						sendResults(job.email, job.sessionId)
 					}
 		
@@ -294,8 +295,9 @@ class StapjobService {
 				
 				runSTAP(job.sessionId)
 	
+				zipResults(job.sessionId)
+				
 				if (job.email) {
-					zipResults(job.sessionId)
 					sendResults(job.email, job.sessionId)
 				}
 	
