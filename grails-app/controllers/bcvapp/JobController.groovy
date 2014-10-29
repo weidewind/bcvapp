@@ -123,10 +123,18 @@ class JobController {
 	//
 	def renderResults (String resultsPath){
 		def htmlContent = new File(resultsPath).text
-		
+		render ("<a href='${createLink(action: 'downloadFile' , params: [resultsPath: resultsPath])}'>Download report</a>")
 		render (text: htmlContent, contentType:"text/html", encoding:"UTF-8")
 	}
 
+	def downloadFile(String resultsPath){
+		def file = new File(resultsPath)
+		response.setContentType("text/html")
+		response.setHeader("Content-disposition", "filename=${myfile}")
+		response.outputStream << file.getBytes()
+		response.outputStream.flush()
+	}
+	
 	def askforemail = {
 
 	}
