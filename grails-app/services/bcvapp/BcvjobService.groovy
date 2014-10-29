@@ -157,9 +157,10 @@ class BcvjobService {
 					
 					sleep (1000)
 					runPipeline(job.sessionId)
-		
+					
+					zipResults(job.sessionId)
+					
 					if (job.email) {
-						zipResults(job.sessionId)
 						sendResults(job.email, job.sessionId)
 					}
 		
@@ -171,8 +172,9 @@ class BcvjobService {
 	
 				runPipeline(job.sessionId)
 	
+				zipResults(job.sessionId)
+				
 				if (job.email) {
-					zipResults(job.sessionId)
 					sendResults(job.email, job.sessionId)
 				}
 	
