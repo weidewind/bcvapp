@@ -1,8 +1,0 @@
-
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!-- 
-<Context aliases="/myresults=/store/home/bcvapp/bcvapp/web-app/results" ></Context>
- -->
-
- <Context aliases="/myresults=/store/home/bcvapp/bcvapp/web-app/results"  ></Context>
