@@ -2,9 +2,12 @@ package bcvapp
 
 import grails.transaction.Transactional
 import groovy.lang.Closure;
+import groovy.io.FileType
+import groovy.util.AntBuilder
 
 import java.awt.event.ItemEvent;
 import java.util.regex.Pattern;
+
 import grails.util.Mixin
 import grails.util.Holders
 
@@ -23,6 +26,7 @@ class BcvjobService {
 	def String absPath = getAbsPath()
 	def String configPath = servletContext.getRealPath("/pipeline/bcvrun.prj.xml")
 	def String resultsPath
+	def String outputPath
 
 	def prepareDirectory(Bcvjob job, String sessionId, List fileList, List directionList){
 
@@ -154,6 +158,7 @@ class BcvjobService {
 					runPipeline(job.sessionId)
 		
 					if (job.email) {
+						zipResults(job.sessionId)
 						sendResults(job.email, job.sessionId)
 					}
 		
@@ -166,6 +171,7 @@ class BcvjobService {
 				runPipeline(job.sessionId)
 	
 				if (job.email) {
+					zipResults(job.sessionId)
 					sendResults(job.email, job.sessionId)
 				}
 	
@@ -176,6 +182,7 @@ class BcvjobService {
 
 	private def initResultsPath(String pathToFile){
 		resultsPath = pathToFile + "/simple_results.html"
+		outputPath = pathToFile
 	}
 	
 	def runPipeline(String sessionId){
@@ -217,26 +224,65 @@ class BcvjobService {
 	}
 
 
-
-
-
 	def sendResults(String email, String sessionId) {
 		
-		def resultsFilePath = getResults(sessionId)
+		def resultsFilePath = "${outputPath}/results.zip"
+
 		mailService.sendMail {
-			multipart true
-			to email
-			subject "BCV results"
-			body "Have a nice day!"
-			attachBytes 'bcv_results.html','text/xml', new File(resultsFilePath).readBytes()
-
+		multipart true
+		to email
+		subject "BCV results"
+		body "Thanks for using BCV!\n Here are your results. \n Have a nice day!"
+		attachBytes 'results.zip','application/zip', new File(resultsFilePath).readBytes()
+		
 		}
-
+		
 	}
-	def getResults (String sessionId){
-		//def resultsPath = "${absPath}${sessionId}" + "/simple_results.html"
-		return resultsPath
+	
+	
+	def zipResults(String sessionId){
+		
+		println (outputPath)
+		
+		def p = ~/.*\.(svg|with_names)/
+		def filelist = []
+		def HOME = outputPath
+		
+				def outputDir = new File(outputPath)
+				outputDir.eachDir { chrom ->
+					def chromDir = new File(chrom.absolutePath)
+					chromDir.eachFileMatch(FileType.FILES, p){ tree ->
+						def splittedPath  = tree.absolutePath.split('/')
+						filelist.add("${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]}")
+					}
+		
+				}
+				filelist.add("simple_results.html")
+				println("${outputPath}/results.zip")
+		def zipFile = new File("${outputPath}/results.zip")
+		new AntBuilder().zip( basedir: HOME,
+							  destFile: zipFile.absolutePath,
+							  includes: filelist.join( ' ' ) )
+	}
+	
 
+
+//	def sendResults(String email, String sessionId) {
+//		
+//		def resultsFilePath = getResults(sessionId)
+//		mailService.sendMail {
+//			multipart true
+//			to email
+//			subject "BCV results"
+//			body "Have a nice day!"
+//			attachBytes 'bcv_results.html','text/xml', new File(resultsFilePath).readBytes()
+//
+//		}
+//
+//	}
+	
+	def getResults (String sessionId){
+		return resultsPath
 	}
 
 	def checkInput(Bcvjob job, List fileList){
