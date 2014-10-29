@@ -121,16 +121,16 @@ class JobController {
 	//		return "${randomNum}_${currentTime}"
 	//	}
 	//
-	def renderResults (String resultsPath){
+	def renderResults (String resultsPath, String zipResultsPath){
 		def htmlContent = new File(resultsPath).text
-		render ("<a href='${createLink(action: 'downloadFile' , params: [resultsPath: resultsPath])}'>Download report</a>")
+		render ("<a href='${createLink(action: 'downloadFile' , params: [zipResultsPath: zipResultsPath])}'>Download report</a>")
 		render (text: htmlContent, contentType:"text/html", encoding:"UTF-8")
 	}
 
-	def downloadFile(String resultsPath){
-		def file = new File(resultsPath)
-		response.setContentType("text/html")
-		response.setHeader("Content-disposition", "filename=${myfile}")
+	def downloadFile(String zipResultsPath){
+		def file = new File(zipResultsPath)
+		response.setContentType("application/zip")
+		response.setHeader("Content-disposition", "filename='results.zip'")
 		response.outputStream << file.getBytes()
 		response.outputStream.flush()
 	}
@@ -215,7 +215,7 @@ class JobController {
 		}
 
 		def resultsPath = jobService.getResults(job.sessionId)
-		def url = createLink(controller: 'job', action: 'renderResults', params: [resultsPath: resultsPath])
+		def url = createLink(controller: 'job', action: 'renderResults', params: [resultsPath: resultsPath, zipResultsPath:zipResultsPath])
 		render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
 		//	job.delete(flush:true)
 	}

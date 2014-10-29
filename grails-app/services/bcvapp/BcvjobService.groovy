@@ -27,6 +27,7 @@ class BcvjobService {
 	def String configPath = servletContext.getRealPath("/pipeline/bcvrun.prj.xml")
 	def String resultsPath
 	def String outputPath
+	def String zipResultsPath
 
 	def prepareDirectory(Bcvjob job, String sessionId, List fileList, List directionList){
 
@@ -183,6 +184,7 @@ class BcvjobService {
 	private def initResultsPath(String pathToFile){
 		resultsPath = pathToFile + "/simple_results.html"
 		outputPath = pathToFile
+		zipResultsPath = pathToFile + "/results.zip"
 	}
 	
 	def runPipeline(String sessionId){

@@ -28,6 +28,7 @@ class StapjobService {
 	def String configPath = servletContext.getRealPath("/pipeline/bcvrun.prj.xml")
 	def String resultsPath
 	def String outputPath
+	def String zipResultsPath
 	def String defaultName = "input"
 	
 	def prepareDirectory(Stapjob job, String sessionId, List fileList, List directionList){
@@ -133,6 +134,7 @@ class StapjobService {
 	private def initResultsPath(String pathToFile){
 		resultsPath = pathToFile + "/simple_results.html"
 		outputPath = pathToFile
+		zipResultsPath = pathToFile + "/results.zip"
 	}
 	
 	def runSTAP(String sessionId){
@@ -171,18 +173,8 @@ class StapjobService {
 	
 	def sendResults(String email, String sessionId) {
 		
-//		def resultsFilePath = getResults(sessionId)
-		
-		//todo
-//		resultsFilePath = resultsFilePath.substring(0,resultsFilePath.length()-19)
-//		println resultsFilePath
-//		resultsFilePath += "results.zip"
-//		println resultsFilePath
-		
 		def resultsFilePath = "${outputPath}/results.zip"
-		//
-		
-		
+
 		mailService.sendMail {
 		multipart true
 		to email
@@ -197,82 +189,27 @@ class StapjobService {
 	
 	def zipResults(String sessionId){
 		
-//		def p = ~/.*\.(svg|with_names)/
-//		
-//		ByteArrayOutputStream baos = new ByteArrayOutputStream()
-//		ZipOutputStream zipFile = new ZipOutputStream(baos)
-//		
-//		def outputDir = new File(outputPath)
-//		outputDir.eachDir { chrom ->
-//			def chromDir = new File(chrom)
-//			chromDir.eachFileMatch(FileType.FILES, p){ tree ->
-//				println tree
-//			}
-//			
-//		}
-		
-		//def resultsFilePath = getResults(sessionId)
-		
-		//todo
-	//	def outputPath = resultsFilePath.substring(0,resultsFilePath.length()-20)
-		
-		//
 		println (outputPath)
-		
 		
 		def p = ~/.*\.(svg|with_names)/
 		def filelist = []
 		def HOME = outputPath
 		
 				def outputDir = new File(outputPath)
-				println("1")
 				outputDir.eachDir { chrom ->
 					def chromDir = new File(chrom.absolutePath)
-					println (chrom.absolutePath)
-					println("2")
 					chromDir.eachFileMatch(FileType.FILES, p){ tree ->
 						def splittedPath  = tree.absolutePath.split('/') 
-						println ("${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]}")
 						filelist.add("${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]}")
 					}
 		
 				}
 				filelist.add("simple_results.html")
-				println (filelist.size())
 				println("${outputPath}/results.zip")
 		def zipFile = new File("${outputPath}/results.zip")
 		new AntBuilder().zip( basedir: HOME,
 							  destFile: zipFile.absolutePath,
 							  includes: filelist.join( ' ' ) )
-		
-//		def dirlist = []
-//		def filelist = []
-//		
-//		def outputDir = new File(outputPath)
-//		outputDir.eachFileRecurse (FileType.DIRECTORIES) { dir ->
-//		  dirlist << dir
-//		}
-//		 
-//		  dirlist.each {dir ->
-//			  
-//			  def chromDir = new File(dir)
-//			  chromDir.eachFileRecurse (FileType.DIRECTORIES) { dir ->
-//				dirlist << dir
-//			  }
-//			  
-//			  
-//			if (dir.mp3DownloadPath != "") {
-//			  File file = new File(grailsApplication.config.tracks.root.directory+track.mp3DownloadPath)
-//			  zipFile.putNextEntry(new ZipEntry(track.title+".mp3"))
-//			  file.withInputStream { i ->
-//				
-//				zipFile << i
-//		 
-//			  }
-//			  zipFile.closeEntry()
-//			 }
-//			}
-//			zipFile.finish()
 	}
 	
 	def getResults (String sessionId){
