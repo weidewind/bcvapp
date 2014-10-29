@@ -188,7 +188,7 @@ class StapjobService {
 		to email
 		subject "STAP results"
 		body "Thanks for using BCV!\n Here are your results. \n Have a nice day!"
-		attachBytes 'stap_results.zip','application/zip', new File(resultsFilePath).readBytes()
+		attachBytes 'results.zip','application/zip', new File(resultsFilePath).readBytes()
 		
 		}
 		
