@@ -124,7 +124,7 @@ class JobController {
 	def renderResults (String resultsPath, String zipResultsPath){
 
 		def htmlContent = new File(resultsPath).text
-		matcher = (htmlContent =~ /<a href.*?<br>/);
+		def matcher = (htmlContent =~ /<a href.*?<br>/);
 		htmlContent = matcher.replaceAll("");
 		render ("<a href='${createLink(action: 'downloadFile' , params: [zipResultsPath: zipResultsPath])}'>Download all files</a> (.fasta files, trees and the report itself) <p></p>")
 		render (text: htmlContent, contentType:"text/html", encoding:"UTF-8")
