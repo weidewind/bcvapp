@@ -27,6 +27,7 @@ class StapjobService {
 	def String absPath = getAbsPath()
 	def String configPath = servletContext.getRealPath("/pipeline/bcvrun.prj.xml")
 	def String resultsPath
+	def String outputPath
 	def String defaultName = "input"
 	
 	def prepareDirectory(Stapjob job, String sessionId, List fileList, List directionList){
@@ -49,6 +50,7 @@ class StapjobService {
 		def	outputPath = folderPath + "/" + output
 		
 		initResultsPath(outputPath)
+
 		
 		inputLine[0].value = inputPath
 		outputLine[0].value = outputPath
@@ -130,6 +132,7 @@ class StapjobService {
 	
 	private def initResultsPath(String pathToFile){
 		resultsPath = pathToFile + "/simple_results.html"
+		outputPath = pathToFile
 	}
 	
 	def runSTAP(String sessionId){
@@ -168,13 +171,15 @@ class StapjobService {
 	
 	def sendResults(String email, String sessionId) {
 		
-		def resultsFilePath = getResults(sessionId)
+//		def resultsFilePath = getResults(sessionId)
 		
 		//todo
-		resultsFilePath = resultsFilePath.substring(0,resultsFilePath.length()-19)
-		println resultsFilePath
-		resultsFilePath += "results.zip"
-		println resultsFilePath
+//		resultsFilePath = resultsFilePath.substring(0,resultsFilePath.length()-19)
+//		println resultsFilePath
+//		resultsFilePath += "results.zip"
+//		println resultsFilePath
+		
+		def resultsFilePath = "${outputPath}/results.zip"
 		//
 		
 		
@@ -182,8 +187,8 @@ class StapjobService {
 		multipart true
 		to email
 		subject "STAP results"
-		body "Thanks for using BCV!\n Here are your results: ${resultsFilePath}. \n Have a nice day!"
-		attachBytes 'stap_results.html','text/xml', new File(resultsFilePath).readBytes()
+		body "Thanks for using BCV!\n Here are your results. \n Have a nice day!"
+		attachBytes 'stap_results.zip','application/zip', new File(resultsFilePath).readBytes()
 		
 		}
 		
@@ -206,10 +211,10 @@ class StapjobService {
 //			
 //		}
 		
-		def resultsFilePath = getResults(sessionId)
+		//def resultsFilePath = getResults(sessionId)
 		
 		//todo
-		def outputPath = resultsFilePath.substring(0,resultsFilePath.length()-20)
+	//	def outputPath = resultsFilePath.substring(0,resultsFilePath.length()-20)
 		
 		//
 		println (outputPath)
