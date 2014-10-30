@@ -189,7 +189,7 @@ class StapjobService {
 	
 	
 	def zipResults(String sessionId){
-		
+		println "going to zip files, sessionID ${sessionId} time ${System.currentTimeMillis()}"
 		println (outputPath)
 		
 		def p = ~/.*\.(svg|with_names|fasta)/
@@ -201,6 +201,8 @@ class StapjobService {
 					def chromDir = new File(chrom.absolutePath)
 					chromDir.eachFileMatch(FileType.FILES, p){ tree ->
 						def splittedPath  = tree.absolutePath.split('/') 
+						println ("going to add ${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]} from ${outputPath} to zip list; sessionId ${sessionId}")
+						
 						filelist.add("${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]}")
 					}
 		
@@ -309,11 +311,13 @@ class StapjobService {
 					def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
 					
 					if(queueSize > 2){
+						println (" stap waiting in queue; sessionId ${job.sessionId }")
 						while (queueSize > 2){  // 1 running task + our task
 							sleep(5000)
 							queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
-							println (" stap waiting in queue; sessionId ${job.sessionId }")
+					
 							}
+						println (" stap finished waiting in queue; sessionId ${job.sessionId }")
 					}
 					
 					sleep (1000)

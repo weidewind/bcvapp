@@ -149,23 +149,25 @@ class BcvjobService {
 					def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
 					
 					if(queueSize > 2){
+						println (" bcv waiting in queue; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 						while (queueSize > 2){  // 1 running task + our task
 							sleep(5000)
 							queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
-							println (" bcv waiting in queue; sessionId ${job.sessionId }")
+
 							}
+						println (" bcv finished waiting in queue; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 					}
 					
 					sleep (1000)
 					runPipeline(job.sessionId)
-					println (" bcv waiting pipeline finished; sessionId ${job.sessionId }")
+					println (" bcv waiting pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 					
 					zipResults(job.sessionId)
-					println (" bcv waiting results zipped; sessionId ${job.sessionId }")
+					println (" bcv waiting results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 					
 					if (job.email) {
 						sendResults(job.email, job.sessionId)
-						println (" bcv waiting results sent; sessionId ${job.sessionId }")
+						println (" bcv waiting results sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 					}
 		
 					job.delete(flush:true)
@@ -175,14 +177,14 @@ class BcvjobService {
 	def Closure getPipeline = {Bcvjob job ->
 	
 				runPipeline(job.sessionId)
-				println (" bcv pipeline finished; sessionId ${job.sessionId }")
+				println (" bcv pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 	
 				zipResults(job.sessionId)
-				println (" bcv results zipped; sessionId ${job.sessionId }")
+				println (" bcv results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 				
 				if (job.email) {
 					sendResults(job.email, job.sessionId)
-					println (" bcv results sent; sessionId ${job.sessionId }")
+					println (" bcv results sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 				}
 	
 				job.delete(flush:true)
@@ -237,7 +239,7 @@ class BcvjobService {
 
 
 	def sendResults(String email, String sessionId) {
-		
+		println "going to send files, sessionID ${sessionId} time ${System.currentTimeMillis()}"
 		def resultsFilePath = "${outputPath}/results.zip"
 
 		mailService.sendMail {
@@ -253,7 +255,7 @@ class BcvjobService {
 	
 	
 	def zipResults(String sessionId){
-		
+		println "going to zip files, sessionID ${sessionId} time ${System.currentTimeMillis()}"
 		println (outputPath)
 		
 		def p = ~/.*\.(svg|with_names|fasta)/
@@ -265,6 +267,7 @@ class BcvjobService {
 					def chromDir = new File(chrom.absolutePath)
 					chromDir.eachFileMatch(FileType.FILES, p){ tree ->
 						def splittedPath  = tree.absolutePath.split('/')
+						println ("going to add ${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]} from ${outputPath} to zip list; sessionId ${sessionId}")
 						filelist.add("${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]}")
 					}
 		
