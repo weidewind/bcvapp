@@ -172,7 +172,7 @@ class StapjobService {
 	
 	def sendResults(String email, String sessionId) {
 		
-		def resultsFilePath = "${getOutput()}/results.zip"
+		def resultsFilePath = "${getOutput(sessionId)}/results.zip"
 
 		mailService.sendMail {
 		multipart true
@@ -187,28 +187,28 @@ class StapjobService {
 	
 	
 	def zipResults(String sessionId){
+		def output = getOutput(sessionId)
 		println "going to zip files, sessionID ${sessionId} time ${System.currentTimeMillis()}"
-		println (getOutput())
+		println (output)
 		
 		def p = ~/.*\.(svg|with_names|fasta)/
 		def filelist = []
-		def HOME = getOutput()
 		
-				def outputDir = new File(getOutput())
+				def outputDir = new File(output)
 				outputDir.eachDir { chrom ->
 					def chromDir = new File(chrom.absolutePath)
 					chromDir.eachFileMatch(FileType.FILES, p){ tree ->
 						def splittedPath  = tree.absolutePath.split('/') 
-						println ("going to add ${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]} from ${getOutput()} to zip list; sessionId ${sessionId}")
+						println ("going to add ${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]} from ${output} to zip list; sessionId ${sessionId}")
 						
 						filelist.add("${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]}")
 					}
 		
 				}
 				filelist.add("simple_results.html")
-				println("${getOutput()}/results.zip")
-		def zipFile = new File("${getOutput()}/results.zip")
-		new AntBuilder().zip( basedir: HOME,
+				println("${output}/results.zip")
+		def zipFile = new File("${output}/results.zip")
+		new AntBuilder().zip( basedir: output,
 							  destFile: zipFile.absolutePath,
 							  includes: filelist.join( ' ' ) )
 	}
