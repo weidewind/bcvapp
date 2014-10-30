@@ -239,15 +239,16 @@ class BcvjobService {
 
 
 	def sendResults(String email, String sessionId) {
-		println "going to send files, sessionID ${sessionId} time ${System.currentTimeMillis()}"
-		def resultsFilePath = "${getOutput()}/results.zip"
 
+		def results = getZipResults(sessionId)
+		println "going to send files, sessionID ${sessionId} resultsPath ${results} time ${System.currentTimeMillis()}"
+		
 		mailService.sendMail {
 		multipart true
 		to email
 		subject "BCV results"
 		body "Thanks for using BCV!\n Here are your results. \n Have a nice day!"
-		attachBytes 'results.zip','application/zip', new File(resultsFilePath).readBytes()
+		attachBytes 'results.zip','application/zip', new File(results).readBytes()
 		
 		}
 		
@@ -257,10 +258,11 @@ class BcvjobService {
 	def zipResults(String sessionId){
 		
 		def output = getOutput(sessionId)
+		def results = getZipResults(sessionId)
 		println "going to zip files, sessionID ${sessionId} time ${System.currentTimeMillis()}"
 		println (output)
 		
-		def p = ~/.*\.(svg|with_names|fasta)/
+		def p = ~/.*\.(svg|with_names|cluster\.fasta)/
 		def filelist = []
 
 		
@@ -275,8 +277,8 @@ class BcvjobService {
 		
 				}
 				filelist.add("simple_results.html")
-				println("${output}/results.zip")
-		def zipFile = new File("${output}/results.zip")
+				println("results will be placed here ${results}")
+		def zipFile = new File("${results}")
 		new AntBuilder().zip( basedir: output,
 							  destFile: zipFile.absolutePath,
 							  includes: filelist.join( ' ' ) )

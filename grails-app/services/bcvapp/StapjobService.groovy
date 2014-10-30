@@ -172,8 +172,8 @@ class StapjobService {
 	
 	def sendResults(String email, String sessionId) {
 		
-		def resultsFilePath = "${getOutput(sessionId)}/results.zip"
-
+		def resultsFilePath = getZipResults(sessionId)
+		println "going to send files, sessionID ${sessionId} resultsPath ${resultsFilePath} time ${System.currentTimeMillis()}"
 		mailService.sendMail {
 		multipart true
 		to email
@@ -191,7 +191,7 @@ class StapjobService {
 		println "going to zip files, sessionID ${sessionId} time ${System.currentTimeMillis()}"
 		println (output)
 		
-		def p = ~/.*\.(svg|with_names|fasta)/
+		def p = ~/.*\.(svg|with_names|cluster\.fasta)/
 		def filelist = []
 		
 				def outputDir = new File(output)
