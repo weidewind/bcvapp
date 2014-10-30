@@ -25,9 +25,9 @@ class BcvjobService {
 	def servletContext = SCH.servletContext
 	def String absPath = getAbsPath()
 	def String configPath = servletContext.getRealPath("/pipeline/bcvrun.prj.xml")
-	def String resultsPath
-	def String outputPath
-	def String zipResultsPath
+	
+	def outputMap = [:]
+
 
 	def prepareDirectory(Bcvjob job, String sessionId, List fileList, List directionList){
 
@@ -49,7 +49,7 @@ class BcvjobService {
 		def inputPath = folderPath + "/" + input
 		def outputPath = folderPath + "/" + output
 		
-		initResultsPath(outputPath)
+		addResultsPath(sessionId, outputPath)
 		
 		inputLine[0].value = inputPath
 		outputLine[0].value = outputPath
@@ -192,11 +192,11 @@ class BcvjobService {
 	
 
 
-	private def initResultsPath(String pathToFile){
-		resultsPath = pathToFile + "/simple_results.html"
-		outputPath = pathToFile
-		zipResultsPath = pathToFile + "/results.zip"
+	private def addResultsPath(String sessionId, String outputPath){
+		outputMap.putAt(sessionId, outputPath)
 	}
+	
+	
 	
 	def runPipeline(String sessionId){
 		
@@ -240,7 +240,7 @@ class BcvjobService {
 
 	def sendResults(String email, String sessionId) {
 		println "going to send files, sessionID ${sessionId} time ${System.currentTimeMillis()}"
-		def resultsFilePath = "${outputPath}/results.zip"
+		def resultsFilePath = "${getOutput()}/results.zip"
 
 		mailService.sendMail {
 		multipart true
@@ -256,25 +256,25 @@ class BcvjobService {
 	
 	def zipResults(String sessionId){
 		println "going to zip files, sessionID ${sessionId} time ${System.currentTimeMillis()}"
-		println (outputPath)
+		println (getOutput())
 		
 		def p = ~/.*\.(svg|with_names|fasta)/
 		def filelist = []
-		def HOME = outputPath
+		def HOME = getOutput()
 		
-				def outputDir = new File(outputPath)
+				def outputDir = new File(getOutput())
 				outputDir.eachDir { chrom ->
 					def chromDir = new File(chrom.absolutePath)
 					chromDir.eachFileMatch(FileType.FILES, p){ tree ->
 						def splittedPath  = tree.absolutePath.split('/')
-						println ("going to add ${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]} from ${outputPath} to zip list; sessionId ${sessionId}")
+						println ("going to add ${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]} from ${getOutput()} to zip list; sessionId ${sessionId}")
 						filelist.add("${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]}")
 					}
 		
 				}
 				filelist.add("simple_results.html")
-				println("${outputPath}/results.zip")
-		def zipFile = new File("${outputPath}/results.zip")
+				println("${getOutput()}/results.zip")
+		def zipFile = new File("${getOutput()}/results.zip")
 		new AntBuilder().zip( basedir: HOME,
 							  destFile: zipFile.absolutePath,
 							  includes: filelist.join( ' ' ) )
@@ -297,11 +297,15 @@ class BcvjobService {
 //	}
 	
 	def getResults (String sessionId){
-		return resultsPath
+		return outputMap.getAt(sessionId) + "/simple_results.html"
 	}
 	
+	def getOutput(String sessionId){
+		return outputMap.getAt(sessionId)
+	}
+
 	def getZipResults(String sessionId){
-		return zipResultsPath
+		return outputMap.getAt(sessionId) + "/results.zip"
 	}
 
 	def checkInput(Bcvjob job, List fileList){
