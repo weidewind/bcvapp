@@ -152,16 +152,20 @@ class BcvjobService {
 						while (queueSize > 2){  // 1 running task + our task
 							sleep(5000)
 							queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
-						}
+							println (" bcv waiting in queue; sessionId ${job.sessionId }")
+							}
 					}
 					
 					sleep (1000)
 					runPipeline(job.sessionId)
+					println (" bcv waiting pipeline finished; sessionId ${job.sessionId }")
 					
 					zipResults(job.sessionId)
+					println (" bcv waiting results zipped; sessionId ${job.sessionId }")
 					
 					if (job.email) {
 						sendResults(job.email, job.sessionId)
+						println (" bcv waiting results sent; sessionId ${job.sessionId }")
 					}
 		
 					job.delete(flush:true)
@@ -171,11 +175,14 @@ class BcvjobService {
 	def Closure getPipeline = {Bcvjob job ->
 	
 				runPipeline(job.sessionId)
+				println (" bcv pipeline finished; sessionId ${job.sessionId }")
 	
 				zipResults(job.sessionId)
+				println (" bcv results zipped; sessionId ${job.sessionId }")
 				
 				if (job.email) {
 					sendResults(job.email, job.sessionId)
+					println (" bcv results sent; sessionId ${job.sessionId }")
 				}
 	
 				job.delete(flush:true)
@@ -191,6 +198,7 @@ class BcvjobService {
 	
 	def runPipeline(String sessionId){
 		
+		println (" going to run bcv pipeline, sessionId ${sessionId}")
 		def command = "perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
 		def proc = command.execute()                 // Call *execute* on the string
 		proc.waitFor()                               // Wait for the command to finish

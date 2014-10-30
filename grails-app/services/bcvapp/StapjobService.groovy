@@ -268,7 +268,43 @@ class StapjobService {
 	}
 	
 	
-	def Closure getWaitingPipeline = {Stapjob job ->
+//	def Closure getWaitingPipeline = {Stapjob job ->
+//		
+//					def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+//					
+//					if(queueSize > 2){
+//						while (queueSize > 2){  // 1 running task + our task
+//							sleep(5000)
+//							queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+//						}
+//					}
+//					
+//					runSTAP(job.sessionId)
+//		
+//					zipResults(job.sessionId)
+//					
+//					if (job.email) {
+//						sendResults(job.email, job.sessionId)
+//					}
+//		
+//					job.delete(flush:true)
+//				}
+//			
+//	
+//	def Closure getPipeline = {Stapjob job ->		
+//				
+//				runSTAP(job.sessionId)
+//	
+//				zipResults(job.sessionId)
+//				
+//				if (job.email) {
+//					sendResults(job.email, job.sessionId)
+//				}
+//	
+//				job.delete(flush:true)
+//			}
+	
+	def Closure getWaitingPipeline = {Bcvjob job ->
 		
 					def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
 					
@@ -276,29 +312,37 @@ class StapjobService {
 						while (queueSize > 2){  // 1 running task + our task
 							sleep(5000)
 							queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
-						}
+							println (" stap waiting in queue; sessionId ${job.sessionId }")
+							}
 					}
 					
+					sleep (1000)
 					runSTAP(job.sessionId)
-		
+					println (" stap waiting pipeline finished; sessionId ${job.sessionId }")
+					
 					zipResults(job.sessionId)
+					println (" stap waiting results zipped; sessionId ${job.sessionId }")
 					
 					if (job.email) {
 						sendResults(job.email, job.sessionId)
+						println (" stap waiting results sent; sessionId ${job.sessionId }")
 					}
 		
 					job.delete(flush:true)
 				}
 			
 	
-	def Closure getPipeline = {Stapjob job ->		
-				
+	def Closure getPipeline = {Bcvjob job ->
+	
 				runSTAP(job.sessionId)
+				println (" stap pipeline finished; sessionId ${job.sessionId }")
 	
 				zipResults(job.sessionId)
+				println (" stap results zipped; sessionId ${job.sessionId }")
 				
 				if (job.email) {
 					sendResults(job.email, job.sessionId)
+					println (" stap results sent; sessionId ${job.sessionId }")
 				}
 	
 				job.delete(flush:true)
