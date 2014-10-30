@@ -25,7 +25,7 @@ class BcvjobService {
 	def servletContext = SCH.servletContext
 	def String absPath = getAbsPath()
 	def String configPath = servletContext.getRealPath("/pipeline/bcvrun.prj.xml")
-	
+
 	def outputMap = [:]
 
 
@@ -48,9 +48,9 @@ class BcvjobService {
 		def folderPath = "${absPath}${sessionId}"
 		def inputPath = folderPath + "/" + input
 		def outputPath = folderPath + "/" + output
-		
+
 		addResultsPath(sessionId, outputPath)
-		
+
 		inputLine[0].value = inputPath
 		outputLine[0].value = outputPath
 
@@ -103,18 +103,18 @@ class BcvjobService {
 
 		def distance = defaultConfig.DistanceThreshold
 		distance[0].value = job.distance.toFloat()
-		
+
 		def email = defaultConfig.Email
 		email[0].value = job.email
-		
+
 		def mode = defaultConfig.Mode
 		mode[0].value = "PIPELINE"
 
 		def writer = new StringWriter()
 		def printer = new XmlNodePrinter(new PrintWriter(writer))
 		printer.with {
-				preserveWhitespace = true
-				expandEmptyElements = true
+			preserveWhitespace = true
+			expandEmptyElements = true
 		}
 		printer.print(defaultConfig)
 		def result = writer.toString()
@@ -124,89 +124,102 @@ class BcvjobService {
 
 	}
 
-//  it workes somehow
-	
-//	def getPipeline(Bcvjob job){
-//
-//		def Closure myRunnable = {sessionId, email ->
-//
-//			sleep (10000)
-//			runPipeline(sessionId)
-//
-//			if (email != null) {
-//				sendResults(email, sessionId)
-//			}
-//
-//			job.delete(flush:true)
-//		}
-//		
-//		return myRunnable
-//	}
+	//  it workes somehow
 
-	
+	//	def getPipeline(Bcvjob job){
+	//
+	//		def Closure myRunnable = {sessionId, email ->
+	//
+	//			sleep (10000)
+	//			runPipeline(sessionId)
+	//
+	//			if (email != null) {
+	//				sendResults(email, sessionId)
+	//			}
+	//
+	//			job.delete(flush:true)
+	//		}
+	//
+	//		return myRunnable
+	//	}
+
+
 	def Closure getWaitingPipeline = {Bcvjob job ->
-		
-					def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
-					
-					if(queueSize > 2){
-						println (" bcv waiting in queue; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
-						while (queueSize > 2){  // 1 running task + our task
-							sleep(5000)
-							queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
 
-							}
-						println (" bcv finished waiting in queue; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
-					}
-					
-					sleep (1000)
-					runPipeline(job.sessionId)
-					println (" bcv waiting pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
-					
-					zipResults(job.sessionId)
-					println (" bcv waiting results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
-					
-					if (job.email) {
-						sendResults(job.email, job.sessionId)
-						println (" bcv waiting results sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
-					}
-		
-					job.delete(flush:true)
-				}
-			
-	
-	def Closure getPipeline = {Bcvjob job ->
-	
-				runPipeline(job.sessionId)
-				println (" bcv pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
-	
-				zipResults(job.sessionId)
-				println (" bcv results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
-				
-				if (job.email) {
-					sendResults(job.email, job.sessionId)
-					println (" bcv results sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
-				}
-	
-				job.delete(flush:true)
+		def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+
+		if(queueSize > 2){
+			println (" bcv waiting in queue; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+			while (queueSize > 2){  // 1 running task + our task
+				sleep(5000)
+				queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+
 			}
-	
+			println (" bcv finished waiting in queue; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+		}
+
+		sleep (1000)
+		def returnCode = runPipeline(job.sessionId)
+		println (" bcv waiting pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+		if (returnCode == "0"){
+		zipResults(job.sessionId)
+		println (" bcv waiting results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+
+		if (job.email) {
+			sendResults(job.email, job.sessionId)
+			println (" bcv waiting results sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+		}
+		}
+		else {
+			if (job.email) {
+				sendLogs(job.email, job.sessionId)
+				println (" bcv bad news sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+			}
+		}
+		job.delete(flush:true)
+	}
+
+
+	def Closure getPipeline = {Bcvjob job ->
+
+		def returnCode = runPipeline(job.sessionId)
+		println (" bcv pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+		if (returnCode == "0"){
+			zipResults(job.sessionId)
+			println (" bcv results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+
+			if (job.email) {
+				sendResults(job.email, job.sessionId)
+				println (" bcv results sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+			}
+		}
+		else {
+			if (job.email) {
+				sendLogs(job.email, job.sessionId)
+				println (" bcv bad news sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+			}
+		}
+
+		job.delete(flush:true)
+	}
+
 
 
 	private def addResultsPath(String sessionId, String outputPath){
 		outputMap.putAt(sessionId, outputPath)
 	}
-	
-	
-	
+
+
+
 	def runPipeline(String sessionId){
-		
+
 		println (" going to run bcv pipeline, sessionId ${sessionId}")
 		def command = "perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
 		def proc = command.execute()                 // Call *execute* on the string
 		proc.waitFor()                               // Wait for the command to finish
 
 		new File(absPath + "${sessionId}logfile").write("return code: ${ proc.exitValue()}\n stderr: ${proc.err.text}\n stdout: ${proc.in.text}")
-		
+		return proc.exitValue()
 	}
 
 
@@ -242,68 +255,91 @@ class BcvjobService {
 
 		def results = getZipResults(sessionId)
 		println "going to send files, sessionID ${sessionId} resultsPath ${results} time ${System.currentTimeMillis()}"
-		
+
 		mailService.sendMail {
-		multipart true
-		to email
-		subject "BCV results"
-		body "Thanks for using BCV!\n Here are your results. \n Have a nice day!"
-		attachBytes 'results.zip','application/zip', new File(results).readBytes()
-		
+			multipart true
+			to email
+			subject "BCV results"
+			body "Thanks for using BCV!\n Here are your results. \n Have a nice day!"
+			attachBytes 'results.zip','application/zip', new File(results).readBytes()
+
 		}
-		
+
 	}
 	
-	
-	def zipResults(String sessionId){
+	def sendLogs(String email, String sessionId) {
 		
+				def logs = "${absPath}${sessionId}logfile"
+				println "going to send logs, sessionID ${sessionId} logPath ${logs} time ${System.currentTimeMillis()}"
+		
+				mailService.sendMail {
+					multipart true
+					to email
+					subject "BCV failed"
+					body "We are very sorry, but something has gone amiss."
+				}
+				
+				mailService.sendMail {
+					multipart true
+					to "weidewind@gmail.com"
+					subject "BCV failed"
+					body "Achtung! email: ${email}, sessionId: ${sessionId}, logfile attached"
+					attachBytes 'results.zip','text/plain', new File(logs).readBytes()
+					
+				}
+		
+			}
+
+
+	def zipResults(String sessionId){
+
 		def output = getOutput(sessionId)
 		def results = getZipResults(sessionId)
 		println "going to zip files, sessionID ${sessionId} time ${System.currentTimeMillis()}"
 		println (output)
-		
+
 		def p = ~/.*\.(svg|with_names|cluster\.fasta)/
 		def filelist = []
 
-		
-				def outputDir = new File(output)
-				outputDir.eachDir { chrom ->
-					def chromDir = new File(chrom.absolutePath)
-					chromDir.eachFileMatch(FileType.FILES, p){ tree ->
-						def splittedPath  = tree.absolutePath.split('/')
-						println ("going to add ${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]} from ${output} to zip list; sessionId ${sessionId}")
-						filelist.add("${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]}")
-					}
-		
-				}
-				filelist.add("simple_results.html")
-				println("results will be placed here ${results}")
+
+		def outputDir = new File(output)
+		outputDir.eachDir { chrom ->
+			def chromDir = new File(chrom.absolutePath)
+			chromDir.eachFileMatch(FileType.FILES, p){ tree ->
+				def splittedPath  = tree.absolutePath.split('/')
+				println ("going to add ${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]} from ${output} to zip list; sessionId ${sessionId}")
+				filelist.add("${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]}")
+			}
+
+		}
+		filelist.add("simple_results.html")
+		println("results will be placed here ${results}")
 		def zipFile = new File("${results}")
 		new AntBuilder().zip( basedir: output,
-							  destFile: zipFile.absolutePath,
-							  includes: filelist.join( ' ' ) )
+		destFile: zipFile.absolutePath,
+		includes: filelist.join( ' ' ) )
 	}
-	
 
 
-//	def sendResults(String email, String sessionId) {
-//		
-//		def resultsFilePath = getResults(sessionId)
-//		mailService.sendMail {
-//			multipart true
-//			to email
-//			subject "BCV results"
-//			body "Have a nice day!"
-//			attachBytes 'bcv_results.html','text/xml', new File(resultsFilePath).readBytes()
-//
-//		}
-//
-//	}
-	
+
+	//	def sendResults(String email, String sessionId) {
+	//
+	//		def resultsFilePath = getResults(sessionId)
+	//		mailService.sendMail {
+	//			multipart true
+	//			to email
+	//			subject "BCV results"
+	//			body "Have a nice day!"
+	//			attachBytes 'bcv_results.html','text/xml', new File(resultsFilePath).readBytes()
+	//
+	//		}
+	//
+	//	}
+
 	def getResults (String sessionId){
 		return outputMap.getAt(sessionId) + "/simple_results.html"
 	}
-	
+
 	def getOutput(String sessionId){
 		return outputMap.getAt(sessionId)
 	}
@@ -343,33 +379,33 @@ class BcvjobService {
 				errorMessage += "<p>Not ABI: ${name} </p>"
 			}
 
-			
+
 		}
 
 
 		return errorMessage
 
 	}
-	
+
 	def getAbsPath(){
 		def absPath = ""
 		//def pathArray = servletContext.getRealPath("/pipeline").split("\\\\")
 		//for (int i = 0; i < pathArray.size() - 3; i++){
 		//	absPath += pathArray[i] + "\\"
 		//}
-		
-//		def pathArray = servletContext.getRealPath("").split("\\\\")
-//		for (int i = 0; i < pathArray.size()-2; i++){
-//			absPath += pathArray[i] + "\\"
-//		}
-	//	return servletContext.getRealPath("")
+
+		//		def pathArray = servletContext.getRealPath("").split("\\\\")
+		//		for (int i = 0; i < pathArray.size()-2; i++){
+		//			absPath += pathArray[i] + "\\"
+		//		}
+		//	return servletContext.getRealPath("")
 		return Holders.config.absPath
 	}
-	
+
 	def talkWork(){
 		ServiceCategory.talkWork()
 	}
-	
+
 	def talkQueue(){
 		ServiceCategory.talkQueue()
 	}
