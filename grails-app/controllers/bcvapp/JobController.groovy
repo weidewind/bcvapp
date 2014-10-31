@@ -120,6 +120,19 @@ class JobController {
 	def askforemail = {
 
 	}
+	
+	def deleteJob(String id, String task){
+		def job
+		
+		if (task == "class bcvapp.Bcvjob"){
+			job = Bcvjob.get(id)
+		}
+		else if (task == "class bcvapp.Stapjob"){
+			job = Stapjob.get(id)
+		}
+		
+		job.delete(flush:true)
+	}
 
 	def updateAndRun(){
 		def job

@@ -16,7 +16,7 @@
 <g:form controller = "job"  action = "updateAndRun"   onsubmit= "return validateForm(this.submited)">
 <p><input type='text' name='email' id='email' size='50' maxlength='80' />
 <div class = 'error'><label id = 'email_error'></label></div><p>
-<g:hiddenField name="id" value="${params.id}"/>
+<g:hiddenField name="id" id = "id" value="${params.id}"/>
 <g:hiddenField name="task" id = "task" value="${params.task}"/>
 <g:submitButton class = "myButton" name = "wait" value="I will wait here" onclick="this.form.submited=this.name;"/>
 <g:submitButton class = "myButton" name = "send"  value="OK, send them" onclick="this.form.submited=this.name;"/>
@@ -51,6 +51,13 @@ function validateForm(c) {
 			return false;
 			}
 }
+
+
+window.onbeforeunload = function (evt) {
+ ${remoteFunction(controller: 'job', action: 'deleteJob', params: '[id:${params.id}, task:${params.task}]')};
+
+}
+
 </script>
 </body>
 </html>
