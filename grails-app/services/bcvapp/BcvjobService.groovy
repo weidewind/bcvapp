@@ -142,9 +142,9 @@ class BcvjobService {
 
 		def returnCode = runPipeline(job.sessionId)
 		println (" bcv waiting pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+		zipResults(job.sessionId)
+		println (" bcv waiting results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		if (returnCode == "0"){
-			zipResults(job.sessionId)
-			println (" bcv waiting results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 
 			if (job.email) {
 				sendResults(job.email, job.sessionId)
@@ -165,9 +165,11 @@ class BcvjobService {
 
 		def returnCode = runPipeline(job.sessionId)
 		println (" bcv pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+		zipResults(job.sessionId)
+		println (" bcv results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		if (returnCode == "0"){
-			zipResults(job.sessionId)
-			println (" bcv results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+			
+			
 
 			if (job.email) {
 				sendResults(job.email, job.sessionId)
@@ -265,7 +267,8 @@ class BcvjobService {
 	
 	def sendLogs(String email, String sessionId) {
 		
-				def logs = "${absPath}${sessionId}logfile"
+				//def logs = "${absPath}${sessionId}logfile"
+				def results = getZipResults(sessionId)
 				println "going to send logs, sessionID ${sessionId} logPath ${logs} time ${System.currentTimeMillis()}"
 		
 				mailService.sendMail {
@@ -274,15 +277,23 @@ class BcvjobService {
 					subject "BCV failed"
 					body "We are very sorry, but something has gone amiss."
 				}
-				
+				//just in case there is no results at all and results.zip does not exist. Todo: catch mailService or zip exception
 				mailService.sendMail {
 					multipart true
 					to "weidewind@gmail.com"
 					subject "BCV failed"
-					body "Achtung! email: ${email}, sessionId: ${sessionId}, logfile attached"
-					attachBytes 'pipeline_log','text/plain', new File(logs).readBytes()
+					body "Achtung! email: ${email}, sessionId: ${sessionId}"
+				}
+				mailService.sendMail {
+					multipart true
+					to "weidewind@gmail.com"
+					subject "BCV failed"
+					body "Achtung! email: ${email}, sessionId: ${sessionId}"
+					attachBytes 'results.zip','application/zip', new File(results).readBytes()
 					
 				}
+				
+
 		
 			}
 

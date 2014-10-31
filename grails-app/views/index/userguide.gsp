@@ -31,7 +31,7 @@
 <p></p>
 </li>
 <li>
-<a href="bcv-examples.tar.gz">BCV usage examples</a>
+<a href="http://basecv.sourceforge.net/bcv-examples.tar.gz">BCV usage examples</a>
 <p>To run the examples, first set <tt>BCV_HOME</tt> variable to point to the <em>bcvhome</em> directory in the unpacked archive:
 <pre>
      export BCV_HOME=<em>/path/to/examples/bcvhome</em>
