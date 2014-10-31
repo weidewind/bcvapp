@@ -115,23 +115,6 @@ class StapjobService {
 	}
 
 
-	//	def getPipeline(Stapjob job){
-	//
-	//		def Closure myRunnable = { sessionId, email ->
-	//
-	//				sleep (7000)
-	//				runSTAP(sessionId)
-	//
-	//				if (email != null) {
-	//					sendResults(email, "5")
-	//				}
-	//
-	//				job.delete(flush:true)
-	//
-	//			}
-	//	}
-
-
 	private def addResultsPath(String sessionId, String outputPath){
 		outputMap.putAt(sessionId, outputPath)
 	}
@@ -144,7 +127,6 @@ class StapjobService {
 
 		new File(absPath + "${sessionId}logfile").write("return code: ${ proc.exitValue()}\n stderr: ${proc.err.text}\n stdout: ${proc.in.text}")
 		return proc.exitValue()
-		// Wait for the command to finish
 	}
 
 
@@ -344,7 +326,6 @@ class StapjobService {
 			println (" stap finished waiting in queue; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		}
 
-		sleep (1000)
 		def returnCode = runPipeline(job.sessionId)
 		println (" stap waiting pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		if (returnCode == "0"){

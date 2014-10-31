@@ -54,7 +54,7 @@ class BcvjobService {
 		inputLine[0].value = inputPath
 		outputLine[0].value = outputPath
 
-		def inpath  = defaultConfig.InPath // why there are two identical lines in bcv config?
+		def inpath  = defaultConfig.InPath // why there are two almost identical lines in bcv config?
 		inpath[0].value = inputPath
 
 		new File (inputPath).mkdirs()
@@ -124,24 +124,6 @@ class BcvjobService {
 
 	}
 
-	//  it workes somehow
-
-	//	def getPipeline(Bcvjob job){
-	//
-	//		def Closure myRunnable = {sessionId, email ->
-	//
-	//			sleep (10000)
-	//			runPipeline(sessionId)
-	//
-	//			if (email != null) {
-	//				sendResults(email, sessionId)
-	//			}
-	//
-	//			job.delete(flush:true)
-	//		}
-	//
-	//		return myRunnable
-	//	}
 
 
 	def Closure getWaitingPipeline = {Bcvjob job ->
@@ -158,17 +140,16 @@ class BcvjobService {
 			println (" bcv finished waiting in queue; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		}
 
-		sleep (1000)
 		def returnCode = runPipeline(job.sessionId)
 		println (" bcv waiting pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		if (returnCode == "0"){
-		zipResults(job.sessionId)
-		println (" bcv waiting results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+			zipResults(job.sessionId)
+			println (" bcv waiting results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 
-		if (job.email) {
-			sendResults(job.email, job.sessionId)
-			println (" bcv waiting results sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
-		}
+			if (job.email) {
+				sendResults(job.email, job.sessionId)
+				println (" bcv waiting results sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+			}
 		}
 		else {
 			if (job.email) {
@@ -203,8 +184,6 @@ class BcvjobService {
 		job.delete(flush:true)
 	}
 
-
-
 	private def addResultsPath(String sessionId, String outputPath){
 		outputMap.putAt(sessionId, outputPath)
 	}
@@ -215,10 +194,15 @@ class BcvjobService {
 
 		println (" going to run bcv pipeline, sessionId ${sessionId}")
 		def command = "perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
-		def proc = command.execute()                 // Call *execute* on the string
+		try {def proc = command.execute()                 // Call *execute* on the string
 		proc.waitFor()                               // Wait for the command to finish
 
 		new File(absPath + "${sessionId}logfile").write("return code: ${ proc.exitValue()}\n stderr: ${proc.err.text}\n stdout: ${proc.in.text}")
+		return proc.exitValue()
+		} catch (Exception e){
+			e.printStackTrace()
+			return "Unexpected exception thrown by pipeline"
+		}
 		return proc.exitValue()
 	}
 
@@ -284,7 +268,7 @@ class BcvjobService {
 					to "weidewind@gmail.com"
 					subject "BCV failed"
 					body "Achtung! email: ${email}, sessionId: ${sessionId}, logfile attached"
-					attachBytes 'results.zip','text/plain', new File(logs).readBytes()
+					attachBytes 'pipeline_log','text/plain', new File(logs).readBytes()
 					
 				}
 		
@@ -388,17 +372,6 @@ class BcvjobService {
 	}
 
 	def getAbsPath(){
-		def absPath = ""
-		//def pathArray = servletContext.getRealPath("/pipeline").split("\\\\")
-		//for (int i = 0; i < pathArray.size() - 3; i++){
-		//	absPath += pathArray[i] + "\\"
-		//}
-
-		//		def pathArray = servletContext.getRealPath("").split("\\\\")
-		//		for (int i = 0; i < pathArray.size()-2; i++){
-		//			absPath += pathArray[i] + "\\"
-		//		}
-		//	return servletContext.getRealPath("")
 		return Holders.config.absPath
 	}
 
