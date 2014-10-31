@@ -57,7 +57,7 @@ window.onbeforeunload = function (evt) {
  var message = 'Are you sure you want to leave?'; 
     var e = e || <span class="skimlinks-unlinked">window.event</span>;
     // For IE and Firefox prior to version 4
-    ${remoteFunction(controller: 'job', action: 'deleteJob', params: '[id:${params.id}, task:${params.task}]')};
+   // ${remoteFunction(controller: 'job', action: 'deleteJob', params: '[id:${params.id}, task:${params.task}]')};
     if (e) {
         e.returnValue = message ;
     }
