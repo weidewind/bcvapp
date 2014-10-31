@@ -6,6 +6,7 @@
 		<title>bcv-pipeline</title>
 
 		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='stylesheets' file='snazzy.css' /> " />
+		<link rel="shortcut icon" href="${createLinkTo(dir:'images',file:'favicon.ico')}" type="image/x-icon" /> 
 		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.min.js' />"></script>
 		<input type="hidden" name="tasktype" value="bcvstap">
 		
@@ -13,15 +14,15 @@
 		
 		<!-- Google Analytics -->
 		<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		
-		ga('create', 'UA-XXXX-Y', 'auto');
-		ga('send', 'pageview');
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-		</script>
+  ga('create', 'UA-39054482-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
 		<!-- End Google Analytics -->
 	</head>
 	<body>
@@ -77,7 +78,7 @@
 			<label class ='collapsing-toggler'><input type='checkbox' name='checkbox_email' id='checkbox_email' value='ON' checked='checked' />Send results by E-mail</label>
 			<p><div class='collapsing-panel'><input type='text' name='email' id='email' size='50' maxlength='80' /></div>
 			<div class = 'error'><label id = 'email_error'></label></div><p>
-			<p><input type='submit' name='submit' value='Submit' /></div>
+			<p><input type='submit' name='submit' id = 'submit' value='Submit' /></div>
 		</g:form> 
 		
 		<script>
@@ -95,7 +96,9 @@
 			});
 			});
 			
-
+		$('#submit').on('click', function() {
+ 	 	ga('send', 'event', 'button', 'click', 'submit');
+		});
 		
 			function displayList(){
 				document.getElementById("file_error").innerHTML = "";

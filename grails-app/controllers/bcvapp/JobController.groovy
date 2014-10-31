@@ -128,7 +128,7 @@ class JobController {
 		htmlContent = matcher.replaceAll("");
 		matcher = (htmlContent =~ /Length: *?nt/);
 		htmlContent = matcher.replaceAll("");
-		render ("<a href='${createLink(action: 'downloadFile' , params: [zipResultsPath: zipResultsPath])}'>Download all files</a> (.fasta files, trees and the report itself) <p></p>")
+		render ("<a href='${createLink(action: 'downloadFile' , params: [path: zipResultsPath, contentType: 'application/zip', filename: 'results.zip'])}'>Download all files</a> (.fasta files, trees and the report itself) <p></p>")
 		render (text: htmlContent, contentType:"text/html", encoding:"UTF-8")
 		
 		
@@ -139,12 +139,35 @@ class JobController {
 //		render (text: htmlContent, contentType:"text/html", encoding:"UTF-8")
 	}
 
-	def downloadFile(String zipResultsPath){
-		def file = new File(zipResultsPath)
-		response.setContentType("application/zip")
-		response.setHeader("Content-disposition", "filename='results.zip'")
-		response.outputStream << file.getBytes()
-		response.outputStream.flush()
+//	def downloadZipFile(String zipResultsPath){
+//		def file = new File(zipResultsPath)
+//		response.setContentType("application/zip")
+//		response.setHeader("Content-disposition", "filename='results.zip'")
+//		response.outputStream << file.getBytes()
+//		response.outputStream.flush()
+//	}
+	
+	def downloadFile(String path, String contentType, String filename){
+		def file = new File(path)
+		def outputStream = null
+		try {
+		response.setContentType(contentType)
+		response.setHeader("Content-disposition", "filename='${filename}'")
+		outputStream = response.outputStream
+		outputStream << file.getBytes()
+	
+		} catch (IOException e){
+			println('Canceled download?', e)
+		} finally {
+			if (outputStream != null){
+				try {
+					outputStream.close()
+				} catch (IOException e) {
+					println('Exception on close', e)
+				}
+			}
+		}
+
 	}
 	
 	def askforemail = {
@@ -202,6 +225,7 @@ class JobController {
 //				}
 			//	pipeline.callAsync(job.sessionId, job.email)
 				jobService.getWaitingPipeline.callAsync(job)
+				pool.shutdown()
 			})
 
 
