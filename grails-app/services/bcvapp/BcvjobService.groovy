@@ -193,16 +193,28 @@ class BcvjobService {
 	def runPipeline(String sessionId){
 
 		println (" going to run bcv pipeline, sessionId ${sessionId}")
+		
+//		StringWriter err = new StringWriter()
+//		
+//		'someExecutable.exe'.execute().waitForProcessOutput( System.out, err )
+//		
+//		if( err.toString() ) {
+//		  println "ERRORS"
+//		  println err
+//		}
+		
 		def command = "perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
-		try {def proc = command.execute()                 // Call *execute* on the string
-		proc.waitFor()                               // Wait for the command to finish
+	//	try {
+			def proc = command.execute()                 // Call *execute* on the string
+			proc.consumeProcessOutput( System.out, System.err ) //31.10
+			proc.waitFor()                               // Wait for the command to finish
 
-		new File(absPath + "${sessionId}logfile").write("return code: ${ proc.exitValue()}\n stderr: ${proc.err.text}\n stdout: ${proc.in.text}")
-		return proc.exitValue()
-		} catch (Exception e){
-			e.printStackTrace()
-			return "Unexpected exception thrown by pipeline"
-		}
+		//	new File(absPath + "${sessionId}logfile").write("return code: ${ proc.exitValue()}\n stderr: ${proc.err.text}\n stdout: ${proc.in.text}")
+		//	return proc.exitValue()
+	//	} catch (Exception e){
+	//		e.printStackTrace()
+	//		return "Unexpected exception thrown by pipeline"
+	//	}
 		return proc.exitValue()
 	}
 
