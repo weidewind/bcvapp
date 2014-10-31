@@ -54,7 +54,16 @@ function validateForm(c) {
 
 
 window.onbeforeunload = function (evt) {
- ${remoteFunction(controller: 'job', action: 'deleteJob', params: '[id:${params.id}, task:${params.task}]')};
+ var message = 'Are you sure you want to leave?'; 
+    var e = e || <span class="skimlinks-unlinked">window.event</span>;
+    // For IE and Firefox prior to version 4
+    ${remoteFunction(controller: 'job', action: 'deleteJob', params: '[id:${params.id}, task:${params.task}]')};
+    if (e) {
+        e.returnValue = message ;
+    }
+    // For Safari
+    return message;
+ 
 
 }
 
