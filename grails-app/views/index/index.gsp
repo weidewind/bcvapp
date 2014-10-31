@@ -7,7 +7,7 @@
 
 		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='stylesheets' file='snazzy.css' /> " /> 
 	<!--		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.min.js' />"></script> -->
-		<link rel="shortcut icon" href="${createLinkTo(dir:'images',file:'favicon.ico')}" type="image/x-icon" /> 
+		<link rel="shortcut icon" href="<g:createLinkTo dir='images', file='favicon.ico'>" type="image/x-icon" /> 
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<!-- Google Analytics -->
 		<script>
