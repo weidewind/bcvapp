@@ -320,7 +320,7 @@ class StapjobService {
 	//				job.delete(flush:true)
 	//			}
 
-	def Closure getWaitingPipeline = {Bcvjob job ->
+	def Closure getWaitingPipeline = {Stapjob job ->
 
 		def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
 
@@ -340,7 +340,6 @@ class StapjobService {
 		println (" stap waiting results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		if (returnCode == "0"){
 			
-			
 
 			if (job.email) {
 				sendResults(job.email, job.sessionId)
@@ -357,7 +356,7 @@ class StapjobService {
 	}
 
 
-	def Closure getPipeline = {Bcvjob job ->
+	def Closure getPipeline = {Stapjob job ->
 
 		def returnCode = runSTAP(job.sessionId)
 		println (" stap pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
@@ -365,8 +364,6 @@ class StapjobService {
 		println (" stap results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		if (returnCode == "0"){
 			
-			
-
 			if (job.email) {
 				sendResults(job.email, job.sessionId)
 				println (" stap results sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
