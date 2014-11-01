@@ -47,12 +47,19 @@ class JobController {
 			render "${errorMessage}"
 			return
 		}
-
+		
+		if (!params.checkbox_email){
+			job.setEmail("")
+		}
+		
+		
 		job.save()
 		jobService.prepareDirectory(job, sessionId, fileList, directionList)
 
 		def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
 
+		
+		
 		if (job.email){
 			runAsync(job, jobService)
 		}

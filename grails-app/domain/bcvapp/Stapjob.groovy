@@ -30,4 +30,8 @@ Date dateCreated
 	def setSessionId(String sessionId){
 		this.sessionId = sessionId
 	}
+	
+	def setEmail(String email){
+		this.email = email
+	}
 }
