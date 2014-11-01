@@ -53,7 +53,7 @@ function validateForm(c) {
 }
 
 
-window.onbeforeunload = function (evt) {
+window.onbeforeunload = function () {
  var message = 'Are you sure you want to leave?'; 
     var e = e || <span class="skimlinks-unlinked">window.event</span>;
     // For IE and Firefox prior to version 4

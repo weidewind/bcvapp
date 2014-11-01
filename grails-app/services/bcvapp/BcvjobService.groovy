@@ -144,7 +144,7 @@ class BcvjobService {
 		println (" bcv waiting pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		zipResults(job.sessionId)
 		println (" bcv waiting results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
-		if (returnCode == "0"){
+		if (returnCode == 0){
 
 			if (job.email) {
 				sendResults(job.email, job.sessionId)
@@ -167,10 +167,8 @@ class BcvjobService {
 		println (" bcv pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		zipResults(job.sessionId)
 		println (" bcv results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
-		if (returnCode == "0"){
+		if (returnCode == 0){
 			
-			
-
 			if (job.email) {
 				sendResults(job.email, job.sessionId)
 				println (" bcv results sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
@@ -275,7 +273,8 @@ class BcvjobService {
 					multipart true
 					to email
 					subject "BCV failed"
-					body "We are very sorry, but something has gone amiss."
+					body "We are very sorry, but something has gone amiss. Here are some of your results, though."
+					attachBytes 'results.zip','application/zip', new File(results).readBytes()
 				}
 				//just in case there is no results at all and results.zip does not exist. Todo: catch mailService or zip exception
 				mailService.sendMail {
