@@ -66,7 +66,16 @@ function validateForm(c) {
    // }
 
 $(window).on('beforeunload', function() {
-  return 'Your own message goes here...';
+ // return 'Your own message goes here...';
+  var message = 'Your task will be aborted'; 
+   var e = e || <span class="skimlinks-unlinked">window.event</span>;
+  //   For IE and Firefox prior to version 4
+  ${remoteFunction(controller: 'job', action: 'deleteJob', params: '[id:${params.id}, task:${params.task}]')};
+    if (e) {
+        e.returnValue = message ;
+    }
+  //  For Safari
+    return message;
 });
 
 </script>
