@@ -66,9 +66,9 @@ function validateForm(c) {
   //  return message;
    // }
 
-$(window).on('beforeunload', function() {
- return 'Your own message goes here...'; //works
-});
+//$(window).on('beforeunload', function() {
+// return 'Your own message goes here...'; //works
+//});
 
 </script>
 </body>
