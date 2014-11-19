@@ -204,7 +204,7 @@ class JobController {
 			pool.shutdown()
 		})
 		def start = new Date(System.currentTimeMillis())
-		def murl = createLink(controller: 'job', action: 'waiting', params:[start:start, randomString: randomString])
+		def murl = createLink(controller: 'job', action: 'waiting', params:[start:start])
 		render(contentType: 'text/html', text: "<script>window.location.href='$murl'</script>")
 		//render view: 'waiting'
 		//render "<p>Please, don't close this page. Your task was submitted at ${start}.</p>"
