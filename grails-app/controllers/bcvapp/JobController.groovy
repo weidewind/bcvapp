@@ -205,11 +205,11 @@ class JobController {
 			pool.shutdown()
 		})
 		def start = new Date(System.currentTimeMillis())
-		render (controller: 'job', action: 'waiting')
+		render redirect (action: 'waiting')
 		//render "<p>Please, don't close this page. Your task was submitted at ${start}.</p>"
 		while (!pool.isTerminated()){
 			def randomString = jobService.talkWork()
-			render (controller: 'job', action: 'waiting', params:[start:start, randomString: randomString]) 
+			render redirect (controller: 'job', action: 'waiting', params:[start:start, randomString: randomString]) 
 			//render "<p>${randomString}</p>"
 			sleep(5000)
 		}
