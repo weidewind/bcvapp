@@ -164,9 +164,9 @@ class JobController {
 		}
 		else {
 			//render "Your task has been added to the queue"
+			def start = new Date(System.currentTimeMillis())
 			render (view: "waiting", model:[start: start, randomString: ""])
 			def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
-			def start = new Date(System.currentTimeMillis())
 			while (queueSize > 2){  // 1 running task + our task
 				def randomString = jobService.talkQueue()
 				 render (view: "waiting", model:[start: start, randomString: randomString])
