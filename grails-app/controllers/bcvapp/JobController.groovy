@@ -189,13 +189,15 @@ class JobController {
 				pool.shutdown()
 			})
 
-			render "Success! Your results will be sent at ${job.email}"
-			
-			for (int i = 0; i < 10; i++){
-				sleep 500
-			}
+			//render "Success! Your results will be sent at ${job.email}"
+
 			
 			render view: "testview"
+			
+			for (int i = 0; i < 10; i++){
+				sleep (500)
+			}
+			render "Success! Your results will be sent at ${job.email}"
 	}
 
 	
