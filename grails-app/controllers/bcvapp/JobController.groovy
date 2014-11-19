@@ -164,12 +164,12 @@ class JobController {
 		}
 		else {
 			//render "Your task has been added to the queue"
-			render redirect (action: "waiting", model: [start: start, randomString: ""])
+			render redirect (action: "waiting", params:[start: start, randomString: ""])
 			def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
 			def start = new Date(System.currentTimeMillis())
 			while (queueSize > 2){  // 1 running task + our task
 				def randomString = jobService.talkQueue()
-				 render redirect (action: "waiting", model: [start: start, randomString: randomString])
+				 render redirect (action: "waiting", params:[start: start, randomString: randomString])
 				//render "<p>${randomString}</p>"
 				sleep(5000)
 				queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
@@ -203,11 +203,11 @@ class JobController {
 			pool.shutdown()
 		})
 		def start = new Date(System.currentTimeMillis())
-		render redirect (action: "waiting", model: [start: start, randomString: ""])
+		render redirect (action: "waiting", params:[start: start, randomString: ""])
 		//render "<p>Please, don't close this page. Your task was submitted at ${start}.</p>"
 		while (!pool.isTerminated()){
 			def randomString = jobService.talkWork()
-			render redirect (action: "waiting", model: [start: start, randomString: randomString]) 
+			render redirect (action: "waiting", params:[start: start, randomString: randomString]) 
 			//render "<p>${randomString}</p>"
 			sleep(5000)
 		}
