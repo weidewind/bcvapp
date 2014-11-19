@@ -341,7 +341,6 @@ class StapjobService {
 		println (" stap waiting results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		if (returnCode == 0){
 			
-
 			if (job.email) {
 				sendResults(job.email, job.sessionId)
 				println (" stap waiting results sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
@@ -353,6 +352,7 @@ class StapjobService {
 				println (" stap bad news sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 			}
 		}
+		
 		job.delete(flush:true)
 	}
 

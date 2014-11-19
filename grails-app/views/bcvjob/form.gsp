@@ -263,6 +263,18 @@
 			return passed;
 		} 
 		
+		
+		
+ var timeStamp = null;
+     function KeepAlive(){
+      	var d = new Date();
+        timeStamp = d.getTime();
+        var newData = ${remoteFunction(controller: 'job', action: 'updateTimeStamp', params: '[timeStamp]')};
+    }
+    setInterval('KeepAlive();', '120000');
+		
+		
+		
 			
 		</script>
 	
