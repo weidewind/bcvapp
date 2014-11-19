@@ -131,7 +131,6 @@ class JobController {
 	
 	def waiting = {
    render view: 'waiting'
-   return
 		}
 	
 	def deleteJob(String id, String task){
@@ -205,11 +204,11 @@ class JobController {
 			pool.shutdown()
 		})
 		def start = new Date(System.currentTimeMillis())
-		render redirect (action: 'waiting')
+		render view: 'waiting'
 		//render "<p>Please, don't close this page. Your task was submitted at ${start}.</p>"
 		while (!pool.isTerminated()){
 			def randomString = jobService.talkWork()
-			render redirect (controller: 'job', action: 'waiting', params:[start:start, randomString: randomString]) 
+			render view: 'waiting', model:[start:start, randomString: randomString]
 			//render "<p>${randomString}</p>"
 			sleep(5000)
 		}
