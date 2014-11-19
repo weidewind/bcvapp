@@ -189,7 +189,8 @@ class JobController {
 				pool.shutdown()
 			})
 
-			render "Success! Your results will be sent at ${job.email} "
+			//render "Success! Your results will be sent at ${job.email} "
+			render view: "testview"
 	}
 
 	
