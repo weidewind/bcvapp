@@ -189,15 +189,11 @@ class JobController {
 				pool.shutdown()
 			})
 
-			//render "Success! Your results will be sent at ${job.email}"
+			render "Success! Your results will be sent at ${job.email}"
 
 			
-			render view: "testview"
-			
-			for (int i = 0; i < 10; i++){
-				sleep (500)
-			}
-			render "Success! Your results will be sent at ${job.email}"
+			//render view: "testview" // works here! wont work, if there is something else after this line. If one render goes after another - only the last one is rendered
+
 	}
 
 	
@@ -212,14 +208,14 @@ class JobController {
 		def start = new Date(System.currentTimeMillis())
 		//def murl = createLink(controller: 'job', action: 'waiting', params:[start:start])
 		//render(contentType: 'text/html', text: "<script>window.location.href='$murl'</script>")
-		render view: "testview"
-		//render "<p>Please, don't close this page. Your task was submitted at ${start}.</p>"
+		//render view: "testview"
+		render "<p>Please, don't close this page. Your task was submitted at ${start}.</p>"
 		while (!pool.isTerminated()){
 			def randomString = jobService.talkWork()
 			//murl = createLink(controller: 'job', action: 'waiting', params:[start:start, randomString: randomString])
 			//render(contentType: 'text/html', text: "<script>window.location.href='$murl'</script>")
-			render view: "waiting", model:[start:start, randomString: randomString]
-			//render "<p>${randomString}</p>"
+			//render view: "waiting", model:[start:start, randomString: randomString]
+			render "<p>${randomString}</p>"
 			sleep(5000)
 		}
 
