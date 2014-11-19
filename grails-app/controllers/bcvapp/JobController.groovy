@@ -128,6 +128,10 @@ class JobController {
 
 	}
 	
+	def waiting = {
+	
+		}
+	
 	def deleteJob(String id, String task){
 		def job
 		
