@@ -17,11 +17,11 @@
 <p>${params.randomString}</p>
 
 
-<script>
+<g:javascript>
 
 
-     var timeStamp = null;
-    var interval = setInterval('checkAndUpdate();', '5000');
+    var timeStamp = null;
+    var interval = setInterval('checkAndUpdate()', '5000');
 
      function checkAndUpdate(){
       	var d = new Date();
@@ -38,6 +38,6 @@
 
     
 
-</script>
+</g:javascript>
 </body>
 </html>
