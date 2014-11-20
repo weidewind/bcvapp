@@ -24,9 +24,9 @@
 
 
     var timeStamp = null;
-    var interval = setInterval('checkAndUpdate("${sessionId}")', '5000');
+    var interval = setInterval('checkAndUpdate("${sessionId}, ${task}")', '5000');
 
-     function checkAndUpdate(sessionId){
+     function checkAndUpdate(sessionId, task){
      console.log(sessionId)
       	var d = new Date();
         timeStamp = d.getTime();
