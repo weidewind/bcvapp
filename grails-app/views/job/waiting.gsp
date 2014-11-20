@@ -21,11 +21,13 @@
 
 
     var timeStamp = null;
-    var interval = setInterval('checkAndUpdate(${sessionId})', '5000');
+    var interval = setInterval('checkAndUpdate("${sessionId}")', '5000');
 
      function checkAndUpdate(sessionId){
+     console.log(sessionId)
       	var d = new Date();
         timeStamp = d.getTime();
+        console.log(timeStamp)
         var newData = ${remoteFunction(controller: 'job', action: 'updateTimeStamp', params: '[timeStamp]')};
         var jobIsDone = ${remoteFunction(controller: 'job', action: 'jobIsDone', params: '[sessionId]')};
         if (jobIsDone){
