@@ -13,7 +13,7 @@
 		</head>
 	<body>
 		
-<p>Please, don't close this page. Your task was submitted at ${params.start}. The results will be shown here when they are ready. </p>
+<p>Please, don't close this page. Your task was submitted at ${start}. The results will be shown here when they are ready. </p>
 <p>${params.randomString}</p>
 
 
@@ -21,6 +21,8 @@
 
 
      var timeStamp = null;
+    var interval = setInterval('checkAndUpdate();', '5000');
+
      function checkAndUpdate(){
       	var d = new Date();
         timeStamp = d.getTime();
@@ -28,12 +30,12 @@
         var jobIsDone = ${remoteFunction(controller: 'job', action: 'jobIsDone', params: '[${params.sessionId}]')};
         if (jobIsDone){
         	${remoteFunction(controller: 'stapjob', action: 'form')};
+        	clearInterval(interval);
         }
         
     }
     
-    var interval = setInterval('checkAndUpdate();', '5000');
-    clearInterval(interval);
+
     
 
 </script>
