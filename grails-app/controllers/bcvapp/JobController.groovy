@@ -247,6 +247,20 @@ class JobController {
 		println("holderService holds " +isDone + " for " + params.sessionId)
 		render "${isDone}"
 	}
+	
+	def showResultsPage(){
+		def jobService
+		if (params.task == "class bcvapp.Bcvjob"){
+			jobService = bcvjobService
+		}
+		else if (params.task == "class bcvapp.Stapjob"){
+			jobService = stapjobService
+		}
+				def resultsPath = jobService.getResults(params.sessionId)
+				def zipResultsPath = jobService.getZipResults(params.sessionId)
+				def url = createLink(controller: 'job', action: 'renderResults', params: [resultsPath: resultsPath, zipResultsPath:zipResultsPath])
+				render (contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
+	}
 
 
 }

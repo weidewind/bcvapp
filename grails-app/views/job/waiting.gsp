@@ -35,7 +35,7 @@
         ${remoteFunction(controller: 'job', action: 'jobIsDone', update: 'jobDone', params: '{sessionId:sessionId}')};
         var jobIsDone = document.getElementById('jobDone').innerHTML;
         if (jobIsDone === "true"){
-        	${remoteFunction(controller: 'job', action: 'showResultsPage')};
+        	${remoteFunction(controller: 'job', action: 'showResultsPage', params: '{task:task, sessionId:sessionId}' )};
         	clearInterval(interval);
         }
         
