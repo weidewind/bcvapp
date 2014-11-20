@@ -30,7 +30,7 @@
         timeStamp = d.getTime();
         console.log(timeStamp)
         var newData = ${remoteFunction(controller: 'job', action: 'updateTimeStamp', update: 'randomString', params: '{timeStamp:timeStamp, sessionId:sessionId}')};
-        var jobIsDone = ${remoteFunction(controller: 'job', action: 'jobIsDone', params: '{sessionId:sessionId}')};
+        var jobIsDone = $remoteFunction(controller: 'job', action: 'jobIsDone', update: 'isDone', params: '{sessionId:sessionId}');
         if (jobIsDone){
         	${remoteFunction(controller: 'stapjob', action: 'stapform')};
         	clearInterval(interval);
