@@ -207,7 +207,8 @@ class BcvjobService {
 //		}
 		
 		def command = "perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
-	//	try {
+	
+		//	try {
 			def proc = command.execute()                 // Call *execute* on the string
 			proc.consumeProcessOutput( System.out, System.err ) //31.10
 			proc.waitFor()                               // Wait for the command to finish

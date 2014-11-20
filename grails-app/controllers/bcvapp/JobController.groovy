@@ -256,6 +256,10 @@ class JobController {
 		else if (params.task == "class bcvapp.Stapjob"){
 			jobService = stapjobService
 		}
+		
+		else {
+			jobService = bcvjobService
+		}
 				def resultsPath = jobService.getResults(params.sessionId)
 				def zipResultsPath = jobService.getZipResults(params.sessionId)
 				def url = createLink(controller: 'job', action: 'renderResults', params: [resultsPath: resultsPath, zipResultsPath:zipResultsPath])
