@@ -21,15 +21,15 @@
 
 
     var timeStamp = null;
-    var interval = setInterval('checkAndUpdate()', '5000');
+    var interval = setInterval('checkAndUpdate(${sessionId})', '5000');
 
-     function checkAndUpdate(){
+     function checkAndUpdate(sessionId){
       	var d = new Date();
         timeStamp = d.getTime();
         var newData = ${remoteFunction(controller: 'job', action: 'updateTimeStamp', params: '[timeStamp]')};
-        var jobIsDone = ${remoteFunction(controller: 'job', action: 'jobIsDone', params: '[${params.sessionId}]')};
+        var jobIsDone = ${remoteFunction(controller: 'job', action: 'jobIsDone', params: '[sessionId]')};
         if (jobIsDone){
-        	${remoteFunction(controller: 'stapjob', action: 'form')};
+        	${remoteFunction(controller: 'stapjob', action: 'stapform')};
         	clearInterval(interval);
         }
         
