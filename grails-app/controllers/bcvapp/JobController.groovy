@@ -10,9 +10,10 @@ class JobController {
 
 	def bcvjobService
 	def stapjobService
+	def holderService
 	
 	def timeStampMap = [:]
-	def jobDone = [:]
+
 
 
 	def index = {
@@ -205,14 +206,14 @@ class JobController {
 		def GParsPool = new GParsPool()
 		def pool = new ForkJoinPool(1)
 		GParsPool.withExistingPool (pool, {
-			jobService.getPipeline.call(job) // deleted Async
-			jobDone.putAt(job.sessionId, true)
+			jobService.getPipeline.callAsync(job)
 			pool.shutdown()
+			
 		})
 		def start = new Date(System.currentTimeMillis())
 		//def murl = createLink(controller: 'job', action: 'waiting', params:[start:start])
 		//render(contentType: 'text/html', text: "<script>window.location.href='$murl'</script>")
-		render view: "waiting", model:[start:start, sessionId: job.sessionId]
+		render view: "waiting", model:[start:start, sessionId: job.sessionId, task:job.class]
 		//render "<p>Please, don't close this page. Your task was submitted at ${start}.</p>"
 		
 		
@@ -242,7 +243,7 @@ class JobController {
 	
 	
 	def jobIsDone(){
-		render jobDone.get(params.sessionId)
+		render holderService.isDone(params.sessionId)
 	}
 
 

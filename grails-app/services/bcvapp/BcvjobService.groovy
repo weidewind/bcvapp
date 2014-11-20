@@ -22,6 +22,7 @@ import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
 class BcvjobService {
 
 	def mailService
+	def holderService
 	def servletContext = SCH.servletContext
 	def String absPath = getAbsPath()
 	def String configPath = servletContext.getRealPath("/pipeline/bcvrun.prj.xml")
@@ -180,8 +181,10 @@ class BcvjobService {
 				println (" bcv bad news sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 			}
 		}
-
+		
+		holderService.setDone(job.sessionId)
 		job.delete(flush:true)
+		
 	}
 
 	private def addResultsPath(String sessionId, String outputPath){
