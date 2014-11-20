@@ -39,6 +39,7 @@
         if (jobIsDone === "true"){
         	${remoteFunction(controller: 'job', action: 'showResultsPage', update: 'resultsUrl', params: '{task:task, sessionId:sessionId}' )};
         	clearInterval(interval);
+        	console.log(document.getElementById('resultsUrl').innerHTML)
         	window.location.href = document.getElementById('resultsUrl').innerHTML;
         }
         
