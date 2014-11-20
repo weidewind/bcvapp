@@ -236,6 +236,8 @@ class JobController {
 	def updateTimeStamp(){
 		timeStampMap.putAt(params.sessionId, params.timeStamp)
 		println("timestamp " + params.timeStamp)
+		def randomString = jobService.talkWork()
+		render  "<p>${randomString}</p>"
 	}
 	
 	

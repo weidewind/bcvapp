@@ -14,7 +14,8 @@
 	<body>
 		
 <p>Please, don't close this page. Your task was submitted at ${start}. The results will be shown here when they are ready. </p>
-<p>${params.randomString}</p>
+<div id="randomString">
+        </div>
 
 
 <g:javascript>
@@ -28,7 +29,7 @@
       	var d = new Date();
         timeStamp = d.getTime();
         console.log(timeStamp)
-        var newData = ${remoteFunction(controller: 'job', action: 'updateTimeStamp', params: '{timeStamp:timeStamp, sessionId:sessionId}')};
+        var newData = ${remoteFunction(controller: 'job', action: 'updateTimeStamp', update: 'randomString', params: '{timeStamp:timeStamp, sessionId:sessionId}')};
         var jobIsDone = ${remoteFunction(controller: 'job', action: 'jobIsDone', params: '{sessionId:sessionId}')};
         if (jobIsDone){
         	${remoteFunction(controller: 'stapjob', action: 'stapform')};
