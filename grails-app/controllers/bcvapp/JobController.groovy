@@ -205,7 +205,7 @@ class JobController {
 		def GParsPool = new GParsPool()
 		def pool = new ForkJoinPool(1)
 		GParsPool.withExistingPool (pool, {
-			jobService.getPipeline.callAsync(job)
+			jobService.getPipeline.call(job) // deleted Async
 			jobDone.putAt(job.sessionId, true)
 			pool.shutdown()
 		})
