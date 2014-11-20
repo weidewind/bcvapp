@@ -39,9 +39,9 @@
         if (jobIsDone === "true"){
         	${remoteFunction(controller: 'job', action: 'showResultsPage', update: 'resultsUrl', params: '{task:task, sessionId:sessionId}' )};
         	clearInterval(interval);
-        	//var url = document.getElementById('resultsUrl').innerHTML;
-        	//console.log(url)
-        	//window.location.href = url;
+        	var url = "http://bcvapp.cmd.su:8080" + document.getElementById('resultsUrl').innerHTML;
+        	console.log(url)
+        	window.location.href = url;
         }
         
     }
