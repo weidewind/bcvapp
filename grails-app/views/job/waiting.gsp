@@ -18,6 +18,8 @@
         </div>
  <div id="jobDone" style="display: none;">
         </div>
+ <div id="resultsUrl" style="display: none;">
+        </div>
 
 
 <g:javascript>
@@ -35,8 +37,9 @@
         ${remoteFunction(controller: 'job', action: 'jobIsDone', update: 'jobDone', params: '{sessionId:sessionId}')};
         var jobIsDone = document.getElementById('jobDone').innerHTML;
         if (jobIsDone === "true"){
-        	${remoteFunction(controller: 'job', action: 'showResultsPage', params: '{task:task, sessionId:sessionId}' )};
+        	${remoteFunction(controller: 'job', action: 'showResultsPage', update: 'resultsUrl', params: '{task:task, sessionId:sessionId}' )};
         	clearInterval(interval);
+        	window.location.href = document.getElementById('resultsUrl').innerHTML;
         }
         
     }
