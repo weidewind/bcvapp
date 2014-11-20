@@ -236,7 +236,7 @@ class JobController {
 	def updateTimeStamp(){
 		timeStampMap.putAt(params.sessionId, params.timeStamp)
 		println("timestamp " + params.timeStamp)
-		def randomString = jobService.talkWork()
+		def randomString = bcvjobService.talkWork()
 		render  "<p>${randomString}</p>"
 	}
 	
