@@ -20,13 +20,21 @@
 <script>
 
 
- var timeStamp = null;
-     function KeepAlive(){
+     var timeStamp = null;
+     function checkAndUpdate(){
       	var d = new Date();
         timeStamp = d.getTime();
         var newData = ${remoteFunction(controller: 'job', action: 'updateTimeStamp', params: '[timeStamp]')};
+        var jobIsDone = ${remoteFunction(controller: 'job', action: 'jobIsDone', params: '[${params.sessionId}]')};
+        if (jobIsDone){
+        	${remoteFunction(controller: 'stapjob', action: 'form')};
+        }
+        
     }
-    setInterval('KeepAlive();', '120000');
+    
+    var interval = setInterval('checkAndUpdate();', '5000');
+    clearInterval(interval);
+    
 
 </script>
 </body>

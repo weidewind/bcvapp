@@ -10,6 +10,9 @@ class JobController {
 
 	def bcvjobService
 	def stapjobService
+	
+	def timeStampMap = [:]
+	def jobDone = [:]
 
 
 	def index = {
@@ -203,31 +206,43 @@ class JobController {
 		def pool = new ForkJoinPool(1)
 		GParsPool.withExistingPool (pool, {
 			jobService.getPipeline.callAsync(job)
+			jobDone.putAt(job.sessionId, true)
 			pool.shutdown()
 		})
 		def start = new Date(System.currentTimeMillis())
 		//def murl = createLink(controller: 'job', action: 'waiting', params:[start:start])
 		//render(contentType: 'text/html', text: "<script>window.location.href='$murl'</script>")
-		//render view: "testview"
-		render "<p>Please, don't close this page. Your task was submitted at ${start}.</p>"
-		while (!pool.isTerminated()){
-			def randomString = jobService.talkWork()
-			//murl = createLink(controller: 'job', action: 'waiting', params:[start:start, randomString: randomString])
-			//render(contentType: 'text/html', text: "<script>window.location.href='$murl'</script>")
-			//render view: "waiting", model:[start:start, randomString: randomString]
-			render "<p>${randomString}</p>"
-			sleep(5000)
-		}
-
-		def resultsPath = jobService.getResults(job.sessionId)
-		def zipResultsPath = jobService.getZipResults(job.sessionId)
-		def url = createLink(controller: 'job', action: 'renderResults', params: [resultsPath: resultsPath, zipResultsPath:zipResultsPath])
-		render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
+		render view: "waiting", model:[start:start, sessionId: job.sessionId]
+		//render "<p>Please, don't close this page. Your task was submitted at ${start}.</p>"
+		
+		
+		
+//		while (!pool.isTerminated()){
+//			def randomString = jobService.talkWork()
+//			//murl = createLink(controller: 'job', action: 'waiting', params:[start:start, randomString: randomString])
+//			//render(contentType: 'text/html', text: "<script>window.location.href='$murl'</script>")
+//			render view: "waiting", model:[start:start, randomString: randomString]
+//			//render "<p>${randomString}</p>"
+//			sleep(5000)
+//		}
+//
+//		def resultsPath = jobService.getResults(job.sessionId)
+//		def zipResultsPath = jobService.getZipResults(job.sessionId)
+//		def url = createLink(controller: 'job', action: 'renderResults', params: [resultsPath: resultsPath, zipResultsPath:zipResultsPath])
+//		render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
 
 	}
 	
-	def updateTimeStamp(Integer timeStamp){
-		
+	def updateTimeStamp(Integer timeStamp, String sessionId){
+		timeStampMap.putAt(sessionId, timeStamp)
+	}
+	
+	
+	def jobIsDone(String sessionId){
+		if (jobDone.get(sessionId)){
+			return true
+		}
+		else return false
 	}
 
 

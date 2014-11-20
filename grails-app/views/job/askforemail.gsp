@@ -70,6 +70,14 @@ function validateForm(c) {
 // return 'Your own message goes here...'; //works
 //});
 
+ var timeStamp = null;
+     function KeepAlive(){
+      	var d = new Date();
+        timeStamp = d.getTime();
+        var newData = ${remoteFunction(controller: 'job', action: 'updateTimeStamp', params: '[timeStamp:timeStamp, sessionId:${params.id}]')};
+    }
+    setInterval('KeepAlive();', '1200');
+
 </script>
 </body>
 </html>
