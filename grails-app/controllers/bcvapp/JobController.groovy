@@ -243,9 +243,9 @@ class JobController {
 	
 	def jobIsDone(){
 		if (jobDone.get(params.sessionId)){
-			return true
+			render "1"
 		}
-		else return false
+		else render ""
 	}
 
 
