@@ -16,7 +16,7 @@
 <p>Please, don't close this page. Your task was submitted at ${start}. The results will be shown here when they are ready. </p>
 <div id="randomString">
         </div>
- <div id="plug" style="display: none;">
+ <div id="jobDone" style="display: none;">
         </div>
 
 
@@ -32,10 +32,10 @@
         timeStamp = d.getTime();
         console.log(timeStamp)
         ${remoteFunction(controller: 'job', action: 'updateTimeStamp', update: 'randomString', params: '{timeStamp:timeStamp, sessionId:sessionId}')};
-        ${remoteFunction(controller: 'job', action: 'jobIsDone', update: 'plug', params: '{sessionId:sessionId}')};
-        var jobIsDone = document.getElementById('plug').innerHTML;
+        ${remoteFunction(controller: 'job', action: 'jobIsDone', update: 'jobDone', params: '{sessionId:sessionId}')};
+        var jobIsDone = document.getElementById('jobDone').innerHTML;
         if (jobIsDone === "true"){
-        	${remoteFunction(controller: 'stapjob', action: 'stapform')};
+        	${remoteFunction(controller: 'job', action: 'showResultsPage')};
         	clearInterval(interval);
         }
         
