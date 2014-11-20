@@ -28,8 +28,8 @@
       	var d = new Date();
         timeStamp = d.getTime();
         console.log(timeStamp)
-        var newData = ${remoteFunction(controller: 'job', action: 'updateTimeStamp', params: '[timeStamp:timeStamp, sessionId:sessionId]')};
-        var jobIsDone = ${remoteFunction(controller: 'job', action: 'jobIsDone', params: '[sessionId:sessionId]')};
+        var newData = ${remoteFunction(controller: 'job', action: 'updateTimeStamp', params: '{timeStamp:timeStamp, sessionId:sessionId}')};
+        var jobIsDone = ${remoteFunction(controller: 'job', action: 'jobIsDone', params: '{sessionId:sessionId}')};
         if (jobIsDone){
         	${remoteFunction(controller: 'stapjob', action: 'stapform')};
         	clearInterval(interval);
