@@ -233,13 +233,14 @@ class JobController {
 
 	}
 	
-	def updateTimeStamp(Integer timeStamp, String sessionId){
-		timeStampMap.putAt(sessionId, timeStamp)
+	def updateTimeStamp(){
+		timeStampMap.putAt(params.sessionId, params.timeStamp)
+		println("timestamp " + params.timeStamp)
 	}
 	
 	
-	def jobIsDone(String sessionId){
-		if (jobDone.get(sessionId)){
+	def jobIsDone(){
+		if (jobDone.get(params.sessionId)){
 			return true
 		}
 		else return false
