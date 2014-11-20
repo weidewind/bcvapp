@@ -37,16 +37,20 @@
         ${remoteFunction(controller: 'job', action: 'jobIsDone', update: 'jobDone', params: '{sessionId:sessionId}')};
         var jobIsDone = document.getElementById('jobDone').innerHTML;
         if (jobIsDone === "true"){
-        	${remoteFunction(controller: 'job', action: 'showResultsPage', update: 'resultsUrl', params: '{task:task, sessionId:sessionId}' )};
+        	${remoteFunction(controller: 'job', action: 'showResultsPage', update: 'resultsUrl', onSuccess:'loadResults(data);', params: '{task:task, sessionId:sessionId}' )};
         	clearInterval(interval);
-        	var url = "http://bcvapp.cmd.su:8080" + document.getElementById('resultsUrl').innerText;
-        	console.log(url)
-        	window.location.href = url;
+        //	var url = "http://bcvapp.cmd.su:8080" + document.getElementById('resultsUrl').innerText;
+        //	console.log(url)
+        //	window.location.href = url;
         }
         
     }
     
-
+function loadResults(data){
+        	var url = "http://bcvapp.cmd.su:8080" + data;
+        	console.log(url)
+        	window.location.href = url;
+}
     
 
 </g:javascript>
