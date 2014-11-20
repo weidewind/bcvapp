@@ -258,8 +258,8 @@ class JobController {
 		}
 				def resultsPath = jobService.getResults(params.sessionId)
 				def zipResultsPath = jobService.getZipResults(params.sessionId)
-				def url = createLink(controller: 'job', action: 'renderResults', params: [resultsPath: resultsPath, zipResultsPath:zipResultsPath])
-				render (contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
+				render redirect (controller: 'job', action: 'renderResults', params: [resultsPath: resultsPath, zipResultsPath:zipResultsPath])
+			//	render (contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
 	}
 
 
