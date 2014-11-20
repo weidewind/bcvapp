@@ -32,15 +32,16 @@
      console.log(sessionId)
       	var d = new Date();
         timeStamp = d.getTime();
-        console.log(timeStamp)
+        console.log(timeStamp);
         ${remoteFunction(controller: 'job', action: 'updateTimeStamp', update: 'randomString', params: '{timeStamp:timeStamp, sessionId:sessionId}')};
         ${remoteFunction(controller: 'job', action: 'jobIsDone', update: 'jobDone', params: '{sessionId:sessionId}')};
         var jobIsDone = document.getElementById('jobDone').innerHTML;
         if (jobIsDone === "true"){
         	${remoteFunction(controller: 'job', action: 'showResultsPage', update: 'resultsUrl', params: '{task:task, sessionId:sessionId}' )};
         	clearInterval(interval);
-        	console.log(document.getElementById('resultsUrl').innerHTML)
-        	window.location.href = document.getElementById('resultsUrl').innerHTML;
+        	//var url = document.getElementById('resultsUrl').innerHTML;
+        	//console.log(url)
+        	//window.location.href = url;
         }
         
     }
