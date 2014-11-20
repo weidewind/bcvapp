@@ -243,7 +243,9 @@ class JobController {
 	
 	
 	def jobIsDone(){
-		render holderService.isDone(params.sessionId)
+		def isDone = holderService.isDone(params.sessionId)
+		println("holderService holds " +isDone + " for " + params.sessionId)
+		render "${isDone}"
 	}
 
 
