@@ -242,10 +242,7 @@ class JobController {
 	
 	
 	def jobIsDone(){
-		if (jobDone.get(params.sessionId)){
-			render "1"
-		}
-		else render ""
+		render jobDone.get(params.sessionId)
 	}
 
 
