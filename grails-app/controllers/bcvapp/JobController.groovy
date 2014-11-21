@@ -6,6 +6,7 @@ import jsr166y.ForkJoinPool
 import java.util.concurrent.Future
 
 import groovy.lang.Closure;
+import groovy.transform.Synchronized;
 
 
 class JobController {

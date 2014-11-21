@@ -1,6 +1,7 @@
 package bcvapp
 
 import grails.transaction.Transactional
+import groovy.transform.Synchronized;
 
 @Transactional
 class HolderService {
