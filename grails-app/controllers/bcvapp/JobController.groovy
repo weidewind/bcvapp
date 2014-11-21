@@ -216,6 +216,7 @@ class JobController {
 		def killingPool = new ForkJoinPool(1)
 		GParsKillingPool.withExistingPool (killingPool, {
 			killIfAbandoned.callAsync(job)
+			killingPool.shutdown()
 		})
 		
 		def start = new Date(System.currentTimeMillis())
@@ -277,11 +278,11 @@ class JobController {
 	}
 
 	def Closure killIfAbandoned = {Object job ->
+		println ("killing feature is activated")
 		def prev = 0
 		def now = 1
 		def sessionId = job.sessionId
-		def id = job.id
-		def task = job.class.toString
+
 		while (now > prev){
 			println ("prev " +  prev + ", now " + now)
 			prev = now
