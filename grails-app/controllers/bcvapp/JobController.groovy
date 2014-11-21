@@ -283,7 +283,7 @@ class JobController {
 		def now = 1
 		def sessionId = job.sessionId
 
-		while (now > prev){
+		while (true){
 			println ("step1: prev " +  prev + ", now " + now)
 			prev = now
 			println (" step2: prev " +  prev + ", now " + now)
