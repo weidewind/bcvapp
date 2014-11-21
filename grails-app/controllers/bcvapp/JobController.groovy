@@ -288,6 +288,8 @@ class JobController {
 			prev = now
 			sleep(5600)
 			println timeStampMap.getAt(sessionId).class.name
+			println timeStampMap.getAt(sessionId)
+			println timeStampMap.getAt(sessionId).toInteger()
 			now = timeStampMap.getAt(sessionId).toInteger()
 			println (" step3: prev " +  prev + ", now " + now)
 		}
