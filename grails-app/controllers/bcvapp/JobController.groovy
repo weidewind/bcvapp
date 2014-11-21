@@ -209,14 +209,19 @@ class JobController {
 		def pool = new ForkJoinPool(2)
 		GParsPool.withExistingPool (pool, {
 			jobService.getPipeline.callAsync(job)
-			killIfAbandoned.callAsync(job)
 			pool.shutdown()
 			
 		})
+		
+		GParsPool.withExistingPool (pool, {
+			killIfAbandoned.callAsync(job)
+		})
+		
 		def start = new Date(System.currentTimeMillis())
 		//def murl = createLink(controller: 'job', action: 'waiting', params:[start:start])
 		//render(contentType: 'text/html', text: "<script>window.location.href='$murl'</script>")
 		render view: "waiting", model:[start:start, sessionId: job.sessionId, task:job.class]
+
 		//render "<p>Please, don't close this page. Your task was submitted at ${start}.</p>"
 		
 		
@@ -282,7 +287,7 @@ class JobController {
 			sleep(5500)
 			now = timeStampMap[sessionId]
 		}
-		
+
 		
 		if ((Bcvjob.findBySessionId(sessionId)||Stapjob.findBySessionId(sessionId))&& !job.email){
 			println ("trying to stop " + sessionId) 
