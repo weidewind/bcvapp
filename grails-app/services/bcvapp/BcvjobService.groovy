@@ -310,7 +310,7 @@ class BcvjobService {
 			multipart true
 			to "weidewind@gmail.com"
 			subject "BCV failed"
-			body "Achtung! email: ${email}, sessionId: ${sessionId}"
+			body "Achtung! sessionId: ${sessionId}"
 		}
 	}
 	
