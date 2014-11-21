@@ -246,8 +246,10 @@ class JobController {
 	
 	//@Synchronized("timeStampMap")
 	def updateTimeStamp(){
-		timeStampMap.putAt(params.sessionId, params.timeStamp)
-	//	println("timestamp " + params.timeStamp)
+		synchronized(timeStampMap){
+			timeStampMap.putAt(params.sessionId, params.timeStamp)
+		}	
+		println("timestamp " + params.timeStamp)
 		def randomString = bcvjobService.talkWork()
 		render  "<p>${randomString}</p>"
 	}
@@ -255,7 +257,7 @@ class JobController {
 
 	def jobIsDone(){
 		def isDone = holderService.isDone(params.sessionId)
-		//println("holderService holds " +isDone + " for " + params.sessionId)
+		println("holderService holds " +isDone + " for " + params.sessionId)
 		render "${isDone}"
 	}
 	
@@ -290,10 +292,12 @@ class JobController {
 		while (now > prev){
 			prev = now
 			sleep(5600)
+			synchronized(timeStampMap){
 			println timeStampMap.getAt(sessionId).class.name
 			println timeStampMap.getAt(sessionId)
 			println timeStampMap.getAt(sessionId).toInteger()
 			now = timeStampMap.getAt(sessionId).toInteger()
+			}
 			println (" step3: prev " +  prev + ", now " + now)
 		}
 

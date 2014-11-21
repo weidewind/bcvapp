@@ -12,13 +12,17 @@ class HolderService {
 	// @Synchronized("jobDone")
 	 def setDone(String sessionId) {
 		println ( sessionId + " is already done ")
+		synchronized(jobDone){
 		jobDone.putAt(sessionId, true)
+		}
     }
 	
 	//@Synchronized("jobDone")
 	def isDone(String sessionId) {
 		//println ("Checking if " + sessionId + " done .. " + jobDone.get(sessionId))
+		synchronized(jobDone){
 		return jobDone.get(sessionId)
+		}
 	}
 	
 	def stopPipeline(String sessionId){
