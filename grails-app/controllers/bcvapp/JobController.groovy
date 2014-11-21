@@ -212,9 +212,8 @@ class JobController {
 			pool.shutdown()
 			
 		})
-		def GParsKillingPool = new GParsPool()
 		def killingPool = new ForkJoinPool(1)
-		GParsKillingPool.withExistingPool (killingPool, {
+		GParsPool.withExistingPool (killingPool, {
 			killIfAbandoned.callAsync(job)
 			killingPool.shutdown()
 		})
