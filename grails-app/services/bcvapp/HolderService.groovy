@@ -6,8 +6,8 @@ import groovy.transform.Synchronized;
 @Transactional
 class HolderService {
 
-	def jobDone = [:]
-	def procs = [:]
+	final def jobDone = [:]
+	final def procs = [:]
 	
 	 @Synchronized("jobDone")
 	 def setDone(String sessionId) {

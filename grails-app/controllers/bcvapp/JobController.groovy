@@ -15,7 +15,7 @@ class JobController {
 	def stapjobService
 	def holderService
 	
-	def timeStampMap = [:]
+	final def timeStampMap = [:]
 
 
 
