@@ -14,7 +14,7 @@ class HolderService {
     }
 	
 	def isDone(String sessionId) {
-		println ("Checking if " + sessionId + " done .. " + jobDone.get(sessionId))
+		//println ("Checking if " + sessionId + " done .. " + jobDone.get(sessionId))
 		return jobDone.get(sessionId)
 	}
 	
