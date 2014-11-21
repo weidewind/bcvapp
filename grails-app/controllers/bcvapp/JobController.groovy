@@ -284,10 +284,12 @@ class JobController {
 		def sessionId = job.sessionId
 
 		while (now > prev){
-			println ("prev " +  prev + ", now " + now)
+			println ("step1: prev " +  prev + ", now " + now)
 			prev = now
+			println (" step2: prev " +  prev + ", now " + now)
 			sleep(5500)
 			now = timeStampMap[sessionId]
+			println (" step3: prev " +  prev + ", now " + now)
 		}
 
 		
