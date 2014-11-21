@@ -281,10 +281,13 @@ class JobController {
 		def prev = 0
 		def now = 1
 		def sessionId = job.sessionId
+		
+		println now.class.name
 
 		while (now > prev){
 			prev = now
 			sleep(5600)
+			println timeStampMap.getAt(sessionId).class.name
 			now = timeStampMap.getAt(sessionId).toInteger()
 			println (" step3: prev " +  prev + ", now " + now)
 		}
