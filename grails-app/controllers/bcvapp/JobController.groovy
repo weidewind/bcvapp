@@ -15,7 +15,7 @@ class JobController {
 	def stapjobService
 	def holderService
 	
-	final def timeStampMap = [:]
+	final def timeStampMap = [:].asSynchronized()
 
 
 
@@ -244,7 +244,7 @@ class JobController {
 
 	}
 	
-	@Synchronized("timeStampMap")
+	//@Synchronized("timeStampMap")
 	def updateTimeStamp(){
 		timeStampMap.putAt(params.sessionId, params.timeStamp)
 	//	println("timestamp " + params.timeStamp)
@@ -278,7 +278,7 @@ class JobController {
 				render "${url}"
 	}
 
-	@Synchronized("timeStampMap")
+	//@Synchronized("timeStampMap")
 	def Closure killIfAbandoned = {Object job ->
 		println ("killing feature is activated")
 		def prev = 0
