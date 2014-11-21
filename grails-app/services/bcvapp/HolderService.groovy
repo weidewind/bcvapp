@@ -8,11 +8,13 @@ class HolderService {
 	def jobDone = [:]
 	def procs = [:]
 	
-    def setDone(String sessionId) {
+	 @Synchronized("jobDone")
+	 def setDone(String sessionId) {
 		println ( sessionId + " is already done ")
 		jobDone.putAt(sessionId, true)
     }
 	
+	@Synchronized("jobDone")
 	def isDone(String sessionId) {
 		//println ("Checking if " + sessionId + " done .. " + jobDone.get(sessionId))
 		return jobDone.get(sessionId)

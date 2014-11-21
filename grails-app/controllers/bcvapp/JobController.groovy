@@ -243,6 +243,7 @@ class JobController {
 
 	}
 	
+	@Synchronized("timeStampMap")
 	def updateTimeStamp(){
 		timeStampMap.putAt(params.sessionId, params.timeStamp)
 	//	println("timestamp " + params.timeStamp)
@@ -250,7 +251,7 @@ class JobController {
 		render  "<p>${randomString}</p>"
 	}
 	
-	
+
 	def jobIsDone(){
 		def isDone = holderService.isDone(params.sessionId)
 		//println("holderService holds " +isDone + " for " + params.sessionId)
@@ -276,6 +277,7 @@ class JobController {
 				render "${url}"
 	}
 
+	@Synchronized("timeStampMap")
 	def Closure killIfAbandoned = {Object job ->
 		println ("killing feature is activated")
 		def prev = 0
