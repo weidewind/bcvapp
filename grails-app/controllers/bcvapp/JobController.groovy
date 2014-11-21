@@ -206,7 +206,7 @@ class JobController {
 	def run (Object job, Object jobService) {
 
 		def GParsPool = new GParsPool()
-		def pool = new ForkJoinPool(1)
+		def pool = new ForkJoinPool(2)
 		GParsPool.withExistingPool (pool, {
 			jobService.getPipeline.callAsync(job)
 			killIfAbandoned.callAsync(job)
@@ -277,6 +277,7 @@ class JobController {
 		def id = job.id
 		def task = job.class.toString
 		while (now > prev){
+			println ("prev " +  prev + ", now " + now)
 			prev = now
 			sleep(5500)
 			now = timeStampMap[sessionId]
@@ -284,6 +285,7 @@ class JobController {
 		
 		
 		if ((Bcvjob.findBySessionId(sessionId)||Stapjob.findBySessionId(sessionId))&& !job.email){
+			println ("trying to stop " + sessionId) 
 			holderService.stopPipeline(sessionId)
 			//job.delete(flush:true) // seems unnecessary - it must be deleted by getPipeline itself
 		}

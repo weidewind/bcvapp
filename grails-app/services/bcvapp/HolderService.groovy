@@ -21,6 +21,6 @@ class HolderService {
 	def stopPipeline(String sessionId){
 		procs[sessionId].out.close()
 		procs[sessionId].err.close()
-		procs[sessionId].waitForOrKill(5000)
+		procs[sessionId].waitForOrKill(3000)
 	}
 }
