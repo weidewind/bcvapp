@@ -143,7 +143,10 @@ class BcvjobService {
 
 		def returnCode = runPipeline(job.sessionId)
 		println (" bcv waiting pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+		
+		if (returnCode != "interrupted"){
 		zipResults(job.sessionId)
+		}
 		println (" bcv waiting results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		if (returnCode == 0){
 
@@ -157,8 +160,12 @@ class BcvjobService {
 				sendLogs(job.email, job.sessionId)
 				println (" bcv bad news sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 			}
+			else sendLogs(job.sessionId) // send to weidewind
 		}
+		
+		def sessionId =  job.sessionId
 		job.delete(flush:true)
+		holderService.setDone(sessionId)
 	}
 
 
@@ -166,7 +173,9 @@ class BcvjobService {
 
 		def returnCode = runPipeline(job.sessionId)
 		println (" bcv pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
-		zipResults(job.sessionId)
+		if (returnCode != "interrupted"){
+			zipResults(job.sessionId)
+		}
 		println (" bcv results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		if (returnCode == 0){
 			
@@ -180,10 +189,12 @@ class BcvjobService {
 				sendLogs(job.email, job.sessionId)
 				println (" bcv bad news sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 			}
+			else sendLogs(job.sessionId) // send to weidewind
 		}
 		
-		holderService.setDone(job.sessionId)
+		def sessionId =  job.sessionId
 		job.delete(flush:true)
+		holderService.setDone(sessionId)
 		
 	}
 
@@ -193,33 +204,28 @@ class BcvjobService {
 
 
 
+	
+	
+	
 	def runPipeline(String sessionId){
 
 		println (" going to run bcv pipeline, sessionId ${sessionId}")
-		
-//		StringWriter err = new StringWriter()
-//		
-//		'someExecutable.exe'.execute().waitForProcessOutput( System.out, err )
-//		
-//		if( err.toString() ) {
-//		  println "ERRORS"
-//		  println err
-//		}
-		
 		def command = "perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
 	
-		//	try {
-			def proc = command.execute()                 // Call *execute* on the string
-			proc.consumeProcessOutput( System.out, System.err ) //31.10
-			proc.waitFor()                               // Wait for the command to finish
+		try {
+			holderService.procs[sessionId] = command.execute()                 // Call *execute* on the string
+			holderService.procs[sessionId].consumeProcessOutput( System.out, System.err ) //31.10
+			holderService.procs[sessionId].waitFor()                               // Wait for the command to finish
 
-		//	new File(absPath + "${sessionId}logfile").write("return code: ${ proc.exitValue()}\n stderr: ${proc.err.text}\n stdout: ${proc.in.text}")
-		//	return proc.exitValue()
-	//	} catch (Exception e){
-	//		e.printStackTrace()
-	//		return "Unexpected exception thrown by pipeline"
-	//	}
-		return proc.exitValue()
+		} catch (InterruptedException e){
+			e.printStackTrace()
+			return "interrupted"
+		}
+		catch (Exception e){
+			e.printStackTrace()
+			return "Unexpected exception thrown by pipeline"
+		}
+		return holderService.procs[sessionId].exitValue()
 	}
 
 
@@ -295,10 +301,19 @@ class BcvjobService {
 					attachBytes 'results.zip','application/zip', new File(results).readBytes()
 					
 				}
-				
-
 		
 			}
+	
+	def sendLogs(String sessionId){
+		//just in case there is no results at all and results.zip does not exist. Todo: catch mailService or zip exception
+		mailService.sendMail {
+			multipart true
+			to "weidewind@gmail.com"
+			subject "BCV failed"
+			body "Achtung! email: ${email}, sessionId: ${sessionId}"
+		}
+	}
+	
 
 
 	def zipResults(String sessionId){

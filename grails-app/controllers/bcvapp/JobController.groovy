@@ -2,7 +2,9 @@ package bcvapp
 
 import groovyx.gpars.GParsPool
 import jsr166y.ForkJoinPool
+
 import java.util.concurrent.Future
+
 import groovy.lang.Closure;
 
 
@@ -267,6 +269,25 @@ class JobController {
 				render "${url}"
 	}
 
+	
+	def killIfAbandoned(Object job){
+		def prev = 0
+		def now = 1
+		def sessionId = job.sessionId
+		def id = job.id
+		def task = job.class.toString
+		while (now > prev){
+			prev = now
+			sleep(5500)
+			now = timeStampMap[sessionId]
+		}
+		
+		
+		if ((Bcvjob.findBySessionId(sessionId)||Stapjob.findBySessionId(sessionId))&& !job.email){
+			holderService.stopPipeline(sessionId)
+			//job.delete(flush:true) // seems unnecessary - it must be deleted by getPipeline itself
+		}
+	}
 
 }
 
