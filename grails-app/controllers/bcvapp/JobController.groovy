@@ -287,6 +287,7 @@ class JobController {
 			prev = now
 			println (" step2: prev " +  prev + ", now " + now)
 			sleep(5600)
+			println (" waking up.. ")
 			now = timeStampMap[sessionId].getTime()
 			println (" step3: prev " +  prev + ", now " + now)
 		}
