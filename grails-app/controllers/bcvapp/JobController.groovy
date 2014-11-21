@@ -253,7 +253,7 @@ class JobController {
 	
 	def jobIsDone(){
 		def isDone = holderService.isDone(params.sessionId)
-	//	println("holderService holds " +isDone + " for " + params.sessionId)
+		println("holderService holds " +isDone + " for " + params.sessionId)
 		render "${isDone}"
 	}
 	
@@ -282,12 +282,9 @@ class JobController {
 		def now = 1
 		def sessionId = job.sessionId
 
-		while (true){
-			println ("step1: prev " +  prev + ", now " + now)
+		while (now > prev){
 			prev = now
-			println (" step2: prev " +  prev + ", now " + now)
 			sleep(5600)
-			println (" waking up.. ")
 			now = timeStampMap.getAt(sessionId)
 			println (" step3: prev " +  prev + ", now " + now)
 		}
