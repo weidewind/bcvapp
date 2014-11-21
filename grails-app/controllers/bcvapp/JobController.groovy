@@ -287,12 +287,12 @@ class JobController {
 			println ("step1: prev " +  prev + ", now " + now)
 			prev = now
 			println (" step2: prev " +  prev + ", now " + now)
-			sleep(5500)
+			sleep(5600)
 			now = timeStampMap[sessionId].getTime()
 			println (" step3: prev " +  prev + ", now " + now)
 		}
 
-		
+		println ("killing feature broke out of the cycle " + sessionId)
 		if ((Bcvjob.findBySessionId(sessionId)||Stapjob.findBySessionId(sessionId))&& !job.email){
 			println ("trying to stop " + sessionId) 
 			holderService.stopPipeline(sessionId)
