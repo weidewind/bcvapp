@@ -206,14 +206,15 @@ class JobController {
 	def run (Object job, Object jobService) {
 
 		def GParsPool = new GParsPool()
-		def pool = new ForkJoinPool(2)
+		def pool = new ForkJoinPool(1)
 		GParsPool.withExistingPool (pool, {
 			jobService.getPipeline.callAsync(job)
 			pool.shutdown()
 			
 		})
 		def GParsKillingPool = new GParsPool()
-		GParsKillingPool.withExistingPool (pool, {
+		def killingPool = new ForkJoinPool(1)
+		GParsKillingPool.withExistingPool (killingPool, {
 			killIfAbandoned.callAsync(job)
 		})
 		
