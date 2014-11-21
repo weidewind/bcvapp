@@ -285,7 +285,7 @@ class JobController {
 		while (now > prev){
 			prev = now
 			sleep(5600)
-			now = timeStampMap.getAt(sessionId)
+			now = timeStampMap.getAt(sessionId).toInteger()
 			println (" step3: prev " +  prev + ", now " + now)
 		}
 
