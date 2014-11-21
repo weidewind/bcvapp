@@ -212,7 +212,7 @@ class JobController {
 			pool.shutdown()
 			
 		})
-		
+		def GParsKillingPool = new GParsPool()
 		GParsPool.withExistingPool (pool, {
 			killIfAbandoned.callAsync(job)
 		})
