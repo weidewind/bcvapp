@@ -245,7 +245,7 @@ class JobController {
 	
 	def updateTimeStamp(){
 		timeStampMap.putAt(params.sessionId, params.timeStamp)
-		//println("timestamp " + params.timeStamp)
+		println("timestamp " + params.timeStamp)
 		def randomString = bcvjobService.talkWork()
 		render  "<p>${randomString}</p>"
 	}
@@ -288,7 +288,7 @@ class JobController {
 			println (" step2: prev " +  prev + ", now " + now)
 			sleep(5600)
 			println (" waking up.. ")
-			now = timeStampMap.getAt(sessionId).getTime()
+			now = timeStampMap.getAt(sessionId)
 			println (" step3: prev " +  prev + ", now " + now)
 		}
 
