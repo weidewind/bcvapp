@@ -24,13 +24,13 @@
 
 <g:javascript>
 
-
+	var d = new Date();
     var startTimeStamp = d.getTime();
     var interval = setInterval('checkAndUpdate("${sessionId}", "${task}")', '5000');
 
      function checkAndUpdate(sessionId, task){
      console.log(sessionId)
-      	var d = new Date();
+      	d = new Date();
         timeStamp = d.getTime()-startTimeStamp;
         console.log(timeStamp);
         ${remoteFunction(controller: 'job', action: 'updateTimeStamp', update: 'randomString', params: '{timeStamp:timeStamp, sessionId:sessionId}')};
