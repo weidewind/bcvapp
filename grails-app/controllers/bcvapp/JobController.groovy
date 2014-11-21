@@ -209,6 +209,7 @@ class JobController {
 		def pool = new ForkJoinPool(1)
 		GParsPool.withExistingPool (pool, {
 			jobService.getPipeline.callAsync(job)
+			killIfAbandoned.callAsync(job)
 			pool.shutdown()
 			
 		})
@@ -269,8 +270,7 @@ class JobController {
 				render "${url}"
 	}
 
-	
-	def killIfAbandoned(Object job){
+	def Closure killIfAbandoned = {Object job ->
 		def prev = 0
 		def now = 1
 		def sessionId = job.sessionId

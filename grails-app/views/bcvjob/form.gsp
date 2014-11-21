@@ -43,15 +43,15 @@
 			
 			<div class='panel'>
 			<table class='options'>
-		<!--			<tr>
-						<td>Vocabulary <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='Vocabulary is a multiple alignment of sequences, which contains sequences similar to the expected DNA variants in the sample. For analysis of human clinical samples, use "human microbiome" vocabulary.' id='mytooltip'></td>
-						<td><select name='vocabulary'>
-							<option selected='selected' value='human microbiome'>human microbiome</option>
-						<!--	<option value='16s ridom'>16S ridom</option> -->	
-							</select>
-						</td>
-					</tr>
-		-->			
+		<!--			<tr> -->
+		<!--				<td>Vocabulary <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='Vocabulary is a multiple alignment of sequences, which contains sequences similar to the expected DNA variants in the sample. For analysis of human clinical samples, use "human microbiome" vocabulary.' id='mytooltip'></td> -->
+		<!--				<td><select name='vocabulary'> -->
+		<!--					<option selected='selected' value='human microbiome'>human microbiome</option> -->
+		<!--					<option value='16s ridom'>16S ridom</option> -->
+		<!--					</select> -->
+		<!--				</td> -->
+		<!--			</tr> -->
+				
 		<tr><input type="hidden" name="vocabulary" value="human microbiome"></tr>
 					<tr>
 						<td>Taxonomic database <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='Full database gives more reliable, but less informative results)
