@@ -5,6 +5,7 @@
 	<head>
 		<title>bcv-pipeline</title>
 			<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='css' file='snazzy.css' /> " />
+			 <link rel="shortcut icon" href="<g:createLinkTo dir='images', file='favicon.ico' />" type="image/x-icon" /> 
 		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.min.js' />"></script>
 		
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -16,13 +17,14 @@
 <g:form controller = "job"  action = "updateAndRun"   onsubmit= "return validateForm(this.submited)">
 <p><input type='text' name='email' id='email' size='50' maxlength='80' />
 <div class = 'error'><label id = 'email_error'></label></div><p>
-<g:hiddenField name="id" value="${params.id}"/>
+<g:hiddenField name="id" id = "id" value="${params.id}"/>
 <g:hiddenField name="task" id = "task" value="${params.task}"/>
 <g:submitButton class = "myButton" name = "wait" value="I will wait here" onclick="this.form.submited=this.name;"/>
 <g:submitButton class = "myButton" name = "send"  value="OK, send them" onclick="this.form.submited=this.name;"/>
 
 </g:form>
-
+<div id="randomString"  style="display: none;">
+        </div>
 <script>
 
 function validateForm(c) { 
@@ -51,6 +53,36 @@ function validateForm(c) {
 			return false;
 			}
 }
+
+
+//window.onbeforeunload = function () {
+ //var message = 'Are you sure you want to leave?'; 
+  //  var e = e || <span class="skimlinks-unlinked">window.event</span>;
+  //   For IE and Firefox prior to version 4
+  // ${remoteFunction(controller: 'job', action: 'deleteJob', params: '[id:${params.id}, task:${params.task}]')};
+  //  if (e) {
+  //      e.returnValue = message ;
+  //  }
+  //  For Safari
+  //  return message;
+   // }
+
+//$(window).on('beforeunload', function() {
+// return 'Your own message goes here...'; //works
+//});
+
+	var d = new Date();
+    var interval = setInterval('checkAndUpdate("${sessionId}", "${task}")', '5000');
+
+     function checkAndUpdate(sessionId, task){
+     console.log(sessionId)
+      	d = new Date();
+        timeStamp = d.getTime();
+        console.log(timeStamp);
+        ${remoteFunction(controller: 'job', action: 'updateTimeStamp', update: 'randomString', params: '{timeStamp:timeStamp, sessionId:sessionId, waitingType:"work"}')};
+        
+    }
+
 </script>
 </body>
 </html>

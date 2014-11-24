@@ -6,6 +6,7 @@
 		<title>bcv-pipeline</title>
 
 		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='stylesheets' file='snazzy.css' /> " />
+		<link rel="shortcut icon" href="<g:createLinkTo dir='images', file='favicon.ico' />" type="image/x-icon" /> 
 		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.min.js' />"></script>
 		<input type="hidden" name="tasktype" value="bcvstap">
 		
@@ -13,15 +14,15 @@
 		
 		<!-- Google Analytics -->
 		<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		
-		ga('create', 'UA-XXXX-Y', 'auto');
-		ga('send', 'pageview');
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-		</script>
+  ga('create', 'UA-39054482-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
 		<!-- End Google Analytics -->
 	</head>
 	<body>
@@ -42,14 +43,16 @@
 			
 			<div class='panel'>
 			<table class='options'>
-					<tr>
-						<td>Vocabulary <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='Vocabulary is a multiple alignment of sequences, which contains sequences similar to the expected DNA variants in the sample. For analysis of human clinical samples, use "human microbiome" vocabulary.' id='mytooltip'></td>
-						<td><select name='vocabulary'>
-							<option selected='selected' value='human microbiome'>human microbiome</option>
-							<option value='16S ridom'>16S ridom</option>
-							</select>
-						</td>
-					</tr>
+		<!--			<tr> -->
+		<!--				<td>Vocabulary <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='Vocabulary is a multiple alignment of sequences, which contains sequences similar to the expected DNA variants in the sample. For analysis of human clinical samples, use "human microbiome" vocabulary.' id='mytooltip'></td> -->
+		<!--				<td><select name='vocabulary'> -->
+		<!--					<option selected='selected' value='human microbiome'>human microbiome</option> -->
+		<!--					<option value='16s ridom'>16S ridom</option> -->
+		<!--					</select> -->
+		<!--				</td> -->
+		<!--			</tr> -->
+				
+		<tr><input type="hidden" name="vocabulary" value="human microbiome"></tr>
 					<tr>
 						<td>Taxonomic database <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='Full database gives more reliable, but less informative results)
 						Some text will be here.' id='mytooltip'></td>
@@ -75,7 +78,7 @@
 			<label class ='collapsing-toggler'><input type='checkbox' name='checkbox_email' id='checkbox_email' value='ON' checked='checked' />Send results by E-mail</label>
 			<p><div class='collapsing-panel'><input type='text' name='email' id='email' size='50' maxlength='80' /></div>
 			<div class = 'error'><label id = 'email_error'></label></div><p>
-			<p><input type='submit' name='submit' value='Submit' /></div>
+			<p><input type='submit' name='submit' id = 'submit' value='Submit' /></div>
 		</g:form> 
 		
 		<script>
@@ -93,7 +96,9 @@
 			});
 			});
 			
-
+		$('#submit').on('click', function() {
+ 	 	ga('send', 'event', 'button', 'click', 'submit');
+		});
 		
 			function displayList(){
 				document.getElementById("file_error").innerHTML = "";
@@ -257,6 +262,12 @@
 		
 			return passed;
 		} 
+		
+		
+		
+
+		
+		
 		
 			
 		</script>
