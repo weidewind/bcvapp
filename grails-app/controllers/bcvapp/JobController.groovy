@@ -214,7 +214,7 @@ class JobController {
 	}
 
 	
-	def run (){
+	def runner (){
 		def job
 		def jobService
 		
