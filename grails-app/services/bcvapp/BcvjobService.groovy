@@ -227,7 +227,7 @@ class BcvjobService {
 			println holderService.procs[sessionId].exitValue()
 			return "Unexpected exception thrown by pipeline"
 		}
-		println holderService.procs[sessionId].exitValue()
+		println "return code " +  holderService.procs[sessionId].exitValue()
 		return holderService.procs[sessionId].exitValue()
 	}
 
@@ -307,7 +307,7 @@ class BcvjobService {
 		
 			}
 	
-	def sendLogs(String sessionId, String returnCode){
+	def sendLogs(String sessionId, Integer returnCode){
 		//just in case there is no results at all and results.zip does not exist. Todo: catch mailService or zip exception
 		mailService.sendMail {
 			multipart true
