@@ -275,7 +275,7 @@ class JobController {
 		synchronized(timeStampMap){
 			timeStampMap.putAt(params.sessionId, params.timeStamp)
 		}	
-		println("timestamp " + params.timeStamp)
+		//println("timestamp " + params.timeStamp)
 		def randomString = ""
 		if (params.waitingType == "queue") {
 			randomString = bcvjobService.talkQueue()
@@ -344,6 +344,7 @@ if (now > prev) {
 			println " entered the cycle"
 			prev = now
 			sleep(5600)
+			println " going to take from map"
 			synchronized(timeStampMap){
 			println timeStampMap.getAt(sessionId).class.name
 			println timeStampMap.getAt(sessionId)
