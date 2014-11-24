@@ -219,12 +219,15 @@ class BcvjobService {
 
 		} catch (InterruptedException e){
 			e.printStackTrace()
+			println holderService.procs[sessionId].exitValue()
 			return "interrupted"
 		}
 		catch (Exception e){
 			e.printStackTrace()
+			println holderService.procs[sessionId].exitValue()
 			return "Unexpected exception thrown by pipeline"
 		}
+		println holderService.procs[sessionId].exitValue()
 		return holderService.procs[sessionId].exitValue()
 	}
 

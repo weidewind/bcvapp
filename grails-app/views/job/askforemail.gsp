@@ -13,7 +13,7 @@
 		</head>
 	<body>
 		
-<p>There are several tasks already in the queue. Are you sure you don't want the results to be sent to your e-mail?</p>
+<p>There are several tasks already in the queue. You can provide an e-mail, so that we could send the results to you when they are ready.</p>
 <g:form controller = "job"  action = "updateAndRun"   onsubmit= "return validateForm(this.submited)">
 <p><input type='text' name='email' id='email' size='50' maxlength='80' />
 <div class = 'error'><label id = 'email_error'></label></div><p>
