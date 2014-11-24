@@ -186,10 +186,10 @@ class BcvjobService {
 		}
 		else {
 			if (job.email) {
-				sendLogs(job.email, job.sessionId)
+				sendLogs(job.email, job.sessionId, returnCode)
 				println (" bcv bad news sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 			}
-			else sendLogs(job.sessionId) // send to weidewind
+			else sendLogs(job.sessionId, returnCode) // send to weidewind
 		}
 		
 		def sessionId =  job.sessionId
@@ -273,7 +273,7 @@ class BcvjobService {
 
 	}
 	
-	def sendLogs(String email, String sessionId) {
+	def sendLogs(String email, String sessionId, String returnCode) {
 		
 				//def logs = "${absPath}${sessionId}logfile"
 				def results = getZipResults(sessionId)
@@ -297,20 +297,20 @@ class BcvjobService {
 					multipart true
 					to "weidewind@gmail.com"
 					subject "BCV failed"
-					body "Achtung! email: ${email}, sessionId: ${sessionId}"
+					body "Achtung! email: ${email}, sessionId: ${sessionId}, returnCode ${returnCode}"
 					attachBytes 'results.zip','application/zip', new File(results).readBytes()
 					
 				}
 		
 			}
 	
-	def sendLogs(String sessionId){
+	def sendLogs(String sessionId, String returnCode){
 		//just in case there is no results at all and results.zip does not exist. Todo: catch mailService or zip exception
 		mailService.sendMail {
 			multipart true
 			to "weidewind@gmail.com"
 			subject "BCV failed"
-			body "Achtung! sessionId: ${sessionId}"
+			body "Achtung! sessionId: ${sessionId}, returnCode ${returnCode}"
 		}
 	}
 	

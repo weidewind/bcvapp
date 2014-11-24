@@ -23,7 +23,8 @@
 <g:submitButton class = "myButton" name = "send"  value="OK, send them" onclick="this.form.submited=this.name;"/>
 
 </g:form>
-
+<div id="randomString"  style="display: none;">
+        </div>
 <script>
 
 function validateForm(c) { 
@@ -70,13 +71,27 @@ function validateForm(c) {
 // return 'Your own message goes here...'; //works
 //});
 
- var timeStamp = null;
-     function KeepAlive(){
-      	var d = new Date();
-        timeStamp = d.getTime();
-        var newData = ${remoteFunction(controller: 'job', action: 'updateTimeStamp', params: '[timeStamp:timeStamp, sessionId:${params.id}]')};
+	var d = new Date();
+    var startTimeStamp = d.getTime();
+    var interval = setInterval('checkAndUpdate("${sessionId}", "${task}")', '5000');
+
+     function checkAndUpdate(sessionId, task){
+     console.log(sessionId)
+      	d = new Date();
+        timeStamp = d.getTime()-startTimeStamp;
+        console.log(timeStamp);
+        ${remoteFunction(controller: 'job', action: 'updateTimeStamp', update: 'randomString', params: '{timeStamp:timeStamp, sessionId:sessionId, waitingType:"work"}')};
+        ${remoteFunction(controller: 'job', action: 'jobIsDone', update: 'jobDone', params: '{sessionId:sessionId}')};
+        var jobIsDone = document.getElementById('jobDone').innerHTML;
+        if (jobIsDone === "true"){
+        	${remoteFunction(controller: 'job', action: 'showResultsPage', update: 'resultsUrl', onSuccess:'loadResults(data);', params: '{task:task, sessionId:sessionId}' )};
+        	clearInterval(interval);
+        //	var url = "http://bcvapp.cmd.su:8080" + document.getElementById('resultsUrl').innerText;
+        //	console.log(url)
+        //	window.location.href = url;
+        }
+        
     }
-    setInterval('KeepAlive();', '1200');
 
 </script>
 </body>

@@ -71,12 +71,19 @@ class JobController {
 			runAsync(job, jobService)
 		}
 		else {
+			
+			def killingPool = new ForkJoinPool(1)
+			GParsPool.withExistingPool (killingPool, {
+				killIfAbandoned.callAsync(job)
+				killingPool.shutdown()
+		    })
+				
 			if(queueSize > 2){		
 					render redirect (action: "askforemail", id: job.id, params:[task:job.class])
 					return
 			}
 
-		else run (job, jobService)	
+			else run (job, jobService)	
 		}
 
 
@@ -137,6 +144,7 @@ class JobController {
 	}
 	
 
+
 	
 	def deleteJob(String id, String task){
 		def job
@@ -171,17 +179,19 @@ class JobController {
 		else {
 			//render "Your task has been added to the queue"
 			def start = new Date(System.currentTimeMillis())
-			render redirect (action: "waiting", params:[start: start, randomString: ""])
+		//	render redirect (action: "waiting", params:[start: start, randomString: ""])
 			def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
-			while (queueSize > 2){  // 1 running task + our task
-				def randomString = jobService.talkQueue()
-				 render redirect (action: "waiting", params:[start: start, randomString: randomString])
+		
+			if (queueSize > 2){  // 1 running task + our task
+				render view: "waitinginqueue", model:[start:start, sessionId: job.sessionId, task:job.class, id:job.id, dateCreated:job.dateCreated]
 				//render "<p>${randomString}</p>"
-				sleep(5000)
-				queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+				//sleep(5000)
+				//queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
 			}
 			
-			run (job, jobService)
+			else {
+				run (job, jobService)
+			}
 		}
 		
 	}
@@ -204,6 +214,22 @@ class JobController {
 	}
 
 	
+	def run (){
+		def job
+		def jobService
+		
+		if (params.task == "class bcvapp.Bcvjob"){
+			job = Bcvjob.get(params.id)
+			jobService = bcvjobService
+		}
+		else if (params.task == "class bcvapp.Stapjob"){
+			job = Stapjob.get(params.id)
+			jobService = stapjobService
+		}
+		
+		run (job, jobService)
+	}
+	
 	def run (Object job, Object jobService) {
 
 		def GParsPool = new GParsPool()
@@ -222,7 +248,7 @@ class JobController {
 		def start = new Date(System.currentTimeMillis())
 		//def murl = createLink(controller: 'job', action: 'waiting', params:[start:start])
 		//render(contentType: 'text/html', text: "<script>window.location.href='$murl'</script>")
-		render view: "waiting", model:[start:start, sessionId: job.sessionId, task:job.class]
+		render view: "waiting", model:[start:start, sessionId:job.sessionId, task:job.class, waitingType:"work"]
 
 		//render "<p>Please, don't close this page. Your task was submitted at ${start}.</p>"
 		
@@ -250,7 +276,13 @@ class JobController {
 			timeStampMap.putAt(params.sessionId, params.timeStamp)
 		}	
 		println("timestamp " + params.timeStamp)
-		def randomString = bcvjobService.talkWork()
+		def randomString = ""
+		if (params.waitingType == "queue") {
+			randomString = bcvjobService.talkQueue()
+		}
+		else {
+			randomString = bcvjobService.talkWork()
+		}
 		render  "<p>${randomString}</p>"
 	}
 	
@@ -259,6 +291,19 @@ class JobController {
 		def isDone = holderService.isDone(params.sessionId)
 		println("holderService holds " +isDone + " for " + params.sessionId)
 		render "${isDone}"
+	}
+	
+	def queueFinished(){
+		queueSize = Bcvjob.countByDateCreatedLessThanEquals(params.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(params.dateCreated)
+		if (queueSize > 2){
+			render "false"
+		}
+		else render "true"
+	}
+	
+	def waiting () {
+		def start = new Date(System.currentTimeMillis())
+		render view: "waiting", model:[start: start, sessionId:params.sessionId, task:params.task]
 	}
 	
 	def showResultsPage(){
@@ -304,8 +349,10 @@ class JobController {
 		println ("killing feature broke out of the cycle " + sessionId)
 		if ((Bcvjob.findBySessionId(sessionId)||Stapjob.findBySessionId(sessionId))&& !job.email){
 			println ("trying to stop " + sessionId) 
-			holderService.stopPipeline(sessionId)
-			//job.delete(flush:true) // seems unnecessary - it must be deleted by getPipeline itself
+			def deleted = holderService.stopPipeline(sessionId)
+			if (!deleted){ // otherwise it must be deleted by getPipeline itself
+				job.delete(flush:true) 
+			}
 		}
 	}
 

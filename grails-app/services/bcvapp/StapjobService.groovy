@@ -122,12 +122,22 @@ class StapjobService {
 	def runSTAP(String sessionId){
 
 		def command = "perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
-		def proc = command.execute()                 // Call *execute* on the string
-		proc.consumeProcessOutput( System.out, System.err )
-		proc.waitFor()                               // Wait for the command to finish
+		try {
+			holderService.procs[sessionId] = command.execute()                 // Call *execute* on the string
+			holderService.procs[sessionId].consumeProcessOutput( System.out, System.err ) //31.10
+			holderService.procs[sessionId].waitFor()                               // Wait for the command to finish
 
-		new File(absPath + "${sessionId}logfile").write("return code: ${ proc.exitValue()}\n stderr: ${proc.err.text}\n stdout: ${proc.in.text}")
-		return proc.exitValue()
+		} catch (InterruptedException e){
+			e.printStackTrace()
+			return "interrupted"
+		}
+		catch (Exception e){
+			e.printStackTrace()
+			return "Unexpected exception thrown by pipeline"
+		}
+		//		new File(absPath + "${sessionId}logfile").write("return code: ${ proc.exitValue()}\n stderr: ${proc.err.text}\n stdout: ${proc.in.text}")
+		return holderService.procs[sessionId].exitValue()
+
 	}
 
 
@@ -168,7 +178,7 @@ class StapjobService {
 
 	}
 
-	def sendLogs(String email, String sessionId) {
+	def sendLogs(String email, String sessionId, String returnCode) {
 
 		def logs = "${absPath}${sessionId}logfile"
 		println "going to send logs, sessionID ${sessionId} logPath ${logs} time ${System.currentTimeMillis()}"
@@ -192,13 +202,22 @@ class StapjobService {
 					multipart true
 					to "weidewind@gmail.com"
 					subject "BCV failed"
-					body "Achtung! email: ${email}, sessionId: ${sessionId}"
+					body "Achtung! email: ${email}, sessionId: ${sessionId}, returnCode ${returnCode}"
 					attachBytes 'results.zip','application/zip', new File(results).readBytes()
 					
 				}
 
 	}
 
+	def sendLogs(String sessionId, String returnCode){
+		//just in case there is no results at all and results.zip does not exist. Todo: catch mailService or zip exception
+		mailService.sendMail {
+			multipart true
+			to "weidewind@gmail.com"
+			subject "STAP failed"
+			body "Achtung! sessionId: ${sessionId}, returnCode ${returnCode}"
+		}
+	}
 
 	def zipResults(String sessionId){
 		def output = getOutput(sessionId)
@@ -340,7 +359,7 @@ class StapjobService {
 		zipResults(job.sessionId)
 		println (" stap waiting results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		if (returnCode == 0){
-			
+
 			if (job.email) {
 				sendResults(job.email, job.sessionId)
 				println (" stap waiting results sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
@@ -349,11 +368,14 @@ class StapjobService {
 		else {
 			if (job.email) {
 				sendLogs(job.email, job.sessionId)
-				println (" stap bad news sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+				println ("stap bad news sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 			}
+			else sendLogs(job.sessionId) // send to weidewind
 		}
 		
+		def sessionId =  job.sessionId
 		job.delete(flush:true)
+		holderService.setDone(sessionId)
 	}
 
 
@@ -372,12 +394,15 @@ class StapjobService {
 		}
 		else {
 			if (job.email) {
-				sendLogs(job.email, job.sessionId)
+				sendLogs(job.email, job.sessionId, returnCode)
 				println (" stap bad news sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 			}
+			else sendLogs(job.sessionId, returnCode) // send to weidewind
 		}
-
+		
+		def sessionId =  job.sessionId
 		job.delete(flush:true)
+		holderService.setDone(sessionId)
 	}
 
 	def getAbsPath(){

@@ -33,7 +33,7 @@
       	d = new Date();
         timeStamp = d.getTime()-startTimeStamp;
         console.log(timeStamp);
-        ${remoteFunction(controller: 'job', action: 'updateTimeStamp', update: 'randomString', params: '{timeStamp:timeStamp, sessionId:sessionId}')};
+        ${remoteFunction(controller: 'job', action: 'updateTimeStamp', update: 'randomString', params: '{timeStamp:timeStamp, sessionId:sessionId, waitingType:"work"}')};
         ${remoteFunction(controller: 'job', action: 'jobIsDone', update: 'jobDone', params: '{sessionId:sessionId}')};
         var jobIsDone = document.getElementById('jobDone').innerHTML;
         if (jobIsDone === "true"){

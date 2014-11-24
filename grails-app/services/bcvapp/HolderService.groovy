@@ -25,9 +25,13 @@ class HolderService {
 		}
 	}
 	
-	def stopPipeline(String sessionId){
-		procs[sessionId].out.close()
-		procs[sessionId].err.close()
-		procs[sessionId].waitForOrKill(3000)
+	def boolean stopPipeline(String sessionId){
+		if (procs[sessionId]){
+			procs[sessionId].out.close()
+			procs[sessionId].err.close()
+			procs[sessionId].waitForOrKill(3000)
+			return true;
+		}
+		return false;
 	}
 }
