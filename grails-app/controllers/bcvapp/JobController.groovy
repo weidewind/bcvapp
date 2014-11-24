@@ -15,7 +15,7 @@ class JobController {
 	def stapjobService
 	def holderService
 	
-	final def timeStampMap = [:].asSynchronized()
+	final def timeStampMap = [:]
 
 
 
@@ -341,14 +341,14 @@ if (now > prev) {
 }
 
 		while (now > prev){
-			println " entered the cycle"
+			println " from the cycle"
 			prev = now
 			sleep(5600)
 			println " going to take from map"
 			synchronized(timeStampMap){
-			println timeStampMap.getAt(sessionId).class.name
-			println timeStampMap.getAt(sessionId)
-			println timeStampMap.getAt(sessionId).toLong()
+			//println timeStampMap.getAt(sessionId).class.name
+			//println timeStampMap.getAt(sessionId)
+			//println timeStampMap.getAt(sessionId).toLong()
 			now = timeStampMap.getAt(sessionId).toLong()
 			}
 			println (" step3: prev " +  prev + ", now " + now)
