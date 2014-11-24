@@ -328,8 +328,8 @@ class JobController {
 	//@Synchronized("timeStampMap")
 	def Closure killIfAbandoned = {Object job ->
 		println ("killing feature is activated")
-		def prev = 0
-		def now = 1
+		def prev = 0L
+		def now = 1L
 		def sessionId = job.sessionId
 		
 		println now.class.name
@@ -338,9 +338,9 @@ class JobController {
 			prev = now
 			sleep(5600)
 			synchronized(timeStampMap){
-//			println timeStampMap.getAt(sessionId).class.name
-//			println timeStampMap.getAt(sessionId)
-//			println timeStampMap.getAt(sessionId).toLong()
+			println timeStampMap.getAt(sessionId).class.name
+			println timeStampMap.getAt(sessionId)
+			println timeStampMap.getAt(sessionId).toLong()
 			now = timeStampMap.getAt(sessionId).toLong()
 			}
 			println (" step3: prev " +  prev + ", now " + now)
