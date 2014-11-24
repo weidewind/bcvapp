@@ -334,8 +334,14 @@ class JobController {
 		def sessionId = job.sessionId
 		
 		println now.class.name
+println ("prev " + prev)
+println ("now " + now)
+if (now > prev) {
+	println ("bigger")
+}
 
 		while (now > prev){
+			println " entered the cycle"
 			prev = now
 			sleep(5600)
 			synchronized(timeStampMap){
