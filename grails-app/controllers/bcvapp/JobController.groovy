@@ -239,11 +239,11 @@ class JobController {
 			pool.shutdown()
 			
 		})
-		def killingPool = new ForkJoinPool(1)
-		GParsPool.withExistingPool (killingPool, {
-			killIfAbandoned.callAsync(job)
-			killingPool.shutdown()
-		})
+//		def killingPool = new ForkJoinPool(1)
+//		GParsPool.withExistingPool (killingPool, {
+//			killIfAbandoned.callAsync(job)
+//			killingPool.shutdown()
+//		})
 		
 		def start = new Date(System.currentTimeMillis())
 		//def murl = createLink(controller: 'job', action: 'waiting', params:[start:start])
