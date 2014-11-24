@@ -31,7 +31,7 @@
         timeStamp = d.getTime();
         console.log(timeStamp);
         ${remoteFunction(controller: 'job', action: 'updateTimeStamp', update: 'randomString', params: '{timeStamp:timeStamp, sessionId:sessionId, waitingType:"queue"}')};
-        ${remoteFunction(controller: 'job', action: 'queueIsFinished', update: 'queueIsFinished', params: '{sessionId:sessionId, dateCreated:dateCreated}')};
+        ${remoteFunction(controller: 'job', action: 'queueIsFinished', update: 'queueIsFinished', params: '{dateCreated:dateCreated}')};
         var queueIsFinished = document.getElementById('queueIsFinished').innerHTML;
         if (queueIsFinished === "true"){
         	${remoteFunction(controller: 'job', action: 'runner', params: '{task:task, id:id}' )};
