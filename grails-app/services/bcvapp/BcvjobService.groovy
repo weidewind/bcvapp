@@ -144,10 +144,11 @@ class BcvjobService {
 		def returnCode = runPipeline(job.sessionId)
 		println (" bcv waiting pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 
-		if (returnCode != "interrupted"){
+		if (returnCode != 143){
 			zipResults(job.sessionId)
+			println (" bcv waiting results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		}
-		println (" bcv waiting results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+		
 		if (returnCode == 0){
 
 			if (job.email) {
@@ -216,21 +217,21 @@ class BcvjobService {
 		println (" going to run bcv pipeline, sessionId ${sessionId}")
 		def command = "perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
 
-		try {
+//		try {
 			holderService.procs[sessionId] = command.execute()                 // Call *execute* on the string
 			holderService.procs[sessionId].consumeProcessOutput( System.out, System.err ) //31.10
 			holderService.procs[sessionId].waitFor()                               // Wait for the command to finish
 
-		} catch (InterruptedException e){
-			e.printStackTrace()
-			println holderService.procs[sessionId].exitValue()
-			return "interrupted"
-		}
-		catch (Exception e){
-			e.printStackTrace()
-			println holderService.procs[sessionId].exitValue()
-			return "Unexpected exception thrown by pipeline"
-		}
+//		} catch (InterruptedException e){
+//			e.printStackTrace()
+//			println holderService.procs[sessionId].exitValue()
+//			return "interrupted"
+//		}
+//		catch (Exception e){
+//			e.printStackTrace()
+//			println holderService.procs[sessionId].exitValue()
+//			return "Unexpected exception thrown by pipeline"
+//		}
 		println "return code " +  holderService.procs[sessionId].exitValue()
 		return holderService.procs[sessionId].exitValue()
 	}
@@ -311,6 +312,7 @@ class BcvjobService {
 			}
 			println (" bcv bad news sent to webmaster; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		}
+		else println (" user left; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 
 	}
 
@@ -325,6 +327,7 @@ class BcvjobService {
 			}
 			println (" bcv bad news sent to webmaster; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		}
+		else println (" user left; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 	}
 
 
