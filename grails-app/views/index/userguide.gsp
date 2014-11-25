@@ -27,7 +27,8 @@
 <h2>Documentation and samples</h2>
 <ul>
 <li>
-<a href="${createLink(controller: 'job', action: 'downloadFile' , params: [path: '/store/home/bcvapp/bcvapp/web-app/pipeline/bcv-userguide.odt', contentType: 'application/vnd.oasis.opendocument.text', filename: 'bcv-userguide.odt'])}">BCV manual</a><a href="bcv-userguide.odt"></a>
+<!--<a href="${createLink(controller: 'job', action: 'downloadFile' , params: [path: '/store/home/bcvapp/bcvapp/web-app/pipeline/bcv-userguide.odt', contentType: 'application/vnd.oasis.opendocument.text', filename: 'bcv-userguide.odt'])}">BCV manual</a><a href="bcv-userguide.odt"></a>-->
+<a href="http://basecv.sourceforge.net/bcv-userguide.odt">BCV manual</a>
 <p></p>
 </li>
 <li>
