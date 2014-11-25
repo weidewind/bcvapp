@@ -54,8 +54,8 @@
 				
 		<tr><input type="hidden" name="vocabulary" value="human microbiome"></tr>
 					<tr>
-						<td>Taxonomic database <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='Full database gives more reliable, but less informative results)
-						Some text will be here.' id='mytooltip'></td>
+						<td>Taxonomic database <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='GreenGenes database, used for taxonomic affiliation, contains sequences with automatically assigned taxonomy, which is reliable but not exhaustive. For some of these sequences, source organisms were specified by the authors who uploaded them. If you choose option "named isolates", only such sequences will be used for taxonomy identification. ' 
+						id='mytooltip'></td>
 						<td><select name='taxdb'>
 							<option selected='named isolates' value='named isolates'>named isolates</option>
 							<option value='full'>full</option>
