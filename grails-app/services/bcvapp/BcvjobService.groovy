@@ -232,8 +232,10 @@ class BcvjobService {
 //			println holderService.procs[sessionId].exitValue()
 //			return "Unexpected exception thrown by pipeline"
 //		}
-		println "return code " +  holderService.procs[sessionId].exitValue()
-		return holderService.procs[sessionId].exitValue()
+		def exitValue = holderService.procs[sessionId].exitValue()
+		println "return code " +  exitValue
+		holderService.deleteProc(sessionId)
+		return exitValue
 	}
 
 

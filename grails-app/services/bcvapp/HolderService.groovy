@@ -37,14 +37,13 @@ class HolderService {
 			procs[sessionId].out.close()
 			procs[sessionId].err.close()
 			procs[sessionId].waitForOrKill(3000)
-			procs.delete(sessionId)
 			return true
 		}
 		return false
 	}
 	
-	def check(){
-		
+	def deleteProc (String sessionId){
+		procs.delete(sessionId)
 	}
 	
 	def generateMD5(String s) {

@@ -136,7 +136,10 @@ class StapjobService {
 //			return "Unexpected exception thrown by pipeline"
 //		}
 		//		new File(absPath + "${sessionId}logfile").write("return code: ${ proc.exitValue()}\n stderr: ${proc.err.text}\n stdout: ${proc.in.text}")
-		return holderService.procs[sessionId].exitValue()
+		def exitValue = holderService.procs[sessionId].exitValue()
+		println "return code " +  exitValue
+		holderService.deleteProc(sessionId)
+		return exitValue
 
 	}
 
