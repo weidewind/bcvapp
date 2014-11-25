@@ -19,8 +19,9 @@ class HolderService {
 	
 	//@Synchronized("jobDone")
 	def isDone(String sessionId) {
+		def isDone
 		synchronized(jobDone){
-			def isDone = jobDone.get(sessionId)
+			isDone = jobDone.get(sessionId)
 			if (isDone){
 				jobDone.delete(sessionId)
 			}
@@ -34,8 +35,8 @@ class HolderService {
 			procs[sessionId].err.close()
 			procs[sessionId].waitForOrKill(3000)
 			procs.delete(sessionId)
-			return true;
+			return true
 		}
-		return false;
+		return false
 	}
 }
