@@ -274,8 +274,9 @@ class JobController {
 	def updateTimeStamp(){
 		synchronized(timeStampMap){
 			timeStampMap.putAt(params.sessionId, params.timeStamp)
+			
 		}	
-		//println("timestamp " + params.timeStamp)
+		println " managed to put ${params.timeStamp} into map for ${params.sessionId}"
 		def randomString = ""
 		if (params.waitingType == "queue") {
 			randomString = bcvjobService.talkQueue()
