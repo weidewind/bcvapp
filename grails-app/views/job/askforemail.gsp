@@ -72,7 +72,7 @@ function validateForm(c) {
 //});
 
 	var d = new Date();
-    var interval = setInterval('checkAndUpdate("${sessionId}", "${task}")', '5000');
+    var interval = setInterval('checkAndUpdate("${params.sessionId}", "${params.task}")', '5000');
 
      function checkAndUpdate(sessionId, task){
      console.log(sessionId)
