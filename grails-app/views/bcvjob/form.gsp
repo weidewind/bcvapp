@@ -265,7 +265,7 @@
 		
 		
 		
-$(".selector").tooltip({
+$(".selector").mytooltip({
     open: function (event, ui) {
         ui.tooltip.css("max-width", "400px");
     }
