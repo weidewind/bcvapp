@@ -175,10 +175,9 @@ class BcvjobService {
 		println (" bcv pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		if (returnCode != 143){
 			zipResults(job.sessionId)
-		}
-		else {
 			println (" bcv results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		}
+
 		if (returnCode == 0){
 
 			if (job.email) {
@@ -193,7 +192,7 @@ class BcvjobService {
 			}
 			else {
 				sendLogs(job.sessionId, returnCode) // send to weidewind
-				println (" bcv bad news sent to webmaster; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+			
 			}
 		}
 
@@ -310,6 +309,7 @@ class BcvjobService {
 				attachBytes 'results.zip','application/zip', new File(results).readBytes()
 
 			}
+			println (" bcv bad news sent to webmaster; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		}
 
 	}
@@ -323,6 +323,7 @@ class BcvjobService {
 				subject "BCV failed"
 				body "Achtung! sessionId: ${sessionId}, returnCode ${returnCode}"
 			}
+			println (" bcv bad news sent to webmaster; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		}
 	}
 

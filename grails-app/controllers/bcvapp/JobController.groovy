@@ -328,11 +328,10 @@ class JobController {
 
 	//@Synchronized("timeStampMap")
 	def Closure killIfAbandoned = {Object job ->
-		println ("killing feature is activated")
 		def prev = 0L
 		def now = 1L
 		def sessionId = job.sessionId
-		
+		println ("killing feature for ${sessionId} is activated")
 		println now.class.name
 println ("prev " + prev)
 println ("now " + now)
@@ -343,7 +342,7 @@ if (now > prev) {
 		while (now > prev){
 			println " from the cycle"
 			prev = now
-			sleep(5600)
+			sleep(8000)
 			println " going to take from map"
 			synchronized(timeStampMap){
 			//println timeStampMap.getAt(sessionId).class.name
@@ -351,7 +350,7 @@ if (now > prev) {
 			//println timeStampMap.getAt(sessionId).toLong()
 			now = timeStampMap.getAt(sessionId).toLong()
 			}
-			println (" step3: prev " +  prev + ", now " + now)
+			println (" step3: prev " +  prev + ", now " + now + " sessionId " + sessionId)
 		}
 
 		println ("killing feature broke out of the cycle " + sessionId)
