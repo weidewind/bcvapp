@@ -80,7 +80,7 @@ class JobController {
 				
 			if(queueSize > 2){		
 					render redirect (action: "askforemail", id: job.id, params:[task:job.class])
-					return
+					//deleted return
 			}
 
 			else run (job, jobService)	
