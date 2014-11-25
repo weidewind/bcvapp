@@ -19,10 +19,13 @@ class HolderService {
 	
 	//@Synchronized("jobDone")
 	def isDone(String sessionId) {
-		//println ("Checking if " + sessionId + " done .. " + jobDone.get(sessionId))
 		synchronized(jobDone){
-		return jobDone.get(sessionId)
+			def isDone = jobDone.get(sessionId)
+			if (isDone){
+				jobDone.delete(sessionId)
+			}
 		}
+		return isDone
 	}
 	
 	def boolean stopPipeline(String sessionId){
@@ -30,6 +33,7 @@ class HolderService {
 			procs[sessionId].out.close()
 			procs[sessionId].err.close()
 			procs[sessionId].waitForOrKill(3000)
+			procs.delete(sessionId)
 			return true;
 		}
 		return false;

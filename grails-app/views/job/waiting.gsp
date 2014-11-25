@@ -30,7 +30,7 @@
      function checkAndUpdate(sessionId, task){
      console.log(sessionId)
       	d = new Date();
-        timeStamp = d.getTime();
+        timeStamp = d.getTime()+200000;
         console.log(timeStamp);
         ${remoteFunction(controller: 'job', action: 'updateTimeStamp', update: 'randomString', params: '{timeStamp:timeStamp, sessionId:sessionId, waitingType:"work"}')};
         ${remoteFunction(controller: 'job', action: 'jobIsDone', update: 'jobDone', params: '{sessionId:sessionId}')};
