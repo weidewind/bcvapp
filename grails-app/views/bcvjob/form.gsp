@@ -264,7 +264,7 @@
 		
 		
 		
-$(#mytooltip).tooltip({tooltipClass: "my-tooltip-styling" });
+$(#mytooltip).tooltip({tooltipClass: "my-tooltip-styling", hide: false });
 		
 		
 		
