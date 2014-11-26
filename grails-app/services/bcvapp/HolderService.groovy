@@ -2,7 +2,6 @@ package bcvapp
 
 import grails.transaction.Transactional
 import groovy.transform.Synchronized
-import java.security.MessageDigest
 
 @Transactional
 class HolderService {
@@ -14,7 +13,7 @@ class HolderService {
 	
 	// @Synchronized("jobDone")
 	 def setDone(String sessionId) {
-		println ( sessionId + " is already done ")
+		//println ( sessionId + " is already done ")
 		synchronized(jobDone){
 		jobDone.putAt(sessionId, true)
 		}
@@ -22,9 +21,11 @@ class HolderService {
 	
 	//@Synchronized("jobDone")
 	def isDone(String sessionId) {
+		def isDone
 		synchronized(jobDone){
-		return 	jobDone.get(sessionId)
+			isDone = jobDone.get(sessionId)
 		}
+		return 	isDone
 	}
 	
 	def boolean stopPipeline(String sessionId){
@@ -41,11 +42,7 @@ class HolderService {
 		procs.delete(sessionId)
 	}
 	
-	def generateMD5(String s) {
-		MessageDigest digest = MessageDigest.getInstance("MD5")
-		digest.update(s.bytes);
-		new BigInteger(1, digest.digest()).toString(16).padLeft(32, '0')
-	 }
+
 	
 
 }
