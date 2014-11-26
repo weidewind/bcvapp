@@ -25,7 +25,7 @@ class HolderService {
 		synchronized(jobDone){
 			isDone = jobDone.get(sessionId)
 			if (isDone){
-				jobDone.delete(sessionId)
+				jobDone.remove(sessionId)
 			}
 		}
 		return 	isDone
@@ -45,7 +45,7 @@ class HolderService {
 	
 	def deleteProc (String sessionId){
 		synchronized(procs){
-				procs.delete(sessionId)
+				procs.remove(sessionId)
 		}
 	}
 	
