@@ -317,7 +317,7 @@ class BcvjobService {
 
 	}
 
-	def sendLogs(String sessionId, Integer returnCode){
+	def sendLogs(String sessionId, String returnCode){
 		//just in case there is no results at all and results.zip does not exist. Todo: catch mailService or zip exception
 		if (returnCode != 143){
 			mailService.sendMail {
