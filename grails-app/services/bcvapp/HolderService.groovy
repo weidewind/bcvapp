@@ -38,9 +38,7 @@ class HolderService {
 		return false
 	}
 	
-	def deleteProc (String sessionId){
-		procs.delete(sessionId)
-	}
+
 	
 
 	
