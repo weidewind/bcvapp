@@ -54,7 +54,7 @@
 				
 		<tr><input type="hidden" name="vocabulary" value="human microbiome"></tr>
 					<tr>
-						<td>Taxonomic database <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='GreenGenes database, used for taxonomic affiliation, contains sequences with automatically assigned taxonomy, which is reliable but not exhaustive. For some of these sequences, source organisms were specified by the authors who uploaded them. If you choose option "named isolates", only such sequences will be used for taxonomy identification. ' id='mytooltip' name='mytooltip'></td>
+						<td>Taxonomic database <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='GreenGenes database, used for taxonomic affiliation, contains sequences with automatically assigned taxonomy, which is reliable but not exhaustive. For some of these sequences, source organisms were also specified by the authors who uploaded them. If you choose option "named isolates", only such sequences will be used for taxonomy identification. Thus it is guaranteed that relatives with species-level taxonomic annotation will be present in the output, which is not the case with the full database. Since this manual annotation often helps to enhance taxonomic resolution, it is recommended that you choose this option. On the other hand, this annotation cannot be considered reliable; moreover, the full database may contain closer relatives with different taxonomic affiliation.' id='mytooltip' name='mytooltip'></td>
 						<td><select name='taxdb'>
 							<option selected='named isolates' value='named isolates'>named isolates</option>
 							<option value='full'>full</option>
@@ -62,8 +62,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>Maximum distance<br>between close taxons <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='
-						Some text will be here.' id='mytooltip'></td>
+						<td>Maximum distance<br>between close taxons <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='If STAP cannot decide, to which one of the two or more taxonomic groups the query sequence should be assigned, it outputs either the lowest common taxonomic group, or all the possible groups, if the difference between them (maximum edit distance between their members) is less than the value you set here' id='mytooltip'></td>
 						<td><input type='text' name='distance' id='distance' value='0,03' size='10' maxlength='30' />
 						</td>
 					</tr>
@@ -264,7 +263,7 @@
 		
 		
 		
-$(#mytooltip).tooltip({tooltipClass: "my-tooltip-styling", hide: false });
+
 		
 		
 		

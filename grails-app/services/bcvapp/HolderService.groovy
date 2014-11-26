@@ -22,14 +22,9 @@ class HolderService {
 	
 	//@Synchronized("jobDone")
 	def isDone(String sessionId) {
-		def isDone
 		synchronized(jobDone){
-			isDone = jobDone.get(sessionId)
-			if (isDone){
-				jobDone.delete(sessionId)
-			}
+		return 	jobDone.get(sessionId)
 		}
-		return isDone
 	}
 	
 	def boolean stopPipeline(String sessionId){

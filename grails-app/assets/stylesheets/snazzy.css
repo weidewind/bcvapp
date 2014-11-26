@@ -225,14 +225,6 @@ table.fileTable  th {
 	font-size: 100%;
 }
 
-div.ui-tooltip {
-	border:1px solid #FF00FF;
-	 max-width: 300px !important;
-}
-
-.my-tooltip-styling {
-      max-width: 400px;
-}
 
 вЂ‹div.mytooltip {
 	border:1px solid #FF00FF;
