@@ -44,17 +44,26 @@
         timeStamp = d.getTime()+200000;
         console.log(timeStamp);
         ${remoteFunction(controller: 'job', action: 'updateTimeStamp', update: 'randomString', params: '{timeStamp:timeStamp, sessionId:sessionId, waitingType:"work"}')};
-        ${remoteFunction(controller: 'job', action: 'jobIsDone', update: 'jobDone', params: '{sessionId:sessionId}')};
-        var jobIsDone = document.getElementById('jobDone').innerHTML;
-        if (jobIsDone === "true"){
-        	${remoteFunction(controller: 'job', action: 'showResultsPage', update: 'resultsUrl', onSuccess:'loadResults(data);', params: '{task:task, sessionId:sessionId}' )};
-        	clearInterval(interval);
+        ${remoteFunction(controller: 'job', action: 'jobIsDone', update: 'jobDone',  onSuccess:'loadIfDone(data);', params: '{sessionId:sessionId}')};
+     //   var jobIsDone = document.getElementById('jobDone').innerHTML;
+     //   if (jobIsDone === "true"){
+     //   	${remoteFunction(controller: 'job', action: 'showResultsPage', update: 'resultsUrl', onSuccess:'loadResults(data);', params: '{task:task, sessionId:sessionId}' )};
+     //  	clearInterval(interval);
         //	var url = "http://bcvapp.cmd.su:8080" + document.getElementById('resultsUrl').innerText;
         //	console.log(url)
         //	window.location.href = url;
-        }
+     //   }
         
     }
+
+function loadIfDone(data){
+	var jobIsDone = data;
+	if (jobIsDone === "true"){
+        	${remoteFunction(controller: 'job', action: 'showResultsPage', update: 'resultsUrl', onSuccess:'loadResults(data);', params: '{task:task, sessionId:sessionId}' )};
+        	clearInterval(interval);
+    }
+	
+}
     
 function loadResults(data){
         	var url = "http://bcvapp.cmd.su:8080" + data;

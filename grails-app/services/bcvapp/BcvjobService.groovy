@@ -236,6 +236,7 @@ class BcvjobService {
 //		}
 		def exitValue = holderService.procs[sessionId].exitValue()
 		println "return code " +  exitValue
+		holderService.deleteProc(sessionId)
 		return exitValue
 	}
 
@@ -309,7 +310,7 @@ class BcvjobService {
 				multipart true
 				to "weidewind@gmail.com"
 				subject "BCV failed"
-				body "Achtung! email: ${email}, sessionId: ${sessionId}, returnCode ${returnCode}"
+				body "Achtung! email: ${email}, sessionId: ${sessionId}"
 				attachBytes 'results.zip','application/zip', new File(results).readBytes()
 
 			}
