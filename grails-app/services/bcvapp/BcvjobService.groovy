@@ -236,7 +236,7 @@ class BcvjobService {
 //		}
 		def exitValue = holderService.procs[sessionId].exitValue()
 		println "return code " +  exitValue
-		holderService.deleteProc(sessionId)
+	//	holderService.deleteProc(sessionId)
 		return exitValue
 	}
 
