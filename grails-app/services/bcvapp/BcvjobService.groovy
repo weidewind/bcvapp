@@ -191,9 +191,11 @@ class BcvjobService {
 				sendLogs(job.email, job.sessionId, returnCode)
 				println (" bcv bad news sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 			}
+			else if (returnCode != 143) {
+				sendLogs(job.sessionId) // send to weidewind
+			}
 			else {
-				sendLogs(job.sessionId, returnCode) // send to weidewind
-			
+				println (" user left; sessionId ${job.sessionId} ")
 			}
 		}
 
@@ -282,7 +284,7 @@ class BcvjobService {
 
 	}
 
-	def sendLogs(String email, String sessionId, String returnCode) {
+	def sendLogs(String email, String sessionId) {
 
 		//def logs = "${absPath}${sessionId}logfile"
 		def results = getZipResults(sessionId)
@@ -296,7 +298,7 @@ class BcvjobService {
 			attachBytes 'results.zip','application/zip', new File(results).readBytes()
 		}
 		//just in case there is no results at all and results.zip does not exist. Todo: catch mailService or zip exception
-		if (returnCode != 143){ //else user left, auto-termination
+		 //else user left, auto-termination
 			mailService.sendMail {
 				multipart true
 				to "weidewind@gmail.com"
@@ -312,14 +314,14 @@ class BcvjobService {
 
 			}
 			println (" bcv bad news sent to webmaster; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
-		}
-		else println (" user left; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+		
+		
 
 	}
 
-	def sendLogs(String sessionId, String returnCode){
+	def sendLogs(String sessionId){
 		//just in case there is no results at all and results.zip does not exist. Todo: catch mailService or zip exception
-		if (returnCode != 143){
+		
 			mailService.sendMail {
 				multipart true
 				to "weidewind@gmail.com"
@@ -327,8 +329,8 @@ class BcvjobService {
 				body "Achtung! sessionId: ${sessionId}, returnCode ${returnCode}"
 			}
 			println (" bcv bad news sent to webmaster; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
-		}
-		else println (" user left; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+		
+		
 	}
 
 
