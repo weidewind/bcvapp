@@ -161,7 +161,12 @@ class BcvjobService {
 				sendLogs(job.email, job.sessionId)
 				println (" bcv bad news sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 			}
-			else sendLogs(job.sessionId) // send to weidewind
+			else if (returnCode != 143) {
+				sendLogs(job.sessionId) // send to weidewind
+			}
+			else {
+				println (" user left; sessionId ${job.sessionId} ")
+			}
 		}
 
 		def sessionId =  job.sessionId
