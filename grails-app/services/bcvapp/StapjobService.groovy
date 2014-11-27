@@ -23,7 +23,7 @@ import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
 class StapjobService {
 
 	def mailService
-
+	def holderService
 	def servletContext = SCH.servletContext
 	def String absPath = getAbsPath()
 	def String configPath = servletContext.getRealPath("/pipeline/bcvrun.prj.xml")
@@ -429,6 +429,7 @@ class StapjobService {
 	def Closure getPipeline = {Stapjob job ->
 
 		def returnCode = runSTAP(job.sessionId)
+		println (" stap returnCode " + retrunCode)
 		println (" stap pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		if (returnCode != 143){
 			zipResults(job.sessionId)

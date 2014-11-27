@@ -296,7 +296,9 @@ class JobController {
 	
 	def queueIsFinished(){
 		def date = new Date().parse("yyyy-M-d H:m:s", params.dateCreated)
+
 		def queueSize = Bcvjob.countByDateCreatedLessThanEquals(date) + Stapjob.countByDateCreatedLessThanEquals(date)
+		println (" date " + date + ", queue size " + queueSize)
 		if (queueSize > 2){
 			render "false"
 		}
