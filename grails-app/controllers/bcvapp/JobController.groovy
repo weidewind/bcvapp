@@ -345,8 +345,8 @@ if (now > prev) {
 		while (now > prev){
 			println " from the cycle"
 			prev = now
-			sleep(8000)
-			println " going to take from map"
+			sleep(15000)
+			println " going to take from map. my time is ${System.currentTimeMillis()}"
 			synchronized(timeStampMap){
 			//println timeStampMap.getAt(sessionId).class.name
 			//println timeStampMap.getAt(sessionId)
