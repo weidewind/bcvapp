@@ -246,9 +246,16 @@ class JobController {
 //		})
 		
 		def start = new Date(System.currentTimeMillis())
+		println ("going to render view  ")
 		//def murl = createLink(controller: 'job', action: 'waiting', params:[start:start])
 		//render(contentType: 'text/html', text: "<script>window.location.href='$murl'</script>")
+		try {
 		render view: "waiting", model:[start:start, sessionId:job.sessionId, task:job.class, waitingType:"work"]
+		}
+		catch(Exception e){
+			e.printStackTrace()
+			println "Cannot render view.."
+		}
 
 		//render "<p>Please, don't close this page. Your task was submitted at ${start}.</p>"
 		

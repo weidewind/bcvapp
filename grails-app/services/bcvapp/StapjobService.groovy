@@ -429,7 +429,7 @@ class StapjobService {
 	def Closure getPipeline = {Stapjob job ->
 
 		def returnCode = runSTAP(job.sessionId)
-		println (" stap returnCode " + retrunCode)
+		println (" stap returnCode " + returnCode)
 		println (" stap pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		if (returnCode != 143){
 			zipResults(job.sessionId)
