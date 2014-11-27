@@ -228,33 +228,62 @@ class StapjobService {
 
 	}
 
+//	def zipResults(String sessionId){
+//		def output = getOutput(sessionId)
+//		println "going to zip files, sessionID ${sessionId} time ${System.currentTimeMillis()}"
+//		println (output)
+//
+//		def p = ~/.*\.(svg|with_names|cluster\.fasta)/
+//		def filelist = []
+//
+//		def outputDir = new File(output)
+//		outputDir.eachDir { chrom ->
+//			def chromDir = new File(chrom.absolutePath)
+//			chromDir.eachFileMatch(FileType.FILES, p){ tree ->
+//				def splittedPath  = tree.absolutePath.split('/')
+//				println ("going to add ${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]} from ${output} to zip list; sessionId ${sessionId}")
+//
+//				filelist.add("${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]}")
+//			}
+//
+//		}
+//		filelist.add("simple_results.html")
+//		println("${output}/results.zip")
+//		def zipFile = new File("${output}/results.zip")
+//		new AntBuilder().zip( basedir: output,
+//		destFile: zipFile.absolutePath,
+//		includes: filelist.join( ' ' ) )
+//	}
+
 	def zipResults(String sessionId){
-		def output = getOutput(sessionId)
-		println "going to zip files, sessionID ${sessionId} time ${System.currentTimeMillis()}"
-		println (output)
-
-		def p = ~/.*\.(svg|with_names|cluster\.fasta)/
-		def filelist = []
-
-		def outputDir = new File(output)
-		outputDir.eachDir { chrom ->
-			def chromDir = new File(chrom.absolutePath)
-			chromDir.eachFileMatch(FileType.FILES, p){ tree ->
-				def splittedPath  = tree.absolutePath.split('/')
-				println ("going to add ${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]} from ${output} to zip list; sessionId ${sessionId}")
-
-				filelist.add("${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]}")
+		
+				def output = getOutput(sessionId)
+				def results = getZipResults(sessionId)
+				println "going to zip files, sessionID ${sessionId} time ${System.currentTimeMillis()}"
+				println (output)
+		
+				def p = ~/.*\.(svg|with_names|cluster\.fasta)/
+				def filelist = []
+		
+		
+				def outputDir = new File(output)
+				outputDir.eachDir { chrom ->
+					def chromDir = new File(chrom.absolutePath)
+					chromDir.eachFileMatch(FileType.FILES, p){ tree ->
+						def splittedPath  = tree.absolutePath.split('/')
+						println ("going to add ${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]} from ${output} to zip list; sessionId ${sessionId}")
+						filelist.add("${splittedPath[splittedPath.size()-2]}/${splittedPath[splittedPath.size()-1]}")
+					}
+		
+				}
+				filelist.add("simple_results.html")
+				println("results will be placed here ${results}")
+				def zipFile = new File("${results}")
+				new AntBuilder().zip( basedir: output,
+				destFile: zipFile.absolutePath,
+				includes: filelist.join( ' ' ) )
 			}
-
-		}
-		filelist.add("simple_results.html")
-		println("${output}/results.zip")
-		def zipFile = new File("${output}/results.zip")
-		new AntBuilder().zip( basedir: output,
-		destFile: zipFile.absolutePath,
-		includes: filelist.join( ' ' ) )
-	}
-
+	
 	def getResults (String sessionId){
 		return outputMap.getAt(sessionId) + "/simple_results.html"
 	}
