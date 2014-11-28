@@ -29,6 +29,9 @@
         </div>
  <div id="queueIsFinished" style="display: none;">
         </div>
+        
+  <div id="waitingUrl" style="display: none;">
+        </div>       
 
 
 <g:javascript>
@@ -45,16 +48,20 @@
         ${remoteFunction(controller: 'job', action: 'queueIsFinished', update: 'queueIsFinished', params: '{dateCreated:dateCreated}')};
         var queueIsFinished = document.getElementById('queueIsFinished').innerHTML;
         if (queueIsFinished === "true"){
-        	//${remoteFunction(controller: 'job', action: 'runner', params: '{task:task, id:id}' )};
-        	def url = createLink(controller: 'job', action: 'runner', params: '{task:task, id:id}')
-            render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
+        	${remoteFunction(controller: 'job', action: 'runner', update: 'waitingUrl', onSuccess:'loadResults(data);', params: '{task:task, id:id}' )};
+        	//url = createLink(controller: 'job', action: 'runner', params: '{task:task, id:id}');
+            //render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>");
         	clearInterval(interval);
         	
         }
         
     }
     
-    
+   function loadResults(data){
+        	var url = "http://bcvapp.cmd.su:8080" + data;
+        	console.log(url)
+        	window.location.href = url;
+} 
 
 </g:javascript>
 </body>
