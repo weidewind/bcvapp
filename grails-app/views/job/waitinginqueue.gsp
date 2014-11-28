@@ -50,7 +50,7 @@
         if (queueIsFinished === "true"){
         console.log("finished waiting");
         	${remoteFunction(controller: 'job', action: 'runner', update: 'waiting', onSuccess:'loadWaiting(task, sessionId);', params: '{task:task, id:id}' )};
-        	 console.log("send call");
+        	console.log("send call");
         	clearInterval(interval);
         	
         }
@@ -59,6 +59,7 @@
     
     function loadWaiting(task, sessionId){
     console.log("will try to redirect");
+     console.log('<g:createLink controller='job', action='waitingPage', params='{task:task, sessionId:sesssionId}' />');
                	window.location.href = '<g:createLink controller='job', action='waitingPage', params='{task:task, sessionId:sesssionId}' />';
 
 }
