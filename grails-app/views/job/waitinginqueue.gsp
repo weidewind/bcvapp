@@ -50,7 +50,7 @@
         if (queueIsFinished === "true"){
         	${remoteFunction(controller: 'job', action: 'runner', update: 'waiting', params: '{task:task, id:id}' )};
         	clearInterval(interval);
-        	window.location.href = '<g:createLink controller: 'job', action: 'waiting', params: '{task:task, sessionId:sesssionId}' >';
+        	window.location.href = '<g:createLink controller='job', action='waiting', params='{task:task, sessionId:sesssionId}' >';
         	
         }
         
