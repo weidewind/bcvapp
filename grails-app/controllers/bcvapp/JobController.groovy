@@ -228,6 +228,7 @@ class JobController {
 		}
 		
 		run (job, jobService)
+		render "ok"
 	}
 	
 	def run (Object job, Object jobService) {

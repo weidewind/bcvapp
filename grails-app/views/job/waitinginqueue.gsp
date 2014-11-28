@@ -56,11 +56,6 @@
         
     }
     
-   function loadResults(data){
-        	var url = "http://bcvapp.cmd.su:8080" + data;
-        	console.log(url)
-        	window.location.href = url;
-} 
 
 </g:javascript>
 </body>
