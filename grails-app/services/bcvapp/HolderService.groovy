@@ -11,7 +11,7 @@ class HolderService {
 	final def cheksums = [] as Queue
 	final def maxCheksumsSize = 15
 	
-	// @Synchronized("jobDone")
+
 	 def setDone(String sessionId) {
 		//println ( sessionId + " is already done ")
 		synchronized(jobDone){
@@ -19,7 +19,7 @@ class HolderService {
 		}
     }
 	
-	//@Synchronized("jobDone")
+
 	def isDone(String sessionId) {
 		def isDone
 		synchronized(jobDone){

@@ -6,7 +6,7 @@
   <meta name="keywords" content="DNA, sequencing, basecaller, chromatogram, mixture, deconvolution, Sanger, HMM" />
   <meta name="owner" content="favorov@sensi.org" />
   		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='stylesheets' file='snazzy.css' /> " />
-  		<link rel="shortcut icon" href="<g:createLinkTo dir='images', file='favicon.ico' />" type="image/x-icon" /> 
+  		<link rel="shortcut icon" href="<g:createLinkTo dir='images', file='myfavicon.ico' />" type="image/x-icon" /> 
   <title>Base Caller with Vocabulary (BCV)</title>
 <!-- Google Analytics -->
 		<script>

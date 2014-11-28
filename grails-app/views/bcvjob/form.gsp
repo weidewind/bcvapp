@@ -6,7 +6,7 @@
 		<title>bcv-pipeline</title>
 
 		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='stylesheets' file='snazzy.css' /> " />
-		<link rel="shortcut icon" href="<g:createLinkTo dir='images', file='favicon.ico' />" type="image/x-icon" /> 
+		<link rel="shortcut icon" href="<g:createLinkTo dir='images', file='myfavicon.ico' />" type="image/x-icon" /> 
 		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.min.js' />"></script>
 		<input type="hidden" name="tasktype" value="bcvstap">
 		
@@ -62,7 +62,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>Maximum distance<br>between close taxons <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='If STAP cannot decide, to which one of the two or more taxonomic groups the query sequence should be assigned, it outputs either the lowest common taxonomic group, or all the possible groups, if the difference between them (maximum edit distance between their members) is less than the value you set here' id='mytooltip'></td>
+						<td>Maximum distance<br>between close taxons <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='If STAP cannot decide, to which one of the two or more taxonomic groups the query sequence should be assigned, it outputs either the lowest common taxonomic group, or all the possible groups, if the difference between them (maximum edit distance between their members) is less than the value you set here.' id='mytooltip'></td>
 						<td><input type='text' name='distance' id='distance' value='0,03' size='10' maxlength='30' />
 						</td>
 					</tr>
