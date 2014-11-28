@@ -45,8 +45,9 @@
         ${remoteFunction(controller: 'job', action: 'queueIsFinished', update: 'queueIsFinished', params: '{dateCreated:dateCreated}')};
         var queueIsFinished = document.getElementById('queueIsFinished').innerHTML;
         if (queueIsFinished === "true"){
-        	${remoteFunction(controller: 'job', action: 'runner', params: '{task:task, id:id}' )};
-        	${remoteFunction(controller: 'job', action: 'waiting', params: '{task:task, sessionId:sessionId}' )};
+        	//${remoteFunction(controller: 'job', action: 'runner', params: '{task:task, id:id}' )};
+        	def url = createLink(controller: 'job', action: 'runner', params: '{task:task, id:id}')
+            render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
         	clearInterval(interval);
         	
         }
