@@ -49,7 +49,7 @@
         var queueIsFinished = document.getElementById('queueIsFinished').innerHTML;
         if (queueIsFinished === "true"){
         console.log("finished waiting");
-        	${remoteFunction(controller: 'job', action: 'runner', update: 'waiting', onSuccess:'loadWaiting(task, sessionId);', params: '{task:task, id:id}' )};
+        	${remoteFunction(controller: 'job', action: 'runner', update: 'waiting', onSuccess:'loadWaiting(data, task, sessionId);', params: '{task:task, id:id}' )};
         	console.log("send call");
         	clearInterval(interval);
         	
@@ -57,9 +57,10 @@
         
     }
     
-    function loadWaiting(task, sessionId){
+    function loadWaiting(data, task, sessionId){
     console.log("will try to redirect");
-     console.log("${createLink (controller:'job', action:'waitingPage', params:'{task:task, sessionId:sesssionId}')}");
+    console.log ("parameter task" + task + " parameter sessionId" + sessionId);
+     console.log("${createLink (controller:'job', action:'waitingPage', params:'{task:task, sessionId:sessionId}')}");
                	window.location.href = "${createLink (controller:'job', action:'waitingPage', params:'{task:task, sessionId:sessionId}')}";
 
 }

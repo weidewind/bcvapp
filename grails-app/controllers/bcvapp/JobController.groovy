@@ -319,6 +319,7 @@ class JobController {
 	
 	def waitingPage () {
 		def start = new Date(System.currentTimeMillis())
+		println ("going to render waiting page: sessionId ${params.sessionId}, task ${params.task}")
 		render view: "waiting", model:[start: start, sessionId:params.sessionId, task:params.task]
 	}
 	
