@@ -46,7 +46,9 @@
         var queueIsFinished = document.getElementById('queueIsFinished').innerHTML;
         if (queueIsFinished === "true"){
         	${remoteFunction(controller: 'job', action: 'runner', params: '{task:task, id:id}' )};
+        	${remoteFunction(controller: 'job', action: 'waiting', params: '{task:task, sessionId:sessionId}' )};
         	clearInterval(interval);
+        	
         }
         
     }
