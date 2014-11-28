@@ -60,7 +60,7 @@
     function loadWaiting(task, sessionId){
     console.log("will try to redirect");
      console.log("${createLink (controller:'job', action:'waitingPage', params:'{task:task, sessionId:sesssionId}')}");
-               	window.location.href = "${createLink (controller:'job', action:'waitingPage', params:'{task:task, sessionId:sesssionId}')}";
+               	window.location.href = "${createLink (controller:'job', action:'waitingPage', params:'{task:task, sessionId:sessionId}')}";
 
 }
     
