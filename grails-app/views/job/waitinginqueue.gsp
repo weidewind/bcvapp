@@ -30,7 +30,7 @@
  <div id="queueIsFinished" style="display: none;">
         </div>
         
-  <div id="waitingUrl" style="display: none;">
+  <div id="waiting" style="display: none;">
         </div>       
 
 
@@ -48,10 +48,9 @@
         ${remoteFunction(controller: 'job', action: 'queueIsFinished', update: 'queueIsFinished', params: '{dateCreated:dateCreated}')};
         var queueIsFinished = document.getElementById('queueIsFinished').innerHTML;
         if (queueIsFinished === "true"){
-        	${remoteFunction(controller: 'job', action: 'runner', update: 'waitingUrl', onSuccess:'loadResults(data);', params: '{task:task, id:id}' )};
-        	//url = createLink(controller: 'job', action: 'runner', params: '{task:task, id:id}');
-            //render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>");
+        	${remoteFunction(controller: 'job', action: 'runner', update: 'waiting', params: '{task:task, id:id}' )};
         	clearInterval(interval);
+        	window.location.href = '<g:createLink controller: 'job', action: 'waiting', params: '{task:task, sessionId:sesssionId}' >';
         	
         }
         

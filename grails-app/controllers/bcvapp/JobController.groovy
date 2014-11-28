@@ -251,9 +251,9 @@ class JobController {
 		//render(contentType: 'text/html', text: "<script>window.location.href='$murl'</script>")
 		try {
 			
-		def url = createLink(view: "waiting", model:[start:start, sessionId:job.sessionId, task:job.class, waitingType:"work"])
-		render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
-		//render view: "waiting", model:[start:start, sessionId:job.sessionId, task:job.class, waitingType:"work"]
+//		def url = createLink(view: "waiting", model:[start:start, sessionId:job.sessionId, task:job.class, waitingType:"work"])
+//		render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
+		render view: "waiting", model:[start:start, sessionId:job.sessionId, task:job.class, waitingType:"work"]
 		}
 		catch(Exception e){
 			e.printStackTrace()
