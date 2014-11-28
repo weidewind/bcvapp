@@ -59,7 +59,7 @@
     
     function loadWaiting(){
     console.log("will try to redirect");
-               	window.location.href = '<g:createLink controller='job', action='waiting', params='{task:task, sessionId:sesssionId}' />';
+               	window.location.href = '<g:createLink controller='job', action='waitingPage', params='{task:task, sessionId:sesssionId}' />';
 
 }
     

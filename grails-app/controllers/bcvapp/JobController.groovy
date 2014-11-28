@@ -316,9 +316,14 @@ class JobController {
 		else render "true"
 	}
 	
-	def waiting () {
+	def waitingPage () {
 		def start = new Date(System.currentTimeMillis())
 		render view: "waiting", model:[start: start, sessionId:params.sessionId, task:params.task]
+	}
+	
+	
+	def waiting = {
+		
 	}
 	
 	def showResultsPage(){
