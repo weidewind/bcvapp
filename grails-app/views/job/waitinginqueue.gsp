@@ -48,13 +48,20 @@
         ${remoteFunction(controller: 'job', action: 'queueIsFinished', update: 'queueIsFinished', params: '{dateCreated:dateCreated}')};
         var queueIsFinished = document.getElementById('queueIsFinished').innerHTML;
         if (queueIsFinished === "true"){
-        	${remoteFunction(controller: 'job', action: 'runner', update: 'waiting', params: '{task:task, id:id}' )};
+        console.log("finished waiting");
+        	${remoteFunction(controller: 'job', action: 'runner', update: 'waiting', onSuccess:'loadWaiting();', params: '{task:task, id:id}' )};
+        	 console.log("send call");
         	clearInterval(interval);
-        	window.location.href = '<g:createLink controller='job', action='waiting', params='{task:task, sessionId:sesssionId}' />';
         	
         }
         
     }
+    
+    function loadWaiting(){
+    console.log("will try to redirect");
+               	window.location.href = '<g:createLink controller='job', action='waiting', params='{task:task, sessionId:sesssionId}' />';
+
+}
     
 
 </g:javascript>
