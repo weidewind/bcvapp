@@ -184,6 +184,7 @@ class JobController {
 		
 			if (queueSize > 2){  // 1 running task + our task
 				render view: "waitinginqueue", model:[start:start, sessionId: job.sessionId, task:job.class, id:job.id, dateCreated:job.dateCreated]
+				return
 				//render "<p>${randomString}</p>"
 				//sleep(5000)
 				//queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
