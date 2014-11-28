@@ -61,7 +61,7 @@
     console.log("will try to redirect");
     console.log ("parameter task" + task + " parameter sessionId" + sessionId);
      console.log("${createLink (controller:'job', action:'waitingPage', params:'{task:task, sessionId:sessionId}')}");
-               	window.location.href = "${createLink (controller:'job', action:'waitingPage', params:'{task:task, sessionId:sessionId}')}";
+               	window.location.href = "${createLink (controller:'job', action:'waitingPage', params:[task:task, sessionId:sessionId])}";
 
 }
     
