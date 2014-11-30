@@ -30,7 +30,8 @@
 		<div class = "central-panel">
 			<h1>Base Caller with Vocabulary</h1>
 			
-				<p>The Base Calling with Vocabulary (BCV) software package is intended for analysis of direct (population) sequencing chromatograms using known vocabulary sequences similar to the target DNA. The current version of BCV can only process chromatogram files obtained on Applied Biosystems capillary sequencing machines (ABI file format). In principle, the method can be applied to other sequencing platforms except high-throughput sequencing; however, the current software version has not been tested for such applications.</p>
+				<p>The Base Calling with Vocabulary (BCV) software package is intended for analysis of direct (population) sequencing chromatograms using known vocabulary sequences similar to the target DNA. BCV is designed for characterizing the bacterial populations in clinical samples from body sites or liquids that are normally sterile.
+				The current version of BCV can only process chromatogram files obtained on Applied Biosystems capillary sequencing machines (ABI file format). In principle, the method can be applied to other sequencing platforms except high-throughput sequencing; however, the current software version has not been tested for such applications.</p>
 				<p>The BCV package has the following functionalities:
 				<ul>
 					<li>Base calling: determining the sequence of IUPAC codes corresponding to sets of 1-4 nucleotides at each position for a chromatogram</li>

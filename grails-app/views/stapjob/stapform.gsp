@@ -26,6 +26,13 @@
 	<body>
 <g:render template="/index/menu" />
 		<h2>STAP</h2>
+		
+		<noscript>
+ For full functionality of this site it is necessary to enable JavaScript.
+ Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+ instructions how to enable JavaScript in your web browser</a>.
+</noscript>
+
 		<p>STAP is an automated phylogenetic tree-based Small subunit
 		rRNA Taxonomy and Alignment Pipeline. Use STAP to accurately assign 16S rRNA sequences to taxonomic units in the GreenGenes taxonomy.</p>
 		<g:form controller="job" action="submitstap" enctype="multipart/form-data" onsubmit="return validateForm()">
@@ -226,6 +233,11 @@
 				files_test = false;
 			}
 			else {
+				if (files.length > 10){
+					document.getElementById("file_error").innerHTML = "Please, do not select more than 10 files at once.";
+					files_test = false;
+				}
+				else {
 				for	(var index = 0; index < files.length; index++) {
 					var myfile = files[index].name;
 					console.log(myfile);
@@ -235,6 +247,7 @@
 						files_test = false;
 						break;
 					}
+				}
 				}
 			}
 			

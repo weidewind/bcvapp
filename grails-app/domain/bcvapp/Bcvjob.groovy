@@ -17,6 +17,7 @@ class Bcvjob {
 		static constraints = {
 			email (blank:true, nullable:true, email:true)
 			distance (min: 0f, max: 0.1f)
+			files (size: 1..10)
 	
 		}
 		

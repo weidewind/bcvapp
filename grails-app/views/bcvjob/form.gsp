@@ -28,7 +28,13 @@
 	<body>
 <g:render template="/index/menu" />
 		<h2>BCV pipeline</h2>
-<p> BCV pipeline makes use of BCV and STAP (taxonomy identification tool) to perform complete chromatogram analysis - from base calling to taxonomic assignment of predicted sequences. Please refer to the <a href="${createLinkTo(dir: '/index', file: 'userguide.gsp')}">user guide</a> for output format explanation. </p>
+		<noscript>
+ For full functionality of this site it is necessary to enable JavaScript.
+ Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+ instructions how to enable JavaScript in your web browser</a>.
+</noscript>
+		
+<p> BCV online makes use of BCV and STAP (taxonomy identification tool) to perform complete chromatogram analysis - from base calling to taxonomic assignment of predicted sequences. The current version of BCV online tool is intended for processing .ab1 chromatogram files, obtained by direct sequencing of 16S rRNA gene from clinical samples. Please refer to the <a href="${createLinkTo(dir: '/index', file: 'userguide.gsp')}">user guide</a> for brief algorithm overview and output format explanation. </p>
 		<g:form controller="job" action="submitbcv" enctype="multipart/form-data" onsubmit="return validateForm()">
 		
 			<div class='header'> Enter your sample </div>
@@ -227,6 +233,12 @@
 				files_test = false;
 			}
 			else {
+			
+				if (files.length > 10){
+					document.getElementById("file_error").innerHTML = "Please, do not select more than 10 files at once.";
+					files_test = false;
+				}
+				else {
 				for	(var index = 0; index < files.length; index++) {
 					var myfile = files[index].name;
 					console.log(myfile);
@@ -236,6 +248,7 @@
 						files_test = false;
 						break;
 					}
+				}
 				}
 			}
 			
