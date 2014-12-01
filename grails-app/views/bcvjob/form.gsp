@@ -171,8 +171,8 @@
 					var deleter = document.createElement("img");
 					var deleterId = "deleter" + index;
 					deleter.setAttribute("id", deleterId);
-					deleter.setAttribute("src", "${createLinkTo (dir:'images', file:'delete.gif')}");
-					deleter.setAttribute("onclick", "deleteFile(index)");
+					deleter.setAttribute("src", "${createLinkTo (dir:'images', file:'delete2.gif')}");
+					deleter.setAttribute("onclick", "deleteFile(this)");
 					deleterCell.appendChild(deleter);
 		
 				}
@@ -193,7 +193,8 @@
 			
 			
 			function deleteFile(f){
-				document.getElementById("fileTable").deleteRow(f+2);
+			var index = parseInt(f.id.substring(7));
+			document.getElementById("fileTable").deleteRow(index+2);
 			}
 			
 			function check(str){
