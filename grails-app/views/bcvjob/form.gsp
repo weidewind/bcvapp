@@ -259,7 +259,7 @@
 				console.log("none deleted");
 			}
 			else {
-				wereDeleted = document.getElementById("deletedFiles").value.split(",")-1;
+				wereDeleted = document.getElementById("deletedFiles").value.split(",").length-1;
 				console.log(wereDeleted + " deleted ");
 			}
 			var files_test = true;
