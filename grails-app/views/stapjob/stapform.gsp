@@ -43,6 +43,7 @@
 			Upload sequences in .fasta format
 			<p><label><input type='file' name='files' id='files' accept='.fasta' multiple /></label>
 			<div class = 'error'><label id = 'file_error'></label></div>
+			<p><table class='fileTable' id='fileTable'></table></div>
 			Or enter fasta-formatted sequences
 			<p><textarea rows="4" cols="50" name="sequences" id="sequences"></textarea>
 			</div>
@@ -112,21 +113,13 @@
 					fileTable.deleteRow(i-1);
 				}
 				
-				var header  = fileTable.insertRow(0);
-				var headerLabel = document.createElement("td");
-				headerLabel.setAttribute("colspan", 2);
-				headerLabel.innerHTML = "Select primer direction:";
-				header.appendChild(headerLabel);
 				
-				var row  = fileTable.insertRow(1);
+				var row  = fileTable.insertRow(0);
 				
 				var th1 = document.createElement("th");
 				th1.innerHTML = "File name";
 				row.appendChild(th1);
 				
-				var th2 = document.createElement("th");
-				th2.innerHTML = "Forward primer";
-				row.appendChild(th2);
 				
 		
 				for	(var index = 0; index < files.length; index++) {
@@ -134,36 +127,7 @@
 					var filename = row.insertCell(0);
 					filename.innerHTML = files[index].name;
 					
-					var isForward = row.insertCell(1);
-					var newCheckBox = document.createElement("input");
-					var checkBoxId = "checkbox" + index;
-					
-					var checked = check(files[index].name);
-					
-					newCheckBox.setAttribute("type","checkbox");
-					newCheckBox.setAttribute("id",checkBoxId);
-					newCheckBox.setAttribute("name",checkBoxId);
-					
-					if (checked){
-						newCheckBox.setAttribute("checked", "true");
-						newCheckBox.setAttribute("value","ON");
-					}
-					else {
-						newCheckBox.setAttribute("value","OFF");
-					}
-					newCheckBox.setAttribute("onchange","changeDirection(this)");
-					isForward.appendChild(newCheckBox);
-		
-					var newCheckBoxLabel = document.createElement("label");
-					var checkBoxLabelId = "labelcheckbox" + index;
-					newCheckBoxLabel.setAttribute("id",checkBoxLabelId);
-					if (checked){
-						newCheckBoxLabel.innerHTML = "forward";
-					}
-					else newCheckBoxLabel.innerHTML = "reverse";
-					isForward.appendChild(newCheckBoxLabel);
-					
-					var deleterCell = row.insertCell(2);
+					var deleterCell = row.insertCell(1);
 					var deleter = document.createElement("img");
 					var deleterId = "deleter" + index;
 					deleter.setAttribute("id", deleterId);
@@ -175,17 +139,7 @@
 		
 				
 			}
-			function changeDirection(c){
-				var labelId = "label" + c.id;
-				if(c.checked){
-					document.getElementById(labelId).innerHTML="forward";
-					c.setAttribute("value","ON");
-				}
-				else {
-					document.getElementById(labelId).innerHTML="reverse";
-					c.setAttribute("value","OFF");
-				}
-			}
+			
 			
 			function deleteFile(f){
 				var index = parseInt(f.id.substring(7));
