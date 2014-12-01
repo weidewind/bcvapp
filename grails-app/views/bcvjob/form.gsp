@@ -49,7 +49,7 @@
 			
 			<div class='panel'>
 			<table class='options'>
-			<tr><input type="hidden" name="deletedFiles" value=""></tr>
+			<tr><input type="hidden" name="deletedFiles"></tr>
 		<!--			<tr> -->
 		<!--				<td>Vocabulary <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='Vocabulary is a multiple alignment of sequences, which contains sequences similar to the expected DNA variants in the sample. For analysis of human clinical samples, use "human microbiome" vocabulary.' ></td> -->
 		<!--				<td><select name='vocabulary'> -->
@@ -108,7 +108,8 @@
 		
 			function displayList(){
 				document.getElementById("file_error").innerHTML = "";
-				document.getElementById("deletedFiles").value = "";
+				var deleted = document.getElementById("deletedFiles");
+				deleted.value = "";
 				var files = document.getElementById("files").files || [];
 				var fileTable = document.getElementById("fileTable");
 				
