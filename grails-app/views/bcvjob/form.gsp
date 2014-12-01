@@ -253,8 +253,15 @@
 			}
 			
 			var files = document.getElementById("files").files || [];
+			var wereDeleted;
+			if (document.getElementById("deletedFiles").value === ""){
+				wereDeleted = 0;
+			}
+			else {
+				wereDeleted = document.getElementById("deletedFiles").value.split(",")-1;
+			}
 			var files_test = true;
-			if (document.getElementById("files").value === ""){
+			if (document.getElementById("files").value === "" || files.length === wereDeleted){
 				document.getElementById("file_error").innerHTML = "Select at least one file";
 				files_test = false;
 			}
