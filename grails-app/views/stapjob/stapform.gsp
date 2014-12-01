@@ -43,7 +43,7 @@
 			Upload sequences in .fasta format
 			<p><label><input type='file' name='files' id='files' accept='.fasta' multiple /></label>
 			<div class = 'error'><label id = 'file_error'></label></div>
-			<p><table class='fileTable' id='fileTable'></table></div>
+			<p><table class='fileTable' id='fileTable'></table>
 			Or enter fasta-formatted sequences
 			<p><textarea rows="4" cols="50" name="sequences" id="sequences"></textarea>
 			</div>
