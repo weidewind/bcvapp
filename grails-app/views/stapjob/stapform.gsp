@@ -44,7 +44,7 @@
 			<p><label><input type='file' name='files' id='files' accept='.fasta' multiple onchange='displayList()'/></label>
 			<div class = 'error'><label id = 'file_error'></label></div>
 			<p><table class='fileTable' id='fileTable'></table>
-			Or enter fasta-formatted sequences
+			<p>Or enter fasta-formatted sequences
 			<p><textarea rows="4" cols="50" name="sequences" id="sequences"></textarea>
 			</div>
 			
@@ -123,7 +123,10 @@
 				
 		
 				for	(var index = 0; index < files.length; index++) {
+	
 					var row = fileTable.insertRow(index+1);
+					var rowId = "row" + index;
+					row.setAttribute("id", rowId);
 					var filename = row.insertCell(0);
 					filename.innerHTML = files[index].name;
 					
@@ -142,6 +145,7 @@
 			
 			
 			function deleteFile(f){
+			
 				var index = parseInt(f.id.substring(7));
 				var rowId = "row" + index;
 				var row = document.getElementById(rowId);
