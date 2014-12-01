@@ -203,7 +203,7 @@
 			var row = document.getElementById(rowId);
     		row.parentNode.removeChild(row);
     		
-    		document.getElementById(deletedFiles).value += "," + index;
+    		document.getElementById("deletedFiles").value += "," + index;
 			}
 			
 			function check(str){
