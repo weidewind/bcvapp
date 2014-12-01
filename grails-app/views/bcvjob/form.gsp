@@ -171,7 +171,7 @@
 					var deleter = document.createElement("img");
 					var deleterId = "deleter" + index;
 					deleterId.setAttribute("id", deleterId);
-					deleterId.setAttribute("src", "${createLinkTo (dir='images' file='delete.gif')}");
+					deleterId.setAttribute("src", "${createLinkTo (dir:'images' file:'delete.gif')}");
 					deleter.setAttribute("onclick", "deleteFile(index)");
 					deleterCell.appendChild(deleter);
 		
