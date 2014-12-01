@@ -51,7 +51,7 @@
 			
 			<div class='panel'>
 			<table class='options'>
-			
+			<tr><input type="hidden" name = "deletedFiles" id="deletedFiles"></tr>
 					<tr>
 						<td>Taxonomic database <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='GreenGenes database, used for taxonomic affiliation, contains sequences with automatically assigned taxonomy, which is reliable but not exhaustive. For some of these sequences, source organisms were also specified by the authors who uploaded them. If you choose option "named isolates", only such sequences will be used for taxonomy identification. Thus it is guaranteed that relatives with species-level taxonomic annotation will be present in the output, which is not the case with the full database. Since this manual annotation often helps to enhance taxonomic resolution, it is recommended that you choose this option. On the other hand, this annotation cannot be considered reliable; moreover, the full database may contain closer relatives with different taxonomic affiliation.' id='mytooltip' name='mytooltip'></td>
 						<td><select name='taxdb'>
@@ -162,6 +162,14 @@
 					}
 					else newCheckBoxLabel.innerHTML = "reverse";
 					isForward.appendChild(newCheckBoxLabel);
+					
+					var deleterCell = row.insertCell(2);
+					var deleter = document.createElement("img");
+					var deleterId = "deleter" + index;
+					deleter.setAttribute("id", deleterId);
+					deleter.setAttribute("src", "${createLinkTo (dir:'images', file:'delete3.png')}");
+					deleter.setAttribute("onclick", "deleteFile(this)");
+					deleterCell.appendChild(deleter);
 		
 				}
 		
@@ -178,6 +186,16 @@
 					c.setAttribute("value","OFF");
 				}
 			}
+			
+			function deleteFile(f){
+				var index = parseInt(f.id.substring(7));
+				var rowId = "row" + index;
+				var row = document.getElementById(rowId);
+    			row.parentNode.removeChild(row);
+    		
+    			document.getElementById("deletedFiles").value += "," + index;
+			}
+			
 			
 			function check(str){
 			var t = str.split(".")[0].split("_");
@@ -226,8 +244,19 @@
 			}
 			
 			var files = document.getElementById("files").files || [];
+			
+			var wereDeleted;
+			if (document.getElementById("deletedFiles").value === ""){
+				wereDeleted = 0;
+				console.log("none deleted");
+			}
+			else {
+				wereDeleted = document.getElementById("deletedFiles").value.split(",").length-1;
+				console.log(wereDeleted + " deleted ");
+			}
+			
 			var files_test = true;
-			if (document.getElementById("files").value === "" && document.getElementById("sequences").value === ""){
+			if ((document.getElementById("files").value === "" || files.length === wereDeleted) && document.getElementById("sequences").value === ""){
 				document.getElementById("file_error").innerHTML = "Select at least one file or enter sequences in the field below";
 				files_test = false;
 			}
