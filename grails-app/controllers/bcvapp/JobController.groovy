@@ -53,8 +53,8 @@ class JobController {
 		def  directionList = []
 		def removed = params.('deletedFiles').substring(1).split(',')
 		for(i in removed){
-			fileListRaw[i.toInteger] = null
-			directionListRaw[i.toInteger] = null
+			fileListRaw[i.toInteger()] = null
+			directionListRaw[i.toInteger()] = null
 		}
 		for (int i = 0; i < fileListRaw.size(); i++){
 			if (fileListRaw[i]){
