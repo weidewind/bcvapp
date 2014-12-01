@@ -134,6 +134,8 @@
 		
 				for	(var index = 0; index < files.length; index++) {
 					var row = fileTable.insertRow(index+2);
+					var rowId = "row" + index;
+					row.setAttribute("id", rowId);
 					var filename = row.insertCell(0);
 					filename.innerHTML = files[index].name;
 					
@@ -171,7 +173,7 @@
 					var deleter = document.createElement("img");
 					var deleterId = "deleter" + index;
 					deleter.setAttribute("id", deleterId);
-					deleter.setAttribute("src", "${createLinkTo (dir:'images', file:'delete2.gif')}");
+					deleter.setAttribute("src", "${createLinkTo (dir:'images', file:'delete.gif')}");
 					deleter.setAttribute("onclick", "deleteFile(this)");
 					deleterCell.appendChild(deleter);
 		
@@ -194,7 +196,9 @@
 			
 			function deleteFile(f){
 			var index = parseInt(f.id.substring(7));
-			document.getElementById("fileTable").deleteRow(index+2);
+			var rowId = "row" + index;
+			var row = document.getElementById(rowId);
+    		row.parentNode.removeChild(row);
 			}
 			
 			function check(str){
