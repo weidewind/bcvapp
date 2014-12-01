@@ -41,7 +41,7 @@
 			
 			<div class='panel'>
 			Upload sequences in .fasta format
-			<p><label><input type='file' name='files' id='files' accept='.fasta' multiple onchange='displayList()/></label>
+			<p><label><input type='file' name='files' id='files' accept='.fasta' multiple onchange='displayList()'/></label>
 			<div class = 'error'><label id = 'file_error'></label></div>
 			<p><table class='fileTable' id='fileTable'></table>
 			Or enter fasta-formatted sequences
