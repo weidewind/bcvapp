@@ -106,6 +106,8 @@
 		
 			function displayList(){
 				document.getElementById("file_error").innerHTML = "";
+				var deleted = document.getElementById("deletedFiles");
+				deleted.value = "";
 				var files = document.getElementById("files").files || [];
 				var fileTable = document.getElementById("fileTable");
 				
