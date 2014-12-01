@@ -30,7 +30,7 @@
 		<h2>BCV pipeline</h2>
 		<noscript>
  For full functionality of this site it is necessary to enable JavaScript.
- Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+ Here are the <a href="http://www.enable-javascript.com/">
  instructions how to enable JavaScript in your web browser</a>.
 </noscript>
 		
@@ -41,7 +41,7 @@
 			
 			<div class='panel'>
 			Upload chromatograms in .ab1 format
-			<p><label><input type='file' name='files' id='files' multiple onchange='displayList()' /></label>
+			<p><label><input type='file' name='files' id='files' accept='.ab1' multiple onchange='displayList()' /></label>
 			<div class = 'error'><label id = 'file_error'></label></div>
 			<p><table class='fileTable' id='fileTable'></table></div>
 			
@@ -83,6 +83,7 @@
 			<p><div class='collapsing-panel'><input type='text' name='email' id='email' size='50' maxlength='80' /></div>
 			<div class = 'error'><label id = 'email_error'></label></div><p>
 			<p><input type='submit' name='submit' id = 'submit' value='Submit' /></div>
+			<div class = 'error'><label id = 'final_error'></label></div><p>
 		</g:form> 
 		
 		<script>
@@ -129,6 +130,7 @@
 				th2.innerHTML = "Forward primer";
 				row.appendChild(th2);
 				
+				
 		
 				for	(var index = 0; index < files.length; index++) {
 					var row = fileTable.insertRow(index+2);
@@ -163,6 +165,15 @@
 					}
 					else newCheckBoxLabel.innerHTML = "reverse";
 					isForward.appendChild(newCheckBoxLabel);
+					
+					
+					var deleterCell = row.insertCell(2);
+					var deleter = document.createElement("img");
+					var deleterId = "deleter" + index;
+					deleterId.setAttribute("id", deleterId);
+					deleterId.setAttribute("src", "${createLinkTo (dir='images' file='delete.gif')}");
+					deleter.setAttribute("onclick", "deleteFile(index)");
+					deleterCell.appendChild(deleter);
 		
 				}
 		
@@ -178,6 +189,11 @@
 					document.getElementById(labelId).innerHTML="reverse";
 					c.setAttribute("value","OFF");
 				}
+			}
+			
+			
+			function deleteFile(f){
+				document.getElementById("fileTable").deleteRow(f+2);
 			}
 			
 			function check(str){
@@ -235,7 +251,7 @@
 			else {
 			
 				if (files.length > 10){
-					document.getElementById("file_error").innerHTML = "Please, do not select more than 10 files at once.";
+					document.getElementById("file_error").innerHTML = "Please, do not select more than 10 files.";
 					files_test = false;
 				}
 				else {
@@ -270,7 +286,9 @@
 				passed = false;
 			}
 		
-		
+			if (passed === false){
+				document.getElementById("final_error").innerHTML = "There is something wrong with the data you provided."
+			}
 			return passed;
 		} 
 		

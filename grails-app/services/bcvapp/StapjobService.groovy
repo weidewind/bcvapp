@@ -318,7 +318,7 @@ class StapjobService {
 			}
 		}
 		if (fileList.size() > 10){
-			errorMessage += "<p>Please, do not select more than 10 files at once. </p>"
+			errorMessage += "<p>Please, do not select more than 10 files. </p>"
 		}
 		if (fileList.size() > 1){
 			for (f in fileList) {

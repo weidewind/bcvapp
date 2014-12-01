@@ -29,7 +29,7 @@
 		
 		<noscript>
  For full functionality of this site it is necessary to enable JavaScript.
- Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+ Here are the <a href="http://www.enable-javascript.com/">
  instructions how to enable JavaScript in your web browser</a>.
 </noscript>
 
@@ -41,7 +41,7 @@
 			
 			<div class='panel'>
 			Upload sequences in .fasta format
-			<p><label><input type='file' name='files' id='files' multiple /></label>
+			<p><label><input type='file' name='files' id='files' accept='.fasta' multiple /></label>
 			<div class = 'error'><label id = 'file_error'></label></div>
 			Or enter fasta-formatted sequences
 			<p><textarea rows="4" cols="50" name="sequences" id="sequences"></textarea>
@@ -53,8 +53,7 @@
 			<table class='options'>
 			
 					<tr>
-						<td>Taxonomic database <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='Full database gives more reliable, but less informative results)
-						Some text will be here.' id='mytooltip'></td>
+						<td>Taxonomic database <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='GreenGenes database, used for taxonomic affiliation, contains sequences with automatically assigned taxonomy, which is reliable but not exhaustive. For some of these sequences, source organisms were also specified by the authors who uploaded them. If you choose option "named isolates", only such sequences will be used for taxonomy identification. Thus it is guaranteed that relatives with species-level taxonomic annotation will be present in the output, which is not the case with the full database. Since this manual annotation often helps to enhance taxonomic resolution, it is recommended that you choose this option. On the other hand, this annotation cannot be considered reliable; moreover, the full database may contain closer relatives with different taxonomic affiliation.' id='mytooltip' name='mytooltip'></td>
 						<td><select name='taxdb'>
 							<option selected='named isolates' value='named isolates'>named isolates</option>
 							<option value='full'>full</option>
@@ -62,8 +61,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>Maximum distance<br>between close taxons <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='
-						Some text will be here.' id='mytooltip'></td>
+						<td>Maximum distance<br>between close taxons <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title =''If STAP cannot decide, to which one of the two or more taxonomic groups the query sequence should be assigned, it outputs either the lowest common taxonomic group, or all the possible groups, if the difference between them (maximum edit distance between their members) is less than the value you set here.' id='mytooltip'></td>
 						<td><input type='text' name='distance' id='distance' value='0,03' size='10' maxlength='30' />
 						</td>
 					</tr>
@@ -79,6 +77,7 @@
 			<p><div class='collapsing-panel'><input type='text' name='email' id='email' size='50' maxlength='80' /></div>
 			<div class = 'error'><label id = 'email_error'></label></div><p>
 			<p><input type='submit' name='submit' id = 'submit' value='Submit' /></div>
+			<div class = 'error'><label id = 'final_error'></label></div><p>
 		</g:form> 
 		<p></p>
 		<div class="citation"> Wu D, Hartman A, Ward N, Eisen JA (2008) An Automated Phylogenetic Tree-Based Small Subunit rRNA Taxonomy and Alignment Pipeline (STAP). PLoS
@@ -234,7 +233,7 @@
 			}
 			else {
 				if (files.length > 10){
-					document.getElementById("file_error").innerHTML = "Please, do not select more than 10 files at once.";
+					document.getElementById("file_error").innerHTML = "Please, do not select more than 10 files.";
 					files_test = false;
 				}
 				else {
@@ -269,7 +268,9 @@
 				passed = false;
 			}
 		
-		
+			if (passed === false){
+				document.getElementById("final_error").innerHTML = "There is something wrong with the data you provided."
+			}
 			return passed;
 		} 
 		
