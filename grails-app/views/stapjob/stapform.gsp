@@ -123,7 +123,7 @@
 				
 		
 				for	(var index = 0; index < files.length; index++) {
-					var row = fileTable.insertRow(index+2);
+					var row = fileTable.insertRow(index+1);
 					var filename = row.insertCell(0);
 					filename.innerHTML = files[index].name;
 					
