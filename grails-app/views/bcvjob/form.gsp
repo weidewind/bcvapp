@@ -256,9 +256,11 @@
 			var wereDeleted;
 			if (document.getElementById("deletedFiles").value === ""){
 				wereDeleted = 0;
+				console.log("none deleted");
 			}
 			else {
 				wereDeleted = document.getElementById("deletedFiles").value.split(",")-1;
+				console.log(wereDeleted + " deleted ");
 			}
 			var files_test = true;
 			if (document.getElementById("files").value === "" || files.length === wereDeleted){
