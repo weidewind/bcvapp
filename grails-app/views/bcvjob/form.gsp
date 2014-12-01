@@ -49,7 +49,7 @@
 			
 			<div class='panel'>
 			<table class='options'>
-			<tr><input type="hidden" name="deletedFiles"></tr>
+			<tr><input type="hidden" name = "deletedFiles" id="deletedFiles"></tr>
 		<!--			<tr> -->
 		<!--				<td>Vocabulary <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='Vocabulary is a multiple alignment of sequences, which contains sequences similar to the expected DNA variants in the sample. For analysis of human clinical samples, use "human microbiome" vocabulary.' ></td> -->
 		<!--				<td><select name='vocabulary'> -->
