@@ -11,6 +11,7 @@ List files
 String taxdb
 float distance
 String email
+String deletedFiles
 Date dateCreated
 
 
@@ -19,6 +20,7 @@ Date dateCreated
 		distance (min: 0f, max: 0.1f)
 		files (nullable: true)
 		sequences (blank: true, nullable: true)
+		deletedFiles (nullable: true)
 
     }
 	

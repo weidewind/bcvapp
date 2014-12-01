@@ -11,13 +11,14 @@ class Bcvjob {
 	float distance
 	String email
 	List checkbox
+	String deletedFiles
 	Date dateCreated
 	
 	
 		static constraints = {
 			email (blank:true, nullable:true, email:true)
 			distance (min: 0f, max: 0.1f)
-			files (size: 1..10)
+			deletedFiles (nullable: true)
 	
 		}
 		

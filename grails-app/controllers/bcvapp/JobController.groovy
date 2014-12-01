@@ -42,12 +42,29 @@ class JobController {
 
 		// Get files and directions
 
-		def fileList = request.getFiles('files')
-		def  directionList = []
-		for (int i = 0; i < fileList.size(); i++){
-			directionList.add(params.('checkbox' + i))
+		def fileListRaw = request.getFiles('files')
+		def  directionListRaw = []
+		for (int i = 0; i < fileListRaw.size(); i++){
+			directionListRaw.add(params.('checkbox' + i))
 		}
 
+		// delete files (and directions for them) which were removed by user (file input is readonly!)
+		def fileList = []
+		def  directionList = []
+		def removed = params.('deletedFiles').substring(1).split(',')
+		for(i in removed){
+			fileListRaw[i.toInteger] = null
+			directionListRaw[i.toInteger] = null
+		}
+		for (int i = 0; i < fileListRaw.size(); i++){
+			if (fileListRaw[i]){
+				fileList.add(fileListRaw[i])
+				directionList.add(directionListRaw[i])
+				
+			}
+		}
+		//
+		
 		def errorMessage = jobService.checkInput(job, fileList)
 
 		if (errorMessage) {

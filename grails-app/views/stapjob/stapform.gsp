@@ -167,7 +167,7 @@
 					var deleter = document.createElement("img");
 					var deleterId = "deleter" + index;
 					deleter.setAttribute("id", deleterId);
-					deleter.setAttribute("src", "${createLinkTo (dir:'images', file:'delete3.png')}");
+					deleter.setAttribute("src", "${createLinkTo (dir:'images', file:'deleter.png')}");
 					deleter.setAttribute("onclick", "deleteFile(this)");
 					deleterCell.appendChild(deleter);
 		
@@ -261,7 +261,7 @@
 				files_test = false;
 			}
 			else {
-				if (files.length > 10){
+				if (files.length - wereDeleted > 10){
 					document.getElementById("file_error").innerHTML = "Please, do not select more than 10 files.";
 					files_test = false;
 				}
