@@ -51,7 +51,10 @@ class JobController {
 		// delete files (and directions for them) which were removed by user (file input is readonly!)
 		def fileList = []
 		def  directionList = []
-		def removed = params.('deletedFiles').substring(1).split(',')
+		def removed = params.('deletedFiles')
+		if (removed){
+			removed = removed.substring(1).split(',')
+		}
 		for(i in removed){
 			fileListRaw[i.toInteger()] = null
 			directionListRaw[i.toInteger()] = null

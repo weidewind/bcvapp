@@ -62,7 +62,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>Maximum distance<br>between close taxons <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title =''If STAP cannot decide, to which one of the two or more taxonomic groups the query sequence should be assigned, it outputs either the lowest common taxonomic group, or all the possible groups, if the difference between them (maximum edit distance between their members) is less than the value you set here.' id='mytooltip'></td>
+						<td>Maximum distance<br>between close taxons <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='If STAP cannot decide, to which one of the two or more taxonomic groups the query sequence should be assigned, it outputs either the lowest common taxonomic group, or all the possible groups, if the difference between them (maximum edit distance between their members) is less than the value you set here.' id='mytooltip'></td>
 						<td><input type='text' name='distance' id='distance' value='0,03' size='10' maxlength='30' />
 						</td>
 					</tr>
@@ -115,18 +115,10 @@
 					fileTable.deleteRow(i-1);
 				}
 				
-				
-				var row  = fileTable.insertRow(0);
-				
-				var th1 = document.createElement("th");
-				th1.innerHTML = "File name";
-				row.appendChild(th1);
-				
-				
 		
 				for	(var index = 0; index < files.length; index++) {
 	
-					var row = fileTable.insertRow(index+1);
+					var row = fileTable.insertRow(index);
 					var rowId = "row" + index;
 					row.setAttribute("id", rowId);
 					var filename = row.insertCell(0);
