@@ -87,7 +87,10 @@
 			<p><input type='submit' name='submit' id = 'submit' value='Submit' /></div>
 			<div class = 'error'><label id = 'final_error'></label></div><p>
 		</g:form> 
-		
+			
+			<div class ="push"></div>
+    </div>
+    <tmpl:footer />
 		<script>
 		$(document).ready(function(){
 		
@@ -323,9 +326,7 @@
 		
 			
 		</script>
-	<div class ="push"></div>
-    </div>
-    <tmpl:footer />
+
 	</body>
 </html>
 
