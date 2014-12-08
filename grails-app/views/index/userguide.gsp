@@ -29,11 +29,11 @@
 <ul>
 <li>
 <!--<a href="${createLink(controller: 'job', action: 'downloadFile' , params: [path: '/store/home/bcvapp/bcvapp/web-app/pipeline/bcv-userguide.odt', contentType: 'application/vnd.oasis.opendocument.text', filename: 'bcv-userguide.odt'])}">BCV manual</a><a href="bcv-userguide.odt"></a>-->
-<a href="http://basecv.sourceforge.net/bcv-userguide.odt">BCV manual</a>
+<a href="http://basecv.sourceforge.net/bcv-userguide.odt">BCV manual</a>: here you can find a brief algorithm overview and a detailed manual concerning the local version usage." 
 <p></p>
 </li>
 <li>
-<a href="http://basecv.sourceforge.net/bcv-examples.tar.gz">BCV usage examples</a>
+<a href="http://basecv.sourceforge.net/bcv-examples.tar.gz">BCV usage examples</a>: vocabularies and sample chromatograms.
 <p>To run the examples, first set <tt>BCV_HOME</tt> variable to point to the <em>bcvhome</em> directory in the unpacked archive:
 <pre>
      export BCV_HOME=<em>/path/to/examples/bcvhome</em>
@@ -41,7 +41,7 @@
 in addition to the settings described in installation section.</p>
 </li>
 <li>
-todo: BCV online output format explanation 
+todo: BCVapp output format explanation: <a href="http://basecv.sourceforge.net/oops.odt">RUS</a>, <a href="http://basecv.sourceforge.net/oops.odt">ENG</a>. 
 </li>
 </ul>
 <div class ="push"></div>
