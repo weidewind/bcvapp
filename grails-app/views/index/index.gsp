@@ -23,7 +23,7 @@
 		<!-- End Google Analytics -->
 	</head>
 	<body>
-	<div id="wrap">
+	<div class = "wrap">
 
 <tmpl:menu />
 
@@ -57,7 +57,7 @@
 		 	<!--	</g:form> -->
 		</div>
 
-      <div id="push"></div>
+      <div class ="push"></div>
     </div>
     <tmpl:footer />
 	</body>
