@@ -231,6 +231,21 @@ table.fileTable  th {
 	 max-width: 300px !important;
 }вЂ‹
 
+div.wrap {
+	min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by it's height. Top - 0, right and left - auto, bottom - -60 px */
+    margin: 0 auto -60px; 
+}
+
+div.push {
+	height: 60px;
+}
+
+div.footer {
+	height: 60px;
+}
 
 
   
