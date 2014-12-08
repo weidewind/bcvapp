@@ -19,6 +19,9 @@ body, input {
 	font-family: Tahoma, Arial, sans-serif;
 	font-size: 90%;
 }
+
+
+
 body, select { 
 	font-family: Tahoma, Arial, sans-serif;
 	font-size: 90%;
@@ -228,12 +231,7 @@ table.fileTable  th {
 }
 
 
-вЂ‹div.mytooltip {
-	border:1px solid #FF00FF;
-	 max-width: 300px !important;
-}вЂ‹
-
-.wrapper {
+div.wrapper {
 	min-height: 100%;
     height: auto !important;
     height: 100%;
