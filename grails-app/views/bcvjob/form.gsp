@@ -90,7 +90,7 @@
 			
 			<div class ="push"></div>
     </div>
-    <tmpl:footer />
+    <g:render template="/index/footer" />
 		<script>
 		$(document).ready(function(){
 		
