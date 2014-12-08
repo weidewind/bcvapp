@@ -23,7 +23,7 @@
 		<!-- End Google Analytics -->
 	</head>
 	<body>
-	<div class = "wrap">
+	<div class = 'wrapper'>
 
 <tmpl:menu />
 

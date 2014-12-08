@@ -26,7 +26,7 @@
 		<!-- End Google Analytics -->
 	</head>
 	<body>
-	<div class = "wrap">
+	<div class = 'wrapper'>
 <g:render template="/index/menu" />
 		<h2>BCV pipeline</h2>
 		<noscript>
