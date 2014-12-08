@@ -26,6 +26,7 @@
 		<!-- End Google Analytics -->
 	</head>
 	<body>
+	<div class = "wrap">
 <g:render template="/index/menu" />
 		<h2>BCV pipeline</h2>
 		<noscript>
@@ -322,7 +323,9 @@
 		
 			
 		</script>
-	
+	<div class ="push"></div>
+    </div>
+    <tmpl:footer />
 	</body>
 </html>
 

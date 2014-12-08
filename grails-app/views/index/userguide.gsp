@@ -22,6 +22,7 @@
 		<!-- End Google Analytics -->
 </head>
 <body>
+<div class = "wrap">
 <tmpl:menu />
 
 <h2>Documentation and samples</h2>
@@ -43,6 +44,9 @@ in addition to the settings described in installation section.</p>
 todo: BCV online output format explanation 
 </li>
 </ul>
+<div class ="push"></div>
+    </div>
+    <tmpl:footer />
 </body>
 </html>
 

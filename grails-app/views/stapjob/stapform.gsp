@@ -24,6 +24,7 @@
 		<!-- End Google Analytics -->
 	</head>
 	<body>
+	<div class = "wrap">
 <g:render template="/index/menu" />
 		<h2>STAP</h2>
 		
@@ -259,7 +260,9 @@
 		
 			
 		</script>
-
+<div class ="push"></div>
+    </div>
+    <tmpl:footer />
 	</body>
 </html>
 

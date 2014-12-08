@@ -22,6 +22,7 @@
 		<!-- End Google Analytics -->
 </head>
 <body>
+<div class = "wrap">
 <tmpl:menu />
 
 <h2>Downloads and installation</h2>
@@ -79,6 +80,9 @@ Under Cygwin an additional setting may be required:
     export LC_ALL="C"
 </pre>
 </p>
+<div class ="push"></div>
+    </div>
+    <tmpl:footer />
 </body>
 </html>
 
