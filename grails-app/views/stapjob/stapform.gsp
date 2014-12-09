@@ -246,7 +246,7 @@
 				document.getElementById("distance_error").innerHTML = "";
 			}
 			else {
-				document.getElementById("distance_error").innerHTML = "Enter a comma-separated number. Valid range is 0.. 0,1" + dist_check;
+				document.getElementById("distance_error").innerHTML = "Enter a comma-separated number. Valid range is 0.. 0,1";
 				passed = false;
 			}
 		
