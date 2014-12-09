@@ -41,7 +41,7 @@
 				</p>
 				<p>The BCV software is distributed under the GNU GPL v. 3 license, and was successfully compiled on Linux and Windows Cygwin platforms.</p>
 			   	
-			   	<p>To enjoy the full functionality of BCV, <a href="${createLinkTo(dir: '/index', file: 'installguide.gsp')}">download and install </a> it locally. </p>
+			   	<p>To enjoy the full functionality of BCV, <a href="${createLinkTo(dir: '/index', file: 'installguide.gsp')}">download and install</a> it locally. </p>
 			   	<p>For base calling, mixture deconvolution and taxonomic assignment of 16S rRNA mixed chromatograms, use <a href="${createLinkTo(dir: '/bcvjob', file: 'form.gsp')}">BCV online</a>. </p>  
 			   	
 			   	<div class="citation">

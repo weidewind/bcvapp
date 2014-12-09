@@ -42,7 +42,10 @@
 			
 			<div class='panel'>
 			Upload chromatograms in .ab1 format
-			<p><label><input type='file' name='files' id='files' accept='.ab1' multiple onchange='displayList()' /></label>
+			<p>
+			<div class="inputWrapper">
+				<label><input type='file' name='files' id='files' class='files' accept='.ab1' multiple onchange='displayList()' /></label>
+			</div>
 			<div class = 'error'><label id = 'file_error'></label></div>
 			<p><table class='fileTable' id='fileTable'></table></div>
 			
