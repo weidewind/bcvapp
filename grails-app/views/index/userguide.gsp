@@ -28,8 +28,11 @@
 <h2>Documentation and samples</h2>
 <ul>
 <li>
+BCVapp output format explanation: <a href="http://basecv.sourceforge.net/BCVapp_presentation_rus.ppt">RUS</a>, <a href="http://basecv.sourceforge.net/BCVapp_presentation_eng.ppt">ENG</a>. 
+</li>
+<li>
 <!--<a href="${createLink(controller: 'job', action: 'downloadFile' , params: [path: '/store/home/bcvapp/bcvapp/web-app/pipeline/bcv-userguide.odt', contentType: 'application/vnd.oasis.opendocument.text', filename: 'bcv-userguide.odt'])}">BCV manual</a><a href="bcv-userguide.odt"></a>-->
-<a href="http://basecv.sourceforge.net/bcv-userguide.odt">BCV manual</a>: here you can find a brief algorithm overview and a detailed manual concerning the local version usage." 
+<a href="http://basecv.sourceforge.net/bcv-userguide.odt">BCV manual</a>: here you can find a brief algorithm overview and a detailed manual for the local version.
 <p></p>
 </li>
 <li>
@@ -40,9 +43,7 @@
 </pre>
 in addition to the settings described in installation section.</p>
 </li>
-<li>
-todo: BCVapp output format explanation: <a href="http://basecv.sourceforge.net/oops.odt">RUS</a>, <a href="http://basecv.sourceforge.net/oops.odt">ENG</a>. 
-</li>
+
 </ul>
 <div class ="push"></div>
     </div>
