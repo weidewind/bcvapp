@@ -237,7 +237,21 @@ table.fileTable  th {
     position: relative;
     cursor: pointer;
     /*Using a background color, but you can use a background image to represent a button*/
-    background-color: #B8D7E3;
+    
+
+text-align: center;
+
+color: buttontext;
+padding: 2px 6px 3px;
+border: 2px outset buttonface;
+border-image-source: initial;
+border-image-slice: initial;
+border-image-width: initial;
+border-image-outset: initial;
+border-image-repeat: initial;
+background-color: buttonface;
+box-sizing: border-box;
+-webkit-appearance: push-button;
 }
 .files {
     cursor: pointer;
@@ -247,7 +261,7 @@ table.fileTable  th {
     right: 0;
     z-index: 99;
     /*This makes the button huge. If you want a bigger button, increase the font size*/
-   /* font-size:50px;*/
+    font-size:50px;
     /*Opacity settings for all browsers*/
     opacity: 0;
     -moz-opacity: 0;
