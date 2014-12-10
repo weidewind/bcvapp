@@ -205,11 +205,13 @@
 					
 					if (checked){
 				    	document.getElementById(radioForwardId).checked = true;
+				    	document.getElementById(radioForwardId).value = "ON";
 						document.getElementById(radioReverseId).checked = false;
 					}	
 					else {
 						document.getElementById(radioReverseId).checked = true;					
 						document.getElementById(radioForwardId).checked = false;
+						document.getElementById(radioForwardId).value = "OFF";
 
 					}
 					
