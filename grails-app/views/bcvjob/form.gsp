@@ -184,14 +184,7 @@
 				//		newCheckBox.setAttribute("value","OFF");
 				//	}
 				//	newCheckBox.setAttribute("onchange","changeDirection(this)");
-				    if (checked){
-				    	radioForward.setAttribute("checked", "true");
-						radioReverse.setAttribute("checked", "false");
-					}	
-					else {
-						radioForward.setAttribute("checked", "false");
-						radioReverse.setAttribute("checked", "true");
-					}
+
 					//isForward.appendChild(newCheckBox);
 
 					
@@ -210,6 +203,15 @@
 					radioReverseLabel.innerHTML = "reverse";
 					isReverse.appendChild(radioReverseLabel);
 					
+					if (checked){
+				    	document.getElementById(radioForwardId).checked = true;
+						document.getElementById(radioReverseId).checked = false;
+					}	
+					else {
+						document.getElementById(radioReverseId).checked = true;					
+						document.getElementById(radioForwardId).checked = false;
+
+					}
 					
 					var deleterCell = row.insertCell(3);
 					var deleter = document.createElement("img");
