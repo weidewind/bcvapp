@@ -1,5 +1,5 @@
 class MyTagLib {
 	def redirectMainPage = {
-	  response.sendRedirect("${request.contextPath}/bcvjob/form.gsp/")
+	  response.sendRedirect("bcvapp.cmd.su/bcvjob/form.gsp/")
 	}
   }
