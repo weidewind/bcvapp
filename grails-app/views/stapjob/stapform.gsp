@@ -82,8 +82,9 @@
 			<div class = 'error'><label id = 'email_error'></label></div><p>
 			<div class="inputWrapper">Submit<input type='submit' name='submit' id = 'submit' class='submit value='Submit' />
 			</div>
-			</div>
 			<div class = 'error'><label id = 'final_error'></label></div><p>
+			</div>
+			
 		</g:form> 
 		<p></p>
 		<div class="citation"> Wu D, Hartman A, Ward N, Eisen JA (2008) An Automated Phylogenetic Tree-Based Small Subunit rRNA Taxonomy and Alignment Pipeline (STAP). PLoS

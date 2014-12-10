@@ -139,7 +139,8 @@
 				row.appendChild(th1);
 				
 				var th2 = document.createElement("th");
-				th2.innerHTML = "Forward primer";
+				//th2.innerHTML = "Forward primer";
+				  th2.innerHTML = "Primer direction";
 				row.appendChild(th2);
 				
 				
@@ -152,14 +153,25 @@
 					filename.innerHTML = files[index].name;
 					
 					var isForward = row.insertCell(1);
-					var newCheckBox = document.createElement("input");
-					var checkBoxId = "checkbox" + index;
+					var isReverse = row.insertCell(2);
+					//var newCheckBox = document.createElement("input");
+					//var checkBoxId = "checkbox" + index;
+					  var radioForward = document.createElement("input");
+					  var radioForwardId = "radioF" + index;
+					  var radioReverse = document.createElement("input");
+					  var radioReverseId = "radioR" + index;
+					  
+					  //var checked = check(files[index].name);
 					
-					var checked = check(files[index].name);
-					
-					newCheckBox.setAttribute("type","checkbox");
-					newCheckBox.setAttribute("id",checkBoxId);
-					newCheckBox.setAttribute("name",checkBoxId);
+				//	newCheckBox.setAttribute("type","checkbox");
+				//	newCheckBox.setAttribute("id",checkBoxId);
+				//	newCheckBox.setAttribute("name",checkBoxId);
+					radioForward.setAttribute("type","radio");
+					radioForward.setAttribute("id",radioForwardId);
+					radioForward.setAttribute("name",radioReverseId);
+					radioReverse.setAttribute("type","radio");
+					radioReverse.setAttribute("id",radioReverseId);
+					radioReverse.setAttribute("name",radioReverseId);
 					
 					if (checked){
 						newCheckBox.setAttribute("checked", "true");
@@ -169,19 +181,28 @@
 						newCheckBox.setAttribute("value","OFF");
 					}
 					newCheckBox.setAttribute("onchange","changeDirection(this)");
-					isForward.appendChild(newCheckBox);
-		
-					var newCheckBoxLabel = document.createElement("label");
-					var checkBoxLabelId = "labelcheckbox" + index;
-					newCheckBoxLabel.setAttribute("id",checkBoxLabelId);
-					if (checked){
-						newCheckBoxLabel.innerHTML = "forward";
-					}
-					else newCheckBoxLabel.innerHTML = "reverse";
-					isForward.appendChild(newCheckBoxLabel);
+					
+					//isForward.appendChild(newCheckBox);
+					isForward.appendChild(radioForward);
+					isReverse.appendChild(radioReverse);
+					
+				//	var newCheckBoxLabel = document.createElement("label");
+				//	var checkBoxLabelId = "labelcheckbox" + index;
+				//	newCheckBoxLabel.setAttribute("id",checkBoxLabelId);
+				//	if (checked){
+				//		newCheckBoxLabel.innerHTML = "forward";
+				//	}
+				//	else newCheckBoxLabel.innerHTML = "reverse";
+					
+					var radioForwardLabel = document.createElement("label");
+					radioForwardLabel.innerHTML = "forward";
+					isForward.appendChild(radioForwardLabel);
+					var radioReverseLabel = document.createElement("label");
+					radioReverseLabel.innerHTML = "reverse";
+					isReverse.appendChild(radioReverseLabel);
 					
 					
-					var deleterCell = row.insertCell(2);
+					var deleterCell = row.insertCell(3);
 					var deleter = document.createElement("img");
 					var deleterId = "deleter" + index;
 					deleter.setAttribute("id", deleterId);
