@@ -20,7 +20,7 @@ class JobController {
 
 
 	def index = {
-		//redirect(action: form)
+		redirect(action: form)
 	}
 
 	def submitbcv() {
