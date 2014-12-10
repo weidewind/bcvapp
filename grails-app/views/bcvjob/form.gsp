@@ -173,6 +173,9 @@
 					radioReverse.setAttribute("id",radioReverseId);
 					radioReverse.setAttribute("name",radioReverseId);
 					
+					isForward.appendChild(radioForward);
+					isReverse.appendChild(radioReverse);
+					
 				//	if (checked){
 				//		newCheckBox.setAttribute("checked", "true");
 				//		newCheckBox.setAttribute("value","ON");
@@ -190,8 +193,7 @@
 						radioReverse.setAttribute("checked", "true");
 					}
 					//isForward.appendChild(newCheckBox);
-					isForward.appendChild(radioForward);
-					isReverse.appendChild(radioReverse);
+
 					
 				//	var newCheckBoxLabel = document.createElement("label");
 				//	var checkBoxLabelId = "labelcheckbox" + index;
