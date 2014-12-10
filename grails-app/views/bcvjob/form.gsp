@@ -174,7 +174,7 @@
 					radioReverse.setAttribute("type","radio");
 					radioReverse.setAttribute("id",radioReverseId);
 					radioReverse.setAttribute("name",radioName);
-					radioForward.setAttribute("value", "r");
+					radioReverse.setAttribute("value", "r");
 					
 					isForward.appendChild(radioForward);
 					isReverse.appendChild(radioReverse);
