@@ -42,7 +42,9 @@
 			
 			<div class='panel'>
 			Upload sequences in .fasta format
-			<p><label><input type='file' name='files' id='files' accept='.fasta' multiple onchange='displayList()'/></label>
+			<p><div class="inputWrapper">Browse
+				<label><input type='file' name='files' id='files' class='files' accept='.ab1' multiple onchange='displayList()' /></label>
+			</div>
 			<div class = 'error'><label id = 'file_error'></label></div>
 			<p><table class='fileTable' id='fileTable'></table>
 			<p>Or enter fasta-formatted sequences
@@ -78,7 +80,9 @@
 			<label class ='collapsing-toggler'><input type='checkbox' name='checkbox_email' id='checkbox_email' value='ON' checked='checked' />Send results by E-mail</label>
 			<p><div class='collapsing-panel'><input type='text' name='email' id='email' size='50' maxlength='80' /></div>
 			<div class = 'error'><label id = 'email_error'></label></div><p>
-			<p><input type='submit' name='submit' id = 'submit' value='Submit' /></div>
+			<div class="inputWrapper">Submit
+				<input type='submit' name='submit' id = 'submit' value='Submit' />
+			</div>
 			<div class = 'error'><label id = 'final_error'></label></div><p>
 		</g:form> 
 		<p></p>

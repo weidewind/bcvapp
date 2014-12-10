@@ -88,7 +88,7 @@
 			<p><div class='collapsing-panel'><input type='text' name='email' id='email' size='50' maxlength='80' /></div>
 			<div class = 'error'><label id = 'email_error'></label></div><p>
 			<div class="inputWrapper">Submit
-				<p><input type='submit' name='submit' id = 'submit' value='Submit' />
+				<input type='submit' name='submit' id = 'submit' value='Submit' />
 			</div>
 			</div>
 			<div class = 'error'><label id = 'final_error'></label></div><p>
