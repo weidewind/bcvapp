@@ -10,7 +10,7 @@ class Bcvjob {
 	String vocabulary
 	float distance
 	String email
-	List checkbox
+	List radioF
 	String deletedFiles
 	Date dateCreated
 	
