@@ -161,7 +161,7 @@
 					  var radioReverse = document.createElement("input");
 					  var radioReverseId = "radioR" + index;
 					  
-					  //var checked = check(files[index].name);
+					  var checked = check(files[index].name);
 					
 				//	newCheckBox.setAttribute("type","checkbox");
 				//	newCheckBox.setAttribute("id",checkBoxId);
@@ -173,15 +173,22 @@
 					radioReverse.setAttribute("id",radioReverseId);
 					radioReverse.setAttribute("name",radioReverseId);
 					
-					if (checked){
-						newCheckBox.setAttribute("checked", "true");
-						newCheckBox.setAttribute("value","ON");
-					}
+				//	if (checked){
+				//		newCheckBox.setAttribute("checked", "true");
+				//		newCheckBox.setAttribute("value","ON");
+				//	}
+				//	else {
+				//		newCheckBox.setAttribute("value","OFF");
+				//	}
+				//	newCheckBox.setAttribute("onchange","changeDirection(this)");
+				    if (checked){
+				    	radioForward.setAttribute("checked", "true");
+						radioReverse.setAttribute("checked", "false");
+					}	
 					else {
-						newCheckBox.setAttribute("value","OFF");
+						radioForward.setAttribute("checked", "false");
+						radioReverse.setAttribute("checked", "true");
 					}
-					newCheckBox.setAttribute("onchange","changeDirection(this)");
-					
 					//isForward.appendChild(newCheckBox);
 					isForward.appendChild(radioForward);
 					isReverse.appendChild(radioReverse);
