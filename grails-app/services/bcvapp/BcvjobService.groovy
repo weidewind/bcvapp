@@ -84,7 +84,7 @@ class BcvjobService {
 		def counter = 0
 		for (f in fileList){
 			def stringDirection
-			if (directionList.get(counter) == null){
+			if (directionList.get(counter) == "r"){
 				stringDirection = "reverse"
 			}
 			else stringDirection = "forward"

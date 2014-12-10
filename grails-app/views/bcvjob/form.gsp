@@ -160,6 +160,7 @@
 					  var radioForwardId = "radioF" + index;
 					  var radioReverse = document.createElement("input");
 					  var radioReverseId = "radioR" + index;
+					  var radioName = "radio" + index
 					  
 					  var checked = check(files[index].name);
 					
@@ -168,10 +169,12 @@
 				//	newCheckBox.setAttribute("name",checkBoxId);
 					radioForward.setAttribute("type","radio");
 					radioForward.setAttribute("id",radioForwardId);
-					radioForward.setAttribute("name",radioReverseId);
+					radioForward.setAttribute("name",radioName);
+					radioForward.setAttribute("value", "f");
 					radioReverse.setAttribute("type","radio");
 					radioReverse.setAttribute("id",radioReverseId);
-					radioReverse.setAttribute("name",radioReverseId);
+					radioReverse.setAttribute("name",radioName);
+					radioForward.setAttribute("value", "r");
 					
 					isForward.appendChild(radioForward);
 					isReverse.appendChild(radioReverse);
@@ -205,13 +208,11 @@
 					
 					if (checked){
 				    	document.getElementById(radioForwardId).checked = true;
-				    	document.getElementById(radioForwardId).value = "ON";
 						document.getElementById(radioReverseId).checked = false;
 					}	
 					else {
 						document.getElementById(radioReverseId).checked = true;					
 						document.getElementById(radioForwardId).checked = false;
-						document.getElementById(radioForwardId).value = "OFF";
 
 					}
 					

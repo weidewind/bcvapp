@@ -45,8 +45,8 @@ class JobController {
 		def fileListRaw = request.getFiles('files')
 		def  directionListRaw = []
 		for (int i = 0; i < fileListRaw.size(); i++){
-			directionListRaw.add(params.('radioF' + i))
-			println("button " + i + " " + params.('radioF' + i))
+			directionListRaw.add(params.('radio' + i))
+			println ("button " + i + " " + params.('radio' + i))
 		}
 
 		// delete files (and directions for them) which were removed by user (file input is readonly!)
