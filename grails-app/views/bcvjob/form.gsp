@@ -28,7 +28,7 @@
 	<body>
 	<div class = 'wrapper'>
 <g:render template="/index/menu" />
-		<h2>BCV pipeline</h2>
+		<h2>BCV online</h2>
 		<noscript>
  For full functionality of this site it is necessary to enable JavaScript.
  Here are the <a href="http://www.enable-javascript.com/">
@@ -49,7 +49,7 @@
 			<div class = 'error'><label id = 'file_error'></label></div>
 			<p><table class='fileTable' id='fileTable'></table></div>
 			
-			<div class='header'> BCV options </div>
+			<div class='header'> Options </div>
 			
 			<div class='panel'>
 			<table class='options'>
@@ -164,7 +164,7 @@
 					  
 					  var checked = check(files[index].name);
 					
-				//	newCheckBox.setAttribute("type","checkbox");
+				//	newCheckBox.setAttribute("type","checkbox"); 
 				//	newCheckBox.setAttribute("id",checkBoxId);
 				//	newCheckBox.setAttribute("name",checkBoxId);
 					radioForward.setAttribute("type","radio");
@@ -258,16 +258,22 @@
 		
 			var primerHash = {	Un161: true,
 								un161: true,
+								161: true,
 								Un162: false,
 								un162: false,
+								162: false,
 								Un16sq: false,
 								un16sq: false,
 								"534R": false,
 								"534r": false,
+								R: false,
+								r: false,
 								"27F": true,
 								"27f": true,
 								"341F": true,
-								"341f": true
+								"341f": true,
+								F: true, 
+								f: true
 								};
 			if (probablePrimer in primerHash){
 				console.log(primerHash[probablePrimer]);

@@ -51,7 +51,7 @@
 			<p><textarea rows="4" cols="50" name="sequences" id="sequences"></textarea>
 			</div>
 			
-			<div class='header'> STAP options </div>
+			<div class='header'> Options </div>
 			
 			<div class='panel'>
 			<table class='options'>
