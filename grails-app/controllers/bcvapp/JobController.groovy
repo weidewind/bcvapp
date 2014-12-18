@@ -7,6 +7,7 @@ import java.util.concurrent.Future
 
 import groovy.lang.Closure;
 import groovy.transform.Synchronized;
+import grails.util.Holders
 
 
 class JobController {
@@ -114,16 +115,14 @@ class JobController {
 
 	}
 
-	def renderResults (String resultsPath, String sessionId){
+	def renderResults (String pathEnd, String sessionId){
 
-		def htmlContent = new File(resultsPath).text
+		def htmlContent = new File(Holders.config.absPath + pathEnd + "simple_results.html").text
 //		def matcher = (htmlContent =~ /<a href="(\.\/)*?">/);
 //		htmlContent = matcher.replaceAll("");
 //		matcher = (htmlContent =~ /Length: *?nt/);
 //		htmlContent = matcher.replaceAll("");
 //		render ("<a href='${createLink(action: 'downloadFile' , params: [path: zipResultsPath, contentType: 'application/zip', filename: 'results.zip'])}'>Download all files</a> (.fasta files, trees and the report itself) <p></p>")
-		def path = resultsPath.split('/')
-		def pathEnd = path[path.length-3] + "/" + path[path.length-2]
 		
 		def matcher = (htmlContent =~ /<a href=\"\.\//);
 		htmlContent = matcher.replaceAll('<a href="http://bcvapp.cmd.su/static/web-app/results/'+pathEnd+"/");
@@ -286,8 +285,9 @@ class JobController {
 
 		def resultsPath = jobService.getResults(job.sessionId)
 		def zipResultsPath = jobService.getZipResults(job.sessionId)
-		
-		def url = createLink(controller: 'job', action: 'renderResults', params: [resultsPath:resultsPath, sessionId:job.sessionId])
+		def path = resultsPath.split('/')
+		def pathEnd = path[path.length-3] + "/" + path[path.length-2]
+		def url = createLink(controller: 'job', action: 'renderResults', params: [pathEnd:pathEnd, sessionId:job.sessionId])
 		render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
 		
 		

@@ -157,7 +157,8 @@ class BcvjobService {
 				res.write("Your task was submitted at  ${new Date()}<p>") 
 				res.write("Running..<p>")
 				res.write("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")
-		}
+				res.close()
+			}
 
 		def returnCode = runPipeline(job.sessionId)
 		println (" bcv waiting pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
