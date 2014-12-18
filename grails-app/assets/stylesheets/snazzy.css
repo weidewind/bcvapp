@@ -258,7 +258,7 @@ box-sizing: border-box;
 	float: left;
 }
 
-.files, .submit {
+.files, .submit, .example {
     cursor: pointer;
     height: 100%;
     position:absolute;
