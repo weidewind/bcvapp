@@ -64,13 +64,13 @@ class BcvjobService {
 		new File(outputPath + "/simple_results.html").createNewFile()
 		File res = new File(outputPath + "/simple_results.html")
 		if (queueSize > 2 ){
-			res << ("Your task was submitted at  ${new Date()}${System.getProperty('line.separator')}") 
-			res << ("Waiting in queue..${System.getProperty('line.separator')}")
+			res << ("Your task was submitted at  ${new Date()}<p>") 
+			res << ("Waiting in queue..<p>")
 			res << ("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")
 		}
 		else {
-			res << ("Your task was submitted at  ${new Date()}${System.getProperty('line.separator')}") 
-			res << ("Running..${System.getProperty('line.separator')}")
+			res << ("Your task was submitted at  ${new Date()}<p>") 
+			res << ("Running..<p>")
 			res << ("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")		}
 		
 		for (f in fileList){
@@ -154,9 +154,9 @@ class BcvjobService {
 			
 
 			def res = new File(getResults(job.sessionId)).newWriter() 
-				res << ("Your task was submitted at  ${new Date()}${System.getProperty('line.separator')}") 
-				res << ("Running..${System.getProperty('line.separator')}")
-				res << ("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")
+				res.write("Your task was submitted at  ${new Date()}<p>") 
+				res.write("Running..<p>")
+				res.write("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")
 		}
 
 		def returnCode = runPipeline(job.sessionId)
