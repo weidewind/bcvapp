@@ -43,9 +43,13 @@
 			<div class='panel'>
 			Upload chromatograms in .ab1 format
 			<p>
-			<div class="inputWrapper">Browse
-				<label><input type='file' name='files' id='files' class='files' accept='.ab1' multiple onchange='displayList()' /></label>
+			<div class="inputWrapper"  id = 'browseWrapper'>Browse
+				<label><input type='file' name='files' id='files' class='files' accept='.ab1' multiple onchange='displayList("false")' /></label>
 			</div>
+			<div class="inputWrapper">Example
+				<label><input type='button' name='example' id='example' class='example' onclick='displayList("true")' /></label>
+			</div>
+			<input type="hidden" name="isExample" value="false">
 			<div class = 'error'><label id = 'file_error'></label></div>
 			<p><table class='fileTable' id='fileTable'></table></div>
 			
@@ -115,10 +119,12 @@
  	 	ga('send', 'event', 'button', 'click', 'submit');
 		});
 		
-			function displayList(){
+			function displayList(isExample){
 				document.getElementById("file_error").innerHTML = "";
 				var deleted = document.getElementById("deletedFiles");
 				deleted.value = "";
+				var exmpl = document.getElementById("isExample");
+				exmpl = isExample;
 				var files = document.getElementById("files").files || [];
 				var fileTable = document.getElementById("fileTable");
 				
@@ -156,7 +162,6 @@
 					var isReverse = row.insertCell(2);
 					//var newCheckBox = document.createElement("input");
 					//var checkBoxId = "checkbox" + index;
-					//comment
 					  var radioForward = document.createElement("input");
 					  var radioForwardId = "radioF" + index;
 					  var radioReverse = document.createElement("input");

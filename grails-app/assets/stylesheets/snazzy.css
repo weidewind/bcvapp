@@ -253,6 +253,11 @@ background-color: buttonface;
 box-sizing: border-box;
 -webkit-appearance: push-button;
 }
+
+#browseWrapper {
+	float: left;
+}
+
 .files, .submit {
     cursor: pointer;
     height: 100%;

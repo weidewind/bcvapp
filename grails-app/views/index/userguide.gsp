@@ -32,12 +32,16 @@ BCVapp (online version) output format explanation: <a href="http://basecv.source
 <p></p>
 </li>
 <li>
+BCVapp usage example: <a href="http://basecv.sourceforge.net/BCVapp_presentation_rus.pdf">RUS</a>, <a href="http://basecv.sourceforge.net/BCVapp_presentation_eng.pdf">ENG</a>. 
+<p></p>
+</li>
+<li>
 <!--<a href="${createLink(controller: 'job', action: 'downloadFile' , params: [path: '/store/home/bcvapp/bcvapp/web-app/pipeline/bcv-userguide.odt', contentType: 'application/vnd.oasis.opendocument.text', filename: 'bcv-userguide.odt'])}">BCV manual</a><a href="bcv-userguide.odt"></a>-->
 <a href="http://basecv.sourceforge.net/bcv-userguide.odt">BCV manual</a>: here you can find a brief algorithm overview and a detailed manual for the standalone version.
 <p></p>
 </li>
 <li>
-<a href="http://basecv.sourceforge.net/bcv-examples.tar.gz">BCV usage examples</a>: vocabularies and sample chromatograms.
+<a href="http://basecv.sourceforge.net/bcv-examples.tar.gz">BCV usage examples</a>: sample vocabularies and chromatograms for the standalone version.
 <p>To run the examples, first set <tt>BCV_HOME</tt> variable to point to the <em>bcvhome</em> directory in the unpacked archive:
 <pre>
      export BCV_HOME=<em>/path/to/examples/bcvhome</em>

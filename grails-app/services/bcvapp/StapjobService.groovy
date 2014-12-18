@@ -63,6 +63,18 @@ class StapjobService {
 		new File (inputPath).mkdirs()
 		new File (outputPath).mkdir()
 
+		new File(outputPath + "/simple_results.html").createNewFile()
+		File res = new File(outputPath + "/simple_results.html")
+		if (queueSize > 2 ){
+			res << ("Your task was submitted at  ${new Date()}<p>")
+			res << ("Waiting in queue..<p>")
+			res << ("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")
+		}
+		else {
+			res << ("Your task was submitted at  ${new Date()}<p>")
+			res << ("Running..<p>")
+			res << ("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")		}
+		
 		if (fileList != null){
 			for (f in fileList){
 				new File (outputPath + "/" + f.getOriginalFilename().replaceAll(Pattern.compile('\\..*'), '')).mkdir()
@@ -404,6 +416,12 @@ class StapjobService {
 
 			}
 			println (" stap finished waiting in queue; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+			
+			def res = new File(getResults(job.sessionId)).newWriter()
+				res.write("Your task was submitted at  ${new Date()}<p>")
+				res.write("Running..<p>")
+				res.write("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")
+				res.close()
 		}
 
 		def returnCode = runSTAP(job.sessionId)
