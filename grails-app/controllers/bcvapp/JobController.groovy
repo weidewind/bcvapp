@@ -114,17 +114,19 @@ class JobController {
 
 	}
 
-	def renderResults (Object jobService, String sessionId){
+	def renderResults (String resultsPath, String sessionId){
 
-		def htmlContent = new File(jobService.getResults(sessionId)).text
+		def htmlContent = new File(resultsPath).text
 //		def matcher = (htmlContent =~ /<a href="(\.\/)*?">/);
 //		htmlContent = matcher.replaceAll("");
 //		matcher = (htmlContent =~ /Length: *?nt/);
 //		htmlContent = matcher.replaceAll("");
 //		render ("<a href='${createLink(action: 'downloadFile' , params: [path: zipResultsPath, contentType: 'application/zip', filename: 'results.zip'])}'>Download all files</a> (.fasta files, trees and the report itself) <p></p>")
-
+		def path = resultsPath.split('/')
+		def pathEnd = path[path.length-3] + "/" + path[path.length-2]
+		
 		def matcher = (htmlContent =~ /<a href=\"\.\//);
-		htmlContent = matcher.replaceAll('<a href="http://bcvapp.cmd.su/static/web-app/results/'+sessionId+"/");
+		htmlContent = matcher.replaceAll('<a href="http://bcvapp.cmd.su/static/web-app/results/'+pathEnd+"/");
 		
 		render (text: htmlContent, contentType:"text/html", encoding:"UTF-8")
 		
@@ -284,7 +286,8 @@ class JobController {
 
 		def resultsPath = jobService.getResults(job.sessionId)
 		def zipResultsPath = jobService.getZipResults(job.sessionId)
-		def url = createLink(controller: 'job', action: 'renderResults', params: [jobService:jobService, sessionId:job.sessionId])
+		
+		def url = createLink(controller: 'job', action: 'renderResults', params: [resultsPath:resultsPath, sessionId:job.sessionId])
 		render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
 		
 		
