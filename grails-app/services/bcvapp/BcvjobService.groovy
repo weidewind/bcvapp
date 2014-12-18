@@ -64,11 +64,14 @@ class BcvjobService {
 		new File(outputPath + "/simple_results.html").createNewFile()
 		File res = new File(outputPath + "/simple_results.html")
 		if (queueSize > 2 ){
-			res << ("Your task was submitted at  ${new Date()} and now is waiting in queue; please, bookmark this page to see the results later. Refresh the page to check if they are ready.")
+			res << ("Your task was submitted at  ${new Date()}\n") 
+			res << ("Waiting in queue..")
+			res << ("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")
 		}
 		else {
-			res << ("Your task was submitted at  ${new Date()} and now is running; please, bookmark this page to see the results later. Refresh the page to check if they are ready.")		
-		}
+			res << ("Your task was submitted at  ${new Date()}\n") 
+			res << ("Running..")
+			res << ("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")		}
 		
 		for (f in fileList){
 			new File (outputPath + "/" + f.getOriginalFilename().replaceAll(Pattern.compile('\\..*'), '')).mkdir()
@@ -150,8 +153,9 @@ class BcvjobService {
 			println (" bcv finished waiting in queue; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 			
 			def res = new File(getResults()).newWriter() 
-			res << ("Your task was submitted at  ${new Date()} and now is running; please, bookmark this page to see the results later. Refresh the page to check if they are ready.")		
-
+				res << ("Your task was submitted at  ${new Date()}\n") 
+				res << ("Running..")
+				res << ("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")
 		}
 
 		def returnCode = runPipeline(job.sessionId)
