@@ -49,7 +49,7 @@ class BcvjobService {
 		def folderPath = "${absPath}${sessionId}"
 		def inputPath = folderPath + "/" + input
 		def outputPath = folderPath + "/" + output
-
+		
 		addResultsPath(sessionId, outputPath)
 
 		inputLine[0].value = inputPath
@@ -60,6 +60,9 @@ class BcvjobService {
 
 		new File (inputPath).mkdirs()
 		new File (outputPath).mkdir()
+		new File(outputPath + "/simple_results.html").createNewFile()
+		File res = new File(outputPath + "/simple_results.html")
+		res << ("Your task was submitted at  ${new Date()}; please, bookmark this page to see the results later. Refresh the page to check if they are ready.")
 
 		for (f in fileList){
 			new File (outputPath + "/" + f.getOriginalFilename().replaceAll(Pattern.compile('\\..*'), '')).mkdir()
@@ -222,8 +225,9 @@ class BcvjobService {
 	def runPipeline(String sessionId){
 
 		println (" going to run bcv pipeline, sessionId ${sessionId}")
-		def command = "perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
+		//def command = "perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
 
+		def command = "cmd /c ping 1.1.1.1 -n 1 -w 3000 > nul"
 //		try {
 			holderService.procs[sessionId] = command.execute()                 // Call *execute* on the string
 			holderService.procs[sessionId].consumeProcessOutput( System.out, System.err ) //31.10

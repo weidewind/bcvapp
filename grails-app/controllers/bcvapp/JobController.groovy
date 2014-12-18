@@ -37,7 +37,8 @@ class JobController {
 
 	def submit(Object job, Object jobService) {
 
-		def sessionId = jobService.createSessionId()
+		//def sessionId = jobService.createSessionId()
+		def sessionId = "8abc"
 		job.setSessionId(sessionId)
 
 		// Get files and directions
@@ -93,18 +94,20 @@ class JobController {
 		}
 		else {
 			
-			def killingPool = new ForkJoinPool(1)
-			GParsPool.withExistingPool (killingPool, {
-				killIfAbandoned.callAsync(job)
-				killingPool.shutdown()
-		    })
+//			def killingPool = new ForkJoinPool(1)
+//			GParsPool.withExistingPool (killingPool, {
+//				killIfAbandoned.callAsync(job)
+//				killingPool.shutdown()
+//		    })
 				
-			if(queueSize > 2){		
-					render redirect (action: "askforemail", id: job.id, params:[task:job.class, sessionId:job.sessionId])
-					//deleted return
-			}
+//			if(queueSize > 2){		
+//					render redirect (action: "askforemail", id: job.id, params:[task:job.class, sessionId:job.sessionId])
+//					//deleted return
+//			}
 
-			else run (job, jobService)	
+//			else run (job, jobService)	
+			
+			run (job, jobService)
 		}
 
 
@@ -113,11 +116,11 @@ class JobController {
 	def renderResults (String resultsPath, String zipResultsPath){
 
 		def htmlContent = new File(resultsPath).text
-		def matcher = (htmlContent =~ /<a href.*?<br>/);
-		htmlContent = matcher.replaceAll("");
-		matcher = (htmlContent =~ /Length: *?nt/);
-		htmlContent = matcher.replaceAll("");
-		render ("<a href='${createLink(action: 'downloadFile' , params: [path: zipResultsPath, contentType: 'application/zip', filename: 'results.zip'])}'>Download all files</a> (.fasta files, trees and the report itself) <p></p>")
+//		def matcher = (htmlContent =~ /<a href.*?<br>/);
+//		htmlContent = matcher.replaceAll("");
+//		matcher = (htmlContent =~ /Length: *?nt/);
+//		htmlContent = matcher.replaceAll("");
+//		render ("<a href='${createLink(action: 'downloadFile' , params: [path: zipResultsPath, contentType: 'application/zip', filename: 'results.zip'])}'>Download all files</a> (.fasta files, trees and the report itself) <p></p>")
 		render (text: htmlContent, contentType:"text/html", encoding:"UTF-8")
 		
 		
@@ -257,33 +260,29 @@ class JobController {
 
 		def GParsPool = new GParsPool()
 		def pool = new ForkJoinPool(1)
-		GParsPool.withExistingPool (pool, {
-			jobService.getPipeline.callAsync(job)
-			pool.shutdown()
-			
-		})
-//		def killingPool = new ForkJoinPool(1)
-//		GParsPool.withExistingPool (killingPool, {
-//			killIfAbandoned.callAsync(job)
-//			killingPool.shutdown()
-//		})
 		
-		def start = new Date(System.currentTimeMillis())
-		println ("going to render view  ")
-		//def murl = createLink(controller: 'job', action: 'waiting', params:[start:start])
-		//render(contentType: 'text/html', text: "<script>window.location.href='$murl'</script>")
-		try {
-			
-//		def url = createLink(view: "waiting", model:[start:start, sessionId:job.sessionId, task:job.class, waitingType:"work"])
-//		render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
-		render view: "waiting", model:[start:start, sessionId:job.sessionId, task:job.class, waitingType:"work"]
+		def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+		
+		if (queueSize > 2){
+			GParsPool.withExistingPool (pool, {
+				jobService.getWaitingPipeline.callAsync(job)
+				pool.shutdown()
+			})
 		}
-		catch(Exception e){
-			e.printStackTrace()
-			println "Cannot render view.."
+		else {
+			GParsPool.withExistingPool (pool, {
+				jobService.getPipeline.callAsync(job)
+				pool.shutdown()
+			})
 		}
 
-		//render "<p>Please, don't close this page. Your task was submitted at ${start}.</p>"
+		
+		def start = new Date(System.currentTimeMillis())
+
+		def resultsPath = jobService.getResults(job.sessionId)
+		def zipResultsPath = jobService.getZipResults(job.sessionId)
+		def url = createLink(controller: 'job', action: 'renderResults', params: [resultsPath: resultsPath, zipResultsPath:zipResultsPath])
+		render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
 		
 		
 		
