@@ -126,7 +126,13 @@
 				deleted.value = "";
 				var exmpl = document.getElementById("isExample");
 				exmpl = isExample;
-				var files = document.getElementById("files").files || [];
+				
+				if (isExample === "true"){
+					var files = exampleFiles();
+				}
+				else {
+				    var files = document.getElementById("files").files || [];
+				}
 				var fileTable = document.getElementById("fileTable");
 				
 				for(var i = fileTable.rows.length;i>0;i--) {
@@ -235,6 +241,18 @@
 		
 				
 			}
+			
+			
+			function exampleFiles(){
+				var file1 = new Object();
+				file1.name = "1-500_Pleural_fluid.ab1";
+				var file2 = new Object();
+				file2.name = "300-800_Pleural_fluid.ab1";
+				var files = [file1, file2];
+				return files;
+			}
+			
+			
 			function changeDirection(c){
 				var labelId = "label" + c.id;
 				if(c.checked){
