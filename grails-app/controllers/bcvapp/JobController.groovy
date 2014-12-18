@@ -37,8 +37,8 @@ class JobController {
 
 	def submit(Object job, Object jobService) {
 
-		//def sessionId = jobService.createSessionId()
-		def sessionId = "8abc"
+		def sessionId = jobService.createSessionId()
+		//def sessionId = "8abc"
 		job.setSessionId(sessionId)
 
 		// Get files and directions
