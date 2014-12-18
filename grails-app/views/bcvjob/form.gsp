@@ -156,6 +156,7 @@
 					var isReverse = row.insertCell(2);
 					//var newCheckBox = document.createElement("input");
 					//var checkBoxId = "checkbox" + index;
+					//comment
 					  var radioForward = document.createElement("input");
 					  var radioForwardId = "radioF" + index;
 					  var radioReverse = document.createElement("input");
