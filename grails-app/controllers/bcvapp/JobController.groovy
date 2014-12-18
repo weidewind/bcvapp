@@ -83,9 +83,10 @@ class JobController {
 		
 		
 		job.save()
-		jobService.prepareDirectory(job, sessionId, fileList, directionList)
-
 		def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+		
+		jobService.prepareDirectory(job, sessionId, fileList, directionList, queueSize)
+
 
 		
 		
@@ -107,7 +108,7 @@ class JobController {
 
 //			else run (job, jobService)	
 			
-			run (job, jobService)
+			run (job, jobService, queueSize)
 		}
 
 
@@ -256,13 +257,11 @@ class JobController {
 		render "ok"
 	}
 	
-	def run (Object job, Object jobService) {
+	def run (Object job, Object jobService, Integer queueSize) {
 
 		def GParsPool = new GParsPool()
 		def pool = new ForkJoinPool(1)
-		
-		def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
-		
+				
 		if (queueSize > 2){
 			GParsPool.withExistingPool (pool, {
 				jobService.getWaitingPipeline.callAsync(job)

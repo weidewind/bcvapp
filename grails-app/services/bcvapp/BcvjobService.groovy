@@ -30,7 +30,7 @@ class BcvjobService {
 	def outputMap = [:]
 
 
-	def prepareDirectory(Bcvjob job, String sessionId, List fileList, List directionList){
+	def prepareDirectory(Bcvjob job, String sessionId, List fileList, List directionList, Integer queueSize){
 
 		def configFile = new File (configPath)
 
@@ -60,10 +60,16 @@ class BcvjobService {
 
 		new File (inputPath).mkdirs()
 		new File (outputPath).mkdir()
+		
 		new File(outputPath + "/simple_results.html").createNewFile()
 		File res = new File(outputPath + "/simple_results.html")
-		res << ("Your task was submitted at  ${new Date()}; please, bookmark this page to see the results later. Refresh the page to check if they are ready.")
-
+		if (queueSize > 2 ){
+			res << ("Your task was submitted at  ${new Date()} and now is waiting in queue; please, bookmark this page to see the results later. Refresh the page to check if they are ready.")
+		}
+		else {
+			res << ("Your task was submitted at  ${new Date()} and now is running; please, bookmark this page to see the results later. Refresh the page to check if they are ready.")		
+		}
+		
 		for (f in fileList){
 			new File (outputPath + "/" + f.getOriginalFilename().replaceAll(Pattern.compile('\\..*'), '')).mkdir()
 		}
