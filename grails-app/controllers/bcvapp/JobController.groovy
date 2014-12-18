@@ -83,7 +83,7 @@ class JobController {
 		
 		
 		job.save()
-		def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+		int queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
 		
 		jobService.prepareDirectory(job, sessionId, fileList, directionList, queueSize)
 
