@@ -120,6 +120,7 @@
 		});
 		
 			function displayList(isExample){
+			console.log(isExample);
 				document.getElementById("file_error").innerHTML = "";
 				var deleted = document.getElementById("deletedFiles");
 				deleted.value = "";
