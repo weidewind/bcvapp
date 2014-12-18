@@ -262,6 +262,7 @@ box-sizing: border-box;
 .files, .submit, .example {
     cursor: pointer;
     height: 100%;
+    width: 100%;
     position:absolute;
     top: 0;
     right: 0;
