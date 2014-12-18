@@ -148,6 +148,10 @@ class BcvjobService {
 
 			}
 			println (" bcv finished waiting in queue; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+			
+			def res = new File(getResults()).newWriter() 
+			res << ("Your task was submitted at  ${new Date()} and now is running; please, bookmark this page to see the results later. Refresh the page to check if they are ready.")		
+
 		}
 
 		def returnCode = runPipeline(job.sessionId)
