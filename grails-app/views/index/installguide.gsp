@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <meta name="description" content="BCV project homepage" />
-  <meta name="keywords" content="DNA, sequencing, basecaller, chromatogram, mixture, deconvolution, Sanger, HMM" />
+  <meta name="keywords" content="DNA, sequencing, basecaller, chromatogram, mixture, deconvolution, Sanger, HMM, BCV" />
   <meta name="owner" content="favorov@sensi.org" />
   		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='stylesheets' file='snazzy.css' /> " />
   		<link rel="shortcut icon" href="<g:createLinkTo dir='images', file='myfavicon.ico'  />" type="image/x-icon" /> 
