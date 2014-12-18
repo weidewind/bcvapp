@@ -117,7 +117,7 @@ class JobController {
 
 	def renderResults (String pathEnd, String sessionId){
 
-		def htmlContent = new File(Holders.config.absPath + pathEnd + "simple_results.html").text
+		def htmlContent = new File(Holders.config.absPath + pathEnd + "/simple_results.html").text
 //		def matcher = (htmlContent =~ /<a href="(\.\/)*?">/);
 //		htmlContent = matcher.replaceAll("");
 //		matcher = (htmlContent =~ /Length: *?nt/);
