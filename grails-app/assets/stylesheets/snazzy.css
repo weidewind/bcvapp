@@ -232,7 +232,7 @@ table.fileTable  th {
 
 .inputWrapper {
     height: 27px;
-    width: 64px;
+    width: 67px;
     overflow: hidden;
     position: relative;
     cursor: pointer;
@@ -243,6 +243,7 @@ text-align: center;
 
 color: buttontext;
 padding: 2px 6px 3px;
+margin-right: 10px;
 border: 2px outset buttonface;
 border-image-source: initial;
 border-image-slice: initial;
