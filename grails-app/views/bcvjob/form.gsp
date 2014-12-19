@@ -381,7 +381,7 @@
 			
 			
 			var files_test = true;
-			if ((document.getElementById("files").value === "" || files.length === wereDeleted) & (exampleFiles.length <= wereDeleted)){
+			if ((document.getElementById("files").value === "" || files.length === wereDeleted) & (isExample.value === "false" || exampleFiles.value.length <= wereDeleted)){
 				document.getElementById("file_error").innerHTML = "Select at least one file";
 				files_test = false;
 			}
