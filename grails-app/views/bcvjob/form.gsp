@@ -7,7 +7,7 @@
 
 		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='stylesheets' file='snazzy.css' /> " />
 		<link rel="shortcut icon" href="<g:createLinkTo dir='images', file='myfavicon.ico' />" type="image/x-icon" /> 
-		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.mi.js' />"></script>
+		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.min.js' />"></script>
 		<input type="hidden" name="tasktype" value="bcvstap">
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		
@@ -20,7 +20,6 @@
 
   ga('create', 'UA-39054482-3', 'auto');
   ga('send', 'pageview');
-
 </script>
 		<!-- End Google Analytics -->
 	</head>
