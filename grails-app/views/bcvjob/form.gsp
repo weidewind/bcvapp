@@ -163,18 +163,19 @@
 					var rowId = "row" + index;
 					row.setAttribute("id", rowId);
 					var filename = row.insertCell(0);
-					filename.innerHTML = files[index].name;
-					
 					if (isExample === "true"){
-						var downloadCell = row.insertCell(-1);
+					//	var downloadCell = row.insertCell(-1);
 						var download = document.createElement("img");
 						var downloadId = "download" + index;
 						download.setAttribute("id", downloadId);
-						download.setAttribute("src", "${createLinkTo (dir:'images', file:'download.png')}");
+						download.setAttribute("src", "${createLinkTo (dir:'images', file:'download2.png')}");
 						download.setAttribute("title", "Download");
 						download.setAttribute("onclick", "downloadFile(this)");
-						downloadCell.appendChild(download);
+						filename.appendChild(download);
 					}
+					filename.innerHTML = files[index].name;
+					
+
 					
 					var isForward = row.insertCell(1);
 					var isReverse = row.insertCell(2);
