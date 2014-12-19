@@ -175,7 +175,7 @@
 						
 						var link = document.createElement("a");
 					<--var createLink = "${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:"${files[index].name}"])}"; -->
-						console.log ("${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:"${files[index].name}"])}");
+						console.log ("${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:${files[index].name}])}");
 						
 						link.setAttribute("href", "${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:"${files[index].name}"])}");
 					
@@ -314,7 +314,7 @@
 				var row = document.getElementById(rowId);
 				var filename = row.cells[1].innerHTML;
 				console.log(filename);
-	      		//${remoteFunction(controller: 'job', action: 'downloadChrom', params: '{filename:filename}')};
+	      		<-- ${remoteFunction(controller: 'job', action: 'downloadChrom', params: '{filename:filename}')}; -->
 	
 			}
 			
