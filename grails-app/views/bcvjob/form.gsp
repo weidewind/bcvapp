@@ -173,10 +173,10 @@
 					if (isExample === "true"){
 						var downloadCell = row.insertCell(cellIndex);
 						
-						var link = document.createElement("a");
-						console.log ("${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:files[index].name])}");
+				//		var link = document.createElement("a");
+				//		console.log ("${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:files[index].name])}");
 						
-						link.setAttribute("href", "${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:"${files[index].name}"])}");
+				//		link.setAttribute("href", "${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:"${files[index].name}"])}");
 					
 						var downloadImg = document.createElement("img");
 						var downloadImgId = "download" + index;
@@ -184,8 +184,8 @@
 						downloadImg.setAttribute("src", "${createLinkTo (dir:'images', file:'mydownload.png')}");
 						downloadImg.setAttribute("title", "Download");
 
-						link.innerHTML = downloadImg;
-						downloadCell.appendChild(link);
+			//			link.innerHTML = downloadImg;
+			//			downloadCell.appendChild(link);
 						
 //							download.setAttribute("onclick", "downloadFile(this)"); 
 //							downloadCell.appendChild(download); 
