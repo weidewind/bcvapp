@@ -382,11 +382,13 @@
 			
 			
 			var files_test = true;
+			var isExample = document.getElementById("isExample")
+			var exampleFiles = document.getElementById("exampleFiles")
 			console.log("isExample " + isExample);
 			console.log("isExample.value " + isExample.value);
 			//console.log("exampleFiles.value.length " + exampleFiles.value.length);
-			console.log("exampleFiles.length " + exampleFiles.length);
-			if ((document.getElementById("files").value === "" || files.length === wereDeleted) & (isExample.value === "false" || exampleFiles.length <= wereDeleted)){
+			console.log("exampleFiles.value " + exampleFiles.value);
+			if ((document.getElementById("files").value === "" || files.length === wereDeleted) & (isExample.value === "false" || exampleFiles.value.length <= wereDeleted)){
 				document.getElementById("file_error").innerHTML = "Select at least one file";
 				files_test = false;
 			}
