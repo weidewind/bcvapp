@@ -162,23 +162,25 @@
 					var row = fileTable.insertRow(index+2);
 					var rowId = "row" + index;
 					row.setAttribute("id", rowId);
-					var filename = row.insertCell(0);
+					var cellIndex = 0;
 					if (isExample === "true"){
-					//	var downloadCell = row.insertCell(-1);
+						var downloadCell = row.insertCell(cellIndex);
 						var download = document.createElement("img");
 						var downloadId = "download" + index;
 						download.setAttribute("id", downloadId);
 						download.setAttribute("src", "${createLinkTo (dir:'images', file:'download2.png')}");
 						download.setAttribute("title", "Download");
 						download.setAttribute("onclick", "downloadFile(this)");
-						filename.appendChild(download);
+						downloadCell.appendChild(download);
+						cellIndex = 1;
 					}
+					var filename = row.insertCell(cellIndex);
 					filename.innerHTML = files[index].name;
 					
 
 					
-					var isForward = row.insertCell(1);
-					var isReverse = row.insertCell(2);
+					var isForward = row.insertCell(cellIndex+1);
+					var isReverse = row.insertCell(cellIndex+2);
 					//var newCheckBox = document.createElement("input");
 					//var checkBoxId = "checkbox" + index;
 					  var radioForward = document.createElement("input");
@@ -241,7 +243,7 @@
 
 					}
 					
-					var deleterCell = row.insertCell(3);
+					var deleterCell = row.insertCell(cellIndex+3);
 					var deleter = document.createElement("img");
 					var deleterId = "deleter" + index;
 					deleter.setAttribute("id", deleterId);
