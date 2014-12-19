@@ -99,6 +99,8 @@
 			
 			<div class ="push"></div>
     </div>
+     <div id="nonsense" style="display: none;">
+        </div>   
     <g:render template="/index/footer" />
 		<script>
 		$(document).ready(function(){
@@ -253,7 +255,7 @@
 					var deleter = document.createElement("img");
 					var deleterId = "deleter" + index;
 					deleter.setAttribute("id", deleterId);
-					deleter.setAttribute("src", "${createLinkTo (dir:'images', file:'deleter.png')}");
+					deleter.setAttribute("src", "${createLinkTo (dir:'images', file:'deleter2.png')}");
 					deleter.setAttribute("title", "Delete");
 					deleter.setAttribute("onclick", "deleteFile(this)");
 					deleterCell.appendChild(deleter);
@@ -299,9 +301,10 @@
 				var index = parseInt(f.id.substring(8));
 				var rowId = "row" + index;
 				var row = document.getElementById(rowId);
-				console.log(row.cells[1].innerHTML);
-				console.log("trying");
-				console.log(row.cells[0].innerHTML);
+				var filename = row.cells[1].innerHTML;
+				console.log(filename);
+	      		${remoteFunction(controller: 'job', action: 'downloadChrom', update: 'nonsense', params: '{filename:filename}')};
+	
 			}
 			
 			function check(str){

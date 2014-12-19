@@ -107,10 +107,12 @@ environments {
     development {
         grails.logging.jul.usebridge = true
 		absPath = "C:/Users/weidewind/workspace/grails/"
+		storePath = "C:/Users/weidewind/workspace/grails/"
     }
     production {
         grails.logging.jul.usebridge = false
 		absPath = "/store/home/bcvapp/bcvapp/web-app/results/"
+		storePath = "/store/home/bcvapp/bcvapp/web-app/examples/"
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }

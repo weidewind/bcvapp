@@ -168,6 +168,10 @@ class JobController {
 
 	}
 	
+	def downloadChrom(String filename){
+		downloadFile(Holders.config.storePath + filename, "application/x-dna", filename)
+	}
+	
 	def askforemail = {
 	
 
