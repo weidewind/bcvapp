@@ -290,9 +290,9 @@
 				var index = parseInt(f.id.substring(8));
 				var rowId = "row" + index;
 				var row = document.getElementById(rowId);
-				console.log(row[1].innerHTML);
+				console.log(row.cells[1].innerHTML);
 				console.log("trying");
-				console.log(row[0].innerHTML);
+				console.log(row.cells[0].innerHTML);
 			}
 			
 			function check(str){
