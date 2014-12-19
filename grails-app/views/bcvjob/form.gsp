@@ -48,7 +48,7 @@
 				<label><input type='button' name='example' id='example' class='example' onclick='displayList("true")' /></label>
 			</div>
 			<input type="hidden" name="isExample" id="isExample" value="false">
-			<input type="hidden" name="exampleFiles" id="exampleFiles" value='exampleFiles()'>
+			<input type="hidden" name="exampleFiles" id="exampleFiles" value="none">
 			<div class = 'error'><label id = 'file_error'></label></div>
 			<p><table class='fileTable' id='fileTable'></table></div>
 			
@@ -133,6 +133,7 @@
 				
 				if (isExample === "true"){
 					var files = exampleFiles();
+					exmplFiles.value = exampleFiles();
 				}
 				else {
 				    var files = document.getElementById("files").files || [];
