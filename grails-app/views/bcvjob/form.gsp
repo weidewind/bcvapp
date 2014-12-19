@@ -171,13 +171,18 @@
 					var cellIndex = 0;
 					if (isExample === "true"){
 						var downloadCell = row.insertCell(cellIndex);
+						var link = document.createElement("a");
+						var filename = files[index].name;				
+						link.setAttribute("href", "${createLink(controller: 'job', action: 'downloadChrom')}?filename=" + escape(filename));
+
 						var download = document.createElement("img");
 						var downloadId = "download" + index;
 						download.setAttribute("id", downloadId);
 						download.setAttribute("src", "${createLinkTo (dir:'images', file:'mydownload.png')}");
 						download.setAttribute("title", "Download");
-						download.setAttribute("onclick", "downloadFile(this)");
-						downloadCell.appendChild(download);
+						
+						link.innerHTML = download;
+						downloadCell.appendChild(link);
 						cellIndex = 1;
 					}
 					var filename = row.insertCell(cellIndex);
