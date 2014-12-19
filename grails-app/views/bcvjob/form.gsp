@@ -249,6 +249,11 @@
 						document.getElementById(radioForwardId).checked = false;
 					}
 					
+					if (isExample === "true"){
+						document.getElementById(radioReverseId).disabled = true;					
+						document.getElementById(radioForwardId).disabled = true;
+					}
+					
 					var deleterCell = row.insertCell(cellIndex+3);
 					var deleter = document.createElement("img");
 					var deleterId = "deleter" + index;
