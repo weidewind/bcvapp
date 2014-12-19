@@ -149,7 +149,7 @@
 				
 				if (isExample === "true"){
 					var th0 = document.createElement("th");
-					th1.innerHTML = "";
+					th0.innerHTML = "";
 					row.appendChild(th0);
 				}
 				
