@@ -159,7 +159,7 @@
 				row.appendChild(th1);
 				
 				var th2 = document.createElement("th");
-				//th2.innerHTML = "Forward primer";
+				<--th2.innerHTML = "Forward primer"; -->
 				  th2.innerHTML = "Primer direction";
 				row.appendChild(th2);
 				
@@ -174,7 +174,7 @@
 						var downloadCell = row.insertCell(cellIndex);
 						
 						var link = document.createElement("a");
-						//var createLink = "${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:${files[index].name}])}";
+					<--var createLink = "${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:"${files[index].name}"])}"; -->
 						console.log ("${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:"${files[index].name}"])}");
 						
 						link.setAttribute("href", "${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:"${files[index].name}"])}");
@@ -188,8 +188,8 @@
 						link.innerHTML = downloadImg;
 						downloadCell.appendChild(link);
 						
-//					//	download.setAttribute("onclick", "downloadFile(this)");
-//					//	downloadCell.appendChild(download);
+<--							download.setAttribute("onclick", "downloadFile(this)"); -->
+<--							downloadCell.appendChild(download); -->
 
 						cellIndex = 1;
 					}
