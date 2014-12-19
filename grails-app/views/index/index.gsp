@@ -9,7 +9,8 @@
 	<!--		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.min.js' />"></script> -->
 		<link rel="shortcut icon" href="<g:createLinkTo dir='images', file='myfavicon.ico'/>" type="image/x-icon" /> 
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		  <meta name="keywords" content="DNA, sequencing, basecaller, chromatogram, mixture, deconvolution, Sanger, HMM, BCV" />
+		<meta name="keywords" content="DNA, sequencing, basecaller, chromatogram, mixture, deconvolution, Sanger, HMM, BCV" />
+	
 	<!-- Google Analytics -->
 		<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
