@@ -43,8 +43,18 @@ class JobController {
 		job.setSessionId(sessionId)
 
 		// Get files and directions
-
-		def fileListRaw = request.getFiles('files')
+		def fileListRaw = []
+		if (params.('isExamaple') == "true"){
+			def exampleFileNames = params.('exampleFiles')
+			for (int i = 0; i < exampleFileNames.size(); i++){
+				fileListRaw.add(new File(Holders.config.storePath + exampleFileNames[i]))
+			}
+		}
+		
+		else {
+			fileListRaw = request.getFiles('files');
+		}
+		
 		def  directionListRaw = []
 		for (int i = 0; i < fileListRaw.size(); i++){
 			directionListRaw.add(params.('radio' + i))

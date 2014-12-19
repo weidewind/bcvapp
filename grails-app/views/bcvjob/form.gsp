@@ -47,7 +47,8 @@
 			<div class="inputWrapper">Example
 				<label><input type='button' name='example' id='example' class='example' onclick='displayList("true")' /></label>
 			</div>
-			<input type="hidden" name="isExample" value="false">
+			<input type="hidden" name="isExample" id="isExample" value="false">
+			<input type="hidden" name="exampleFiles" id="exampleFiles" value='exampleFiles()'>
 			<div class = 'error'><label id = 'file_error'></label></div>
 			<p><table class='fileTable' id='fileTable'></table></div>
 			
@@ -126,6 +127,9 @@
 				deleted.value = "";
 				var exmpl = document.getElementById("isExample");
 				exmpl = isExample;
+				
+				var exmplFiles = document.getElementById("exampleFiles");
+				exmplFiles.value = "";
 				
 				if (isExample === "true"){
 					var files = exampleFiles();
@@ -376,7 +380,7 @@
 			
 			
 			var files_test = true;
-			if (document.getElementById("files").value === "" || files.length === wereDeleted){
+			if ((document.getElementById("files").value === "" || files.length === wereDeleted) & (exampleFiles.length <= wereDeleted)){
 				document.getElementById("file_error").innerHTML = "Select at least one file";
 				files_test = false;
 			}

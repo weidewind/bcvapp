@@ -12,6 +12,8 @@ class Bcvjob {
 	String email
 	List radioF
 	String deletedFiles
+	List exampleFiles
+	String isExample
 	Date dateCreated
 	
 	
@@ -19,6 +21,7 @@ class Bcvjob {
 			email (blank:true, nullable:true, email:true)
 			distance (min: 0f, max: 0.1f)
 			deletedFiles (nullable: true)
+			exampleFiles(nullable: true)
 	
 		}
 		
