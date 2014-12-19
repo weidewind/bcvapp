@@ -147,20 +147,19 @@
 				
 				var row  = fileTable.insertRow(1);
 				
-				if (isExample === "true"){
-					var th0 = document.createElement("th");
-					th0.innerHTML = "";
-					row.appendChild(th0);
-				}
+				//if (isExample === "true"){
+				//	var th0 = document.createElement("th");
+				//	th0.innerHTML = "";
+				//	row.appendChild(th0);
+				//}
+				//
+				//var th1 = document.createElement("th");
+				//th1.innerHTML = "File name";
+				//row.appendChild(th1);
 				
-				var th1 = document.createElement("th");
-				th1.innerHTML = "File name";
-				row.appendChild(th1);
-				
-				var th2 = document.createElement("th");
-				//th2.innerHTML = "Forward primer";
-				  th2.innerHTML = "Primer direction";
-				row.appendChild(th2);
+				//var th2 = document.createElement("th");
+				//  th2.innerHTML = "Primer direction";
+				//row.appendChild(th2);
 				
 				
 		
