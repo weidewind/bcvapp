@@ -165,6 +165,17 @@
 					var filename = row.insertCell(0);
 					filename.innerHTML = files[index].name;
 					
+					if (isExample === "true"){
+						var downloadCell = row.insertCell(-1);
+						var download = document.createElement("img");
+						var downloadId = "download" + index;
+						download.setAttribute("id", downloadId);
+						download.setAttribute("src", "${createLinkTo (dir:'images', file:'download.png')}");
+						download.setAttribute("title", "Download");
+						download.setAttribute("onclick", "downloadFile(this)");
+						downloadCell.appendChild(download);
+					}
+					
 					var isForward = row.insertCell(1);
 					var isReverse = row.insertCell(2);
 					//var newCheckBox = document.createElement("input");
@@ -234,6 +245,7 @@
 					var deleterId = "deleter" + index;
 					deleter.setAttribute("id", deleterId);
 					deleter.setAttribute("src", "${createLinkTo (dir:'images', file:'deleter.png')}");
+					deleter.setAttribute("title", "Delete");
 					deleter.setAttribute("onclick", "deleteFile(this)");
 					deleterCell.appendChild(deleter);
 		
@@ -267,12 +279,20 @@
 			
 			
 			function deleteFile(f){
-			var index = parseInt(f.id.substring(7));
-			var rowId = "row" + index;
-			var row = document.getElementById(rowId);
-    		row.parentNode.removeChild(row);
-    		
-    		document.getElementById("deletedFiles").value += "," + index;
+				var index = parseInt(f.id.substring(7));
+				var rowId = "row" + index;
+				var row = document.getElementById(rowId);
+    			row.parentNode.removeChild(row);
+    			document.getElementById("deletedFiles").value += "," + index;
+			}
+			
+			function downloadFile(f){
+				var index = parseInt(f.id.substring(8));
+				var rowId = "row" + index;
+				var row = document.getElementById(rowId);
+				console.log(row[1].innerHTML);
+				console.log("trying");
+				console.log(row[0].innerHTML);
 			}
 			
 			function check(str){

@@ -136,6 +136,7 @@
 					var deleterId = "deleter" + index;
 					deleter.setAttribute("id", deleterId);
 					deleter.setAttribute("src", "${createLinkTo (dir:'images', file:'deleter.png')}");
+					deleter.setAttribute("title", "Delete");
 					deleter.setAttribute("onclick", "deleteFile(this)");
 					deleterCell.appendChild(deleter);
 		
