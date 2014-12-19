@@ -155,13 +155,14 @@ class JobController {
 		outputStream << file.getBytes()
 	
 		} catch (IOException e){
-			println('Canceled download?', e)
+			println('Canceled download? '+ e)
 		} finally {
 			if (outputStream != null){
 				try {
+					outputStream.flush();
 					outputStream.close()
 				} catch (IOException e) {
-					println('Exception on close', e)
+					println('Exception on close '+ e)
 				}
 			}
 		}

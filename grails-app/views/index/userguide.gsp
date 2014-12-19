@@ -32,10 +32,6 @@ BCVapp (online version) output format explanation: <a href="http://basecv.source
 <p></p>
 </li>
 <li>
-BCVapp usage example: <a href="http://basecv.sourceforge.net/BCVapp_presentation_rus.pdf">RUS</a>, <a href="http://basecv.sourceforge.net/BCVapp_presentation_eng.pdf">ENG</a>. 
-<p></p>
-</li>
-<li>
 <!--<a href="${createLink(controller: 'job', action: 'downloadFile' , params: [path: '/store/home/bcvapp/bcvapp/web-app/pipeline/bcv-userguide.odt', contentType: 'application/vnd.oasis.opendocument.text', filename: 'bcv-userguide.odt'])}">BCV manual</a><a href="bcv-userguide.odt"></a>-->
 <a href="http://basecv.sourceforge.net/bcv-userguide.odt">BCV manual</a>: here you can find a brief algorithm overview and a detailed manual for the standalone version.
 <p></p>
