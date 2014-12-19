@@ -173,13 +173,22 @@
 					var cellIndex = 0;
 					if (isExample === "true"){
 						var downloadCell = row.insertCell(cellIndex);
-						var download = document.createElement("img");
-						var downloadId = "download" + index;
-						download.setAttribute("id", downloadId);
-						download.setAttribute("src", "${createLinkTo (dir:'images', file:'download2.png')}");
-						download.setAttribute("title", "Download");
-						download.setAttribute("onclick", "downloadFile(this)");
-						downloadCell.appendChild(download);
+						
+						var link = document.createElement("a");
+						link.setAttribute("href", "${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:'" + files[index].name + "'])}");
+					
+						var downloadImg = document.createElement("img");
+						var downloadImgId = "download" + index;
+						downloadImg.setAttribute("id", downloadImgId);
+						downloadImg.setAttribute("src", "${createLinkTo (dir:'images', file:'download2.png')}");
+						downloadImg.setAttribute("title", "Download");
+
+						link.innerHTML = downloadImg;
+						downloadCell.appendChild(link);
+						
+//					//	download.setAttribute("onclick", "downloadFile(this)");
+//					//	downloadCell.appendChild(download);
+
 						cellIndex = 1;
 					}
 					var filename = row.insertCell(cellIndex);
@@ -303,7 +312,7 @@
 				var row = document.getElementById(rowId);
 				var filename = row.cells[1].innerHTML;
 				console.log(filename);
-	      		${remoteFunction(controller: 'job', action: 'downloadChrom', params: '{filename:filename}')};
+	      		//${remoteFunction(controller: 'job', action: 'downloadChrom', params: '{filename:filename}')};
 	
 			}
 			
