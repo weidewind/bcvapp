@@ -121,7 +121,7 @@
 		});
 		
 			function displayList(isExample){
-			console.log(isExample);
+			console.log("isExample in display "+isExample);
 				document.getElementById("file_error").innerHTML = "";
 				var deleted = document.getElementById("deletedFiles");
 				deleted.value = "";
@@ -382,6 +382,7 @@
 			
 			var files_test = true;
 			console.log("isExample " + isExample);
+			console.log("isExample.value " + isExample.value);
 			//console.log("exampleFiles.value.length " + exampleFiles.value.length);
 			console.log("exampleFiles.length " + exampleFiles.length);
 			if ((document.getElementById("files").value === "" || files.length === wereDeleted) & (isExample === "false" || exampleFiles.length <= wereDeleted)){
