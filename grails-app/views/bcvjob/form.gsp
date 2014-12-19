@@ -174,7 +174,7 @@
 						var downloadCell = row.insertCell(cellIndex);
 						
 						var link = document.createElement("a");
-						var createLink = "${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:'" + files[index].name + "'])}";
+						var createLink = "${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:files[index].name])}";
 						link.setAttribute("href", createLink);
 					
 						var downloadImg = document.createElement("img");
