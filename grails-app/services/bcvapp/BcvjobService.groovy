@@ -433,7 +433,7 @@ class BcvjobService {
 			if (job.errors.hasFieldErrors("email")){
 				errorMessage += "<p>Your e-mail does not seem valid </p>"
 			}
-			if (job.errors.hasFieldErrors("files")){
+			if (job.errors.hasFieldErrors("files") || (fileList.size() == 0 & job.isExample == "false")){
 				errorMessage += "<p>Select at least one file </p>"
 			}
 		}
@@ -442,20 +442,23 @@ class BcvjobService {
 			errorMessage += "<p>Please, do not select more than 10 files at once. </p>"
 		}
 		
-		for (f in fileList) {
-			def name = f.getOriginalFilename()
-			int dot= name.lastIndexOf(".");
-			if (name.substring(dot+1) != "ab1"){
-				errorMessage += "<p>Unsupported extension: ${name} </p>"
+		if (job.isExample == "false"){
+			for (f in fileList) {
+				def name = f.getOriginalFilename()
+				int dot= name.lastIndexOf(".");
+				if (name.substring(dot+1) != "ab1"){
+					errorMessage += "<p>Unsupported extension: ${name} </p>"
+				}
+
+				def bytes = f.getBytes()
+				if (bytes[0] != 'A' || bytes[1] != 'B' || bytes[2] != 'I' || bytes[3] != 'F' || !(bytes[4]+bytes[5] >= 101)){
+					errorMessage += "<p>Not ABI: ${name} </p>"
+				}
+
+
 			}
-
-			def bytes = f.getBytes()
-			if (bytes[0] != 'A' || bytes[1] != 'B' || bytes[2] != 'I' || bytes[3] != 'F' || !(bytes[4]+bytes[5] >= 101)){
-				errorMessage += "<p>Not ABI: ${name} </p>"
-			}
-
-
 		}
+
 
 
 		return errorMessage
