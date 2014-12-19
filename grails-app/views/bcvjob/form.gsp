@@ -181,7 +181,7 @@
 						download.setAttribute("src", "${createLinkTo (dir:'images', file:'mydownload.png')}");
 						download.setAttribute("title", "Download");
 						
-						link.innerHTML = download;
+						link.appendChild(download);
 						downloadCell.appendChild(link);
 						cellIndex = 1;
 					}
