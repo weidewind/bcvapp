@@ -126,7 +126,7 @@
 				var deleted = document.getElementById("deletedFiles");
 				deleted.value = "";
 				var exmpl = document.getElementById("isExample");
-				exmpl = isExample;
+				exmpl.value = isExample;
 				
 				var exmplFiles = document.getElementById("exampleFiles");
 				exmplFiles.value = "";
@@ -134,6 +134,7 @@
 				if (isExample === "true"){
 					var files = exampleFiles();
 					exmplFiles.value = exampleFiles();
+					console.log("exmplFiles.value from display " + exmplFiles.value);
 				}
 				else {
 				    var files = document.getElementById("files").files || [];
@@ -385,7 +386,7 @@
 			console.log("isExample.value " + isExample.value);
 			//console.log("exampleFiles.value.length " + exampleFiles.value.length);
 			console.log("exampleFiles.length " + exampleFiles.length);
-			if ((document.getElementById("files").value === "" || files.length === wereDeleted) & (isExample === "false" || exampleFiles.length <= wereDeleted)){
+			if ((document.getElementById("files").value === "" || files.length === wereDeleted) & (isExample.value === "false" || exampleFiles.length <= wereDeleted)){
 				document.getElementById("file_error").innerHTML = "Select at least one file";
 				files_test = false;
 			}
