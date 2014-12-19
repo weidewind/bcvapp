@@ -147,6 +147,12 @@
 				
 				var row  = fileTable.insertRow(1);
 				
+				if (isExample === "true"){
+					var th0 = document.createElement("th");
+					th1.innerHTML = "";
+					row.appendChild(th0);
+				}
+				
 				var th1 = document.createElement("th");
 				th1.innerHTML = "File name";
 				row.appendChild(th1);
