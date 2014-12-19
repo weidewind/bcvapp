@@ -9,6 +9,7 @@
 		<link rel="shortcut icon" href="<g:createLinkTo dir='images', file='myfavicon.ico' />" type="image/x-icon" /> 
 		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.min.js' />"></script>
 		<input type="hidden" name="tasktype" value="bcvstap">
+		
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		
 		<!-- Google Analytics -->
@@ -17,7 +18,6 @@
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
   ga('create', 'UA-39054482-3', 'auto');
   ga('send', 'pageview');
 </script>
@@ -97,9 +97,9 @@
 			
 			<div class ="push"></div>
     </div>
-
+     <div id="nonsense" style="display: none;">
+        </div>   
     <g:render template="/index/footer" />
-    
 		<script>
 		$(document).ready(function(){
 		
@@ -171,30 +171,18 @@
 					var cellIndex = 0;
 					if (isExample === "true"){
 						var downloadCell = row.insertCell(cellIndex);
-						
-				//		var link = document.createElement("a");
-				//		console.log ("${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:files[index].name])}");
-						
-				//		link.setAttribute("href", "${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:"${files[index].name}"])}");
-					
-						var downloadImg = document.createElement("img");
-						var downloadImgId = "download" + index;
-						downloadImg.setAttribute("id", downloadImgId);
-						downloadImg.setAttribute("src", "${createLinkTo (dir:'images', file:'mydownload.png')}");
-						downloadImg.setAttribute("title", "Download");
-
-			//			link.innerHTML = downloadImg;
-			//			downloadCell.appendChild(link);
-						
-//							download.setAttribute("onclick", "downloadFile(this)"); 
-//							downloadCell.appendChild(download); 
-
+						var download = document.createElement("img");
+						var downloadId = "download" + index;
+						download.setAttribute("id", downloadId);
+						download.setAttribute("src", "${createLinkTo (dir:'images', file:'mydownload.png')}");
+						download.setAttribute("title", "Download");
+						download.setAttribute("onclick", "downloadFile(this)");
+						downloadCell.appendChild(download);
 						cellIndex = 1;
 					}
 					var filename = row.insertCell(cellIndex);
 					filename.innerHTML = files[index].name;
 					
-
 					
 					var isForward = row.insertCell(cellIndex+1);
 					var isReverse = row.insertCell(cellIndex+2);
@@ -231,9 +219,7 @@
 				//		newCheckBox.setAttribute("value","OFF");
 				//	}
 				//	newCheckBox.setAttribute("onchange","changeDirection(this)");
-
 					//isForward.appendChild(newCheckBox);
-
 					
 				//	var newCheckBoxLabel = document.createElement("label");
 				//	var checkBoxLabelId = "labelcheckbox" + index;
@@ -257,7 +243,6 @@
 					else {
 						document.getElementById(radioReverseId).checked = true;					
 						document.getElementById(radioForwardId).checked = false;
-
 					}
 					
 					var deleterCell = row.insertCell(cellIndex+3);
@@ -312,7 +297,7 @@
 				var row = document.getElementById(rowId);
 				var filename = row.cells[1].innerHTML;
 				console.log(filename);
-	      		<!-- ${remoteFunction(controller: 'job', action: 'downloadChrom', params: '{filename:filename}')}; -->
+	      //		${remoteFunction(controller: 'job', action: 'downloadChrom', params: '{filename:filename}')};
 	
 			}
 			
@@ -432,7 +417,6 @@
 		
 		
 		
-
 		
 		
 		
@@ -441,26 +425,3 @@
 
 	</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
