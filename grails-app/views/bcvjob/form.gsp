@@ -174,12 +174,13 @@
 						var downloadCell = row.insertCell(cellIndex);
 						
 						var link = document.createElement("a");
-						link.setAttribute("href", "${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:'" + files[index].name + "'])}");
+						var createLink = "${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:'" + files[index].name + "'])}";
+						link.setAttribute("href", createLink);
 					
 						var downloadImg = document.createElement("img");
 						var downloadImgId = "download" + index;
 						downloadImg.setAttribute("id", downloadImgId);
-						downloadImg.setAttribute("src", "${createLinkTo (dir:'images', file:'download2.png')}");
+						downloadImg.setAttribute("src", "${createLinkTo (dir:'images', file:'mydownload.png')}");
 						downloadImg.setAttribute("title", "Download");
 
 						link.innerHTML = downloadImg;
@@ -263,7 +264,7 @@
 					var deleter = document.createElement("img");
 					var deleterId = "deleter" + index;
 					deleter.setAttribute("id", deleterId);
-					deleter.setAttribute("src", "${createLinkTo (dir:'images', file:'deleter2.png')}");
+					deleter.setAttribute("src", "${createLinkTo (dir:'images', file:'mydeleter.png')}");
 					deleter.setAttribute("title", "Delete");
 					deleter.setAttribute("onclick", "deleteFile(this)");
 					deleterCell.appendChild(deleter);
