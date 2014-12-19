@@ -175,6 +175,8 @@
 						
 						var link = document.createElement("a");
 						//var createLink = "${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:"${files[index].name}"])}";
+						console.log ("${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:"${files[index].name}"])}");
+						
 						link.setAttribute("href", "${createLink(controller: 'job', action: 'downloadChrom' , params: [filename:"${files[index].name}"])}");
 					
 						var downloadImg = document.createElement("img");
