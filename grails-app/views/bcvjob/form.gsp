@@ -303,7 +303,7 @@
 				var row = document.getElementById(rowId);
 				var filename = row.cells[1].innerHTML;
 				console.log(filename);
-	      		${remoteFunction(controller: 'job', action: 'downloadChrom', update: 'nonsense', params: '{filename:filename}')};
+	      		${remoteFunction(controller: 'job', action: 'downloadChrom', params: '{filename:filename}')};
 	
 			}
 			
