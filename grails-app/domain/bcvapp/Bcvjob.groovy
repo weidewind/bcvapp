@@ -22,6 +22,7 @@ class Bcvjob {
 			distance (min: 0f, max: 0.1f)
 			deletedFiles (nullable: true)
 			exampleFiles(nullable: true)
+			files(nullable: true)
 	
 		}
 		

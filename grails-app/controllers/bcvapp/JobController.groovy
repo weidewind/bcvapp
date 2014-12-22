@@ -94,37 +94,56 @@ class JobController {
 		
 		
 		job.save()
-		int queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
 		
-		jobService.prepareDirectory(job, sessionId, fileList, directionList, queueSize)
+		if (params.('isExamaple') == "false"){
+			int queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+			jobService.prepareDirectory(job, sessionId, fileList, directionList, queueSize)
 
+			if (job.email){
+				runAsync(job, jobService)
+			}
+			else {
+				run (job, jobService, queueSize)
+			}
 
-		
-		
-		if (job.email){
-			runAsync(job, jobService)
 		}
 		else {
-			
-//			def killingPool = new ForkJoinPool(1)
-//			GParsPool.withExistingPool (killingPool, {
-//				killIfAbandoned.callAsync(job)
-//				killingPool.shutdown()
-//		    })
-				
-//			if(queueSize > 2){		
-//					render redirect (action: "askforemail", id: job.id, params:[task:job.class, sessionId:job.sessionId])
-//					//deleted return
-//			}
-
-//			else run (job, jobService)	
-			
-			run (job, jobService, queueSize)
+			if (job.email){
+				sendExample(job.email, jobService, fileList)
+			}
+			else {
+				renderExample(job, jobService, fileList)
+			}
 		}
-
-
 	}
 
+	def sendExample(String email, Object jobService, List fileList){
+		def folderName = getfolderName(fileList)
+		jobService.sendExampleResults(email, folderName)
+	}
+	
+	def renderExample(Object jobService, List fileList){
+		def folderName = getfolderName(fileList)
+		def resultsPath = jobService.getExampleResults(folderName)
+		def zipResultsPath = jobService.getExampleZipResults(folderName)
+		def path = resultsPath.split('/')
+		def pathEnd = path[path.length-3] + "/" + path[path.length-2]
+		def url = createLink(controller: 'job', action: 'renderExampleResults', params: [pathEnd:pathEnd, folderName:folderName])
+		render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
+		
+	}
+	
+	def getFolderName(List fileList){
+		fileList.sort{ it.getOriginalFilename() }
+		def folderName
+		for (f in fileList){
+			folderName.append(f.getOriginalFilename().replaceAll(Pattern.compile('\\..*')))
+		}
+		println folderName
+		return folderName
+	}
+	
+	
 	def renderResults (String pathEnd, String sessionId){
 
 		def htmlContent = new File(Holders.config.absPath + pathEnd + "/simple_results.html").text
@@ -147,6 +166,16 @@ class JobController {
 //		render (text: htmlContent, contentType:"text/html", encoding:"UTF-8")
 	}
 
+	def renderExampleResults (String pathEnd, String folderName){
+		
+				def htmlContent = new File(Holders.config.storePath + pathEnd + "/simple_results.html").text
+					
+				def matcher = (htmlContent =~ /<a href=\"\.\//);
+				htmlContent = matcher.replaceAll('<a href="http://bcvapp.cmd.su/static/web-app/examples/'+pathEnd+"/");
+				
+				render (text: htmlContent, contentType:"text/html", encoding:"UTF-8")
+			}
+	
 //	def downloadZipFile(String zipResultsPath){
 //		def file = new File(zipResultsPath)
 //		response.setContentType("application/zip")

@@ -1,0 +1,135 @@
+<svg height="2000" width="2200" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style type="text/css"><![CDATA[
+	polyline { fill: none; stroke: black; stroke-width: 1 }
+	path { fill: none; stroke: black; stroke-width: 1 }
+	line { fill: none; stroke: black; stroke-width: 1 }
+	circle.node_circle  {}
+	circle.taxon_circle {}
+	text.node_text      {}
+	text.taxon_text     {}
+	line.scale_bar      {}
+	text.scale_label    {}
+	line.scale_major    {}
+	line.scale_minor    {}
+]]></style>
+    <polyline points="530,632 530,662 650,662" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 662.903225806452)" x="656" y="666">PROK248632 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium nucleatum 6 </text>
+    <polyline points="530,632 530,601 650,601" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 601.612903225806)" x="656" y="605">PROK1140545 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium nucleatum 1 </text>
+    <polyline points="490,586 490,632 530,632" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 530 632.258064516129)" x="536" y="636">0.000000</text>
+    <polyline points="490,586 490,540 650,540" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 540.322580645161)" x="656" y="544">PROK834485 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium sp. 1 </text>
+    <polyline points="610,877 610,908 650,908" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 908.064516129032)" x="656" y="912">PROK1140927 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium nucleatum 1 </text>
+    <polyline points="610,877 610,846 650,846" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 846.774193548387)" x="656" y="850">PROK823960 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium subsp. nucleatum 1 </text>
+    <polyline points="570,831 570,877 610,877" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 610 877.41935483871)" x="616" y="881">0.846000</text>
+    <polyline points="570,831 570,785 650,785" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 785.483870967742)" x="656" y="789">PROK1129339 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium nucleatum 1 </text>
+    <polyline points="610,1061 610,1091 650,1091" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1091.93548387097)" x="656" y="1095">cluster 1 0.402</text>
+    <polyline points="610,1061 610,1030 650,1030" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1030.64516129032)" x="656" y="1034">PROK522825 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium nucleatum 1 </text>
+    <polyline points="570,1015 570,1061 610,1061" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 610 1061.29032258065)" x="616" y="1065">0.563000</text>
+    <polyline points="570,1015 570,969 650,969" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 969.354838709677)" x="656" y="973">PROK516949 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium nucleatum 6 Fusobacterium sp. 2 </text>
+    <polyline points="530,923 530,1015 570,1015" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 570 1015.32258064516)" x="576" y="1019">0.000000</text>
+    <polyline points="530,923 530,831 570,831" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 570 831.451612903226)" x="576" y="835">0.848000</text>
+    <polyline points="490,823 490,923 530,923" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 530 923.387096774194)" x="536" y="927">0.000000</text>
+    <polyline points="490,823 490,724 650,724" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 724.193548387097)" x="656" y="728">PROK801970 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium sp. 1 </text>
+    <polyline points="450,705 450,823 490,823" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 490 823.790322580645)" x="496" y="827">0.871000</text>
+    <polyline points="450,705 450,586 490,586" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 490 586.290322580645)" x="496" y="590">0.921000</text>
+    <polyline points="410,592 410,705 450,705" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 450 705.040322580645)" x="456" y="709">0.000000</text>
+    <polyline points="410,592 410,479 650,479" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 479.032258064516)" x="656" y="483">PROK740368 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium nucleatum 1 </text>
+    <polyline points="370,504 370,592 410,592" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 410 592.036290322581)" x="416" y="596">0.000000</text>
+    <polyline points="370,504 370,417 650,417" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 417.741935483871)" x="656" y="421">PROK4485010 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium sp. 3 </text>
+    <polyline points="330,430 330,504 370,504" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 370 504.889112903226)" x="376" y="508">0.000000</text>
+    <polyline points="330,430 330,356 650,356" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 356.451612903226)" x="656" y="360">PROK106993 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium nucleatum 3 </text>
+    <polyline points="530,1490 530,1520 650,1520" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1520.96774193548)" x="656" y="1524">PROK623789 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium nucleatum 1 </text>
+    <polyline points="530,1490 530,1459 650,1459" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1459.67741935484)" x="656" y="1463">PROK4484632 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium sp. 1 </text>
+    <polyline points="490,1444 490,1490 530,1490" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 530 1490.32258064516)" x="536" y="1494">0.782000</text>
+    <polyline points="490,1444 490,1398 650,1398" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1398.38709677419)" x="656" y="1402">PROK517582 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium nucleatum 1 </text>
+    <polyline points="450,1390 450,1444 490,1444" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 490 1444.35483870968)" x="496" y="1448">0.941000</text>
+    <polyline points="450,1390 450,1337 650,1337" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1337.09677419355)" x="656" y="1341">PROK4395347 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium nucleatum 1 </text>
+    <polyline points="410,1333 410,1390 450,1390" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 450 1390.72580645161)" x="456" y="1394">0.932000</text>
+    <polyline points="410,1333 410,1275 650,1275" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1275.8064516129)" x="656" y="1279">PROK1141607 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium canifelinum 1 </text>
+    <polyline points="370,1273 370,1333 410,1333" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 410 1333.26612903226)" x="416" y="1337">0.000000</text>
+    <polyline points="370,1273 370,1214 650,1214" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1214.51612903226)" x="656" y="1218">PROK554906 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium canifelinum 1 </text>
+    <polyline points="330,1213 330,1273 370,1273" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 370 1273.89112903226)" x="376" y="1277">0.928000</text>
+    <polyline points="330,1213 330,1153 650,1153" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1153.22580645161)" x="656" y="1157">PROK904867 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium nucleatum 1 Fusobacterium canifelinum 1 </text>
+    <polyline points="290,822 290,1213 330,1213" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 330 1213.55846774194)" x="336" y="1217">0.000000</text>
+    <polyline points="290,822 290,430 330,430" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 330 430.670362903226)" x="336" y="434">0.970000</text>
+    <polyline points="330,1612 330,1643 650,1643" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1643.54838709677)" x="656" y="1647">PROK532069 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium nucleatum 1 </text>
+    <polyline points="330,1612 330,1582 650,1582" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1582.25806451613)" x="656" y="1586">PROK528395 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium nucleatum 13 Fusobacterium sp. 3 </text>
+    <polyline points="410,1858 410,1888 650,1888" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1888.70967741935)" x="656" y="1892">PROK1139548 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium nucleatum 1 </text>
+    <polyline points="410,1858 410,1827 650,1827" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1827.41935483871)" x="656" y="1831">PROK528793 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium nucleatum 1 </text>
+    <polyline points="370,1812 370,1858 410,1858" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 410 1858.06451612903)" x="416" y="1862">0.000000</text>
+    <polyline points="370,1812 370,1766 650,1766" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1766.12903225806)" x="656" y="1770">PROK509198 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium nucleatum 1 </text>
+    <polyline points="330,1758 330,1812 370,1812" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 370 1812.09677419355)" x="376" y="1816">0.000000</text>
+    <polyline points="330,1758 330,1704 650,1704" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1704.83870967742)" x="656" y="1708">PROK834428 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium sp. 1 </text>
+    <polyline points="290,1685 290,1758 330,1758" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 330 1758.46774193548)" x="336" y="1762">0.000000</text>
+    <polyline points="290,1685 290,1612 330,1612" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 330 1612.90322580645)" x="336" y="1616">0.000000</text>
+    <polyline points="250,1253 250,1685 290,1685" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 290 1685.68548387097)" x="296" y="1689">0.000000</text>
+    <polyline points="250,1253 250,822 290,822" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 290 822.114415322581)" x="296" y="826">0.854000</text>
+    <polyline points="210,774 210,1253 250,1253" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 250 1253.89994959677)" x="256" y="1257">0.911000</text>
+    <polyline points="210,774 210,295 650,295" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 295.161290322581)" x="656" y="299">PROK659845 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium periodonticum 1 </text>
+    <polyline points="170,504 170,774 210,774" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 210 774.530619959677)" x="216" y="778">0.997000</text>
+    <polyline points="170,504 170,233 650,233" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 233.870967741935)" x="656" y="237">PROK470440 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium mortiferum 1 </text>
+    <polyline points="130,338 130,504 170,504" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 170 504.200793850806)" x="176" y="508">0.467000</text>
+    <polyline points="130,338 130,172 650,172" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 172.58064516129)" x="656" y="176">PROK4469334 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES FUSOBACTERIACEAE FUSOBACTERIUM UNCLASSIFIED Fusobacterium sp. 1 </text>
+    <polyline points="90,224 90,338 130,338" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 130 338.390719506048)" x="136" y="342">1.000000</text>
+    <polyline points="90,224 90,111 650,111" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 111.290322580645)" x="656" y="115">PROK103159 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES EUBACTERIACEAE UNCLASSIFIED Alkalibacterium sp. 1 </text>
+    <polyline points="50,137 50,224 90,224" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 90 224.840521043347)" x="96" y="228">Node144</text>
+    <polyline points="50,137 50,50 650,50" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 50)" x="656" y="54">PROK42256 BACTERIA FUSOBACTERIA FUSOBACTERIIA FUSOBACTERIALES LEPTOTRICHIACEAE UNCLASSIFIED Leptotrichia sp. 1 </text>
+</svg>

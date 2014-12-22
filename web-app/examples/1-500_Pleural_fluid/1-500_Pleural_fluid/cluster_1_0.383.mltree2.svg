@@ -1,0 +1,119 @@
+<svg height="2000" width="2200" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style type="text/css"><![CDATA[
+	polyline { fill: none; stroke: black; stroke-width: 1 }
+	path { fill: none; stroke: black; stroke-width: 1 }
+	line { fill: none; stroke: black; stroke-width: 1 }
+	circle.node_circle  {}
+	circle.taxon_circle {}
+	text.node_text      {}
+	text.taxon_text     {}
+	line.scale_bar      {}
+	text.scale_label    {}
+	line.scale_major    {}
+	line.scale_minor    {}
+]]></style>
+    <polyline points="210,296 210,331 650,331" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 331.481481481481)" x="656" y="335">PROK4379139 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Parvimonas sp. 1 </text>
+    <polyline points="210,296 210,261 650,261" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 261.111111111111)" x="656" y="265">PROK4379142 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Parvimonas sp. 1 </text>
+    <polyline points="170,243 170,296 210,296" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 210 296.296296296296)" x="216" y="300">0.927000</text>
+    <polyline points="170,243 170,190 650,190" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 190.740740740741)" x="656" y="194">PROK3452790 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Parvimonas sp. 1 </text>
+    <polyline points="410,648 410,683 650,683" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 683.333333333333)" x="656" y="687">PROK86380 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Peptostreptococcus sp. 1 </text>
+    <polyline points="410,648 410,612 650,612" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 612.962962962963)" x="656" y="616">PROK4485300 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Parvimonas sp. 5 Parvimonas micra 1 </text>
+    <polyline points="570,1000 570,1035 650,1035" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1035.18518518519)" x="656" y="1039">PROK92862 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Peptostreptococcus sp. 1 </text>
+    <polyline points="570,1000 570,964 650,964" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 964.814814814815)" x="656" y="968">PROK194720 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Parvimonas micra 1 </text>
+    <polyline points="610,1211 610,1246 650,1246" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1246.2962962963)" x="656" y="1250">PROK684031 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Parvimonas sp. 1 </text>
+    <polyline points="610,1211 610,1175 650,1175" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1175.92592592593)" x="656" y="1179">PROK134022 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Peptostreptococcus sp. 1 </text>
+    <polyline points="570,1158 570,1211 610,1211" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 610 1211.11111111111)" x="616" y="1215">0.848000</text>
+    <polyline points="570,1158 570,1105 650,1105" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1105.55555555556)" x="656" y="1109">PROK180675 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Parvimonas micra 1 </text>
+    <polyline points="530,1079 530,1158 570,1158" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 570 1158.33333333333)" x="576" y="1162">0.000000</text>
+    <polyline points="530,1079 530,1000 570,1000" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 570 1000)" x="576" y="1004">0.000000</text>
+    <polyline points="490,986 490,1079 530,1079" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 530 1079.16666666667)" x="536" y="1083">0.000000</text>
+    <polyline points="490,986 490,894 650,894" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 894.444444444444)" x="656" y="898">PROK193813 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Parvimonas micra 1 </text>
+    <polyline points="450,905 450,986 490,986" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 490 986.805555555556)" x="496" y="990">0.000000</text>
+    <polyline points="450,905 450,824 650,824" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 824.074074074074)" x="656" y="828">PROK2942557 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Parvimonas micra 1 </text>
+    <polyline points="410,829 410,905 450,905" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 450 905.439814814815)" x="456" y="909">0.000000</text>
+    <polyline points="410,829 410,753 650,753" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 753.703703703704)" x="656" y="757">PROK68360 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Parvimonas micra 1 Peptostreptococcus sp. 1 </text>
+    <polyline points="370,738 370,829 410,829" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 410 829.571759259259)" x="416" y="833">0.930000</text>
+    <polyline points="370,738 370,648 410,648" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 410 648.148148148148)" x="416" y="652">0.000000</text>
+    <polyline points="330,640 330,738 370,738" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 370 738.859953703704)" x="376" y="742">0.000000</text>
+    <polyline points="330,640 330,542 650,542" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 542.592592592593)" x="656" y="546">PROK183658 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Parvimonas micra 1 </text>
+    <polyline points="290,556 290,640 330,640" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 330 640.726273148148)" x="336" y="644">0.810000</text>
+    <polyline points="290,556 290,472 650,472" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 472.222222222222)" x="656" y="476">PROK181489 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Parvimonas micra 1 </text>
+    <polyline points="290,1351 290,1387 650,1387" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1387.03703703704)" x="656" y="1391">PROK99237 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Peptostreptococcus sp. 1 </text>
+    <polyline points="290,1351 290,1316 650,1316" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1316.66666666667)" x="656" y="1320">PROK87698 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Peptostreptococcus sp. 1 </text>
+    <polyline points="250,954 250,1351 290,1351" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 290 1351.85185185185)" x="296" y="1355">0.000000</text>
+    <polyline points="250,954 250,556 290,556" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 290 556.474247685185)" x="296" y="560">0.000000</text>
+    <polyline points="450,1844 450,1879 650,1879" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1879.62962962963)" x="656" y="1883">PROK92329 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Peptostreptococcus sp. 1 </text>
+    <polyline points="450,1844 450,1809 650,1809" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1809.25925925926)" x="656" y="1813">PROK470805 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Parvimonas micra 6 </text>
+    <polyline points="410,1791 410,1844 450,1844" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 450 1844.44444444444)" x="456" y="1848">0.000000</text>
+    <polyline points="410,1791 410,1738 650,1738" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1738.88888888889)" x="656" y="1742">PROK14273 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Parvimonas micra 1 </text>
+    <polyline points="370,1730 370,1791 410,1791" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 410 1791.66666666667)" x="416" y="1795">0.000000</text>
+    <polyline points="370,1730 370,1668 650,1668" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1668.51851851852)" x="656" y="1672">cluster 1 0.383</text>
+    <polyline points="330,1664 330,1730 370,1730" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 370 1730.09259259259)" x="376" y="1734">0.000000</text>
+    <polyline points="330,1664 330,1598 650,1598" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1598.14814814815)" x="656" y="1602">PROK36599 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Peptostreptococcus sp. 1 </text>
+    <polyline points="290,1595 290,1664 330,1664" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 330 1664.12037037037)" x="336" y="1668">0.934000</text>
+    <polyline points="290,1595 290,1527 650,1527" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1527.77777777778)" x="656" y="1531">PROK28712 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Peptostreptococcus sp. 1 </text>
+    <polyline points="250,1526 250,1595 290,1595" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 290 1595.94907407407)" x="296" y="1599">0.910000</text>
+    <polyline points="250,1526 250,1457 650,1457" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1457.40740740741)" x="656" y="1461">PROK4485627 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Parvimonas sp. 3 </text>
+    <polyline points="210,1240 210,1526 250,1526" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 250 1526.67824074074)" x="256" y="1530">0.000000</text>
+    <polyline points="210,1240 210,954 250,954" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 250 954.163049768518)" x="256" y="958">0.911000</text>
+    <polyline points="170,821 170,1240 210,1240" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 210 1240.42064525463)" x="216" y="1244">0.000000</text>
+    <polyline points="170,821 170,401 650,401" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 401.851851851852)" x="656" y="405">PROK4485625 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {TISSIERELLACEAE} PARVIMONAS UNCLASSIFIED Parvimonas sp. 5 Peptostreptococcus sp. 1 </text>
+    <polyline points="130,532 130,821 170,821" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 170 821.136248553241)" x="176" y="825">0.898000</text>
+    <polyline points="130,532 130,243 170,243" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 170 243.518518518519)" x="176" y="247">0.913000</text>
+    <polyline points="90,326 90,532 130,532" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 130 532.32738353588)" x="136" y="536">1.000000</text>
+    <polyline points="90,326 90,120 650,120" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 120.37037037037)" x="656" y="124">PROK14179 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES PEPTOSTREPTOCOCCACEAE UNCLASSIFIED Eubacterium yurii 1 </text>
+    <polyline points="50,188 50,326 90,326" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 90 326.348876953125)" x="96" y="330">Node204</text>
+    <polyline points="50,188 50,50 650,50" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 50)" x="656" y="54">PROK14149 BACTERIA FIRMICUTES CLOSTRIDIA CLOSTRIDIALES {MOGIBACTERIACEAE} UNCLASSIFIED Eubacterium saphenum 1 </text>
+</svg>

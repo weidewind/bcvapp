@@ -309,6 +309,20 @@ class BcvjobService {
 		}
 
 	}
+	
+	def sendExampleResults(String email, String folderName){
+		def results = getStorePath() + folderName + "/results.zip"
+		println "going to send files, folderName ${folderName} resultsPath ${results} time ${System.currentTimeMillis()}"
+
+		mailService.sendMail {
+			multipart true
+			to email
+			subject "Example BCV results"
+			body "Thanks for using BCV!\n Here are your example results. \n Have a nice day!"
+			attachBytes 'results.zip','application/zip', new File(results).readBytes()
+
+		}
+	}
 
 	def sendLogs(String email, String sessionId) {
 
@@ -418,6 +432,7 @@ class BcvjobService {
 		return outputMap.getAt(sessionId) + "/results.zip"
 	}
 
+
 	def checkInput(Bcvjob job, List fileList){
 		String errorMessage = ""
 
@@ -479,6 +494,10 @@ class BcvjobService {
 	
 	def getAbsPath(){
 		return Holders.config.absPath
+	}
+	
+	def getStorePath(){
+		return Holders.config.storePath
 	}
 
 	def talkWork(){

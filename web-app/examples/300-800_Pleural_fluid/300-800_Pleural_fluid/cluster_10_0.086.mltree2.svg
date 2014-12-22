@@ -1,0 +1,91 @@
+<svg height="2000" width="2200" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style type="text/css"><![CDATA[
+	polyline { fill: none; stroke: black; stroke-width: 1 }
+	path { fill: none; stroke: black; stroke-width: 1 }
+	line { fill: none; stroke: black; stroke-width: 1 }
+	circle.node_circle  {}
+	circle.taxon_circle {}
+	text.node_text      {}
+	text.taxon_text     {}
+	line.scale_bar      {}
+	text.scale_label    {}
+	line.scale_major    {}
+	line.scale_minor    {}
+]]></style>
+    <polyline points="410,477 410,525 650,525" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 525)" x="656" y="529">PROK4485496 BACTERIA FIRMICUTES BACILLI LACTOBACILLALES STREPTOCOCCACEAE STREPTOCOCCUS ANGINOSUS Streptococcus anginosus 2 </text>
+    <polyline points="410,477 410,430 650,430" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 430)" x="656" y="434">PROK4411433 BACTERIA FIRMICUTES BACILLI LACTOBACILLALES STREPTOCOCCACEAE STREPTOCOCCUS UNCLASSIFIED Streptococcus constellatus 4 </text>
+    <polyline points="350,406 350,477 410,477" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 410 477.5)" x="416" y="481">0.851000</text>
+    <polyline points="350,406 350,335 650,335" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 335)" x="656" y="339">PROK3673318 BACTERIA FIRMICUTES BACILLI LACTOBACILLALES STREPTOCOCCACEAE STREPTOCOCCUS UNCLASSIFIED Streptococcus anginosus 1 Streptococcus intermedius 19 </text>
+    <polyline points="290,323 290,406 350,406" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 350 406.25)" x="356" y="410">0.000000</text>
+    <polyline points="290,323 290,240 650,240" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 240)" x="656" y="244">PROK3875399 BACTERIA FIRMICUTES BACILLI LACTOBACILLALES STREPTOCOCCACEAE STREPTOCOCCUS UNCLASSIFIED Streptococcus intermedius 1 </text>
+    <polyline points="470,857 470,905 650,905" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 905)" x="656" y="909">PROK46196 BACTERIA FIRMICUTES BACILLI LACTOBACILLALES STREPTOCOCCACEAE STREPTOCOCCUS LUTECIAE Streptococcus equinus 1 </text>
+    <polyline points="470,857 470,810 650,810" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 810)" x="656" y="814">PROK21570 BACTERIA FIRMICUTES BACILLI LACTOBACILLALES STREPTOCOCCACEAE STREPTOCOCCUS LUTECIAE Streptococcus luteciae 1 </text>
+    <polyline points="410,786 410,857 470,857" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 470 857.5)" x="476" y="861">0.910000</text>
+    <polyline points="410,786 410,715 650,715" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 715)" x="656" y="719">PROK310709 BACTERIA FIRMICUTES BACILLI LACTOBACILLALES STREPTOCOCCACEAE STREPTOCOCCUS ALACTOLYTICUS Streptococcus sp. 1 Streptococcus alactolyticus 1 </text>
+    <polyline points="590,1237 590,1285 650,1285" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1285)" x="656" y="1289">PROK795052 BACTERIA FIRMICUTES BACILLI LACTOBACILLALES STREPTOCOCCACEAE STREPTOCOCCUS UNCLASSIFIED Streptococcus thermophilus 2 </text>
+    <polyline points="590,1237 590,1190 650,1190" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1190)" x="656" y="1194">PROK1565035 BACTERIA FIRMICUTES BACILLI LACTOBACILLALES STREPTOCOCCACEAE STREPTOCOCCUS UNCLASSIFIED Streptococcus sp. 1 Streptococcus salivarius 1 </text>
+    <polyline points="530,1166 530,1237 590,1237" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 590 1237.5)" x="596" y="1241">0.000000</text>
+    <polyline points="530,1166 530,1095 650,1095" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1095)" x="656" y="1099">PROK805539 BACTERIA FIRMICUTES BACILLI LACTOBACILLALES STREPTOCOCCACEAE STREPTOCOCCUS UNCLASSIFIED Streptococcus thermophilus 1 </text>
+    <polyline points="590,1522 590,1570 650,1570" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1570)" x="656" y="1574">PROK4485389 BACTERIA FIRMICUTES BACILLI LACTOBACILLALES STREPTOCOCCACEAE STREPTOCOCCUS UNCLASSIFIED Streptococcus vestibularis 1 </text>
+    <polyline points="590,1522 590,1475 650,1475" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1475)" x="656" y="1479">PROK4485387 BACTERIA FIRMICUTES BACILLI LACTOBACILLALES STREPTOCOCCACEAE STREPTOCOCCUS UNCLASSIFIED Streptococcus vestibularis 5 Streptococcus sp. 1 Streptococcus salivarius 11 </text>
+    <polyline points="530,1451 530,1522 590,1522" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 590 1522.5)" x="596" y="1526">0.000000</text>
+    <polyline points="530,1451 530,1380 650,1380" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1380)" x="656" y="1384">PROK851735 BACTERIA FIRMICUTES BACILLI LACTOBACILLALES STREPTOCOCCACEAE STREPTOCOCCUS UNCLASSIFIED Streptococcus vestibularis 1 </text>
+    <polyline points="470,1308 470,1451 530,1451" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 530 1451.25)" x="536" y="1455">0.000000</text>
+    <polyline points="470,1308 470,1166 530,1166" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 530 1166.25)" x="536" y="1170">0.810000</text>
+    <polyline points="410,1154 410,1308 470,1308" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 470 1308.75)" x="476" y="1312">0.998000</text>
+    <polyline points="410,1154 410,1000 650,1000" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1000)" x="656" y="1004">PROK58289 BACTERIA FIRMICUTES BACILLI LACTOBACILLALES STREPTOCOCCACEAE STREPTOCOCCUS UNCLASSIFIED Streptococcus sp. 1 </text>
+    <polyline points="350,970 350,1154 410,1154" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 410 1154.375)" x="416" y="1158">0.855000</text>
+    <polyline points="350,970 350,786 410,786" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 410 786.25)" x="416" y="790">0.557000</text>
+    <polyline points="290,795 290,970 350,970" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 350 970.3125)" x="356" y="974">0.959000</text>
+    <polyline points="290,795 290,620 650,620" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 620)" x="656" y="624">PROK4432452 BACTERIA FIRMICUTES BACILLI LACTOBACILLALES STREPTOCOCCACEAE STREPTOCOCCUS EQUI Streptococcus equi 2 </text>
+    <polyline points="230,559 230,795 290,795" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 290 795.15625)" x="296" y="799">0.896000</text>
+    <polyline points="230,559 230,323 290,323" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 290 323.125)" x="296" y="327">0.975000</text>
+    <polyline points="290,1807 290,1855 650,1855" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1855)" x="656" y="1859">PROK4440430 BACTERIA FIRMICUTES BACILLI LACTOBACILLALES STREPTOCOCCACEAE STREPTOCOCCUS SOBRINUS Streptococcus sobrinus 1 </text>
+    <polyline points="290,1807 290,1760 650,1760" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1760)" x="656" y="1764">PROK4327627 BACTERIA FIRMICUTES BACILLI LACTOBACILLALES STREPTOCOCCACEAE STREPTOCOCCUS SOBRINUS Streptococcus sobrinus 1 </text>
+    <polyline points="230,1736 230,1807 290,1807" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 290 1807.5)" x="296" y="1811">0.333000</text>
+    <polyline points="230,1736 230,1665 650,1665" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 1665)" x="656" y="1669">cluster 10 0.086</text>
+    <polyline points="170,1147 170,1736 230,1736" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 230 1736.25)" x="236" y="1740">0.447000</text>
+    <polyline points="170,1147 170,559 230,559" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 230 559.140625)" x="236" y="563">0.711000</text>
+    <polyline points="110,646 110,1147 170,1147" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 170 1147.6953125)" x="176" y="1151">1.000000</text>
+    <polyline points="110,646 110,145 650,145" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 145)" x="656" y="149">PROK15284 BACTERIA FIRMICUTES BACILLI LACTOBACILLALES ENTEROCOCCACEAE UNCLASSIFIED Melissococcus plutonius 1 </text>
+    <polyline points="50,348 50,646 110,646" style="stroke: black; stroke-width: 1" />
+    <text class="node_text" style="" transform="rotate( 110 646.34765625)" x="116" y="650">Node449</text>
+    <polyline points="50,348 50,50 650,50" style="stroke: black; stroke-width: 1" />
+    <text class="taxon_text" style="" transform="rotate( 650 50)" x="656" y="54">PROK20210 BACTERIA FIRMICUTES BACILLI LACTOBACILLALES CARNOBACTERIACEAE UNCLASSIFIED Isobaculum melis 1 </text>
+</svg>
