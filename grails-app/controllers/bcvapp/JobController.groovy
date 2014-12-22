@@ -120,7 +120,7 @@ class JobController {
 				jobService.sendExampleResults(job.email, folderName)
 			}
 			else {
-				renderExample(folderName)
+				renderExample(jobService, folderName)
 			}
 		}
 	}
