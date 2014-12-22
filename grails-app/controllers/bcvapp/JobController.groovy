@@ -46,7 +46,7 @@ class JobController {
 		def fileListRaw = []
 		println(params.('isExample'))
 		println(params.('exampleFileName0'))
-		println(params.('exampleFileName' + "1"))
+		println(params.('exampleFileName1'))
 		if (params.('isExample') == "true"){
 				def counter = 0
 				while(params.('exampleFileName' + counter)){
