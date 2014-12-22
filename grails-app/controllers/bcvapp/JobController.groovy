@@ -47,7 +47,8 @@ class JobController {
 		if (params.('isExamaple') == "true"){
 			def exampleFileNames = params.('exampleFiles')
 			for (int i = 0; i < exampleFileNames.size(); i++){
-				fileListRaw.add(new File(Holders.config.storePath + exampleFileNames[i]))
+				println (exampleFileNames[i].name)
+				fileListRaw.add(new File(Holders.config.storePath + exampleFileNames[i].name))
 			}
 		}
 		
@@ -130,15 +131,6 @@ class JobController {
 		
 	}
 	
-	def getFolderName(List fileList){
-		fileList.sort()
-		def folderName
-		for (f in fileList){
-			folderName.append(f.replaceAll(Pattern.compile('\\..*')))
-		}
-		println folderName
-		return folderName
-	}
 	
 	
 	def renderResults (String pathEnd, String sessionId){
