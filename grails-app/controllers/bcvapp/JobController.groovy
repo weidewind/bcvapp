@@ -108,26 +108,19 @@ class JobController {
 
 		}
 		else {
-			def exampleFileNames = []
-			for (f in fileList){
-				exampleFileNames.add(f.getOriginalFilename())
-			}
+			def folderName = jobService.getExampleFolderName(fileList)
 			if (job.email){
-				sendExample(job.email, jobService, exampleFileNames)
+				jobService.sendExampleResults(job.email, folderName)
 			}
 			else {
-				renderExample(jobService, exampleFileNames)
+				renderExample(folderName)
 			}
 		}
 	}
 
-	def sendExample(String email, Object jobService, List fileList){
-		def folderName = getFolderName(fileList)
-		jobService.sendExampleResults(email, folderName)
-	}
+
 	
-	def renderExample(Object jobService, List fileList){
-		def folderName = getFolderName(fileList)
+	def renderExample(Object jobService, String folderName){
 		def resultsPath = jobService.getExampleResults(folderName)
 		def zipResultsPath = jobService.getExampleZipResults(folderName)
 		def path = resultsPath.split('/')

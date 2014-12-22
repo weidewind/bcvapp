@@ -6,6 +6,7 @@ import groovy.io.FileType
 import groovy.util.AntBuilder
 
 import java.awt.event.ItemEvent;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import grails.util.Mixin
@@ -432,6 +433,19 @@ class BcvjobService {
 		return outputMap.getAt(sessionId) + "/results.zip"
 	}
 
+	def getExampleFolderName(List fileList){
+		List exampleFileNames
+		for (f in fileList){
+			exampleFileNames.add(f.getOriginalFilename())
+		}
+		exampleFileNames.sort()
+		def folderName
+		for (f in exampleFileNames){
+			folderName.append(f.replaceAll(Pattern.compile('\\..*')))
+		}
+		println folderName
+		return folderName
+	}
 
 	def checkInput(Bcvjob job, List fileList){
 		String errorMessage = ""
