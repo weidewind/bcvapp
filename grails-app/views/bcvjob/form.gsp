@@ -133,7 +133,12 @@
 				
 				if (isExample === "true"){
 					var files = exampleFiles();
-					exmplFiles.value = exampleFiles();
+					var fileNames = [];
+					for (var fileNum = 0; fileNum < files.length;fileNum++){
+						fileNames[fileNum] = files[fileNum].name;
+					}
+					exmplFiles.value = fileNames;
+					//exmplFiles.value = exampleFiles();
 					console.log("exmplFiles.value from display " + exmplFiles.value);
 				}
 				else {
@@ -276,11 +281,11 @@
 			
 			
 			function exampleFiles(){
-				//var file1 = new Object();
-				//file1.name = "1-500_Pleural_fluid.ab1";
-				//var file2 = new Object();
-				//file2.name = "300-800_Pleural_fluid.ab1";
-				var files = ["1-500_Pleural_fluid.ab1", "300-800_Pleural_fluid.ab1"];
+				var file1 = new Object();
+				file1.name = "1-500_Pleural_fluid.ab1";
+				var file2 = new Object();
+				file2.name = "300-800_Pleural_fluid.ab1";
+				var files = [file1, file2];
 				return files;
 			}
 			
