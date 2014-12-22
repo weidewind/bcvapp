@@ -287,6 +287,7 @@
 					 	var fnameId = "fileName" + index;
 					 	fname.setAttribute("id", fnameId);
 					 	fname.setAttribute("type", "hidden");
+					 	fname.setAttribute("value", files[index].name);
 						console.log ("files[index].name " + files[index].name);
 						deleterCell.appendChild(fname);
 					 
