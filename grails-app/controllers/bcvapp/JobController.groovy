@@ -45,14 +45,14 @@ class JobController {
 		// Get files and directions
 		def fileListRaw = []
 		println(params.('isExample'))
-		println(params.('fileName' + "0"))
-		println(params.('fileName' + "1"))
+		println(params.('exampleFileName0'))
+		println(params.('exampleFileName' + "1"))
 		if (params.('isExample') == "true"){
 				def counter = 0
-				while(params.('fileName' + counter)){
-					println ("params.('fileName' + counter) " +counter + " "+ params.('fileName' + counter))
-					fileListRaw.add(new File(Holders.config.storePath + params.('fileName' + counter)))
-					println(Holders.config.storePath + params.('fileName' + counter))
+				while(params.('exampleFileName' + counter)){
+					println ("params.('exampleFileName' + counter) " +counter + " "+ params.('exampleFileName' + counter))
+					fileListRaw.add(new File(Holders.config.storePath + params.('exampleFileName' + counter)))
+					println(Holders.config.storePath + params.('exampleFileName' + counter))
 					counter++
 				}
 
