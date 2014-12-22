@@ -49,6 +49,7 @@
 			</div>
 			<input type="hidden" name="isExample" id="isExample" value="false">
 			<input type="hidden" name="exampleFiles" id="exampleFiles" value="none">
+			<input type="hidden" name="exampleFilesNumber" id="exampleFilesNumber" value="2">
 			<div class = 'error'><label id = 'file_error'></label></div>
 			<p><table class='fileTable' id='fileTable'></table></div>
 			
@@ -131,6 +132,9 @@
 				var exmplFiles = document.getElementById("exampleFiles");
 				exmplFiles.value = "";
 				
+				var exmplFilesNum = document.getElementById("exampleFilesNumber");
+				exmplFilesNum.value = "";
+				
 				var fileTable = document.getElementById("fileTable");
 				
 				if (isExample === "true"){
@@ -143,6 +147,7 @@
 						console.log ("files[fileNum].name " + files[fileNum].name);
 					}
 					exmplFiles.value = fileNames;
+					exmplFilesNum.value = files.length;
 					//exmplFiles.value = exampleFiles();
 					console.log("exmplFiles.value from display " + exmplFiles.value);
 					 

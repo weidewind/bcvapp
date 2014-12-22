@@ -13,6 +13,7 @@ class Bcvjob {
 	List radioF
 	String deletedFiles
 	List exampleFileName
+	int exampleFilesNumber
 	String isExample
 	Date dateCreated
 	
@@ -23,6 +24,7 @@ class Bcvjob {
 			deletedFiles (nullable: true)
 			exampleFileName(nullable: true)
 			files(nullable: true)
+			exampleFilesNumber (nullable: true)
 	
 		}
 		

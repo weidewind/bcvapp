@@ -48,12 +48,10 @@ class JobController {
 		println(params.('exampleFileName0'))
 		println(params.('exampleFileName1'))
 		if (params.('isExample') == "true"){
-				def counter = 0
-				while(params.('exampleFileName' + counter)){
-					println ("params.('exampleFileName' + counter) " +counter + " "+ params.('exampleFileName' + counter))
-					fileListRaw.add(new File(Holders.config.storePath + params.('exampleFileName' + counter)))
-					println(Holders.config.storePath + params.('exampleFileName' + counter))
-					counter++
+				for (int c = 0; c < Integer.parseInt(params.('exampleFilesNumber')); c++){
+					println ("params.('exampleFileName' + c) " +c + " "+ params.('exampleFileName' + c))
+					fileListRaw.add(new File(Holders.config.storePath + params.('exampleFileName' + c)))
+					println(Holders.config.storePath + params.('exampleFileName' + c))
 				}
 
 		}
