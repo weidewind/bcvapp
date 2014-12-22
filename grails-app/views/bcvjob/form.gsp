@@ -133,9 +133,11 @@
 				
 				if (isExample === "true"){
 					var files = exampleFiles();
+					console.log ("files.length " + files.length);
 					var fileNames = [];
 					for (var fileNum = 0; fileNum < files.length;fileNum++){
 						fileNames[fileNum] = files[fileNum].name;
+						console.log ("files[fileNum].name " + files[fileNum].name);
 					}
 					exmplFiles.value = fileNames;
 					//exmplFiles.value = exampleFiles();
