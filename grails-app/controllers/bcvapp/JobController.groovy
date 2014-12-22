@@ -108,11 +108,15 @@ class JobController {
 
 		}
 		else {
+			def exampleFileNames = []
+			for (f in fileList){
+				exampleFileNames.add(f.getOriginalFilename())
+			}
 			if (job.email){
-				sendExample(job.email, jobService, fileList)
+				sendExample(job.email, jobService, exampleFileNames)
 			}
 			else {
-				renderExample(jobService, fileList)
+				renderExample(jobService, exampleFileNames)
 			}
 		}
 	}
@@ -134,10 +138,10 @@ class JobController {
 	}
 	
 	def getFolderName(List fileList){
-		fileList.sort{ it.getOriginalFilename() }
+		fileList.sort()
 		def folderName
 		for (f in fileList){
-			folderName.append(f.getOriginalFilename().replaceAll(Pattern.compile('\\..*')))
+			folderName.append(f.replaceAll(Pattern.compile('\\..*')))
 		}
 		println folderName
 		return folderName
