@@ -112,7 +112,7 @@ class JobController {
 				sendExample(job.email, jobService, fileList)
 			}
 			else {
-				renderExample(job, jobService, fileList)
+				renderExample(jobService, fileList)
 			}
 		}
 	}
