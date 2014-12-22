@@ -24,7 +24,7 @@ class Bcvjob {
 			deletedFiles (nullable: true)
 			exampleFileName(nullable: true)
 			files(nullable: true)
-			exampleFilesNumber (nullable: true)
+			exampleFilesNumber (blank:true, nullable: true)
 	
 		}
 		
