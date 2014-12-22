@@ -46,6 +46,7 @@ class JobController {
 		def fileListRaw = []
 		if (params.('isExamaple') == "true"){
 			def exampleFileNames = params.('exampleFiles')
+			println exampleFileNames.size()
 			for (int i = 0; i < exampleFileNames.size(); i++){
 				println (exampleFileNames[i].name)
 				fileListRaw.add(new File(Holders.config.storePath + exampleFileNames[i].name))
