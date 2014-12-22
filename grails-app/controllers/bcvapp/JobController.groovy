@@ -120,22 +120,14 @@ class JobController {
 				jobService.sendExampleResults(job.email, folderName)
 			}
 			else {
-				renderExample(jobService, folderName)
+				renderExample(folderName)
 			}
 		}
 	}
 
 
 	
-	def renderExample(Object jobService, String folderName){
-		def resultsPath = jobService.getExampleResults(folderName)
-		def zipResultsPath = jobService.getExampleZipResults(folderName)
-		def path = resultsPath.split('/')
-		def pathEnd = path[path.length-3] + "/" + path[path.length-2]
-		def url = createLink(controller: 'job', action: 'renderExampleResults', params: [pathEnd:pathEnd, folderName:folderName])
-		render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
-		
-	}
+
 	
 	
 	
@@ -161,15 +153,24 @@ class JobController {
 //		render (text: htmlContent, contentType:"text/html", encoding:"UTF-8")
 	}
 
-	def renderExampleResults (String pathEnd, String folderName){
+	def renderExample(String folderName){
+		//def resultsPath = jobService.getExampleResults(folderName)
+		//def zipResultsPath = jobService.getExampleZipResults(folderName)
+		//def path = resultsPath.split('/')
+		//def pathEnd = path[path.length-3] + "/" + path[path.length-2]
+		def url = createLink(controller: 'job', action: 'renderExampleResults', params: [folderName:folderName])
+		render(contentType: 'text/html', text: "<script>window.location.href='$url'</script>")
 		
-				def htmlContent = new File(Holders.config.storePath + pathEnd + "/simple_results.html").text
-					
-				def matcher = (htmlContent =~ /<a href=\"\.\//);
-				htmlContent = matcher.replaceAll('<a href="http://bcvapp.cmd.su/static/web-app/examples/'+pathEnd+"/");
-				
-				render (text: htmlContent, contentType:"text/html", encoding:"UTF-8")
-			}
+	}
+	
+	def renderExampleResults (String folderName){
+		def htmlContent = new File(Holders.config.storePath + folderName + "/simple_results.html").text
+
+		def matcher = (htmlContent =~ /<a href=\"\.\//);
+		htmlContent = matcher.replaceAll('<a href="http://bcvapp.cmd.su/static/web-app/examples/'+pathEnd+"/");
+
+		render (text: htmlContent, contentType:"text/html", encoding:"UTF-8")
+	}
 	
 //	def downloadZipFile(String zipResultsPath){
 //		def file = new File(zipResultsPath)
