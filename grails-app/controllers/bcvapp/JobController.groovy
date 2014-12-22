@@ -167,7 +167,7 @@ class JobController {
 		def htmlContent = new File(Holders.config.storePath + folderName + "/simple_results.html").text
 
 		def matcher = (htmlContent =~ /<a href=\"\.\//);
-		htmlContent = matcher.replaceAll('<a href="http://bcvapp.cmd.su/static/web-app/examples/'+pathEnd+"/");
+		htmlContent = matcher.replaceAll('<a href="http://bcvapp.cmd.su/static/web-app/examples/'+folderName+"/");
 
 		render (text: htmlContent, contentType:"text/html", encoding:"UTF-8")
 	}
