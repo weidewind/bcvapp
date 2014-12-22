@@ -456,7 +456,8 @@ class BcvjobService {
 			job.errors.each {
 				errorMessage += "<p>" +  it + "</p>"
 			}
-			if (!isFloat(job.distance) || job.distance.toFloat() < 0 || job.distance.toFloat() > 0.1){
+			//if (!isFloat(job.distance) || job.distance.toFloat() < 0 || job.distance.toFloat() > 0.1){
+			if ( job.distance < 0 || job.distance > 0.1){
 				errorMessage += "<p> Maximum distance must not be less than 0 or more than 0.1 </p>"
 			}
 			if (job.errors.hasFieldErrors("email")){

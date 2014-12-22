@@ -100,25 +100,23 @@ class JobController {
 		
 		job.save()
 		
-		if (params.('isExample') == "false"){
-			int queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
-			jobService.prepareDirectory(job, sessionId, fileList, directionList, queueSize)
-
-			if (job.email){
-				runAsync(job, jobService)
-			}
-			else {
-				run (job, jobService, queueSize)
-			}
-
-		}
-		else {
+		if (params.('isExample') == "true"){ 
 			def folderName = jobService.getExampleFolderName(fileList)
 			if (job.email){
 				jobService.sendExampleResults(job.email, folderName)
 			}
 			else {
 				renderExample(folderName)
+			}
+		}
+		else {
+			int queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
+			jobService.prepareDirectory(job, sessionId, fileList, directionList, queueSize)
+			if (job.email){
+				runAsync(job, jobService)
+			}
+			else {
+				run (job, jobService, queueSize)
 			}
 		}
 	}
