@@ -131,22 +131,28 @@
 				var exmplFiles = document.getElementById("exampleFiles");
 				exmplFiles.value = "";
 				
+				var fileTable = document.getElementById("fileTable");
+				
 				if (isExample === "true"){
 					var files = exampleFiles();
-					console.log ("files.length " + files.length);
-					var fileNames = [];
-					for (var fileNum = 0; fileNum < files.length;fileNum++){
-						fileNames[fileNum] = files[fileNum].name;
-						console.log ("files[fileNum].name " + files[fileNum].name);
-					}
-					exmplFiles.value = fileNames;
+					
+					//console.log ("files.length " + files.length);
+					//var fileNames = [];
+					//for (var fileNum = 0; fileNum < files.length;fileNum++){
+					//	fileNames[fileNum] = files[fileNum].name;
+					//	console.log ("files[fileNum].name " + files[fileNum].name);
+					//}
+					//exmplFiles.value = fileNames;
 					//exmplFiles.value = exampleFiles();
-					console.log("exmplFiles.value from display " + exmplFiles.value);
+					//console.log("exmplFiles.value from display " + exmplFiles.value);
+					 
+					
 				}
+				
 				else {
 				    var files = document.getElementById("files").files || [];
 				}
-				var fileTable = document.getElementById("fileTable");
+				
 				
 				for(var i = fileTable.rows.length;i>0;i--) {
 					fileTable.deleteRow(i-1);
@@ -275,6 +281,15 @@
 					deleter.setAttribute("title", "Delete");
 					deleter.setAttribute("onclick", "deleteFile(this)");
 					deleterCell.appendChild(deleter);
+					
+					 
+						var fname = document.createElement("input")
+					 	var fnameId = "fileName" + index;
+					 	fname.setAttribute("id", fnameId);
+					 	fname.setAttribute("type", "hidden");
+						console.log ("files[index].name " + files[index].name);
+						deleterCell.appendChild(fname);
+					 
 		
 				}
 		

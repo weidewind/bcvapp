@@ -45,12 +45,13 @@ class JobController {
 		// Get files and directions
 		def fileListRaw = []
 		if (params.('isExample') == "true"){
-			def exampleFileNames = params.('exampleFiles')
-			println exampleFileNames.size()
-			for (int i = 0; i < exampleFileNames.size(); i++){
-				println (exampleFileNames[i])
-				fileListRaw.add(new File(Holders.config.storePath + exampleFileNames[i]))
-			}
+				def counter = 0
+				while(params.('fileName' + counter)){
+					println ("params.('fileName' + counter) " +counter + " "+ params.('fileName' + counter))
+					fileListRaw.add(new File(Holders.config.storePath + params.('fileName' + counter)))
+					counter++
+				}
+
 		}
 		
 		else {
@@ -97,7 +98,7 @@ class JobController {
 		
 		job.save()
 		
-		if (params.('isExamaple') == "false"){
+		if (params.('isExample') == "false"){
 			int queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
 			jobService.prepareDirectory(job, sessionId, fileList, directionList, queueSize)
 
