@@ -118,12 +118,12 @@ class JobController {
 	}
 
 	def sendExample(String email, Object jobService, List fileList){
-		def folderName = getfolderName(fileList)
+		def folderName = getFolderName(fileList)
 		jobService.sendExampleResults(email, folderName)
 	}
 	
 	def renderExample(Object jobService, List fileList){
-		def folderName = getfolderName(fileList)
+		def folderName = getFolderName(fileList)
 		def resultsPath = jobService.getExampleResults(folderName)
 		def zipResultsPath = jobService.getExampleZipResults(folderName)
 		def path = resultsPath.split('/')
