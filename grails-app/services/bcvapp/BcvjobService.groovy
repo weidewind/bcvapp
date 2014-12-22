@@ -441,7 +441,7 @@ class BcvjobService {
 		exampleFileNames.sort()
 		def folderName
 		for (f in exampleFileNames){
-			folderName.append(f.replaceAll(Pattern.compile('\\..*')))
+			folderName.append(f.replaceAll(Pattern.compile('\\..*'), ''))
 		}
 		println folderName
 		return folderName
