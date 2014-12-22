@@ -434,7 +434,7 @@ class BcvjobService {
 	}
 
 	def getExampleFolderName(List fileList){
-		List exampleFileNames
+		def exampleFileNames = []
 		for (f in fileList){
 			exampleFileNames.add(f.name)
 		}
