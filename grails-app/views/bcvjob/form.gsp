@@ -133,7 +133,7 @@
 				exmplFiles.value = "";
 				
 				var exmplFilesNum = document.getElementById("exampleFilesNumber");
-				exmplFilesNum.value = "";
+				exmplFilesNum.value = "0";
 				
 				var fileTable = document.getElementById("fileTable");
 				
