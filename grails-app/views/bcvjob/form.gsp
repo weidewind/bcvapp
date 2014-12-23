@@ -151,15 +151,15 @@
 					//exmplFiles.value = exampleFiles();
 					console.log("exmplFiles.value from display " + exmplFiles.value);
 										
-					document.getElementById("distance").readonly="readonly";
-					document.getElementById("taxdb").readonly="readonly";
+					document.getElementById("distance").disabled = true;
+					document.getElementById("taxdb").disabled = true;
 					
 				}
 				
 				else {
 				    var files = document.getElementById("files").files || [];
-				    document.getElementById("distance").readonly="";
-					document.getElementById("taxdb").readonly="";
+				    document.getElementById("distance").disabled = false;
+					document.getElementById("taxdb").disabled = false;
 				}
 				
 				
