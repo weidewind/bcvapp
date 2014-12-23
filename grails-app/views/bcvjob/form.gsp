@@ -67,10 +67,10 @@
 		<!--				</td> -->
 		<!--			</tr> -->
 				
-		<tr><input type="hidden" name="vocabulary" value="human microbiome"></tr>
+		<tr><input type="hidden" name="vocabulary" id="vocabulary" value="human microbiome"></tr>
 					<tr>
 						<td>Taxonomic database <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='GreenGenes database, used for taxonomic affiliation, contains sequences with automatically assigned taxonomy, which is reliable but not exhaustive. For some of these sequences, source organisms were also specified by the authors who uploaded them. If you choose option "named isolates", only such sequences will be used for taxonomy identification. Thus it is guaranteed that relatives with species-level taxonomic annotation will be present in the output, which is not the case with the full database. Since this manual annotation often helps to enhance taxonomic resolution, it is recommended that you choose this option. On the other hand, this annotation cannot be considered reliable; moreover, the full database may contain closer relatives with different taxonomic affiliation.' id='mytooltip' name='mytooltip'></td>
-						<td><select name='taxdb'>
+						<td><select name='taxdb' id='taxdb'>
 							<option selected='named isolates' value='named isolates'>named isolates</option>
 							<option value='full'>full</option>
 							</select>
@@ -150,12 +150,16 @@
 					exmplFilesNum.value = files.length;
 					//exmplFiles.value = exampleFiles();
 					console.log("exmplFiles.value from display " + exmplFiles.value);
-					 
+										
+					document.getElementById("distance").disabled = true;
+					document.getElementById("taxdb").disabled = true;
 					
 				}
 				
 				else {
 				    var files = document.getElementById("files").files || [];
+				    document.getElementById("distance").disabled = false;
+					document.getElementById("taxdb").disabled = false;
 				}
 				
 				
@@ -296,6 +300,9 @@
 					 	fname.setAttribute("value", files[index].name);
 						console.log ("files[index].name " + files[index].name);
 						deleterCell.appendChild(fname);
+
+						
+						
 					}	
 					 
 		
