@@ -495,6 +495,10 @@ class BcvjobService {
 
 	}
 
+	
+	
+	
+	
 	def isFloat(String value)
 	{
 		 try

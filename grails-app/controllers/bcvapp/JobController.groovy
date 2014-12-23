@@ -86,7 +86,12 @@ class JobController {
 		}
 		//
 
-		def errorMessage = jobService.checkInput(job, fileList)
+		if (params.('isExample') == "true"){
+			def errorMessage = jobService.checkExampleInput(job)
+		}
+		else {
+			def errorMessage = jobService.checkInput(job, fileList)
+		}
 
 		if (errorMessage) {
 			render "${errorMessage}"
