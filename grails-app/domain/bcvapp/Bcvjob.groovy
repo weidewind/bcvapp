@@ -21,16 +21,18 @@ class Bcvjob {
 		static constraints = {
 			email (blank:true, nullable:true, email:true)
 		//	distance (min: 0f, max: 0.1f)
-			distance validator: { value, bcvjob ->
+			distance validator: { value, bcvjob, errors ->
 				if ((value && value >= 0f && value <= 0.1f) || bcvjob.isExample == "true"){
 					return true
 				}
+				errors.rejectValue( "distance", "bcvjob.distance.badvalue", "Distance is null or out of range.")
 				return false
 			}
 			taxdb validator: { value, bcvjob ->
 				if (value || bcvjob.isExample == "true"){
 					return true
 				}
+				errors.rejectValue( "taxdb", "bcvjob.taxdb.badvalue", "taxdb is null.")
 				return false
 			}
 			deletedFiles (nullable: true)
