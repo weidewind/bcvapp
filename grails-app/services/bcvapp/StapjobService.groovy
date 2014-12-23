@@ -32,7 +32,7 @@ class StapjobService {
 
 	def String defaultName = "input"
 
-	def prepareDirectory(Stapjob job, String sessionId, List fileList, List directionList){
+	def prepareDirectory(Stapjob job, String sessionId, List fileList, List directionList, Integer queueSize){
 
 
 		def configFile = new File (configPath)

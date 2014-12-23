@@ -45,7 +45,7 @@
 			<div class='panel'>
 			Upload sequences in .fasta format
 			<p><div class="inputWrapper">Browse
-				<label><input type='file' name='files' id='files' class='files' accept='.ab1' multiple onchange='displayList()' /></label>
+				<label><input type='file' name='files' id='files' class='files' accept='.fasta' multiple onchange='displayList()' /></label>
 			</div>
 			<div class = 'error'><label id = 'file_error'></label></div>
 			<p><table class='fileTable' id='fileTable'></table>
@@ -136,7 +136,7 @@
 					var deleter = document.createElement("img");
 					var deleterId = "deleter" + index;
 					deleter.setAttribute("id", deleterId);
-					deleter.setAttribute("src", "${createLinkTo (dir:'images', file:'deleter.png')}");
+					deleter.setAttribute("src", "${createLinkTo (dir:'images', file:'mydeleter.png')}");
 					deleter.setAttribute("title", "Delete");
 					deleter.setAttribute("onclick", "deleteFile(this)");
 					deleterCell.appendChild(deleter);
