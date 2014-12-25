@@ -41,6 +41,13 @@ class Bcvjob {
 			exampleFileName(nullable: true)
 			files(nullable: true)
 			exampleFilesNumber (blank:true, nullable: true)
+			files validator: { value, bcvjob, errors ->
+				if (value ||  bcvjob.isExample == "true"){
+					return true
+				}
+				errors.rejectValue( "files", "bcvjob.files.badvalue", "No input files selected")
+				return false
+			}
 	
 		}
 		

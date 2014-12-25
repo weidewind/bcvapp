@@ -314,9 +314,9 @@
 			
 			function exampleFiles(){
 				var file1 = new Object();
-				file1.name = "1-500_Pleural_fluid.ab1";
+				file1.name = "14_02_11_95_Un162.ab1";
 				var file2 = new Object();
-				file2.name = "300-800_Pleural_fluid.ab1";
+				file2.name = "14_02_11_97_Un161.ab1";
 				var files = [file1, file2];
 				return files;
 			}
