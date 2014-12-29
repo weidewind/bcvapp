@@ -44,9 +44,7 @@ class JobController {
 
 		// Get files and directions
 		def fileListRaw = []
-		println(params.('isExample'))
-		println(params.('exampleFileName0'))
-		println(params.('exampleFileName1'))
+
 		if (params.('isExample') == "true"){
 			for (int c = 0; c < Integer.parseInt(params.('exampleFilesNumber')); c++){
 				println ("params.('exampleFileName' + c) " +c + " "+ params.('exampleFileName' + c))

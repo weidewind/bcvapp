@@ -77,7 +77,7 @@ class StapjobService {
 		
 		if (fileList != null){
 			for (f in fileList){
-				new File (outputPath + "/" + f.getOriginalFilename().replaceAll(Pattern.compile('\\..*'), '')).mkdir()
+				new File (outputPath + "/" + f.getOriginalFilename().replaceAll(Pattern.compile('\\..*'), '').replaceAll("\\s+", "_")).mkdir()
 			}
 			uploadFiles(outputPath, fileList)
 		}
@@ -160,7 +160,7 @@ class StapjobService {
 		for (f in fileList){
 			if(f instanceof org.springframework.web.multipart.commons.CommonsMultipartFile){
 
-				def fileName = f.getOriginalFilename()
+				def fileName = f.getOriginalFilename().replaceAll("\\s+", "_")
 				new FileOutputStream(uploadPath + "/" + fileName.replaceAll(Pattern.compile('\\..*'), '') + "/" + fileName).leftShift( f.getInputStream() )
 
 			} else {
