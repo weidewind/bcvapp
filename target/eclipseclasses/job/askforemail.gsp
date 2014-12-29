@@ -5,15 +5,27 @@
 	<head>
 		<title>bcv-pipeline</title>
 			<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='css' file='snazzy.css' /> " />
-			 <link rel="shortcut icon" href="<g:createLinkTo dir='images', file='favicon.ico' />" type="image/x-icon" /> 
+			 <link rel="shortcut icon" href="<g:createLinkTo dir='images', file='myfavicon.ico' />" type="image/x-icon" /> 
 		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.min.js' />"></script>
 		
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		
+		<!-- Google Analytics -->
+		<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+  ga('create', 'UA-39054482-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+		<!-- End Google Analytics -->
 		</head>
 	<body>
 		
-<p>There are several tasks already in the queue. Are you sure you don't want the results to be sent to your e-mail?</p>
+<p>There are several tasks already in the queue. You can provide an e-mail, so that we could send the results to you when they are ready.</p>
 <g:form controller = "job"  action = "updateAndRun"   onsubmit= "return validateForm(this.submited)">
 <p><input type='text' name='email' id='email' size='50' maxlength='80' />
 <div class = 'error'><label id = 'email_error'></label></div><p>
@@ -72,7 +84,7 @@ function validateForm(c) {
 //});
 
 	var d = new Date();
-    var interval = setInterval('checkAndUpdate("${sessionId}", "${task}")', '5000');
+    var interval = setInterval('checkAndUpdate("${params.sessionId}", "${params.task}")', '5000');
 
      function checkAndUpdate(sessionId, task){
      console.log(sessionId)

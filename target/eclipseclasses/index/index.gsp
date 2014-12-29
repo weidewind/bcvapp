@@ -7,8 +7,10 @@
 
 		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='stylesheets' file='snazzy.css' /> " /> 
 	<!--		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.min.js' />"></script> -->
-		<link rel="shortcut icon" href="<g:createLinkTo dir='images', file='favicon.ico'/>" type="image/x-icon" /> 
+		<link rel="shortcut icon" href="<g:createLinkTo dir='images', file='myfavicon.ico'/>" type="image/x-icon" /> 
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<meta name="keywords" content="DNA, sequencing, basecaller, chromatogram, mixture, deconvolution, Sanger, HMM, BCV" />
+	
 	<!-- Google Analytics -->
 		<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -23,14 +25,15 @@
 		<!-- End Google Analytics -->
 	</head>
 	<body>
-	
+	<div class = 'wrapper'>
 
 <tmpl:menu />
 
 		<div class = "central-panel">
 			<h1>Base Caller with Vocabulary</h1>
 			
-				<p>The Base Calling with Vocabulary (BCV) software package is intended for analysis of direct (population) sequencing chromatograms using known vocabulary sequences similar to the target DNA. The current version of BCV can only process chromatogram files obtained on Applied Biosystems capillary sequencing machines (ABI file format). In principle, the method can be applied to other sequencing platforms except high-throughput sequencing; however, the current software version has not been tested for such applications.</p>
+				<p>The Base Calling with Vocabulary (BCV) software package is intended for analysis of direct (population) sequencing chromatograms using known vocabulary sequences similar to the target DNA. BCV is designed for characterizing the bacterial populations in clinical samples from body sites or liquids that are normally sterile.
+				The current version of BCV can only process chromatogram files obtained on Applied Biosystems capillary sequencing machines (ABI file format). In principle, the method can be applied to other sequencing platforms except high-throughput sequencing; however, the current software version has not been tested for such applications.</p>
 				<p>The BCV package has the following functionalities:
 				<ul>
 					<li>Base calling: determining the sequence of IUPAC codes corresponding to sets of 1-4 nucleotides at each position for a chromatogram</li>
@@ -40,7 +43,7 @@
 				</p>
 				<p>The BCV software is distributed under the GNU GPL v. 3 license, and was successfully compiled on Linux and Windows Cygwin platforms.</p>
 			   	
-			   	<p>To enjoy the full functionality of BCV, <a href="${createLinkTo(dir: '/index', file: 'installguide.gsp')}">download and install </a> it locally. </p>
+			   	<p>To enjoy the full functionality of BCV, <a href="${createLinkTo(dir: '/index', file: 'installguide.gsp')}">download and install</a> it locally. </p>
 			   	<p>For base calling, mixture deconvolution and taxonomic assignment of 16S rRNA mixed chromatograms, use <a href="${createLinkTo(dir: '/bcvjob', file: 'form.gsp')}">BCV online</a>. </p>  
 			   	
 			   	<div class="citation">
@@ -55,7 +58,10 @@
 
 		 	<!--	</g:form> -->
 		</div>
-		
+
+      <div class ="push"></div>
+    </div>
+    <tmpl:footer />
 	</body>
 </html>
 		

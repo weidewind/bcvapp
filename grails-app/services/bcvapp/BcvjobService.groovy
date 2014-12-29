@@ -75,7 +75,7 @@ class BcvjobService {
 			res << ("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")		}
 		
 		for (f in fileList){
-			new File (outputPath + "/" + f.getOriginalFilename().replaceAll(Pattern.compile('\\..*'), '')).mkdir()
+			new File (outputPath + "/" + f.getOriginalFilename().replaceAll(Pattern.compile('\\..*'), '').replaceAll("\\s+", "_")).mkdir()
 		}
 
 		uploadFiles(inputPath, fileList)
@@ -101,7 +101,7 @@ class BcvjobService {
 				stringDirection = "reverse"
 			}
 			else stringDirection = "forward"
-			reads.appendNode('Read', [name:f.getOriginalFilename()]).appendNode('Direction', stringDirection)
+			reads.appendNode('Read', [name:f.getOriginalFilename().replaceAll("\\s+", "_")]).appendNode('Direction', stringDirection)
 			counter++
 		}
 
@@ -272,7 +272,7 @@ class BcvjobService {
 		for (f in fileList){
 			if(f instanceof org.springframework.web.multipart.commons.CommonsMultipartFile){
 
-				def fileName = f.getOriginalFilename()
+				def fileName = f.getOriginalFilename().replaceAll("\\s+", "_")
 				new FileOutputStream(uploadPath + "/" + fileName).leftShift( f.getInputStream() )
 
 			} else {
@@ -285,7 +285,7 @@ class BcvjobService {
 		for (f in fileList){
 			if(f instanceof org.springframework.web.multipart.commons.CommonsMultipartFile){
 
-				def fileName = f.getOriginalFilename()
+				def fileName = f.getOriginalFilename().replaceAll("\\s+", "_")
 				new FileOutputStream(uploadPath + "/" + fileName.replaceAll(Pattern.compile('\\..*'), '') + "/" + fileName).leftShift( f.getInputStream() )
 
 			} else {
