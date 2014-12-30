@@ -332,7 +332,7 @@ class StapjobService {
 		if (fileList.size() > 10){
 			errorMessage += "<p>Please, do not select more than 10 files. </p>"
 		}
-		if (fileList.size() > 1){
+		if (fileList.size() > 0){
 			for (f in fileList) {
 				def name = f.getOriginalFilename()
 				int dot= name.lastIndexOf(".");
@@ -340,7 +340,7 @@ class StapjobService {
 					errorMessage += "<p>Unsupported extension: ${name}}</p>"
 				}
 
-				def fileContents = f.text
+				def fileContents = IOUtils.toString(f.getInputStream(), "UTF-8")
 				if (!fileContents.isFasta()){
 					errorMessage += "<p>Not fasta: ${name} </p>"
 				}
