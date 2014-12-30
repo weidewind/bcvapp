@@ -12,6 +12,7 @@ import java.util.zip.ZipOutputStream
 
 import grails.util.Mixin
 import grails.util.Holders
+import org.apache.commons.io.IOUtils
 
 import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
 
