@@ -334,7 +334,7 @@ class StapjobService {
 			errorMessage += "<p>Please, do not select more than 10 files. </p>"
 		}
 		
-		if (fileList.size() > 0){
+		if (fileList.size() > 0 && fileList[0].getOriginalFilename() != null){
 			println (fileList.size())
 			for (f in fileList) {
 				println (f.getOriginalFilename())
@@ -506,6 +506,7 @@ class StapjobService {
 		def textArray = text.split(/[\r\n]+/)
 		def switcher = 0; //0 - header expected, 1 - sequence expected, 2 - whatever
 		for (str in textArray){
+			str = str.trim()
 			if (!isFasta){
 				break
 			}
