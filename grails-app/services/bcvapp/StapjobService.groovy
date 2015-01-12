@@ -346,7 +346,7 @@ class StapjobService {
 					errorMessage += "<p>Unsupported extension: ${name}}</p>"
 				}
 
-				def fileContents = IOUtils.toString(f.getInputStream(), "UTF-8")
+				def fileContents = IOUtils.toString(new FileInputStream(f), "UTF-8")
 				if (!isFasta(fileContents)){
 					errorMessage += "<p>Not fasta: ${name} </p>"
 					errorMessage += "<p>${fileContents}</p>"
@@ -514,7 +514,7 @@ class StapjobService {
 			}
 			switch (switcher){
 				case 1:
-					if (! (str ==~   /[ACTGNactgn-]+/)){
+					if (! (str ==~   /[\sACTGNactgn-]+/)){
 						isFasta = false
 						break
 					}
@@ -524,8 +524,8 @@ class StapjobService {
 					}
 
 				case 2:
-					if (! (str ==~   /^>[\w-]+/)){
-						if (! (str ==~   /[ACTGNactgn-]+/)){
+					if (! (str ==~   /^>[^>]+/)){
+						if (! (str ==~   /[\sACTGNactgn-]+/)){
 							isFasta = false
 							break
 						}
@@ -539,7 +539,7 @@ class StapjobService {
 						break
 					}
 				case 0:
-					if (! (str ==~   /^>[\w-]+/)){
+					if (! (str ==~   /^>[^>]+/)){
 						isFasta = false
 						break
 					}
