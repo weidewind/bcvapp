@@ -334,7 +334,7 @@ class StapjobService {
 			errorMessage += "<p>Please, do not select more than 10 files. </p>"
 		}
 		
-		if (fileList.size() > 0 && fileList[0].getOriginalFilename() != null){
+		if (fileList.size() > 0 && fileList[0].getOriginalFilename() != ""){
 			println (fileList.size())
 			for (f in fileList) {
 				println (f.getOriginalFilename())
@@ -348,6 +348,7 @@ class StapjobService {
 				def fileContents = IOUtils.toString(f.getInputStream(), "UTF-8")
 				if (!isFasta(fileContents)){
 					errorMessage += "<p>Not fasta: ${name} </p>"
+					errorMessage += "<p>${fileContents}</p>"
 				}
 			}
 		}
