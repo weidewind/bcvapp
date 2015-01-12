@@ -346,7 +346,7 @@ class StapjobService {
 					errorMessage += "<p>Unsupported extension: ${name}}</p>"
 				}
 
-				def fileContents = IOUtils.toString(new FileInputStream(f), "UTF-8")
+				def fileContents = IOUtils.toString(f.getInputStream(), "UTF-8")
 				if (!isFasta(fileContents)){
 					errorMessage += "<p>Not fasta: ${name} </p>"
 					errorMessage += "<p>${fileContents}</p>"
