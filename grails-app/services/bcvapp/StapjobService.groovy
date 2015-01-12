@@ -335,6 +335,7 @@ class StapjobService {
 		}
 		
 		if (fileList.size() > 0){
+			println (fileList.size())
 			for (f in fileList) {
 				println (f.getOriginalFilename())
 				println (f)
@@ -345,7 +346,6 @@ class StapjobService {
 				}
 
 				def fileContents = IOUtils.toString(f.getInputStream(), "UTF-8")
-				println (fileContents.class)
 				if (!isFasta(fileContents)){
 					errorMessage += "<p>Not fasta: ${name} </p>"
 				}
