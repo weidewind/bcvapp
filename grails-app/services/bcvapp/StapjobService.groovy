@@ -333,8 +333,11 @@ class StapjobService {
 		if (fileList.size() > 10){
 			errorMessage += "<p>Please, do not select more than 10 files. </p>"
 		}
+		
 		if (fileList.size() > 0){
 			for (f in fileList) {
+				println (f.getOriginalFilename())
+				println (f)
 				def name = f.getOriginalFilename()
 				int dot= name.lastIndexOf(".");
 				if (name.substring(dot+1) != "fasta"){
