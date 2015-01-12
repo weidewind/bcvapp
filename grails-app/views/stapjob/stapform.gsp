@@ -5,7 +5,7 @@
 	<head>
 		<title>STAP</title>
 
-		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='stylesheets' file='snazzy.css' /> " />
+		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='stylesheets' file='regular.css' /> " />
 		<link rel="shortcut icon" href="<g:createLinkTo dir='images', file='myfavicon.ico' />" type="image/x-icon" /> 
 		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.min.js' />"></script> 
 		<input type="hidden" name="tasktype" value="stap">
