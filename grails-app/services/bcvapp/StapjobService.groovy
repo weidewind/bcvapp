@@ -342,6 +342,7 @@ class StapjobService {
 				}
 
 				def fileContents = IOUtils.toString(f.getInputStream(), "UTF-8")
+				println (fileContents.class)
 				if (!isFasta(fileContents)){
 					errorMessage += "<p>Not fasta: ${name} </p>"
 				}
