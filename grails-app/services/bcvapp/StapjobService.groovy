@@ -76,7 +76,7 @@ class StapjobService {
 			res << ("Running..<p>")
 			res << ("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")		}
 		
-		if (fileList != null){
+		if (fileList.size() > 0 && fileList[0].getOriginalFilename() != ""){
 			for (f in fileList){
 				new File (outputPath + "/" + f.getOriginalFilename().replaceAll(Pattern.compile('\\..*'), '').replaceAll("\\s+", "_")).mkdir()
 			}
@@ -168,6 +168,7 @@ class StapjobService {
 				log.error("wrong attachment type [${f.getClass()}]");
 			}
 		}
+		
 	}
 
 
