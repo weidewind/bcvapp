@@ -91,7 +91,7 @@
 			<label class ='collapsing-toggler'><input type='checkbox' name='checkbox_email' id='checkbox_email' value='ON' checked='checked' />Send results by E-mail</label>
 			<p><div class='collapsing-panel'><input type='text' name='email' id='email' size='50' maxlength='80' /></div>
 			<div class = 'error'><label id = 'email_error'></label></div><p>
-			<div class="inputWrapper" id="submitDiv">Submit<input type='submit' name='submit' id = 'submit' class='submit' value='Submit' />
+			<div class="inputWrapper" id="submitDiv">Submit<input type='submit' name='submit' id = 'submit' class='submit' value='Submit' onload='setSubmit()' />
 			</div>
 			</div>
 			<div class = 'error'><label id = 'final_error'></label></div><p>
@@ -120,6 +120,10 @@
 		$('#submit').on('click', function() {
  	 	ga('send', 'event', 'button', 'click', 'submit');
 		});
+		
+			function setSubmit(){
+				var submitButton = document.getElementById("submitDiv").innerHTML = "Submit";
+			}
 		
 			function displayList(isExample){
 			console.log("isExample in display "+isExample);
@@ -471,6 +475,9 @@
 				document.getElementById("final_error").innerHTML = "There is something wrong with the data you provided."
 			}
 			
+			else {
+				var submitButton = document.getElementById("submitDiv").innerHTML = "Loading";
+			}
 			return passed;
 		} 
 		
