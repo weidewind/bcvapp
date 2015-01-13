@@ -19,7 +19,7 @@ Date dateCreated
 		email (blank:true, nullable:true, email:true)
 		distance (min: 0f, max: 0.1f)
 		files (nullable: true)
-		sequences (blank: true, nullable: true, maxSize:3000)
+		sequences (blank: true, nullable: true, size:0..3000)
 		deletedFiles (nullable: true)
 
     }
