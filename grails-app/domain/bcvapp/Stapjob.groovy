@@ -27,6 +27,8 @@ Date dateCreated
 	static mapping = {
 
 		sessionId column: 'sessionId'
+		sequences type: 'text'
+
 	}
 	
 	def setSessionId(String sessionId){

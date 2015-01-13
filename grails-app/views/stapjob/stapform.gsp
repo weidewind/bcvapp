@@ -261,6 +261,9 @@
 			if (passed === false){
 				document.getElementById("final_error").innerHTML = "There is something wrong with the data you provided."
 			}
+			else {
+				var submitButton = document.getElementById("submitDiv").innerHTML = "Loading";
+			}
 			return passed;
 		} 
 		
