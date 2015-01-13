@@ -91,7 +91,7 @@
 			<label class ='collapsing-toggler'><input type='checkbox' name='checkbox_email' id='checkbox_email' value='ON' checked='checked' />Send results by E-mail</label>
 			<p><div class='collapsing-panel'><input type='text' name='email' id='email' size='50' maxlength='80' /></div>
 			<div class = 'error'><label id = 'email_error'></label></div><p>
-			<div class="inputWrapper">Submit<input type='submit' name='submit' id = 'submit' class='submit' value='Submit' />
+			<div class="inputWrapper" id="submitDiv">Submit<input type='submit' name='submit' id = 'submit' class='submit' value='Submit' />
 			</div>
 			</div>
 			<div class = 'error'><label id = 'final_error'></label></div><p>
@@ -470,6 +470,8 @@
 			if (passed === false){
 				document.getElementById("final_error").innerHTML = "There is something wrong with the data you provided."
 			}
+			
+			var submitButton = document.getElementById("submitDiv").innerHTML = "Loading"
 			return passed;
 		} 
 		

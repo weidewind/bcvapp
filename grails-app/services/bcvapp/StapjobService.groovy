@@ -236,9 +236,9 @@ class StapjobService {
 				multipart true
 				to "weidewind@gmail.com"
 				subject "BCV failed"
-				body "Achtung! sessionId: ${sessionId}, returnCode ${returnCode}"
+				body "Achtung! sessionId: ${sessionId}"
 			}
-			println (" stap bad news sent to webmaster; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+			println (" stap bad news sent to webmaster; sessionId ${sessionId} time ${System.currentTimeMillis()}")
 
 	}
 
