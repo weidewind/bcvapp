@@ -471,7 +471,6 @@
 				document.getElementById("final_error").innerHTML = "There is something wrong with the data you provided."
 			}
 			
-			var submitButton = document.getElementById("submitDiv").innerHTML = "Loading"
 			return passed;
 		} 
 		
