@@ -27,7 +27,7 @@ Date dateCreated
 	static mapping = {
 
 		sessionId column: 'sessionId'
-		sequences type: "text"
+		sequences sqlType: "text"
 
 	}
 	
