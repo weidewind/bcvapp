@@ -19,7 +19,7 @@ Date dateCreated
 		email (blank:true, nullable:true, email:true)
 		distance (min: 0f, max: 0.1f)
 		files (nullable: true)
-		sequences (blank: true, nullable: true)
+		sequences (blank: true, nullable: true, size: 0..65535)
 		deletedFiles (nullable: true)
 
     }
@@ -27,7 +27,6 @@ Date dateCreated
 	static mapping = {
 
 		sessionId column: 'sessionId'
-		sequences sqlType: "text"
 
 	}
 	
