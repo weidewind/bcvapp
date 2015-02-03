@@ -72,7 +72,13 @@ class BcvjobService {
 		else {
 			res << ("Your task was submitted at  ${new Date()}<p>") 
 			res << ("Running..<p>")
-			res << ("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")		}
+			res << ("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")	
+		}
+		
+		res << ("<script>")
+		res << ("var interval = setInterval('location.reload()', '30000');")
+		res << ("</script>")
+	
 		
 		for (f in fileList){
 			new File (outputPath + "/" + f.getOriginalFilename().replaceAll(Pattern.compile('\\..*'), '').replaceAll("\\s+", "_")).mkdir()
