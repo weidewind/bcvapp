@@ -7,7 +7,7 @@ class UrlMappings {
             }
         }
 
-        "/"(view:"/index")
+        "/"(view:"/bcvjob/form")
         "500"(view:'/error')
 	}
 }
