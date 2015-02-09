@@ -3,7 +3,7 @@ package bcvapp
 class IndexController {
 
     def index() {
-		render redirect(controller: "bcvjob", action: "form") 
+	//	render redirect(controller: "bcvjob", action: "form") 
 		}
 	
 //	def bcvRedirect (){
