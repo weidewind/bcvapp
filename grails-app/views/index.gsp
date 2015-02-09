@@ -1,2 +1,3 @@
 
-${response.sendRedirect(createLink(controller: 'bcvjob', action: 'form'))}
+${response.sendRedirect(createLinkTo(dir: '/bcvjob', file: 'form.gsp'))}
+
