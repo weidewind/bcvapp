@@ -1,2 +1,3 @@
 
-<script>window.location.href='http://bcvapp.cmd.su/bcvjob/form.gsp'</script>
+${response.sendRedirect(createLinkTo(dir: '/bcvjob', file: 'form.gsp'))}
+

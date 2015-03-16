@@ -281,7 +281,7 @@ class StapjobService {
 				println "going to zip files, sessionID ${sessionId} time ${System.currentTimeMillis()}"
 				println (output)
 		
-				def p = ~/.*\.(svg|with_names|cluster\.fasta)/
+				def p = ~/.*\.(svg|html|with_names|cluster\.fasta)/
 				def filelist = []
 		
 		
