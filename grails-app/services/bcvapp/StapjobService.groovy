@@ -20,7 +20,6 @@ import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
 
 
 @Transactional
-@Mixin(ServiceCategory)
 class StapjobService {
 
 	def mailService
@@ -560,13 +559,7 @@ class StapjobService {
 		return isFasta
 	}
 
-	def talkWork(){
-		ServiceCategory.talkWork()
-	}
 
-	def talkQueue(){
-		ServiceCategory.talkWork()
-	}
 
 }
 

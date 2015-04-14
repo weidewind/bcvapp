@@ -19,7 +19,6 @@ import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
 
 
 @Transactional
-@Mixin(ServiceCategory)
 class BcvjobService {
 
 	def mailService
@@ -525,13 +524,7 @@ class BcvjobService {
 		return Holders.config.storePath
 	}
 
-	def talkWork(){
-		ServiceCategory.talkWork()
-	}
 
-	def talkQueue(){
-		ServiceCategory.talkQueue()
-	}
 
 }
 
