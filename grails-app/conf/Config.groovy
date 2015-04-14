@@ -111,8 +111,8 @@ environments {
     }
     production {
         grails.logging.jul.usebridge = false
-		absPath = "/store/home/bcvapp/bcvapp/web-app/results/"
-		storePath = "/store/home/bcvapp/bcvapp/web-app/examples/"
+		absPath = "/var/lib/tomcat6/webapps/bcviss/web-app/results/"
+		storePath = "/var/lib/tomcat6/webapps/bcviss/web-app/examples/"
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
@@ -124,6 +124,9 @@ log4j.main = {
     //appenders {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
+	appenders {
+		rollingFile name: "stacktrace", maxFileSize: 1024, file: "/var/log/tomcat6/bcviss-stacktrace.log"
+	}
 
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
            'org.codehaus.groovy.grails.web.pages',          // GSP
