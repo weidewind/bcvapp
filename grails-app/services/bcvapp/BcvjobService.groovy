@@ -16,8 +16,6 @@ import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
 
 
 
-
-
 @Transactional
 class BcvjobService {
 
@@ -247,8 +245,9 @@ class BcvjobService {
 	def runPipeline(String sessionId){
 
 		println (" going to run bcv pipeline, sessionId ${sessionId}")
-		def command = "perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
-
+		//def command = "perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
+		def command = "perl /home/bcviss/pipelineFiles/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
+		
 		//def command = "cmd /c ping 1.1.1.1 -n 1 -w 3000 > nul"
 //		try {
 			holderService.procs[sessionId] = command.execute()                 // Call *execute* on the string

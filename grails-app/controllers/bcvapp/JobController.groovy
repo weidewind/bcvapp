@@ -137,7 +137,7 @@ class JobController {
 		//		render ("<a href='${createLink(action: 'downloadFile' , params: [path: zipResultsPath, contentType: 'application/zip', filename: 'results.zip'])}'>Download all files</a> (.fasta files, trees and the report itself) <p></p>")
 
 		def matcher = (htmlContent =~ /<a href=\"\.\//);
-		htmlContent = matcher.replaceAll('<a href="http://bcvapp.cmd.su/static/web-app/results/'+pathEnd+"/");
+		htmlContent = matcher.replaceAll('<a href="bioinf.fbb.msu.ru:8080/bcviss/web-app/results/'+pathEnd+"/");
 
 		render (text: htmlContent, contentType:"text/html", encoding:"UTF-8")
 
@@ -163,8 +163,8 @@ class JobController {
 		def htmlContent = new File(Holders.config.storePath + folderName + "/simple_results.html").text
 
 		def matcher = (htmlContent =~ /<a href=\"\.\//);
-		htmlContent = matcher.replaceAll('<a href="http://bcvapp.cmd.su/static/web-app/examples/'+folderName+"/");
-
+		//htmlContent = matcher.replaceAll('<a href="http://bcvapp.cmd.su/static/web-app/examples/'+folderName+"/");
+		htmlContent = matcher.replaceAll('<a href="http://bioinf.fbb.msu.ru:8080/bcviss/web-app/examples/'+folderName+"/");
 		render (text: htmlContent, contentType:"text/html", encoding:"UTF-8")
 	}
 
