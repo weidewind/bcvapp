@@ -559,7 +559,11 @@ class StapjobService {
 		return isFasta
 	}
 
-
+	def createSessionId() {
+		def randomNum = new Random().nextInt(100000)
+		def currentTime = System.currentTimeMillis()
+		return "${randomNum}_${currentTime}"
+	}
 
 }
 
