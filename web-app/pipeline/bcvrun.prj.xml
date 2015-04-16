@@ -3,31 +3,37 @@
 	<InFileExt>.ab1</InFileExt> 
 	<InPath>./Input</InPath>
 	<BCV_Input>./Input</BCV_Input> 
-	<BCV_Output>./Output</BCV_Output>
+	<BCV_Output>./ServerOutput</BCV_Output>
 	<BCV_CFG>${BCV_HOME}/outprofile_dcmp.cfg</BCV_CFG> 
-	<Vocabulary>/store/home/popova/Documents/BCV_examples/examples/vocabularies/human_microbiome.seq.fas</Vocabulary> 
+	<Vocabulary>/home/bcviss/BCV/examples/vocabularies/human_microbiome.seq.fas</Vocabulary> 
 	<UseCase>deconvolution</UseCase>
 	<Mode>PIPELINE</Mode> 
 	<FLAGS>
 		<Flag name='ParseSampleNames'>no</Flag>
 		<Flag name='RunBCV'>true</Flag> 
 	</FLAGS>
-	<PRIMERS PrimerDelim="_"> 
+	<PRIMERS PrimerDelim="_">
+		<PrimerDirection name="un16sq">reverse</PrimerDirection>
+		<PrimerDirection name="un161">forward</PrimerDirection>
+		<PrimerDirection name="un162">reverse</PrimerDirection>
 	</PRIMERS>
 	<READS>
-		<Read>
+		<Read name="01-02-11-2_E05_97_Un16Sq_09.ab1">
+			<Direction>reverse</Direction>
+			<SampleName>97</SampleName>
+			<PrimerName>Un16Sq</PrimerName>
 		</Read>
 	</READS>
 	<!-- 
 	full or named (or otu)
 	-->
 	<Database>named</Database> 
-	<BLASTPath>/home/popova/Programs/blast-2.2.26/bin/</BLASTPath>
-	<PhyMLPath>/home/popova/bin/</PhyMLPath>
-	<ClustalWPath>/home/popova/bin/</ClustalWPath>
-	<CDHitPath>/home/popova/Programs/cd-hit-v4.6.1/</CDHitPath>
-	<DBPath>/home/popova/Programs/STAP/</DBPath>
-	<tmpPath>/home/popova/Programs/STAP/tmp/</tmpPath>
+	<BLASTPath>/usr/bin/</BLASTPath>
+	<PhyMLPath>/usr/bin/</PhyMLPath>
+	<ClustalWPath>/usr/bin/</ClustalWPath>
+	<CDHitPath>/home/bcviss/pipelinePrograms/cd-hit-v4.6.1/</CDHitPath>
+	<DBPath>/home/bcviss/STAP/</DBPath>
+	<tmpPath>/home/bcviss/STAP/tmp/</tmpPath>
 	
 	
 	<!-- 
@@ -36,8 +42,8 @@
 	<ConfidenceThreshold>0.8</ConfidenceThreshold> 
 	<DistanceThreshold>0.03</DistanceThreshold>	
 	<ExpectThreshold>0.05</ExpectThreshold>	
-	<XSLPath>/home/popova/Documents/BCV_examples/examples/simple_server.xsl</XSLPath> 
-	<SimpleXSLPath>/home/popova/Documents/BCV_examples/examples/simple_server.xsl</SimpleXSLPath>
-	<GeneraFilePath>/home/popova/Documents/BCV_examples/examples/genera.txt</GeneraFilePath>
+	<XSLPath>/home/bcviss/pipelineFiles/simple_server.xsl</XSLPath> 
+	<SimpleXSLPath>/home/bcviss/pipelineFiles/simple_server.xsl</SimpleXSLPath>
+	<GeneraFilePath>/home/bcviss/pipelineFiles/genera.txt</GeneraFilePath>
 	<Email></Email> 
 </BCVRunConfiguration>

@@ -137,17 +137,23 @@ class StapjobService {
 	}
 
 	def runSTAP(String sessionId){
-		envVars = ["POLYSCANCMD=/home/bcviss/bin/polyscan",
+		def env = System.getenv()
+		String path = env['PATH']
+		String ldlib = env['LD_LIBRARY_PATH']
+		String cpath = env['CPATH']
+		String lib = env['LIBRARY_PATH']
+		String perl5lib = env['PERL5LIB']
+		def envVars = ["POLYSCANCMD=/home/bcviss/bin/polyscan",
 			"TTUNERCMD=/home/bcviss/pipelinePrograms/tracetuner_3.0.6beta/rel/Linux_64/ttuner",
 			"MSACMD=muscle",
 			"BCV_HOME=/home/bcviss/BCV/examples/bcvhome",
 			"BCVCMD=/home/bcviss/BCV/bcv-basecaller-0.2.2/bcvproc/bcvproc",
-			"PATH=$PATH:/home/bcviss/bin/",
-			"LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/bcviss/lib/",
-			"LIBRARY_PATH=$LIBRARY_PATH:/home/bcviss/lib/",
-			"CPATH=$CPATH:/home/bcviss/include/",
-			"PERL5LIB=$PERL5LIB:/home/bcviss/pipelinePrograms/ABI-1.0/blib/lib:/home/bcviss/BCV/bcvrun-0.2.3/lib:/home/bcviss/localPerl/share/perl/5.14:/home/bcviss/localPerl/share/perl/5.14.2"]
-	
+			"PATH=${path}:/home/bcviss/bin/",
+			"LD_LIBRARY_PATH=${ldlib}:/home/bcviss/lib/",
+			"LIBRARY_PATH=${lib}:/home/bcviss/lib/",
+			"CPATH=${cpath}:/home/bcviss/include/",
+			"PERL5LIB=${perl5lib}:/home/bcviss/pipelinePrograms/ABI-1.0/blib/lib:/home/bcviss/BCV/bcvrun-0.2.3/lib:/home/bcviss/localPerl/share/perl/5.14:/home/bcviss/localPerl/share/perl/5.14.2"]
+		
 		def command = "perl /home/bcviss/pipelineFiles/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
 
 		holderService.procs[sessionId] = command.execute(envVars, null)                 // Call *execute* on the string
