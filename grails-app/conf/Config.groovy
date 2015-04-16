@@ -111,8 +111,8 @@ environments {
     }
     production {
         grails.logging.jul.usebridge = false
-		absPath = "/var/lib/tomcat6/webapps/bcviss/web-app/results/"
-		storePath = "/var/lib/tomcat6/webapps/bcviss/web-app/examples/"
+		absPath = "/var/lib/tomcat6/webapps/bcviss/results/"
+		storePath = "/var/lib/tomcat6/webapps/bcviss/examples/"
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }

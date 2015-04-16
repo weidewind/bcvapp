@@ -246,24 +246,23 @@ class BcvjobService {
 
 		println (" going to run bcv pipeline, sessionId ${sessionId}")
 		//def command = "perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
+		
+		envVars = ["POLYSCANCMD=/home/bcviss/bin/polyscan",
+			"TTUNERCMD=/home/bcviss/pipelinePrograms/tracetuner_3.0.6beta/rel/Linux_64/ttuner",
+			"MSACMD=muscle",
+			"BCV_HOME=/home/bcviss/BCV/examples/bcvhome",
+			"BCVCMD=/home/bcviss/BCV/bcv-basecaller-0.2.2/bcvproc/bcvproc",
+			"PATH=$PATH:/home/bcviss/bin/",
+			"LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/bcviss/lib/",
+			"LIBRARY_PATH=$LIBRARY_PATH:/home/bcviss/lib/",
+			"CPATH=$CPATH:/home/bcviss/include/",
+			"PERL5LIB=$PERL5LIB:/home/bcviss/pipelinePrograms/ABI-1.0/blib/lib:/home/bcviss/BCV/bcvrun-0.2.3/lib:/home/bcviss/localPerl/share/perl/5.14:/home/bcviss/localPerl/share/perl/5.14.2"]
 		def command = "perl /home/bcviss/pipelineFiles/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
 		
-		//def command = "cmd /c ping 1.1.1.1 -n 1 -w 3000 > nul"
-//		try {
-			holderService.procs[sessionId] = command.execute()                 // Call *execute* on the string
-			holderService.procs[sessionId].consumeProcessOutput( System.out, System.err ) //31.10
-			holderService.procs[sessionId].waitFor()                               // Wait for the command to finish
+		holderService.procs[sessionId] = command.execute(envVars, null)                 // Call *execute* on the string
+		holderService.procs[sessionId].consumeProcessOutput( System.out, System.err ) //31.10
+		holderService.procs[sessionId].waitFor()                               // Wait for the command to finish
 
-//		} catch (InterruptedException e){
-//			e.printStackTrace()
-//			println holderService.procs[sessionId].exitValue()
-//			return "interrupted"
-//		}
-//		catch (Exception e){
-//			e.printStackTrace()
-//			println holderService.procs[sessionId].exitValue()
-//			return "Unexpected exception thrown by pipeline"
-//		}
 		def exitValue = holderService.procs[sessionId].exitValue()
 		println "return code " +  exitValue
 		holderService.deleteProc(sessionId)
