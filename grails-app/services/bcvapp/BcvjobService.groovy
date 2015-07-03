@@ -149,10 +149,16 @@ class BcvjobService {
 
 		if(queueSize > 3){
 			println (" bcv waiting in queue; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+			
+			def waitingTime = 0
+			def reportSent = false
 			while (queueSize > 3){  // 1 running task + our task
 				sleep(5000)
+				waitingTime += 1
+				if (waitingTime > 17280 & reportSent == false){
+					sendLogs("Session ${job.sessionId} has been waiting in queue for more than 24 hours. Fishy.")
+				}
 				queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
-
 			}
 			println (" bcv finished waiting in queue; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 			
@@ -370,16 +376,16 @@ class BcvjobService {
 
 	}
 
-	def sendLogs(String sessionId){
+	def sendLogs(String message){
 		//just in case there is no results at all and results.zip does not exist. Todo: catch mailService or zip exception
 		
 			mailService.sendMail {
 				multipart true
 				to "weidewind@gmail.com"
 				subject "BCV failed"
-				body "Achtung! sessionId: ${sessionId}"
+				body "Achtung! ${message}"
 			}
-			println (" bcv bad news sent to webmaster; sessionId ${sessionId} time ${System.currentTimeMillis()}")
+			println (" bcv bad news sent to webmaster; message ${message} time ${System.currentTimeMillis()}")
 		
 		
 	}
