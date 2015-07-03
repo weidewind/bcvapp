@@ -12,8 +12,8 @@ import java.util.zip.ZipOutputStream
 
 import grails.util.Mixin
 import grails.util.Holders
-import org.apache.commons.io.IOUtils
 
+import org.apache.commons.io.IOUtils
 import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
 
 
@@ -242,17 +242,19 @@ class StapjobService {
 
 	}
 
-	def sendLogs(String sessionId){
+	
+	def sendLogs(String message){
 		//just in case there is no results at all and results.zip does not exist. Todo: catch mailService or zip exception
 		
 			mailService.sendMail {
 				multipart true
 				to "weidewind@gmail.com"
-				subject "BCV failed"
-				body "Achtung! sessionId: ${sessionId}"
+				subject "STAP failed"
+				body "Achtung! ${message}"
 			}
-			println (" stap bad news sent to webmaster; sessionId ${sessionId} time ${System.currentTimeMillis()}")
-
+			println (" stap bad news sent to webmaster; message ${message} time ${System.currentTimeMillis()}")
+		
+		
 	}
 
 //	def zipResults(String sessionId){
