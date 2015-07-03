@@ -249,7 +249,7 @@ class JobController {
 			//	render redirect (action: "waiting", params:[start: start, randomString: ""])
 			def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
 
-			if (queueSize > 2){  // 1 running task + our task
+			if (queueSize > 3){  // 1 running task + our task
 				render view: "waitinginqueue", model:[start:start, sessionId: job.sessionId, task:job.class, id:job.id, dateCreated:job.dateCreated]
 				return
 				//render "<p>${randomString}</p>"
@@ -304,7 +304,7 @@ class JobController {
 		def GParsPool = new GParsPool()
 		def pool = new ForkJoinPool(1)
 
-		if (queueSize > 2){
+		if (queueSize > 3){
 			GParsPool.withExistingPool (pool, {
 				jobService.getWaitingPipeline.callAsync(job)
 				pool.shutdown()
@@ -374,7 +374,7 @@ class JobController {
 
 		def queueSize = Bcvjob.countByDateCreatedLessThanEquals(date) + Stapjob.countByDateCreatedLessThanEquals(date)
 		println (" date " + date + ", queue size " + queueSize)
-		if (queueSize > 2){
+		if (queueSize > 3){
 			render "false"
 		}
 		else render "true"

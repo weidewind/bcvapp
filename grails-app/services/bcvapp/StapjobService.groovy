@@ -65,7 +65,7 @@ class StapjobService {
 
 		new File(outputPath + "/simple_results.html").createNewFile()
 		File res = new File(outputPath + "/simple_results.html")
-		if (queueSize > 2 ){
+		if (queueSize > 3 ){
 			res << ("Your task was submitted at  ${new Date()}<p>")
 			res << ("Waiting in queue..<p>")
 			res << ("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")
@@ -428,12 +428,17 @@ class StapjobService {
 
 		def queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
 
-		if(queueSize > 2){
+		if(queueSize > 3){
 			println (" stap waiting in queue; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
-			while (queueSize > 2){  // 1 running task + our task
+			def waitingTime = 0
+			def reportSent = false
+			while (queueSize > 3){  // 1 running task + our task
 				sleep(5000)
+				waitingTime += 1
+				if (waitingTime > 17280 & reportSent == false){
+					sendLogs("Session ${job.sessionId} has been waiting in queue for more than 24 hours. Fishy.")
+				}
 				queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
-
 			}
 			println (" stap finished waiting in queue; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 			
