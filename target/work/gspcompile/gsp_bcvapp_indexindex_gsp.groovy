@@ -43,19 +43,19 @@ expressionOut.print(createLinkTo(dir: '/bcvjob', file: 'form.gsp'))
 printHtmlPart(12)
 createTagBody(2, {->
 printHtmlPart(13)
-invokeTag('actionSubmit','g',55,['class':("myButton"),'value':("BCV online"),'action':("bcvRedirect")],-1)
+invokeTag('actionSubmit','g',56,['class':("myButton"),'value':("BCV online"),'action':("bcvRedirect")],-1)
 printHtmlPart(13)
-invokeTag('actionSubmit','g',56,['class':("myButton"),'value':("Download & install"),'action':("installRedirect")],-1)
+invokeTag('actionSubmit','g',57,['class':("myButton"),'value':("Download & install"),'action':("installRedirect")],-1)
 printHtmlPart(13)
-invokeTag('actionSubmit','g',57,['class':("myButton"),'value':("User guide"),'action':("guideRedirect")],-1)
+invokeTag('actionSubmit','g',58,['class':("myButton"),'value':("User guide"),'action':("guideRedirect")],-1)
 printHtmlPart(14)
 })
-invokeTag('form','g',59,['controller':("index")],2)
+invokeTag('form','g',60,['controller':("index")],2)
 printHtmlPart(15)
-invokeTag('footer','tmpl',64,[:],-1)
+invokeTag('footer','tmpl',65,[:],-1)
 printHtmlPart(8)
 })
-invokeTag('captureBody','sitemesh',65,[:],1)
+invokeTag('captureBody','sitemesh',66,[:],1)
 printHtmlPart(16)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -63,7 +63,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1421065276825L
+public static final long LAST_MODIFIED = 1435931360039L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

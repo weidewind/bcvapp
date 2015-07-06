@@ -45,6 +45,7 @@
 			   	
 			   	<p>To enjoy the full functionality of BCV, <a href="${createLinkTo(dir: '/index', file: 'installguide.gsp')}">download and install</a> it locally. </p>
 			   	<p>For base calling, mixture deconvolution and taxonomic assignment of 16S rRNA mixed chromatograms, use <a href="${createLinkTo(dir: '/bcvjob', file: 'form.gsp')}">BCV online</a>. </p>  
+			   	<p>In case of any questions concerning BCV online, please contact us at <span id="contacts">bcv.pipeline@gmail.com</span></p>
 			   	
 			   	<div class="citation">
 			    	<p> Citation: <a href="http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0054835">Base-Calling Algorithm with Vocabulary (BCV) Method for Analyzing Population Sequencing Chromatograms</a> </p>

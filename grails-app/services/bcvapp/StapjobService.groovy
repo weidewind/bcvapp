@@ -232,7 +232,7 @@ class StapjobService {
 				multipart true
 				to "weidewind@gmail.com"
 				subject "STAP failed"
-				body "Achtung! email: ${email}, sessionId: ${sessionId}, returnCode ${returnCode}"
+				body "Achtung! email: ${email}, sessionId: ${sessionId}"
 				attachBytes 'results.zip','application/zip', new File(results).readBytes()
 
 			}
@@ -503,7 +503,7 @@ class StapjobService {
 		}
 		else {
 			if (job.email) {
-				sendLogs(job.email, job.sessionId, returnCode)
+				sendLogs(job.email, job.sessionId)
 				println (" stap bad news sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 			}
 			else if (returnCode != 143) {

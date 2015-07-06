@@ -222,7 +222,7 @@ class BcvjobService {
 		}
 		else {
 			if (job.email) {
-				sendLogs(job.email, job.sessionId, returnCode)
+				sendLogs(job.email, job.sessionId)
 				println (" bcv bad news sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 			}
 			else if (returnCode != 143) {
