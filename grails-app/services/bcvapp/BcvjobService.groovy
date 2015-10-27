@@ -157,6 +157,7 @@ class BcvjobService {
 				waitingTime += 1
 				if (waitingTime > 17280 & reportSent == false){
 					sendLogs("Session ${job.sessionId} has been waiting in queue for more than 24 hours. Fishy.")
+					reportSent = true;
 				}
 				queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
 			}
@@ -345,13 +346,13 @@ class BcvjobService {
 
 		//def logs = "${absPath}${sessionId}logfile"
 		def results = getZipResults(sessionId)
-		println "going to send logs, sessionID ${sessionId} logPath ${logs} time ${System.currentTimeMillis()}"
+		println "going to send bad news, sessionID ${sessionId} time ${System.currentTimeMillis()}"
 
 		mailService.sendMail {
 			multipart true
 			to email
 			subject "BCV failed"
-			body "We are very sorry, but something has gone amiss. Here are some of your results, though."
+			body "We are very sorry, but something has gone amiss. Here are some of your results, though. For further information please contact us at bcv.pipeline@gmail.com."
 			attachBytes 'results.zip','application/zip', new File(results).readBytes()
 		}
 		//just in case there is no results at all and results.zip does not exist. Todo: catch mailService or zip exception
@@ -370,7 +371,7 @@ class BcvjobService {
 				attachBytes 'results.zip','application/zip', new File(results).readBytes()
 
 			}
-			println (" bcv bad news sent to webmaster; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+			println (" bcv bad news sent to webmaster; sessionId ${sessionId} time ${System.currentTimeMillis()}")
 		
 		
 
