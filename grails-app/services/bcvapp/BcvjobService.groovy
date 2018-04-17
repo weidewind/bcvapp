@@ -78,7 +78,7 @@ class BcvjobService {
 	
 		
 		for (f in fileList){
-			new File (outputPath + "/" + f.getOriginalFilename().replaceAll(Pattern.compile('\\..*'), '').replaceAll("\\s+", "_")).mkdir()
+			new File (outputPath + "/" + f.getOriginalFilename().replaceAll(Pattern.compile('\\.[^\\.]*$'), '').replaceAll("\\s+", "_")).mkdir()
 		}
 
 		uploadFiles(inputPath, fileList)
@@ -303,7 +303,7 @@ class BcvjobService {
 			if(f instanceof org.springframework.web.multipart.commons.CommonsMultipartFile){
 
 				def fileName = f.getOriginalFilename().replaceAll("\\s+", "_")
-				new FileOutputStream(uploadPath + "/" + fileName.replaceAll(Pattern.compile('\\..*'), '') + "/" + fileName).leftShift( f.getInputStream() )
+				new FileOutputStream(uploadPath + "/" + fileName.replaceAll(Pattern.compile('\\.[^\\.]*$'), '') + "/" + fileName).leftShift( f.getInputStream() )
 
 			} else {
 				log.error("wrong attachment type [${f.getClass()}]");
@@ -458,7 +458,7 @@ class BcvjobService {
 		exampleFileNames.sort()
 		def folderName = ""
 		for (f in exampleFileNames){
-			folderName = folderName + (f.replaceAll(Pattern.compile('\\..*'), ''))
+			folderName = folderName + (f.replaceAll(Pattern.compile('\\.[^\\.]*$'), ''))
 		}
 		println folderName
 		return folderName
