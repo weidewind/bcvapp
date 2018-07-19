@@ -106,14 +106,15 @@ grails.resources.processing.enabled = false //fiskin
 environments {
     development {
         grails.logging.jul.usebridge = true
-		absPath = "C:/Users/weidewind/workspace/grails/"
-		storePath = "C:/Users/weidewind/workspace/grails/"
+		absPath = "/bcviss/results/"
+		storePath = "/bcviss/examples/"
+		serviceURL = "https://bcviss.crie.ru/"
     }
     production {
         grails.logging.jul.usebridge = false
-		absPath = "/var/lib/tomcat6/webapps/bcviss/results/"
-		storePath = "/var/lib/tomcat6/webapps/bcviss/examples/"
-        // TODO: grails.serverURL = "http://www.changeme.com"
+		absPath = "/bcviss/results/"
+		storePath = "/bcviss/examples/"
+        	serviceURL = "https://bcviss.crie.ru/"
     }
 }
 
@@ -125,7 +126,7 @@ log4j.main = {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
 	appenders {
-		rollingFile name: "stacktrace", maxFileSize: 1024, file: "/var/log/tomcat6/bcviss-stacktrace.log"
+		rollingFile name: "stacktrace", maxFileSize: 1024, file: "/bcviss/log/bcviss-stacktrace.log"
 	}
 
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers

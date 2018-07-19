@@ -47,7 +47,7 @@ class BcvjobService {
 		def folderPath = "${absPath}${sessionId}"
 		def inputPath = folderPath + "/" + input
 		def outputPath = folderPath + "/" + output
-		
+
 		addResultsPath(sessionId, outputPath)
 
 		inputLine[0].value = inputPath
@@ -58,25 +58,25 @@ class BcvjobService {
 
 		new File (inputPath).mkdirs()
 		new File (outputPath).mkdir()
-		
+
 		new File(outputPath + "/simple_results.html").createNewFile()
 		File res = new File(outputPath + "/simple_results.html")
 		if (queueSize > 3 ){
-			res << ("Your task was submitted at  ${new Date()}<p>") 
+			res << ("Your task was submitted at  ${new Date()}<p>")
 			res << ("Waiting in queue..<p>")
 			res << ("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")
 		}
 		else {
-			res << ("Your task was submitted at  ${new Date()}<p>") 
+			res << ("Your task was submitted at  ${new Date()}<p>")
 			res << ("Running..<p>")
-			res << ("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")	
+			res << ("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")
 		}
-		
+
 		res << ("<script>")
 		res << ("var interval = setInterval('location.reload()', '30000');")
 		res << ("</script>")
-	
-		
+
+
 		for (f in fileList){
 			new File (outputPath + "/" + f.getOriginalFilename().replaceAll(Pattern.compile('\\.[^\\.]*$'), '').replaceAll("\\s+", "_")).mkdir()
 		}
@@ -149,7 +149,7 @@ class BcvjobService {
 
 		if(queueSize > 3){
 			println (" bcv waiting in queue; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
-			
+
 			def waitingTime = 0
 			def reportSent = false
 			while (queueSize > 3){  // 1 running task + our task
@@ -162,10 +162,10 @@ class BcvjobService {
 				queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
 			}
 			println (" bcv finished waiting in queue; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
-			
 
-			def res = new File(getResults(job.sessionId)).newWriter() 
-				res.write("Your task was submitted at  ${new Date()}<p>") 
+
+			def res = new File(getResults(job.sessionId)).newWriter()
+				res.write("Your task was submitted at  ${new Date()}<p>")
 				res.write("Running..<p>")
 				res.write("Please, bookmark this page to see the results later. Refresh the page to check if they are ready.")
 				res.close()
@@ -174,19 +174,30 @@ class BcvjobService {
 		def returnCode = runPipeline(job.sessionId)
 		println (" bcv waiting pipeline finished; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 
+		println("=================================================================")
+		println(returnCode)
+		println("=================================================================")
+
 		if (returnCode != 143){
 			zipResults(job.sessionId)
 			println (" bcv waiting results zipped; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 		}
-		
-		if (returnCode == 0){
 
+		if (returnCode == 0){
 			if (job.email) {
 				sendResults(job.email, job.sessionId)
 				println (" bcv waiting results sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
 			}
 		}
-		else {
+
+		if (returnCode == 3){
+			if (job.email) {
+				sendResults(job.email, job.sessionId)
+				println (" bcv waiting results sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
+			}
+		}
+
+		if (returnCode != 3 && returnCode != 0) {
 			if (job.email) {
 				sendLogs(job.email, job.sessionId)
 				println (" bcv bad news sent; sessionId ${job.sessionId} time ${System.currentTimeMillis()}")
@@ -244,34 +255,30 @@ class BcvjobService {
 		outputMap.putAt(sessionId, outputPath)
 	}
 
-
-
-
-
-
 	def runPipeline(String sessionId){
 
 		println (" going to run bcv pipeline, sessionId ${sessionId}")
 		//def command = "perl /store/home/popova/Programs/BCV_pipeline/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
-		
+
 		def env = System.getenv()
 		String path = env['PATH']
 		String ldlib = env['LD_LIBRARY_PATH']
 		String cpath = env['CPATH']
 		String lib = env['LIBRARY_PATH']
 		String perl5lib = env['PERL5LIB']
-		def envVars = ["POLYSCANCMD=/home/bcviss/bin/polyscan",
-			"TTUNERCMD=/home/bcviss/pipelinePrograms/tracetuner_3.0.6beta/rel/Linux_64/ttuner",
-			"MSACMD=muscle",
-			"BCV_HOME=/home/bcviss/BCV/examples/bcvhome",
-			"BCVCMD=/home/bcviss/BCV/bcv-basecaller-0.2.2/bcvproc/bcvproc",
-			"PATH=${path}:/home/bcviss/bin/",
-			"LD_LIBRARY_PATH=${ldlib}:/home/bcviss/lib/",
-			"LIBRARY_PATH=${lib}:/home/bcviss/lib/",
-			"CPATH=${cpath}:/home/bcviss/include/",
-			"PERL5LIB=${perl5lib}:/home/bcviss/pipelinePrograms/ABI-1.0/blib/lib:/home/bcviss/BCV/bcvrun-0.2.3/lib:/home/bcviss/localPerl/share/perl/5.14:/home/bcviss/localPerl/share/perl/5.14.2"]
-		def command = "perl /home/bcviss/pipelineFiles/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}pipelinelog.txt >2${absPath}pipelinerr.txt"// Create the String
-		
+			def envVars = ["POLYSCANCMD=/usr/bin/polyscan",
+				"TTUNERCMD=/usr/bin/ttuner",
+				"MSACMD=/usr/bin/muscle",
+				"BCV_HOME=/bcviss/BCV/home",
+				"BCVCMD=/usr/bin/bcvproc",
+				"PATH=${path}",
+				"LD_LIBRARY_PATH=${ldlib}",
+				"LIBRARY_PATH=${lib}",
+				"CPATH=${cpath}",
+				"PERL5LIB=${perl5lib}"]
+
+		def command = "perl /bcviss/pipelineFiles/pipeline.pl ${absPath}${sessionId} bcvrun.prj.xml >${absPath}${sessionId}/OUT-pipelinelog.txt >2${absPath}${sessionId}/OUT-pipelinerr.txt"// Create the String
+
 		holderService.procs[sessionId] = command.execute(envVars, null)                 // Call *execute* on the string
 		println "executed";
 		holderService.procs[sessionId].consumeProcessOutput( System.out, System.err ) //31.10
@@ -327,7 +334,7 @@ class BcvjobService {
 		}
 
 	}
-	
+
 	def sendExampleResults(String email, String folderName){
 		def results = getStorePath() + folderName + "/results.zip"
 		println "going to send files, folderName ${folderName} resultsPath ${results} time ${System.currentTimeMillis()}"
@@ -359,36 +366,36 @@ class BcvjobService {
 		 //else user left, auto-termination
 			mailService.sendMail {
 				multipart true
-				to "weidewind@gmail.com"
+				to "vbykovskiy@cmd.su"
 				subject "BCV failed"
 				body "Achtung! email: ${email}, sessionId: ${sessionId}"
 			}
 			mailService.sendMail {
 				multipart true
-				to "weidewind@gmail.com"
+				to "vbykovskiy@cmd.su"
 				subject "BCV failed"
 				body "Achtung! email: ${email}, sessionId: ${sessionId}"
 				attachBytes 'results.zip','application/zip', new File(results).readBytes()
 
 			}
 			println (" bcv bad news sent to webmaster; sessionId ${sessionId} time ${System.currentTimeMillis()}")
-		
-		
+
+
 
 	}
 
 	def sendLogs(String message){
 		//just in case there is no results at all and results.zip does not exist. Todo: catch mailService or zip exception
-		
+
 			mailService.sendMail {
 				multipart true
-				to "weidewind@gmail.com"
+				to "vbykovskiy@cmd.su"
 				subject "BCV failed"
 				body "Achtung! ${message}"
 			}
 			println (" bcv bad news sent to webmaster; message ${message} time ${System.currentTimeMillis()}")
-		
-		
+
+
 	}
 
 
@@ -467,13 +474,14 @@ class BcvjobService {
 	def checkInput(Bcvjob job, List fileList){
 		String errorMessage = ""
 
-		if (!job.validate()) {
+/*
+		//if (!job.validate()) {
 
 			errorMessage = "Some errors occured: "
 			job.errors.each {
 				errorMessage += "<p>" +  it + "</p>"
 			}
-			//if (!isFloat(job.distance) || job.distance.toFloat() < 0 || job.distance.toFloat() > 0.1){
+			if (!isFloat(job.distance) || job.distance.toFloat() < 0 || job.distance.toFloat() > 0.1){
 			if ( job.distance < 0 || job.distance > 0.1){
 				errorMessage += "<p> Maximum distance must not be less than 0 or more than 0.1 </p>"
 			}
@@ -484,11 +492,13 @@ class BcvjobService {
 				errorMessage += "<p>Select at least one file </p>"
 			}
 		}
-		
+	//}
+	*/
+
 		if (fileList.size() > 10){
 			errorMessage += "<p>Please, do not select more than 10 files at once. </p>"
 		}
-		
+
 		if (job.isExample == "false"){
 			for (f in fileList) {
 				def name = f.getOriginalFilename()
@@ -506,16 +516,14 @@ class BcvjobService {
 			}
 		}
 
-
-
 		return errorMessage
 
 	}
 
-	
-	
-	
-	
+
+
+
+
 	def isFloat(String value)
 	{
 		 try
@@ -527,15 +535,15 @@ class BcvjobService {
 			  return false;
 		  }
 	}
-	
+
 	def getAbsPath(){
 		return Holders.config.absPath
 	}
-	
+
 	def getStorePath(){
 		return Holders.config.storePath
 	}
-	
+
 	def createSessionId() {
 		def randomNum = new Random().nextInt(100000)
 		def currentTime = System.currentTimeMillis()
@@ -545,4 +553,3 @@ class BcvjobService {
 
 
 }
-

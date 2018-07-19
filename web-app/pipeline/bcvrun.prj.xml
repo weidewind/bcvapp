@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <BCVRunConfiguration>
-	<InFileExt>.ab1</InFileExt> 
+	<InFileExt>.ab1</InFileExt>
 	<InPath>./Input</InPath>
-	<BCV_Input>./Input</BCV_Input> 
+	<BCV_Input>./Input</BCV_Input>
 	<BCV_Output>./ServerOutput</BCV_Output>
-	<BCV_CFG>${BCV_HOME}/outprofile_dcmp.cfg</BCV_CFG> 
-	<Vocabulary>/home/bcviss/BCV/examples/vocabularies/human_microbiome.seq.fas</Vocabulary> 
+	<BCV_CFG>${BCV_HOME}/outprofile_dcmp.cfg</BCV_CFG>
+	<Vocabulary>/bcviss/BCV/vocabularies/human_microbiome.seq.fas</Vocabulary>
 	<UseCase>deconvolution</UseCase>
-	<Mode>PIPELINE</Mode> 
+	<Mode>PIPELINE</Mode>
 	<FLAGS>
 		<Flag name='ParseSampleNames'>no</Flag>
-		<Flag name='RunBCV'>true</Flag> 
+		<Flag name='RunBCV'>true</Flag>
 	</FLAGS>
 	<PRIMERS PrimerDelim="_">
 		<PrimerDirection name="un16sq">reverse</PrimerDirection>
@@ -18,32 +18,29 @@
 		<PrimerDirection name="un162">reverse</PrimerDirection>
 	</PRIMERS>
 	<READS>
-		<Read name="01-02-11-2_E05_97_Un16Sq_09.ab1">
-			<Direction>reverse</Direction>
-			<SampleName>97</SampleName>
-			<PrimerName>Un16Sq</PrimerName>
+		<Read>
 		</Read>
 	</READS>
-	<!-- 
+	<!--
 	full or named (or otu)
 	-->
-	<Database>named</Database> 
+	<Database>named</Database>
 	<BLASTPath>/usr/bin/</BLASTPath>
 	<PhyMLPath>/usr/bin/</PhyMLPath>
 	<ClustalWPath>/usr/bin/</ClustalWPath>
-	<CDHitPath>/home/bcviss/pipelinePrograms/cd-hit-v4.6.1/</CDHitPath>
-	<DBPath>/home/bcviss/STAP/</DBPath>
-	<tmpPath>/home/bcviss/STAP/tmp/</tmpPath>
-	
-	
-	<!-- 
+	<CDHitPath>/usr/local/bin/</CDHitPath>
+	<DBPath>/usr/share/STAP/db/</DBPath>
+	<tmpPath>/tmp/</tmpPath>
+
+
+	<!--
 	stap_results configurations
 	-->
-	<ConfidenceThreshold>0.8</ConfidenceThreshold> 
-	<DistanceThreshold>0.03</DistanceThreshold>	
-	<ExpectThreshold>0.05</ExpectThreshold>	
-	<XSLPath>/home/bcviss/pipelineFiles/simple_server.xsl</XSLPath> 
-	<SimpleXSLPath>/home/bcviss/pipelineFiles/simple_server.xsl</SimpleXSLPath>
-	<GeneraFilePath>/home/bcviss/pipelineFiles/genera.txt</GeneraFilePath>
-	<Email></Email> 
+	<ConfidenceThreshold>0.8</ConfidenceThreshold>
+	<DistanceThreshold>0.03</DistanceThreshold>
+	<ExpectThreshold>0.05</ExpectThreshold>
+	<XSLPath>/bcviss/pipelineFiles/simple_server.xsl</XSLPath>
+	<SimpleXSLPath>/bcviss/pipelineFiles/simple_server.xsl</SimpleXSLPath>
+	<GeneraFilePath>/bcviss/pipelineFiles/genera.txt</GeneraFilePath>
+	<Email></Email>
 </BCVRunConfiguration>

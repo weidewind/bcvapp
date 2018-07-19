@@ -25,12 +25,37 @@ class JobController {
 	}
 
 	def submitbcv() {
+		println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+		println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+		println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+		println(params)
+		println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+		if (params.distance != null){
+			params.distance = params.distance.replace(",", ".")		
+		}	
+		println(params)
+		println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+		println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+		println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+
 		def job = new Bcvjob(params)
 		def jobService = bcvjobService
 		submit(job, jobService)
 	}
 
 	def submitstap() {
+
+		println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+		println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+		println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+		println(params)
+		println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+		params.distance = params.distance.replace(",", ".")
+		println(params)
+		println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+		println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+		println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+
 		def job = new Stapjob(params)
 		def jobService = stapjobService
 		submit(job, jobService)
@@ -96,20 +121,20 @@ class JobController {
 		}
 
 
-		
+
 
 		if (params.('isExample') == "true"){
 			def folderName = jobService.getExampleFolderName(fileList)
 			if (job.email){
 				jobService.sendExampleResults(job.email, folderName)
-				render "Success! The example was sent at ${job.email}" //fisa 15.04.15
+				render "An example was sent at ${job.email}" //fisa 15.04.15
 			}
 			else {
 				renderExample(folderName)
 			}
 		}
 		else {
-			
+
 			job.save()
 			int queueSize = Bcvjob.countByDateCreatedLessThanEquals(job.dateCreated) + Stapjob.countByDateCreatedLessThanEquals(job.dateCreated)
 			jobService.prepareDirectory(job, sessionId, fileList, directionList, queueSize)
@@ -138,7 +163,7 @@ class JobController {
 		//		render ("<a href='${createLink(action: 'downloadFile' , params: [path: zipResultsPath, contentType: 'application/zip', filename: 'results.zip'])}'>Download all files</a> (.fasta files, trees and the report itself) <p></p>")
 
 		def matcher = (htmlContent =~ /<a href=\"\.\//);
-		htmlContent = matcher.replaceAll('<a href="bioinf.fbb.msu.ru:8080/bcviss/results/'+pathEnd+"/");
+		htmlContent = matcher.replaceAll('<a href="'+Holders.config.serviceURL+Holders.config.absPath+pathEnd+"/");
 
 		render (text: htmlContent, contentType:"text/html", encoding:"UTF-8")
 
@@ -165,7 +190,7 @@ class JobController {
 
 		def matcher = (htmlContent =~ /<a href=\"\.\//);
 		//htmlContent = matcher.replaceAll('<a href="http://bcvapp.cmd.su/static/web-app/examples/'+folderName+"/");
-		htmlContent = matcher.replaceAll('<a href="http://bioinf.fbb.msu.ru:8080/bcviss/examples/'+folderName+"/");
+		htmlContent = matcher.replaceAll('<a href="'+Holders.config.serviceURL+Holders.config.storePath+folderName+"/");
 		render (text: htmlContent, contentType:"text/html", encoding:"UTF-8")
 	}
 
@@ -274,7 +299,7 @@ class JobController {
 			pool.shutdown()
 		})
 
-		render "Success! Your results will be sent at ${job.email}"
+		render "Successfully loaded data. Your results will be sent at ${job.email}"
 
 
 		//render view: "testview" // works here! wont work, if there is something else after this line. If one render goes after another - only the last one is rendered
@@ -448,7 +473,3 @@ class JobController {
 	}
 
 }
-
-
-
-
