@@ -6,12 +6,12 @@
 		<title>STAP</title>
 
 		<link rel="stylesheet" type="text/css" href="<g:createLinkTo dir='stylesheets' file='regular.css' /> " />
-		<link rel="shortcut icon" href="<g:createLinkTo dir='images', file='myfavicon.ico' />" type="image/x-icon" /> 
-		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.min.js' />"></script> 
+		<link rel="shortcut icon" href="<g:createLinkTo dir='images', file='myfavicon.ico' />" type="image/x-icon" />
+		<script type="text/javascript" src="<g:createLinkTo dir='javascripts' file='jquery-1.11.1.min.js' />"></script>
 		<input type="hidden" name="tasktype" value="stap">
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		<meta name="keywords" content="DNA, sequencing, basecaller, chromatogram, mixture, deconvolution, Sanger, HMM, BCV" />
-	
+
 	<!-- Google Analytics -->
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -23,13 +23,13 @@
   ga('send', 'pageview');
   </script>
 		<!-- End Google Analytics -->
-		
+
 	</head>
 	<body>
 	<div class = 'wrapper'>
 <g:render template="/index/menu" />
 		<h2>STAP</h2>
-		
+
 		<noscript>
  For full functionality of this site it is necessary to enable JavaScript.
  Here are the <a href="http://www.enable-javascript.com/">
@@ -39,9 +39,9 @@
 		<p>STAP is an automated phylogenetic tree-based Small subunit
 		rRNA Taxonomy and Alignment Pipeline. Use STAP to accurately assign 16S rRNA sequences to taxonomic units in the GreenGenes taxonomy.</p>
 		<g:form controller="job" action="submitstap" enctype="multipart/form-data" onsubmit="return validateForm()">
-		
+
 			<div class='header'> Enter your sample </div>
-			
+
 			<div class='panel'>
 			Upload sequences in .fasta format
 			<p><div class="inputWrapper">Browse
@@ -52,9 +52,9 @@
 			<p>Or enter fasta-formatted sequences
 			<p><textarea rows="4" cols="50" name="sequences" id="sequences"></textarea>
 			</div>
-			
+
 			<div class='header'> Options </div>
-			
+
 			<div class='panel'>
 			<table class='options'>
 			<tr><input type="hidden" name = "deletedFiles" id="deletedFiles"></tr>
@@ -74,10 +74,10 @@
 					<tr>
 						<td colspan = '2'><div class = 'error'><label id = 'distance_error'></label></div></td>
 					</tr>
-						
+
 			</table></div>
 			<div class='header'>Submit your job </div>
-			
+
 			<div class='panel'>
 			<label class ='collapsing-toggler'><input type='checkbox' name='checkbox_email' id='checkbox_email' value='ON' checked='checked' />Send results by E-mail</label>
 			<p><div class='collapsing-panel'><input type='text' name='email' id='email' size='50' maxlength='80' /></div>
@@ -86,16 +86,16 @@
 			</div>
 			<div class = 'error'><label id = 'final_error'></label></div><p>
 			</div>
-			
-		</g:form> 
+
+		</g:form>
 		<p></p>
 		<div class="citation"> Wu D, Hartman A, Ward N, Eisen JA (2008) An Automated Phylogenetic Tree-Based Small Subunit rRNA Taxonomy and Alignment Pipeline (STAP). PLoS
 			ONE 3(7): e2566. doi:10.1371/journal.pone.0002566 </div>
-		
-		
+
+
 		<script>
 		$(document).ready(function(){
-		
+
 			$(".collapsing-toggler").change(function()
 			{
 					if($("#checkbox_email").prop("checked")){
@@ -107,31 +107,31 @@
 					}
 			});
 			});
-			
+
 		$('#submit').on('click', function() {
  	 	ga('send', 'event', 'button', 'click', 'submit');
 		});
-		
+
 			function displayList(){
 				document.getElementById("file_error").innerHTML = "";
 				var deleted = document.getElementById("deletedFiles");
 				deleted.value = "";
 				var files = document.getElementById("files").files || [];
 				var fileTable = document.getElementById("fileTable");
-				
+
 				for(var i = fileTable.rows.length;i>0;i--) {
 					fileTable.deleteRow(i-1);
 				}
-				
-		
+
+
 				for	(var index = 0; index < files.length; index++) {
-	
+
 					var row = fileTable.insertRow(index);
 					var rowId = "row" + index;
 					row.setAttribute("id", rowId);
 					var filename = row.insertCell(0);
 					filename.innerHTML = files[index].name;
-					
+
 					var deleterCell = row.insertCell(1);
 					var deleter = document.createElement("img");
 					var deleterId = "deleter" + index;
@@ -140,30 +140,30 @@
 					deleter.setAttribute("title", "Delete");
 					deleter.setAttribute("onclick", "deleteFile(this)");
 					deleterCell.appendChild(deleter);
-		
+
 				}
-		
-				
+
+
 			}
-			
-			
+
+
 			function deleteFile(f){
-			
+
 				var index = parseInt(f.id.substring(7));
 				var rowId = "row" + index;
 				var row = document.getElementById(rowId);
     			row.parentNode.removeChild(row);
-    		
+
     			document.getElementById("deletedFiles").value += "," + index;
 			}
-			
-			
+
+
 			function check(str){
 			var t = str.split(".")[0].split("_");
 			console.log(t);
 			var probablePrimer = t[t.length-1];
 			console.log(probablePrimer);
-		
+
 			var primerHash = {	Un161: true,
 								un161: true,
 								Un162: false,
@@ -186,8 +186,8 @@
 				return false;
 			}
 			}
-			
-			function validateForm() { 
+
+			function validateForm() {
 			var passed = true;
 			var x = document.getElementById("email").value;
 			var test_email = true;
@@ -203,9 +203,9 @@
 			else {
 				document.getElementById("email_error").innerHTML = "";
 			}
-			
+
 			var files = document.getElementById("files").files || [];
-			
+
 			var wereDeleted;
 			if (document.getElementById("deletedFiles").value === ""){
 				wereDeleted = 0;
@@ -215,7 +215,7 @@
 				wereDeleted = document.getElementById("deletedFiles").value.split(",").length-1;
 				console.log(wereDeleted + " deleted ");
 			}
-			
+
 			var files_test = true;
 			if ((document.getElementById("files").value === "" || files.length === wereDeleted) && document.getElementById("sequences").value === ""){
 				document.getElementById("file_error").innerHTML = "Select at least one file or enter sequences in the field below";
@@ -239,18 +239,19 @@
 				}
 				}
 			}
-			
-			
-				
+
+
+
 			if (files_test === true){
 				document.getElementById("file_error").innerHTML = "";
 			}
 			else {
 				passed = false;
 			}
+
 			
-			var dist_check = document.getElementById("distance").value.toString().replace(',', '.');
-			if (!isNaN(dist_check) && dist_check.toString().indexOf('.') != -1 && parseFloat(dist_check) >= 0 && parseFloat(dist_check) <= 0.1 && document.getElementById("distance").value.indexOf(',') != -1 ){
+			var dist_check = document.getElementById("distance").value.toString(); //.replace(',', '.')
+			if (!isNaN(dist_check) && (dist_check == 0 || dist_check.indexOf('.') != -1) && parseFloat(dist_check) >= 0 && parseFloat(dist_check) <= 0.1 ){
 				document.getElementById("distance_error").innerHTML = "";
 			}
 			else {
@@ -265,37 +266,14 @@
 				var submitButton = document.getElementById("submitDiv").innerHTML = "Loading";
 			}
 			return passed;
-		} 
-		
+		}
 
-		
-			
+
+
+
 		</script>
 <div class ="push"></div>
     </div>
     <g:render template="/index/footer" />
 	</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

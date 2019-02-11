@@ -461,13 +461,13 @@
 			else {
 				passed = false;
 			}
-
-		var dist_check = document.getElementById("distance").value.toString().replace(',', '.');
-			if (!isNaN(dist_check) && dist_check.toString().search(/^0[\.]+[0-9]+$/) != -1 && parseFloat(dist_check) >= 0 && parseFloat(dist_check) <= 0.1){
+			
+			var dist_check = document.getElementById("distance").value.toString(); // .replace(',', '.')
+			if (!isNaN(dist_check) && (dist_check == 0 || dist_check.indexOf('.') != -1) && parseFloat(dist_check) >= 0 && parseFloat(dist_check) <= 0.1){
 				document.getElementById("distance_error").innerHTML = "";
 			}		
 			else {
-				document.getElementById("distance_error").innerHTML = "Enter a dot-separated number. Valid range is 0.. 0,1";
+				document.getElementById("distance_error").innerHTML = "Enter a dot-separated number. Valid range is 0-0.1";
 				passed = false;
 			}
 
