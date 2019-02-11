@@ -77,8 +77,8 @@
 						</td>
 					</tr>
 					<tr>
-						<td>Maximum distance<br>between close taxons <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='If STAP cannot decide, to which one of the two or more taxonomic groups the query sequence should be assigned, it outputs either the lowest common taxonomic group, or all the possible groups, if the difference between them (maximum edit distance between their members divided by alignment length) is less than the value you set here.' id='mytooltip'></td>
-						<td><input type='text' name='distance' id='distance' value='0,03' size='10' maxlength='30' />
+						<td>Maximum distance<br>between close taxons <img src='<g:createLinkTo dir='images' file='tooltip_icon.gif'/>' title ='If STAP cannot decide, to which one of the two or more taxonomic groups the query sequence should be assigned, it outputs either the lowest common taxonomic group, or all the possible groups, if the difference between them (maximum edit distance between their members) is less than the value you set here.' id='mytooltip'></td>
+						<td><input type='text' name='distance' id='distance' value='0.03' size='10' maxlength='30' />
 						</td>
 					</tr>
 					<tr>
