@@ -175,7 +175,8 @@ class StapjobService {
 			if(f instanceof org.springframework.web.multipart.commons.CommonsMultipartFile){
 
 				def fileName = f.getOriginalFilename().replaceAll("\\s+", "_")
-				new FileOutputStream(uploadPath + "/" + fileName.replaceAll(Pattern.compile('\\.[^\\.]*$'), '') + "/" + fileName).leftShift( f.getInputStream() )
+				def strippedFileName = fileName.replaceAll(Pattern.compile('\\.[^\\.]*$'), '')
+				new FileOutputStream(uploadPath + "/" + strippedFileName + "/" + strippedFileName + ".ab1.cluster.fasta").leftShift( f.getInputStream() )
 
 			} else {
 				log.error("wrong attachment type [${f.getClass()}]");
